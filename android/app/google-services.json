@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "61178869974",
+    "project_id": "bond-cec13",
+    "storage_bucket": "bond-cec13.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61178869974:android:d7b0ba6a712c55de94b177",
+        "android_client_info": {
+          "package_name": "com.example.bond"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf_6i-G5qTbni11x3CmoJeJHDedMubVGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

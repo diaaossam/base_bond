@@ -1,0 +1,27 @@
+{
+  "arabic": "عربى",
+  "english": "إنجليزى",
+  "error_fetch_data": "حدث خطأ أثناء الاتصال بالخادم",
+  "error_bad_request": "الطلب غير صالح",
+  "error_bad_response": "استجابة غير صحيحة من الخادم",
+  "error_unauthorized": "غير مصرح لك بالوصول",
+  "error_not_found": "العنصر غير موجود",
+  "error_conflict": "حدث تعارض",
+  "error_internal_server": "خطأ في الخادم الداخلي",
+  "error_no_internet": "لا يوجد اتصال بالإنترنت",
+  "noData": "لا توجد بيانات ، يرجى المحاولة مرة أخرى لاحقًا",
+  "pickVideo": "التقط فيديو",
+  "pickImage": "التقط صورة",
+  "chooseFromGallery1": "اختر صورة",
+  "chooseFromGallery2": "اختر فيديو",
+  "chooseFromGallery": "اختر من المعرض",
+  "thereIsError": "حدث خطأ",
+  "back": "عودة",
+  "searchHint": "إبحث ...",
+  "updateTitle": "تحديث متاح",
+  "updateBody": "تم إصدار نسخة جديدة من التطبيق تحتوي على تحسينات وإصلاحات مهمة.",
+  "updateBody1": "أداء أسرع وتحسينات في الواجهة.",
+  "updateBody2": "إصلاحات لأخطاء سابقة.",
+  "updateBody3": "تحديث الآن"
+
+}
