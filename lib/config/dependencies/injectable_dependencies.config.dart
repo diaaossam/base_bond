@@ -12,23 +12,37 @@
 import 'package:connectivity_plus/connectivity_plus.dart' as _i895;
 import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_analytics/firebase_analytics.dart' as _i398;
+import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:firebase_messaging/firebase_messaging.dart' as _i892;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
+import 'package:google_sign_in/google_sign_in.dart' as _i116;
 import 'package:image_picker/image_picker.dart' as _i183;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../core/bloc/global_cubit/global_cubit.dart' as _i913;
+import '../../core/bloc/network/network_cubit.dart' as _i730;
 import '../../core/services/api/app_interceptors.dart' as _i50;
 import '../../core/services/api/dio_client.dart' as _i763;
 import '../../core/services/api/dio_consumer.dart' as _i384;
 import '../../core/services/network/error/api_error_handler.dart' as _i665;
 import '../../core/services/network/internet_checker/netwok_info.dart'
     as _i1035;
+import '../../core/services/social_login_service/apple_account_login.dart'
+    as _i946;
+import '../../core/services/social_login_service/google_account_login_service.dart'
+    as _i845;
+import '../../features/auth/data/datasources/auth_remote_data_source.dart'
+    as _i107;
+import '../../features/auth/data/repositories/auth_repo_impl.dart' as _i662;
+import '../../features/auth/presentation/cubit/login_cubit/login_cubit.dart'
+    as _i153;
 import '../../features/start/data/datasources/init_remote_data_source.dart'
     as _i95;
 import '../../features/start/data/repositories/init_repo_impl.dart' as _i941;
+import '../../features/start/presentation/cubit/boarding/on_boarding_cubit.dart'
+    as _i1059;
 import '../../features/start/presentation/cubit/start/start_cubit.dart' as _i33;
 import '../helper/device_helper.dart' as _i620;
 import '../helper/token_repository.dart' as _i734;
@@ -48,16 +62,32 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.factory<_i895.Connectivity>(() => registerModule.connectivity);
+    gh.factory<_i116.GoogleSignIn>(() => registerModule.googleSignIn);
     gh.factory<_i558.FlutterSecureStorage>(() => registerModule.storage);
     gh.factory<_i892.FirebaseMessaging>(() => registerModule.firebaseMessaging);
+    gh.factory<_i59.FirebaseAuth>(() => registerModule.firebaseAuth);
     gh.factory<_i398.FirebaseAnalytics>(() => registerModule.firebaseAnalytics);
     gh.factory<_i183.ImagePicker>(() => registerModule.imagePicker);
+    gh.factory<_i730.NetworkCubit>(() => _i730.NetworkCubit());
     gh.factory<_i665.ApiErrorHandler>(() => _i665.ApiErrorHandler());
     gh.factory<_i1035.NetworkInfo>(() => _i1035.NetworkInfoImpl());
+    gh.lazySingleton<_i1059.OnBoardingCubit>(
+      () => _i1059.OnBoardingCubit(gh<_i460.SharedPreferences>()),
+    );
     gh.factory<_i913.GlobalCubit>(
       () => _i913.GlobalCubit(gh<_i460.SharedPreferences>()),
     );
+    gh.lazySingleton<_i946.AppleAccountLoginService>(
+      () =>
+          _i946.AppleAccountLoginService(firebaseAuth: gh<_i59.FirebaseAuth>()),
+    );
     gh.factory<_i620.DeviceHelper>(() => _i620.DeviceHelperImpl());
+    gh.lazySingleton<_i845.GoogleAccountLoginService>(
+      () => _i845.GoogleAccountLoginService(
+        googleSignIn: gh<_i116.GoogleSignIn>(),
+        firebaseAuth: gh<_i59.FirebaseAuth>(),
+      ),
+    );
     gh.factory<_i734.TokenRepository>(
       () => _i734.TokenRepositoryImp(
         secureStorage: gh<_i558.FlutterSecureStorage>(),
@@ -76,15 +106,32 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i384.DioConsumer>(
       () => _i384.DioConsumer(client: gh<_i763.DioClient>()),
     );
+    gh.factory<_i107.AuthRemoteDataSource>(
+      () => _i107.AuthRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+        googleAccountLoginService: gh<_i845.GoogleAccountLoginService>(),
+        sharedPreferences: gh<_i460.SharedPreferences>(),
+        deviceHelper: gh<_i620.DeviceHelper>(),
+        appleAccountLoginService: gh<_i946.AppleAccountLoginService>(),
+      ),
+    );
     gh.factory<_i95.InitRemoteDataSource>(
       () => _i95.RegisterRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
         sharedPreferences: gh<_i460.SharedPreferences>(),
       ),
     );
+    gh.lazySingleton<_i662.AuthRepositoryImpl>(
+      () => _i662.AuthRepositoryImpl(
+        authRemoteDataSource: gh<_i107.AuthRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i941.InitRepo>(
       () =>
           _i941.InitRepo(initRemoteDataSource: gh<_i95.InitRemoteDataSource>()),
+    );
+    gh.factory<_i153.LoginCubit>(
+      () => _i153.LoginCubit(gh<_i662.AuthRepositoryImpl>()),
     );
     gh.factory<_i33.StartCubit>(() => _i33.StartCubit(gh<_i941.InitRepo>()));
     return this;

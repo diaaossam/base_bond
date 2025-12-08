@@ -14,11 +14,12 @@ class StartCubit extends Cubit<BaseState<PageRouteInfo>> {
   }
 
   Future<void> initApp() async {
-    emit(BaseState.loading());
+    emit(state.loading());
+
     final response = await initRepo.initApp();
     response.fold(
-      (failure) => emit(BaseState.failure(error: failure)),
-      (data) => emit(BaseState.success(data: data)),
+      (failure) => emit(state.failure(failure)),
+      (data) => emit(state.success(data: data)),
     );
   }
 }

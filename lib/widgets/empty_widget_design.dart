@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/utils/app_size.dart';
-import 'app_text.dart';
+import 'main_widget/app_text.dart';
 import 'image_picker/app_image.dart';
 
 class EmptyWidgetDesign extends StatelessWidget {

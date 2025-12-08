@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../config/theme/theme_helper.dart';
-import '../core/extensions/color_extensions.dart';
+import '../../config/theme/theme_helper.dart';
+import '../../core/extensions/color_extensions.dart';
 import 'app_text.dart';
 
 class CustomTextFormField extends StatelessWidget {

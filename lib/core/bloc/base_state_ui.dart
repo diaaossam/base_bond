@@ -1,9 +1,11 @@
-import 'package:bloc/bloc.dart';
+import 'package:bond/core/utils/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../generated/l10n.dart';
 import '../../widgets/app_failure.dart';
 import '../extensions/app_localizations_extension.dart';
+import '../services/network/error/failures.dart';
 import 'base_state.dart';
 
 class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
@@ -27,35 +29,80 @@ class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<C, BaseState<T>>(
-      listener: (context, state) => onStateChanged != null ? onStateChanged!(state) : null,
       bloc: cubit,
+      listener: (context, state) {
+        onStateChanged?.call(state);
+        if (state.isFailure) {
+          AppConstant.showCustomSnakeBar(context, state.error, false);
+        }
+      },
       builder: (context, state) {
         if (state.isLoading) {
           return onLoading?.call() ??
               const Center(child: CircularProgressIndicator());
         }
-
         if (state.isFailure) {
           return onError?.call(state.error) ??
-              AppFailureWidget(title: "خطأ", body: state.error.toString());
+              AppFailureWidget(
+                title: _getLocalizedString(
+                  context,
+                  (l) => l.thereIsError,
+                  "Error",
+                ),
+              );
         }
 
-        /// 🟣 SUCCESS — لكن بدون Data
-        if (state.isSuccess && (state.data == null)) {
-          return onEmpty?.call() ??
-              AppFailureWidget(title: context.localizations.noData);
+        if (state.isSuccess) {
+          final data = state.data;
+
+          if (data == null) {
+            return onEmpty?.call() ??
+                AppFailureWidget(
+                  title: _getLocalizedString(
+                    context,
+                    (l) => l.noData,
+                    "No Data",
+                  ),
+                );
+          }
+
+          return onSuccess(data);
         }
-
-        /// 🟢 SUCCESS — DATA موجود
-        final data = state.data;
-
-        if (data is List && data.isEmpty) {
-          return onEmpty?.call() ??
-              AppFailureWidget(title: context.localizations.noData);
-        }
-
-        return onSuccess(data as T);
+        return onLoading?.call() ??
+            const Center(child: CircularProgressIndicator());
       },
     );
+  }
+
+  String _getLocalizedString(
+    BuildContext context,
+    String Function(S localizations) getter,
+    String fallback,
+  ) {
+    final s = context.localizationsMaybe;
+    if (s != null) return getter(s);
+    return fallback;
+  }
+
+  String _getErrorMessage(BuildContext context, Object? error) {
+    // no error
+    if (error == null) {
+      return _getLocalizedString(context, (l) => l.thereIsError, 'Error');
+    }
+
+    try {
+      if (error is Failure) {
+        return error.toMessage();
+      }
+
+      // تنظيف ال Exception
+      final msg = error.toString();
+      return msg
+          .replaceAll('Exception: ', '')
+          .replaceAll('ServerException: ', '')
+          .trim();
+    } catch (_) {
+      return _getLocalizedString(context, (l) => l.thereIsError, 'Error');
+    }
   }
 }

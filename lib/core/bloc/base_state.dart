@@ -3,6 +3,11 @@ import 'package:equatable/equatable.dart';
 enum BaseStatus { initial, loading, success, failure }
 
 class BaseState<T> extends Equatable {
+  final BaseStatus status;
+  final T? data;
+  final Object? error;
+  final String? identifier;
+
   const BaseState._({
     required this.status,
     this.data,
@@ -10,53 +15,50 @@ class BaseState<T> extends Equatable {
     this.identifier,
   });
 
-  /// ======== FACTORY HELPERS ========
-  factory BaseState.initial({String? identifier}) =>
-      BaseState._(status: BaseStatus.initial, identifier: identifier);
+  /// INITIAL
+  const BaseState.initial({String? identifier})
+    : this._(status: BaseStatus.initial, identifier: identifier ?? "initial");
 
-  factory BaseState.loading({
-    String? identifier,
-    bool clearData = true,
-    bool clearError = true,
-    T? previousData,
-    Object? previousError,
-  }) => BaseState._(
-    status: BaseStatus.loading,
-    data: clearData ? null : previousData,
-    error: clearError ? null : previousError,
-    identifier: identifier,
-  );
+  /// LOADING
+  const BaseState.loading({T? data, String? identifier})
+    : this._(status: BaseStatus.loading, data: data, identifier: identifier);
 
-  factory BaseState.success({
+  /// SUCCESS
+  const BaseState.success({T? data, String? identifier})
+    : this._(status: BaseStatus.success, data: data, identifier: identifier);
+
+  /// FAILURE
+  const BaseState.failure({Object? error, String? identifier})
+    : this._(status: BaseStatus.failure, error: error, identifier: identifier);
+
+  /// COPY WITH
+  BaseState<T> copyWith({
+    BaseStatus? status,
     T? data,
-    String? identifier,
-    bool clearError = true,
-  }) => BaseState._(
-    status: BaseStatus.success,
-    data: data,
-    error: clearError ? null : null,
-    identifier: identifier,
-  );
-
-  factory BaseState.failure({
     Object? error,
     String? identifier,
-    bool clearData = true,
-    T? previousData,
-  }) => BaseState._(
-    status: BaseStatus.failure,
-    error: error,
-    data: clearData ? null : previousData,
-    identifier: identifier,
-  );
+  }) {
+    return BaseState._(
+      status: status ?? this.status,
+      data: data ?? this.data,
+      error: error ?? this.error,
+      identifier: identifier ?? this.identifier,
+    );
+  }
 
-  /// ======== FIELDS ========
-  final BaseStatus status;
-  final T? data;
-  final Object? error;
-  final String? identifier;
+  /// READY METHODS (🔥 دي اللي بتسهّل حياتك)
+  BaseState<T> toLoading({String? identifier}) {
+    return BaseState.loading(data: data, identifier: identifier);
+  }
 
-  /// ======== GETTERS ========
+  BaseState<T> toSuccess({T? newData, String? identifier}) {
+    return BaseState.success(data: newData ?? data, identifier: identifier);
+  }
+
+  BaseState<T> toFailure(Object error, {String? identifier}) {
+    return BaseState.failure(error: error, identifier: identifier);
+  }
+
   bool get isInitial => status == BaseStatus.initial;
 
   bool get isLoading => status == BaseStatus.loading;
@@ -65,46 +67,23 @@ class BaseState<T> extends Equatable {
 
   bool get isFailure => status == BaseStatus.failure;
 
-  /// ======== COPYWITH ========
-  BaseState<T> copyWith({
-    BaseStatus? status,
-    T? data,
-    Object? error,
-    String? identifier,
-    bool clearData = false,
-    bool clearError = false,
-  }) {
-    return BaseState._(
-      status: status ?? this.status,
-      data: clearData ? null : data ?? this.data,
-      error: clearError ? null : error ?? this.error,
-      identifier: identifier ?? this.identifier,
-    );
-  }
-
-  /// ======== HELPER METHODS ========
-  BaseState<T> toLoading({String? identifier}) => BaseState.loading(
-    identifier: identifier ?? this.identifier,
-    previousData: data,
-    previousError: error,
-  );
-
-  BaseState<T> toSuccess({T? data, String? identifier}) => BaseState.success(
-    data: data ?? this.data,
-    identifier: identifier ?? this.identifier,
-  );
-
-  BaseState<T> toFailure({Object? error, String? identifier}) =>
-      BaseState.failure(
-        error: error,
-        previousData: data,
-        identifier: identifier ?? this.identifier,
-      );
-
   @override
   List<Object?> get props => [status, data, error, identifier];
+}
 
-  @override
-  String toString() =>
-      'BaseState(status: $status, data: $data, error: $error, identifier: $identifier)';
+extension BaseStateExtensions<T> on BaseState<T> {
+  /// SUCCESS
+  BaseState<T> success({T? data, String? identifier}) {
+    return BaseState.success(data: data ?? this.data, identifier: identifier);
+  }
+
+  /// LOADING
+  BaseState<T> loading({String? identifier}) {
+    return BaseState.loading(data: data, identifier: identifier);
+  }
+
+  /// FAILURE
+  BaseState<T> failure(Object error, {String? identifier}) {
+    return BaseState.failure(error: error, identifier: identifier);
+  }
 }

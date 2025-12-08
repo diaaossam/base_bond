@@ -2,9 +2,9 @@ import 'package:bond/widgets/rotate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../core/extensions/color_extensions.dart';
-import '../core/utils/app_size.dart';
-import '../gen/assets.gen.dart';
+import '../../core/extensions/color_extensions.dart';
+import '../../core/utils/app_size.dart';
+import '../../gen/assets.gen.dart';
 
 class BackArrowWidget extends StatelessWidget {
   final VoidCallback callback;

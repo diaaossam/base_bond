@@ -24,6 +24,20 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
+    "boardingDescription1": MessageLookupByLibrary.simpleMessage(
+      "Discover thousands of products and choose what suits you quickly and easily from anywhere.",
+    ),
+    "boardingDescription2": MessageLookupByLibrary.simpleMessage(
+      "Don’t miss the strongest discounts and exclusive offers that get updated every day.",
+    ),
+    "boardingDescription3": MessageLookupByLibrary.simpleMessage(
+      "Pay safely and enjoy fast delivery right to your doorstep without any hassle.",
+    ),
+    "boardingTitle1": MessageLookupByLibrary.simpleMessage("Easier Shopping"),
+    "boardingTitle2": MessageLookupByLibrary.simpleMessage("Daily Deals"),
+    "boardingTitle3": MessageLookupByLibrary.simpleMessage(
+      "Secure Payment & Fast Delivery",
+    ),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage(
       "Choose From Gallery",
     ),

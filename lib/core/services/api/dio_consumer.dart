@@ -9,21 +9,28 @@ class DioConsumer {
 
   DioConsumer({required DioClient client}) : _client = client;
 
-  // Builder Creator
   DioRequestBuilder<T> request<T>() => DioRequestBuilder<T>(this);
 
-  // Fluent wrappers
-  DioRequestBuilder<T> get<T>(String path) =>
-      request<T>().method("GET").path(path);
+  DioRequestBuilder<T> get<T>(String path, {Map<String, dynamic>? params}) =>
+      request<T>().method("GET").path(path).params(params);
 
-  DioRequestBuilder<T> post<T>(String path, {dynamic data}) =>
-      request<T>().method("POST").path(path).body(data);
+  DioRequestBuilder<T> post<T>(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? params,
+  }) => request<T>().method("POST").path(path).body(data).params(params);
 
-  DioRequestBuilder<T> put<T>(String path, {dynamic data}) =>
-      request<T>().method("PUT").path(path).body(data);
+  DioRequestBuilder<T> put<T>(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? params,
+  }) => request<T>().method("PUT").path(path).body(data).params(params);
 
-  DioRequestBuilder<T> deleteRequest<T>(String path, {dynamic data}) =>
-      request<T>().method("DELETE").path(path).body(data);
+  DioRequestBuilder<T> deleteRequest<T>(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? params,
+  }) => request<T>().method("DELETE").path(path).body(data).params(params);
 
   Future<dynamic> performRequest({
     required String path,

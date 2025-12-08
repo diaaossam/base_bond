@@ -62,11 +62,9 @@ class DioRequestBuilder<T> {
   Future<dynamic> execute(JsonParser<T> parser) async {
     final cacheStore = DioCacheStore();
 
-    // STREAM MODE
     if (_useStream) {
       final controller = StreamController<T>();
 
-      // 1) emit cache first if exists
       if (_cacheKey != null) {
         final cached = await cacheStore.get(_cacheKey!);
         if (cached != null) {

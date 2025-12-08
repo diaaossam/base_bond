@@ -22,5 +22,11 @@
   "updateBody": "A new version of the app has been released with important improvements and fixes.",
   "updateBody1": "Faster performance and UI enhancements.",
   "updateBody2": "Bug fixes.",
-  "updateBody3": "Update Now"
+  "updateBody3": "Update Now",
+  "boardingTitle1": "Easier Shopping",
+  "boardingDescription1": "Discover thousands of products and choose what suits you quickly and easily from anywhere.",
+  "boardingTitle2": "Daily Deals",
+  "boardingDescription2": "Don’t miss the strongest discounts and exclusive offers that get updated every day.",
+  "boardingTitle3": "Secure Payment & Fast Delivery",
+  "boardingDescription3": "Pay safely and enjoy fast delivery right to your doorstep without any hassle."
 }

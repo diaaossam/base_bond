@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../core/extensions/color_extensions.dart';
-import '../core/utils/app_size.dart';
+import '../../core/extensions/color_extensions.dart';
+import '../../core/utils/app_size.dart';
 import 'app_text.dart';
-import 'loading/loading_widget.dart';
+import '../loading/loading_widget.dart';
 
 class CustomButton extends StatefulWidget {
   const CustomButton({

@@ -22,9 +22,8 @@ class MyApp extends StatelessWidget {
       providers: AppBloc.providers,
       child: Builder(
         builder: (context) {
-          return AppApiResponse<GlobalCubit, void>(
-            cubit: context.read<GlobalCubit>(),
-            onSuccess: (data) {
+          return BlocBuilder<GlobalCubit, void>(
+            builder: (context, state) {
               final bloc = context.read<GlobalCubit>();
               return ScreenUtilInit(
                 designSize: const Size(360, 850),

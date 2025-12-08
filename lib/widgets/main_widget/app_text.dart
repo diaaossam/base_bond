@@ -1,7 +1,7 @@
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 
-import '../config/theme/theme_helper.dart';
+import '../../config/theme/theme_helper.dart';
 
 class AppText extends StatelessWidget {
   final String text;

@@ -23,7 +23,7 @@ class RegisterRemoteDataSourceImpl implements InitRemoteDataSource {
   Future<PageRouteInfo> initUser() async {
     final userToken = sharedPreferences.getString(AppStrings.userToken);
     if (userToken == null) {
-      return SplashRoute();
+      return LoginRoute();
     } else {
       return SplashRoute();
     }

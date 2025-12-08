@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../core/utils/app_size.dart';
-import 'app_text.dart';
-import 'back_widget.dart';
+import '../../core/utils/app_size.dart';
+import '../main_widget/app_text.dart';
+import '../main_widget/back_widget.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
   final VoidCallback? pressIcon;

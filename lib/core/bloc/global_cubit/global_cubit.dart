@@ -13,17 +13,25 @@ class GlobalCubit extends Cubit<BaseState<void>> {
 
   GlobalCubit(this.sharedPreferences) : super(BaseState.initial());
 
+  /// ======== App Settings ========
   Future<void> getAppSettings() async {
-    final cachedLangCode = sharedPreferences.getString(AppStrings.locale);
-    final cachedTheme = sharedPreferences.getString(AppStrings.theme);
-    locale = Locale(cachedLangCode ?? AppStrings.arabicCode);
-    language = handleLanguageByString(code: cachedLangCode ?? "ar");
-    themeMode = cachedTheme != null
-        ? cachedTheme == "light"
-              ? ThemeMode.light
-              : ThemeMode.dark
-        : ThemeMode.light;
-    emit(BaseState.success(identifier: "GetAppSettings"));
+    try {
+      emit(state.loading());
+
+      final cachedLangCode = sharedPreferences.getString(AppStrings.locale);
+      final cachedTheme = sharedPreferences.getString(AppStrings.theme);
+      locale = Locale(cachedLangCode ?? AppStrings.arabicCode);
+      language = handleLanguageByString(code: cachedLangCode ?? "ar");
+      themeMode = cachedTheme != null
+          ? cachedTheme == "light"
+                ? ThemeMode.light
+                : ThemeMode.dark
+          : ThemeMode.light;
+
+      emit(state.success());
+    } catch (error) {
+      emit(state.failure(error));
+    }
   }
 
   ///////////////////////// App Lang ////////////////////////
@@ -32,19 +40,21 @@ class GlobalCubit extends Cubit<BaseState<void>> {
   Language language = Language.arabic;
 
   Future<void> changeLanguage({required Language lang}) async {
-    sharedPreferences.setString(AppStrings.locale, lang.name);
+    emit(state.loading());
+    await sharedPreferences.setString(AppStrings.locale, lang.name);
     locale = Locale(lang.name);
     language = lang;
-    emit(BaseState.success(identifier: "ChangeLanguage"));
+    emit(state.success());
   }
 
   //////////////////// Theme ///////////////////////
 
   ThemeMode themeMode = ThemeMode.light;
 
-  void chooseAppTheme({required ThemeMode theme}) async {
+  Future<void> chooseAppTheme({required ThemeMode theme}) async {
+    emit(state.loading(identifier: "ChangeTheme"));
     themeMode = theme;
-    sharedPreferences.setString(AppStrings.theme, theme.name);
-    emit(BaseState.success(identifier: "ChangeTheme"));
+    await sharedPreferences.setString(AppStrings.theme, theme.name);
+    emit(state.success(identifier: "ChangeTheme"));
   }
 }

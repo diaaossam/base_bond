@@ -9,7 +9,7 @@ import '../../core/extensions/app_localizations_extension.dart';
 import '../../core/extensions/color_extensions.dart';
 import '../../core/utils/app_size.dart';
 import '../../gen/assets.gen.dart';
-import '../app_text.dart';
+import '../main_widget/app_text.dart';
 import 'media_form_field.dart';
 
 class PickMediaFileSheet extends StatefulWidget {

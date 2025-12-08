@@ -9,7 +9,9 @@ mixin ApiHandlerMixin {
       final result = await call();
       return Right(result);
     } on ServerException catch (error) {
-      return Left(error.toFailure());
+      return Left(
+        ServerFailure(code: error.statusCode ?? 0, error: error.errors),
+      );
     } catch (error) {
       return Left(ServerFailure(error: error.toString(), code: 0));
     }

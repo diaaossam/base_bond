@@ -253,6 +253,66 @@ class S {
   String get updateBody3 {
     return Intl.message('Update Now', name: 'updateBody3', desc: '', args: []);
   }
+
+  /// `Easier Shopping`
+  String get boardingTitle1 {
+    return Intl.message(
+      'Easier Shopping',
+      name: 'boardingTitle1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discover thousands of products and choose what suits you quickly and easily from anywhere.`
+  String get boardingDescription1 {
+    return Intl.message(
+      'Discover thousands of products and choose what suits you quickly and easily from anywhere.',
+      name: 'boardingDescription1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Deals`
+  String get boardingTitle2 {
+    return Intl.message(
+      'Daily Deals',
+      name: 'boardingTitle2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don’t miss the strongest discounts and exclusive offers that get updated every day.`
+  String get boardingDescription2 {
+    return Intl.message(
+      'Don’t miss the strongest discounts and exclusive offers that get updated every day.',
+      name: 'boardingDescription2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Secure Payment & Fast Delivery`
+  String get boardingTitle3 {
+    return Intl.message(
+      'Secure Payment & Fast Delivery',
+      name: 'boardingTitle3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay safely and enjoy fast delivery right to your doorstep without any hassle.`
+  String get boardingDescription3 {
+    return Intl.message(
+      'Pay safely and enjoy fast delivery right to your doorstep without any hassle.',
+      name: 'boardingDescription3',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
