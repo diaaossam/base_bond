@@ -54,13 +54,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .cache(key: "access", ttl: Duration(milliseconds: 200))
         .execute(UserModel.fromJson);
     return response;
-    /* String accessToken = response['data']['access_token'];
-    UserModel userModel = UserModel.fromJson(response['data']['user']);
-    UserDataService().setUserData(userModel);
-    await sharedPreferences.setString(AppStrings.userToken, accessToken);
-    await sharedPreferences.setBool(AppStrings.isGuest, false);
-    await ApiConfig().init();
-    return bool(data: userModel.customerCompleteProfile);*/
   }
 
   @override

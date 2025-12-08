@@ -52,7 +52,6 @@ class DioRequestBuilder<T> {
     return this;
   }
 
-  // STREAM
   DioRequestBuilder<T> stream() {
     _useStream = true;
     return this;
