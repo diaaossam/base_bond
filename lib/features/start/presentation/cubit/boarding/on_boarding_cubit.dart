@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/base_state.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../gen/assets.gen.dart';
@@ -22,11 +20,9 @@ class OnBoardingCubit extends Cubit<BaseState<List<IntroModel>>> {
     emit(state.success());
   }
 
-  var boardController = PageController();
-
   Future<void> submit() async {
     sharedPreferences.setBool(AppStrings.onBoarding, true);
-    emit(state.success());
+    emit(state.success(identifier: "submit"));
   }
 
   Future<void> getIntroData() async {
@@ -35,18 +31,19 @@ class OnBoardingCubit extends Cubit<BaseState<List<IntroModel>>> {
         id: 1,
         title: S.current.boardingTitle1,
         description: S.current.boardingDescription1,
-        image: Assets.images.logo.path,
-      ),      IntroModel(
-        id: 1,
-        title: S.current.boardingTitle1,
-        description: S.current.boardingDescription1,
-        image: Assets.images.logo.path,
+        image: Assets.images.boarding1.path,
       ),
       IntroModel(
         id: 1,
         title: S.current.boardingTitle1,
         description: S.current.boardingDescription1,
-        image: Assets.images.logo.path,
+        image: Assets.images.boarding1.path,
+      ),
+      IntroModel(
+        id: 1,
+        title: S.current.boardingTitle1,
+        description: S.current.boardingDescription1,
+        image: Assets.images.boarding1.path,
       ),
     ];
     emit(state.success(data: introList));

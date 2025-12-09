@@ -51,8 +51,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> verifyOtp({required OtpParams otpParams}) async {
     final response = await dioConsumer
         .post(EndPoints.verifyUser, data: otpParams.toJson())
-        .cache(key: "access", ttl: Duration(milliseconds: 200))
-        .execute(UserModel.fromJson);
+        .execute();
     return response;
   }
 

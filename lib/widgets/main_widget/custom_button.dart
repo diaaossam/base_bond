@@ -5,12 +5,15 @@ import '../../core/utils/app_size.dart';
 import 'app_text.dart';
 import '../loading/loading_widget.dart';
 
+enum CustomButtonType { normal, outline, text }
+
 class CustomButton extends StatefulWidget {
   const CustomButton({
     super.key,
     required this.text,
-    this.textSize,
     required this.press,
+    this.type = CustomButtonType.normal,
+    this.textSize,
     this.isActive = true,
     this.iconData,
     this.iconColor,
@@ -21,41 +24,60 @@ class CustomButton extends StatefulWidget {
     this.textColor,
     this.borderColor,
     this.height,
-    this.isBorder = false,
   });
 
-  const CustomButton.border({
+  /// =============== Outline Button ===============
+  const CustomButton.outline({
     super.key,
     required this.text,
-    this.textSize,
     required this.press,
+    this.textSize,
     this.isActive = true,
     this.iconData,
     this.iconColor,
     this.width,
     this.radius,
     this.isLoading = false,
-    this.backgroundColor,
-    this.textColor,
-    this.borderColor,
     this.height,
-    this.isBorder = true,
-  });
+    this.textColor,
+    this.backgroundColor = Colors.transparent,
+    this.borderColor,
+  }) : type = CustomButtonType.outline;
+
+  /// =============== Text Button ===============
+  const CustomButton.text({
+    super.key,
+    required this.text,
+    required this.press,
+    this.textSize,
+    this.isActive = true,
+    this.iconData,
+    this.iconColor,
+    this.width,
+    this.radius,
+    this.isLoading = false,
+    this.height,
+    this.textColor,
+  }) : backgroundColor = Colors.transparent,
+       borderColor = Colors.transparent,
+       type = CustomButtonType.text;
 
   final String? text;
+  final CustomButtonType type;
   final VoidCallback press;
   final double? width;
   final double? height;
   final double? textSize;
   final bool isActive;
   final double? radius;
+
   final Color? backgroundColor;
   final Color? textColor;
   final Color? iconColor;
   final Color? borderColor;
+
   final IconData? iconData;
   final bool isLoading;
-  final bool isBorder;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -72,18 +94,11 @@ class _CustomButtonState extends State<CustomButton> {
             ? getProportionateScreenHeight(50)
             : getProportionateScreenHeight(widget.height!),
         decoration: BoxDecoration(
-          border: widget.isBorder
-              ? Border.all(
-                  color: _setUpBorderColor(context),
-                  width: getProportionateScreenHeight(2),
-                )
-              : null,
-          color: _setUpColor(context),
-          borderRadius: BorderRadius.circular(
-            widget.radius == null ? 16 : widget.radius!,
-          ),
+          border: _getBorder(context),
+          color: _getBackgroundColor(context),
+          borderRadius: BorderRadius.circular(widget.radius ?? 16),
         ),
-        child: widget.isLoading == true
+        child: widget.isLoading
             ? const Center(
                 child: Padding(
                   padding: EdgeInsets.all(5.0),
@@ -93,31 +108,57 @@ class _CustomButtonState extends State<CustomButton> {
             : MaterialButton(
                 onPressed: widget.press,
                 child: AppText(
-                  color: widget.textColor ?? Colors.black,
                   text: widget.text!,
+                  color: _getTextColor(context),
                   fontWeight: FontWeight.w600,
-                  textSize: widget.textSize == null ? 13 : widget.textSize!,
+                  textSize: widget.textSize ?? 13,
                 ),
               ),
       ),
     );
   }
 
-  Color _setUpColor(BuildContext context) {
-    if (widget.isActive) {
-      return widget.backgroundColor ?? context.colorScheme.primary;
-    } else {
-      return context.colorScheme.onPrimary;
+  /// ===================== Styles =====================
+
+  Color _getBackgroundColor(BuildContext context) {
+    switch (widget.type) {
+      case CustomButtonType.normal:
+        return widget.backgroundColor ?? context.colorScheme.primary;
+
+      case CustomButtonType.outline:
+        return Colors.transparent;
+
+      case CustomButtonType.text:
+        return Colors.transparent;
     }
   }
 
-  Color _setUpBorderColor(BuildContext context) {
-    if (widget.isActive) {
-      return widget.borderColor == null
-          ? context.colorScheme.primary
-          : widget.borderColor!;
-    } else {
-      return context.colorScheme.onPrimary;
+  Color _getTextColor(BuildContext context) {
+    switch (widget.type) {
+      case CustomButtonType.normal:
+        return widget.textColor ?? Colors.white;
+
+      case CustomButtonType.outline:
+        return widget.textColor ?? context.colorScheme.primary;
+
+      case CustomButtonType.text:
+        return widget.textColor ?? context.colorScheme.primary;
+    }
+  }
+
+  BoxBorder? _getBorder(BuildContext context) {
+    switch (widget.type) {
+      case CustomButtonType.normal:
+        return null;
+
+      case CustomButtonType.outline:
+        return Border.all(
+          color: widget.borderColor ?? context.colorScheme.primary,
+          width: 2,
+        );
+
+      case CustomButtonType.text:
+        return null;
     }
   }
 }

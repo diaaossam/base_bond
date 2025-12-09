@@ -21,8 +21,6 @@ class DioCacheStore {
       data: data,
       expiry: ttl == null ? null : DateTime.now().add(ttl),
     );
-
-    // Memory
     _memoryCache[key] = entry;
 
     // File
@@ -31,7 +29,6 @@ class DioCacheStore {
   }
 
   Future<dynamic> get(String key) async {
-    // Memory check
     if (_memoryCache.containsKey(key)) {
       final entry = _memoryCache[key]!;
       if (!entry.isExpired) return entry.data;

@@ -43,11 +43,26 @@ class DioConsumer {
       case "GET":
         return await _client.get(path: path, params: params, headers: headers);
       case "POST":
-        return await _client.post(path: path, params: params, data: data);
+        return await _client.post(
+          path: path,
+          params: params,
+          data: data,
+          headers: headers,
+        );
       case "PUT":
-        return await _client.put(path: path, params: params, data: data);
+        return await _client.put(
+          path: path,
+          params: params,
+          data: data,
+          headers: headers,
+        );
       case "DELETE":
-        return await _client.delete(path: path, params: params, data: data);
+        return await _client.delete(
+          path: path,
+          params: params,
+          data: data,
+          headers: headers,
+        );
       default:
         throw Exception("Unsupported method");
     }

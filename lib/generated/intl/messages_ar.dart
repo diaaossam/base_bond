@@ -63,9 +63,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "noData": MessageLookupByLibrary.simpleMessage(
       "لا توجد بيانات ، يرجى المحاولة مرة أخرى لاحقًا",
     ),
+    "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
+    "startNow": MessageLookupByLibrary.simpleMessage("إبدء الأن"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
     "updateBody": MessageLookupByLibrary.simpleMessage(
       "تم إصدار نسخة جديدة من التطبيق تحتوي على تحسينات وإصلاحات مهمة.",
@@ -78,5 +80,6 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "updateBody3": MessageLookupByLibrary.simpleMessage("تحديث الآن"),
     "updateTitle": MessageLookupByLibrary.simpleMessage("تحديث متاح"),
+    "validation": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
   };
 }

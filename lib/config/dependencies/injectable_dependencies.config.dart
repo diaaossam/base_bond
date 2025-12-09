@@ -38,6 +38,8 @@ import '../../features/auth/data/datasources/auth_remote_data_source.dart'
 import '../../features/auth/data/repositories/auth_repo_impl.dart' as _i662;
 import '../../features/auth/presentation/cubit/login_cubit/login_cubit.dart'
     as _i153;
+import '../../features/auth/presentation/cubit/social_login/social_login_bloc.dart'
+    as _i396;
 import '../../features/start/data/datasources/init_remote_data_source.dart'
     as _i95;
 import '../../features/start/data/repositories/init_repo_impl.dart' as _i941;
@@ -70,6 +72,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i183.ImagePicker>(() => registerModule.imagePicker);
     gh.factory<_i730.NetworkCubit>(() => _i730.NetworkCubit());
     gh.factory<_i665.ApiErrorHandler>(() => _i665.ApiErrorHandler());
+    gh.factory<_i396.SocialLoginBloc>(() => _i396.SocialLoginBloc());
     gh.factory<_i1035.NetworkInfo>(() => _i1035.NetworkInfoImpl());
     gh.lazySingleton<_i1059.OnBoardingCubit>(
       () => _i1059.OnBoardingCubit(gh<_i460.SharedPreferences>()),

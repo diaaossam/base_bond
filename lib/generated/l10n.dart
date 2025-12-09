@@ -313,6 +313,131 @@ class S {
       args: [],
     );
   }
+
+  /// `Start Now`
+  String get startNow {
+    return Intl.message('Start Now', name: 'startNow', desc: '', args: []);
+  }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field is required`
+  String get validation {
+    return Intl.message(
+      'This field is required',
+      name: 'validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `سعداء بانضمامك!`
+  String get registerTitle {
+    return Intl.message(
+      'سعداء بانضمامك!',
+      name: 'registerTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خطوات سريعة فقط… لتبدأ رحلتك معنا`
+  String get registerBody {
+    return Intl.message(
+      'خطوات سريعة فقط… لتبدأ رحلتك معنا',
+      name: 'registerBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `سعداء بعودتك من جديد !`
+  String get loginTitle {
+    return Intl.message(
+      'سعداء بعودتك من جديد !',
+      name: 'loginTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدخل رقم هاتفك لتسجيل الدخول`
+  String get loginBody {
+    return Intl.message(
+      'أدخل رقم هاتفك لتسجيل الدخول',
+      name: 'loginBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تسجيل الدخول`
+  String get login {
+    return Intl.message('تسجيل الدخول', name: 'login', desc: '', args: []);
+  }
+
+  /// `تسجيل`
+  String get register {
+    return Intl.message('تسجيل', name: 'register', desc: '', args: []);
+  }
+
+  /// `إنشاء حساب جديد`
+  String get createNewAccount {
+    return Intl.message(
+      'إنشاء حساب جديد',
+      name: 'createNewAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الدخول كزائر`
+  String get loginAsGuest {
+    return Intl.message(
+      'الدخول كزائر',
+      name: 'loginAsGuest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ليس لديك حساب !`
+  String get dontHaveAccount {
+    return Intl.message(
+      'ليس لديك حساب !',
+      name: 'dontHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لديك حساب !`
+  String get alreadyHaveAccount {
+    return Intl.message(
+      'لديك حساب !',
+      name: 'alreadyHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أو تسجيل الدخول عبر`
+  String get orLoginWith {
+    return Intl.message(
+      'أو تسجيل الدخول عبر',
+      name: 'orLoginWith',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

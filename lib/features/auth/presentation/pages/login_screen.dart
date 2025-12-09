@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/features/auth/presentation/cubit/social_login/social_login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +16,10 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => sl<LoginCubit>())],
+      providers: [
+        BlocProvider(create: (context) => sl<LoginCubit>()),
+        BlocProvider(create: (context) => sl<SocialLoginBloc>()),
+      ],
       child: BlocListener<LoginCubit, BaseState<bool>>(
         listener: (context, state) {
           if (state.isFailure) {

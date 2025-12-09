@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage("لديك حساب !"),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
     "boardingDescription1": MessageLookupByLibrary.simpleMessage(
@@ -43,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("Choose Image"),
     "chooseFromGallery2": MessageLookupByLibrary.simpleMessage("Choose video"),
+    "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+    "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب !"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("Bad Request"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
@@ -62,12 +65,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_unauthorized": MessageLookupByLibrary.simpleMessage(
       "Unauthorized access",
     ),
+    "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "loginAsGuest": MessageLookupByLibrary.simpleMessage("الدخول كزائر"),
+    "loginBody": MessageLookupByLibrary.simpleMessage(
+      "أدخل رقم هاتفك لتسجيل الدخول",
+    ),
+    "loginTitle": MessageLookupByLibrary.simpleMessage(
+      "سعداء بعودتك من جديد !",
+    ),
     "noData": MessageLookupByLibrary.simpleMessage(
       "No Data Found , please try again later",
     ),
+    "orLoginWith": MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول عبر"),
+    "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
+    "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
+    "registerBody": MessageLookupByLibrary.simpleMessage(
+      "خطوات سريعة فقط… لتبدأ رحلتك معنا",
+    ),
+    "registerTitle": MessageLookupByLibrary.simpleMessage("سعداء بانضمامك!"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
+    "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("There is An Error"),
     "updateBody": MessageLookupByLibrary.simpleMessage(
       "A new version of the app has been released with important improvements and fixes.",
@@ -78,5 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "updateBody2": MessageLookupByLibrary.simpleMessage("Bug fixes."),
     "updateBody3": MessageLookupByLibrary.simpleMessage("Update Now"),
     "updateTitle": MessageLookupByLibrary.simpleMessage("Update Available"),
+    "validation": MessageLookupByLibrary.simpleMessage(
+      "This field is required",
+    ),
   };
 }

@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:bond/core/bloc/base_state.dart';
 
-part 'logout_state.dart';
-
-class LogoutCubit extends Cubit<LogoutState> {
-  LogoutCubit() : super(LogoutInitial());
+class LogoutCubit extends Cubit<BaseState<void>> {
+  LogoutCubit() : super(BaseState.initial());
 }

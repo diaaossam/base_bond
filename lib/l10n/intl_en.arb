@@ -28,5 +28,21 @@
   "boardingTitle2": "Daily Deals",
   "boardingDescription2": "Don’t miss the strongest discounts and exclusive offers that get updated every day.",
   "boardingTitle3": "Secure Payment & Fast Delivery",
-  "boardingDescription3": "Pay safely and enjoy fast delivery right to your doorstep without any hassle."
+  "boardingDescription3": "Pay safely and enjoy fast delivery right to your doorstep without any hassle.",
+  "startNow": "Start Now",
+  "phoneNumber": "Phone Number",
+  "validation": "This field is required",
+
+
+  "registerTitle": "سعداء بانضمامك!",
+  "registerBody": "خطوات سريعة فقط… لتبدأ رحلتك معنا",
+  "loginTitle": "سعداء بعودتك من جديد !",
+  "loginBody": "أدخل رقم هاتفك لتسجيل الدخول",
+  "login": "تسجيل الدخول",
+  "register": "تسجيل",
+  "createNewAccount": "إنشاء حساب جديد",
+  "loginAsGuest": "الدخول كزائر",
+  "dontHaveAccount": "ليس لديك حساب !",
+  "alreadyHaveAccount": "لديك حساب !",
+  "orLoginWith": "أو تسجيل الدخول عبر"
 }

@@ -14,6 +14,12 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/apple.svg
+  String get apple => 'assets/icons/apple.svg';
+
+  /// File path: assets/icons/arrow3.svg
+  String get arrow3 => 'assets/icons/arrow3.svg';
+
   /// File path: assets/icons/arrow_back.svg
   String get arrowBack => 'assets/icons/arrow_back.svg';
 
@@ -32,21 +38,35 @@ class $AssetsIconsGen {
   /// File path: assets/icons/edit-2.svg
   String get edit2 => 'assets/icons/edit-2.svg';
 
+  /// File path: assets/icons/egypt.svg
+  String get egypt => 'assets/icons/egypt.svg';
+
   /// File path: assets/icons/gallery.svg
   String get gallery => 'assets/icons/gallery.svg';
+
+  /// File path: assets/icons/google.svg
+  String get google => 'assets/icons/google.svg';
+
+  /// File path: assets/icons/phone.svg
+  String get phone => 'assets/icons/phone.svg';
 
   /// File path: assets/icons/search-normal.svg
   String get searchNormal => 'assets/icons/search-normal.svg';
 
   /// List of all assets
   List<String> get values => [
+    apple,
+    arrow3,
     arrowBack,
     arrowDown,
     arrowForward,
     arrowTop,
     camera,
     edit2,
+    egypt,
     gallery,
+    google,
+    phone,
     searchNormal,
   ];
 }
@@ -58,11 +78,29 @@ class $AssetsImagesGen {
   AssetGenImage get background =>
       const AssetGenImage('assets/images/background.png');
 
+  /// File path: assets/images/boarding1.jpg
+  AssetGenImage get boarding1 =>
+      const AssetGenImage('assets/images/boarding1.jpg');
+
+  /// File path: assets/images/boarding2.jpg
+  AssetGenImage get boarding2 =>
+      const AssetGenImage('assets/images/boarding2.jpg');
+
+  /// File path: assets/images/boarding3.jpg
+  AssetGenImage get boarding3 =>
+      const AssetGenImage('assets/images/boarding3.jpg');
+
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [background, logo];
+  List<AssetGenImage> get values => [
+    background,
+    boarding1,
+    boarding2,
+    boarding3,
+    logo,
+  ];
 }
 
 class Assets {

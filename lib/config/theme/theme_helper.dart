@@ -53,32 +53,6 @@ class ThemeHelper {
     fontWeight: FontWeight.w400,
   );
 
-  TextStyle appTextStyle({
-    required BuildContext context,
-    String? fontFamily,
-    double textHeight = 1.2,
-    TextDecoration? textDecoration,
-    Color? color,
-    Color? hintColor,
-    FontWeight? fontWeight,
-    double? textSize,
-  }) {
-    return Theme.of(context).textTheme.bodyMedium!.copyWith(
-      fontFamily: fontFamily ?? AppStrings.arabicFont,
-      overflow: TextOverflow.ellipsis,
-      height: textHeight,
-      decoration: textDecoration,
-      color:
-          color ?? hintColor ?? Theme.of(context).textTheme.bodyMedium!.color,
-      fontSize: _setUpSize(textSize: textSize),
-      fontWeight: fontWeight ?? FontWeight.w400,
-    );
-  }
-
-  double _setUpSize({double? textSize}) {
-    return textSize?.sp ?? 13.sp;
-  }
-
   ColorFilter? setUpIconsColor({required BuildContext context}) {
     if (ApiConfig.themeMode == ThemeMode.dark) {
       return ColorFilter.mode(context.colorScheme.onSurface, BlendMode.srcIn);

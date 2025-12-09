@@ -1,24 +1,25 @@
-import 'package:bond/core/utils/app_constant.dart';
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../generated/l10n.dart';
 import '../../widgets/app_failure.dart';
 import '../extensions/app_localizations_extension.dart';
-import '../services/network/error/failures.dart';
+import '../utils/app_constant.dart';
 import 'base_state.dart';
 
-class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
-  final C cubit;
+class AppApiBlocResponse<B extends Bloc<E, BaseState<T>>, E, T>
+    extends StatelessWidget {
+  final B bloc;
   final Widget Function(T data) onSuccess;
   final Widget Function()? onLoading;
   final Widget Function(Object? error)? onError;
   final Widget Function()? onEmpty;
   final void Function(BaseState<T> state)? onStateChanged;
 
-  const AppApiResponse({
+  const AppApiBlocResponse({
     super.key,
-    required this.cubit,
+    required this.bloc,
     required this.onSuccess,
     this.onLoading,
     this.onError,
@@ -28,10 +29,11 @@ class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<C, BaseState<T>>(
-      bloc: cubit,
+    return BlocConsumer<B, BaseState<T>>(
+      bloc: bloc,
       listener: (context, state) {
         onStateChanged?.call(state);
+
         if (state.isFailure) {
           AppConstant.showCustomSnakeBar(context, state.error, false);
         }
@@ -41,6 +43,7 @@ class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
           return onLoading?.call() ??
               const Center(child: CircularProgressIndicator());
         }
+
         if (state.isFailure) {
           return onError?.call(state.error) ??
               AppFailureWidget(
@@ -68,6 +71,7 @@ class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
 
           return onSuccess(data);
         }
+
         return onLoading?.call() ??
             const Center(child: CircularProgressIndicator());
       },
