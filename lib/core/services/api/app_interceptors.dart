@@ -1,3 +1,4 @@
+import 'package:bond/config/helper/token_helper.dart';
 import 'package:bond/config/helper/token_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -29,10 +30,18 @@ class AppInterceptors extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final accessToken = await _tokenDataSource.getToken();
-    if (accessToken != null && accessToken.isNotEmpty) {
-      options.headers['Authorization'] = 'Bearer $accessToken';
+    if (TokenDataService().getTokenData() == null) {
+      final accessToken = await _tokenDataSource.getToken();
+      if (accessToken != null) {
+        TokenDataService().setTokenData(accessToken);
+      }
+    }else{
+      if (TokenDataService().getTokenData() != null) {
+        options.headers['Authorization'] =
+        'Bearer ${TokenDataService().getTokenData()}';
+      }
     }
+
     options.headers[AppStrings.acceptLanguage] = ApiConfig.language?.name;
     options.headers[AppStrings.contentType] = AppStrings.applicationJson;
     options.headers[AppStrings.accept] = AppStrings.applicationJson;

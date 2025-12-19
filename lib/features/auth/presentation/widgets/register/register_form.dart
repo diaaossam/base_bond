@@ -7,6 +7,7 @@ import 'package:bond/core/extensions/validitor_extention.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/app/presentation/cubit/app_cubit.dart';
 import 'package:bond/features/app/presentation/cubit/app_state.dart';
+import 'package:bond/features/auth/data/models/request/register_params.dart';
 import 'package:bond/features/auth/presentation/widgets/login/phone_text_form_field.dart';
 import 'package:bond/features/auth/presentation/widgets/register/already_have_account.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
@@ -49,7 +50,11 @@ class RegisterForm extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              MediaFormField(onDataReceived: (File file) {}),
+              MediaFormField(
+                onDataReceived: (File file) {},
+                height: SizeConfig.bodyHeight * .12,
+                width: SizeConfig.bodyHeight * .12,
+              ),
               SizedBox(height: SizeConfig.bodyHeight * .04),
               CustomTextFormField(
                 name: "username",
@@ -64,29 +69,30 @@ class RegisterForm extends StatelessWidget {
               SizedBox(height: SizeConfig.bodyHeight * .02),
               BlocBuilder<AppCubit, AppState>(
                 builder: (context, state) {
-                  return state.map((value) => Column(
-                    children: [
-                      AppDropDown(
-                        name: "governorate",
-                        hint: context.localizations.governorate,
-                        validator: FormBuilderValidators.required(
-                          errorText: context.localizations.validation,
-                        ),
-                        onChanged: (int? value) {
-                          context.read<AppCubit>().getRegion(id: value!);
-                          _formKey.currentState?.fields['region']?.reset();
-                        },
-                        items: state.governorates
-                            .map(
-                              (e) => DropdownMenuItem(
-                            value: e.id,
-                            child: AppText(text: e.title ?? ''),
+                  return state.map(
+                    (value) => Column(
+                      children: [
+                        AppDropDown(
+                          name: "governorate",
+                          hint: context.localizations.governorate,
+                          validator: FormBuilderValidators.required(
+                            errorText: context.localizations.validation,
                           ),
-                        )
-                            .toList(),
-                      ),
-                      SizedBox(height: SizeConfig.bodyHeight * .02),
-                      AppDropDown(
+                          onChanged: (int? value) {
+                            context.read<AppCubit>().getRegion(id: value!);
+                            _formKey.currentState?.fields['region']?.reset();
+                          },
+                          items: state.governorates
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e.id,
+                                  child: AppText(text: e.title ?? ''),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                        SizedBox(height: SizeConfig.bodyHeight * .02),
+                        AppDropDown(
                           name: "region",
                           hint: context.localizations.region,
                           validator: FormBuilderValidators.required(
@@ -95,26 +101,33 @@ class RegisterForm extends StatelessWidget {
                           items: state.cities
                               .map(
                                 (e) => DropdownMenuItem(
-                              value: e.id,
-                              child: AppText(text: e.title ?? ''),
-                            ),
-                          )
+                                  value: e.id,
+                                  child: AppText(text: e.title ?? ''),
+                                ),
+                              )
                               .toList(),
                         ),
-                    ],
-                  ),);
+                      ],
+                    ),
+                  );
                 },
               ),
               SizedBox(height: SizeConfig.bodyHeight * .06),
               CustomButton(
-                text: context.localizations.login,
+                text: context.localizations.register,
                 press: () {
+
                   if (!_formKey.currentState!.saveAndValidate()) {
                     return;
                   }
-                  context.router.push(
-                    OtpRoute(phone: _formKey.fieldValue("phone")),
+                  RegisterParams params = RegisterParams(
+                    name: _formKey.fieldValue('username'),
+                    phone: _formKey.fieldValue('phone'),
+                    provinceId: _formKey.fieldValue("governorate"),
+                    regionId: _formKey.fieldValue("region"),
+                    imagePath: (_formKey.fieldValue("media") as File).path,
                   );
+
                 },
               ),
               SizedBox(height: SizeConfig.bodyHeight * .04),

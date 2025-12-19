@@ -19,7 +19,6 @@ class MediaFormField extends StatefulWidget {
   final String? title;
   final double? height;
   final double? width;
-  final VoidCallback? onImagePicked;
   final MediaType mediaType;
   final bool isClickable;
   final bool isLoading;
@@ -36,7 +35,6 @@ class MediaFormField extends StatefulWidget {
     this.width,
     this.title,
     this.isLoading = false,
-    this.onImagePicked,
     this.mediaType = MediaType.image,
     this.removeBorder = false,
     this.defaultImage,
@@ -68,11 +66,9 @@ class _MediaFormFieldState extends State<MediaFormField> {
               builder: (context) => PickMediaFileSheet(
                 mediaType: widget.mediaType,
                 onPickFile: (file, thumbnail) {
-                  setState(() {
-                    _selectedFile = file;
-                  });
-                  widget.onImagePicked?.call();
+                  setState(() => _selectedFile = file);
                   widget.onDataReceived(file);
+                  field.didChange(file);
                 },
               ),
             );
