@@ -3,8 +3,7 @@ import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../config/dependencies/injectable_dependencies.dart';
-import '../../../../../core/bloc/widget/base_state_ui.dart';
+import '../../../../../core/bloc/helper/base_state.dart';
 import '../../../../../core/enum/social_enum.dart';
 import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../gen/assets.gen.dart';
@@ -16,10 +15,8 @@ class SocialButtonDesign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppApiResponse<SocialLoginBloc, void>(
-      cubit: sl<SocialLoginBloc>(),
-      onStateChanged: (state) {},
-      onSuccess: (data) {
+    return BlocBuilder<SocialLoginBloc, BaseState>(
+      builder: (context, state) {
         final bloc = context.read<SocialLoginBloc>();
         return Column(
           children: [

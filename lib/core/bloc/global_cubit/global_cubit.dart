@@ -11,13 +11,13 @@ import '../../utils/app_strings.dart';
 class GlobalCubit extends Cubit<BaseState<void>> {
   final SharedPreferences sharedPreferences;
 
-  GlobalCubit(this.sharedPreferences) : super(BaseState.initial());
+  GlobalCubit(this.sharedPreferences) : super(BaseState());
 
-  /// ======== App Settings ========
   Future<void> getAppSettings() async {
     try {
-      emit(state.loading());
-
+      emit(
+        state.copyWith(identifier: "AppSettings", status: BaseStatus.loading),
+      );
       final cachedLangCode = sharedPreferences.getString(AppStrings.locale);
       final cachedTheme = sharedPreferences.getString(AppStrings.theme);
       locale = Locale(cachedLangCode ?? AppStrings.arabicCode);
@@ -28,9 +28,9 @@ class GlobalCubit extends Cubit<BaseState<void>> {
                 : ThemeMode.dark
           : ThemeMode.light;
 
-      emit(state.success());
+      emit(state.copyWith(status: BaseStatus.success));
     } catch (error) {
-      emit(state.failure(error));
+      emit(state.copyWith(status: BaseStatus.failure));
     }
   }
 
@@ -49,7 +49,6 @@ class GlobalCubit extends Cubit<BaseState<void>> {
   }
 
   //////////////////// Theme ///////////////////////
-
 
   Future<void> chooseAppTheme({required ThemeMode theme}) async {
     emit(state.loading(identifier: "ChangeTheme"));

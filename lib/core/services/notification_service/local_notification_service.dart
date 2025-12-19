@@ -39,7 +39,9 @@ class LocalNotificationService {
   ) async {
     final payload = notificationResponse.payload;
     if (payload != null) {
+      // ignore: unused_local_variable
       final data = jsonDecode(payload.toString());
+      // TODO: Handle notification tap with data
     }
   }
 

@@ -14,10 +14,13 @@ class SocialLoginBloc extends Cubit<BaseState<void>> {
   SocialLoginBloc(this.authRepositoryImpl) : super(BaseState.initial());
 
   Future<void> loginWithSocial({required SocialEnum socialEnum}) async {
-    await runRequest<void, bool>(
-      state: state,
-      emit: emit,
-      request: () => authRepositoryImpl.socialLogin(socialEnum: socialEnum),
+    emit(BaseState.loading());
+    final response = await authRepositoryImpl.socialLogin(
+      socialEnum: socialEnum,
+    );
+    response.fold(
+      (failure) => emit(BaseState.failure(error: failure)),
+      (success) => emit(BaseState.success()),
     );
   }
 }

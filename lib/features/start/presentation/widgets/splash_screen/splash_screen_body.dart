@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import '../../../../../config/dependencies/injectable_dependencies.dart';
-import '../../../../../core/bloc/widget/base_state_ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/services/deep_link/deep_link.dart';
 import '../../cubit/start/start_cubit.dart';
 
@@ -11,14 +11,13 @@ class SplashBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppApiResponse<StartCubit, PageRouteInfo>(
-      cubit: sl<StartCubit>(),
-      onStateChanged: (state) {
+    return BlocConsumer<StartCubit, BaseState<PageRouteInfo>>(
+      listener: (context, state) {
         if (state.isSuccess && state.data != null) {
           init(route: state.data!, context: context);
         }
       },
-      onSuccess: (PageRouteInfo? data) {
+      builder: (context, state) {
         return const Center(child: Text("Splash"));
       },
     );

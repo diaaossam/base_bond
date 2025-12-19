@@ -1,43 +1,35 @@
-import 'package:bloc/bloc.dart';
-import 'package:bond/core/bloc/mixin/error_handler_mixin.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../core/bloc/helper/base_state.dart';
+import '../../../../core/bloc/helper/either_extensions.dart';
 import '../../data/repositories/app_repository.dart';
-import 'app_state.dart';
+import 'app_state_data.dart';
 
 @injectable
-class AppCubit extends Cubit<AppState> with ErrorHandlerMixin<AppState> {
+class AppCubit extends Cubit<BaseState<AppStateData>>
+    with AsyncHandler<AppStateData> {
   final AppRepositoryImpl appRepositoryImpl;
 
-  AppCubit(this.appRepositoryImpl) : super(const AppState()) {
+  AppCubit(this.appRepositoryImpl)
+    : super(BaseState(status: BaseStatus.initial, data: const AppStateData())) {
     getGovernorates();
   }
 
   Future<void> getGovernorates() async {
-    emit(state.copyWith(isLoadingGovernorates: true));
-    final result = await appRepositoryImpl.getGovernorates();
-    await handleResult(
-      result: result,
-      onSuccess: (governorates) => state.copyWith(
-        governorates: governorates,
-        isLoadingGovernorates: false,
-      ),
-      onError: (error) => state.copyWith(isLoadingGovernorates: false, errorMessage: error),
+    await handleAsync(
+      identifier: 'governorate',
+      call: appRepositoryImpl.getGovernorates,
+      onSuccess: (governorates) => (state.data ?? const AppStateData()).copyWith(governorates: governorates),
     );
   }
 
   Future<void> getRegion({required int id}) async {
-    emit(state.copyWith(isLoadingCities: true, errorMessage: null));
-
-    final result = await appRepositoryImpl.getRegion(id: id);
-
-    await handleResult(
-      result: result,
-      onSuccess: (cities) => state.copyWith(
-        cities: cities,
-        isLoadingCities: false,
-        errorMessage: null,
-      ),
-      onError: (error) => state.copyWith(isLoadingCities: false, errorMessage: error),
+    await handleAsync(
+      identifier: 'cities',
+      call: () => appRepositoryImpl.getRegion(id: id),
+      onSuccess: (cities) =>
+          (state.data ?? const AppStateData()).copyWith(cities: cities),
     );
   }
 }

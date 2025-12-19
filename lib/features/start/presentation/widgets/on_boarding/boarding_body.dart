@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/start/data/models/intro_model.dart';
 import 'package:bond/features/start/presentation/cubit/boarding/on_boarding_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../config/dependencies/injectable_dependencies.dart';
-import '../../../../../core/bloc/widget/base_state_ui.dart';
 import '../../../../../core/extensions/page_controller_extention.dart';
 import 'boarding_content.dart';
 
@@ -28,42 +29,45 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return AppApiResponse<OnBoardingCubit, List<IntroModel>>(
-      onStateChanged: (state) {
+    return BlocConsumer<OnBoardingCubit, BaseState<List<IntroModel>>>(
+      listener: (context, state) {
         if (state.isSuccess && state.identifier == "submit") {
           context.router.push(LoginRoute());
         }
       },
-      cubit: cubit,
-      onSuccess: (data) => PageView.builder(
-        onPageChanged: (index) {
-          if (index == data.length - 1) {
-            cubit.changePageViewState(true);
-          } else {
-            cubit.changePageViewState(false);
-          }
-        },
-        itemCount: data.length,
-        physics: const BouncingScrollPhysics(),
-        controller: boardController,
-        itemBuilder: (context, index) {
-          final item = data[index];
-          return BoardingContent(
-            title: item.title,
-            count: data.length,
-            pageController: boardController,
-            image: item.image,
-            text: item.description,
-            press: () {
-              if (cubit.isLast) {
-                cubit.submit();
-              } else {
-                boardController.toNextPage();
-              }
-            },
-          );
-        },
-      ),
+      builder: (context, state) {
+        final data = state.data??[];
+        return  PageView.builder(
+          onPageChanged: (index) {
+            if (index == data.length - 1) {
+              cubit.changePageViewState(true);
+            } else {
+              cubit.changePageViewState(false);
+            }
+          },
+          itemCount: state.data?.length,
+          physics: const BouncingScrollPhysics(),
+          controller: boardController,
+          itemBuilder: (context, index) {
+            final item = data[index];
+            return BoardingContent(
+              title: item.title,
+              count: data.length,
+              pageController: boardController,
+              image: item.image,
+              text: item.description,
+              press: () {
+                if (cubit.isLast) {
+                  cubit.submit();
+                } else {
+                  boardController.toNextPage();
+                }
+              },
+            );
+          },
+        );
+      },
     );
+
   }
 }

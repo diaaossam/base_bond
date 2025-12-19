@@ -1,12 +1,10 @@
 import 'dart:io';
-import 'package:auto_route/auto_route.dart';
-import 'package:bond/config/router/app_router.gr.dart';
+
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/core/extensions/validitor_extention.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/app/presentation/cubit/app_cubit.dart';
-import 'package:bond/features/app/presentation/cubit/app_state.dart';
 import 'package:bond/features/auth/data/models/request/register_params.dart';
 import 'package:bond/features/auth/presentation/widgets/login/phone_text_form_field.dart';
 import 'package:bond/features/auth/presentation/widgets/register/already_have_account.dart';
@@ -15,7 +13,6 @@ import 'package:bond/widgets/main_widget/app_drop_down.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:bond/widgets/main_widget/custom_text_form_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -24,6 +21,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../widgets/image_picker/media_form_field.dart';
+import '../../../../app/presentation/cubit/app_state_data.dart';
 
 class RegisterForm extends StatelessWidget {
   RegisterForm({super.key});
@@ -67,48 +65,50 @@ class RegisterForm extends StatelessWidget {
               SizedBox(height: SizeConfig.bodyHeight * .02),
               MobileNumberField(),
               SizedBox(height: SizeConfig.bodyHeight * .02),
-              BlocBuilder<AppCubit, AppState>(
+              BlocBuilder<AppCubit, BaseState<AppStateData>>(
                 builder: (context, state) {
-                  return state.map(
-                    (value) => Column(
-                      children: [
-                        AppDropDown(
-                          name: "governorate",
-                          hint: context.localizations.governorate,
-                          validator: FormBuilderValidators.required(
-                            errorText: context.localizations.validation,
-                          ),
-                          onChanged: (int? value) {
-                            context.read<AppCubit>().getRegion(id: value!);
+                  final data = state.data ?? const AppStateData();
+                  return Column(
+                    children: [
+                      AppDropDown(
+                        name: "governorate",
+                        hint: context.localizations.governorate,
+                        isLoading: state.isLoading && state.identifier == "governorate",
+                        validator: FormBuilderValidators.required(
+                          errorText: context.localizations.validation,
+                        ),
+                        onChanged: (int? value) {
+                          if (value != null) {
+                            context.read<AppCubit>().getRegion(id: value);
                             _formKey.currentState?.fields['region']?.reset();
-                          },
-                          items: state.governorates
-                              .map(
-                                (e) => DropdownMenuItem(
-                                  value: e.id,
-                                  child: AppText(text: e.title ?? ''),
-                                ),
-                              )
-                              .toList(),
+                          }
+                        },
+                        items: data.governorates
+                            .map(
+                              (e) => DropdownMenuItem(
+                                value: e.id,
+                                child: AppText(text: e.title ?? ''),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                      SizedBox(height: SizeConfig.bodyHeight * .02),
+                      AppDropDown(
+                        name: "region",
+                        hint: context.localizations.region,
+                        validator: FormBuilderValidators.required(
+                          errorText: context.localizations.validation,
                         ),
-                        SizedBox(height: SizeConfig.bodyHeight * .02),
-                        AppDropDown(
-                          name: "region",
-                          hint: context.localizations.region,
-                          validator: FormBuilderValidators.required(
-                            errorText: context.localizations.validation,
-                          ),
-                          items: state.cities
-                              .map(
-                                (e) => DropdownMenuItem(
-                                  value: e.id,
-                                  child: AppText(text: e.title ?? ''),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      ],
-                    ),
+                        items: data.cities
+                            .map(
+                              (e) => DropdownMenuItem(
+                                value: e.id,
+                                child: AppText(text: e.title ?? ''),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ],
                   );
                 },
               ),
@@ -116,18 +116,20 @@ class RegisterForm extends StatelessWidget {
               CustomButton(
                 text: context.localizations.register,
                 press: () {
-
                   if (!_formKey.currentState!.saveAndValidate()) {
                     return;
                   }
-                  RegisterParams params = RegisterParams(
-                    name: _formKey.fieldValue('username'),
-                    phone: _formKey.fieldValue('phone'),
-                    provinceId: _formKey.fieldValue("governorate"),
-                    regionId: _formKey.fieldValue("region"),
-                    imagePath: (_formKey.fieldValue("media") as File).path,
+                  final fields = _formKey.currentState!.fields;
+                  final file = fields['media']?.value;
+                  // ignore: unused_local_variable
+                  final params = RegisterParams(
+                    name: fields['username']?.value as String?,
+                    phone: fields['phone']?.value as String?,
+                    provinceId: fields['governorate']?.value as int?,
+                    regionId: fields['region']?.value as int?,
+                    imagePath: file is File ? file.path : null,
                   );
-
+                  // TODO: Call register cubit with params
                 },
               ),
               SizedBox(height: SizeConfig.bodyHeight * .04),
