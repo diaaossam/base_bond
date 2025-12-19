@@ -33,7 +33,6 @@ class AppInterceptors extends Interceptor {
     if (accessToken != null && accessToken.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $accessToken';
     }
-
     options.headers[AppStrings.acceptLanguage] = ApiConfig.language?.name;
     options.headers[AppStrings.contentType] = AppStrings.applicationJson;
     options.headers[AppStrings.accept] = AppStrings.applicationJson;

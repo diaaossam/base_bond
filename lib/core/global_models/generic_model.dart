@@ -17,6 +17,20 @@ class GenericModel extends Equatable {
     deliveryPrice: map['delivery_price'],
   );
 
+  static List<GenericModel> fromJsonList(Map<String, dynamic> response) {
+      final List<dynamic> dataList = response['data'] as List<dynamic>;
+    return dataList
+        .map((item) => GenericModel.fromJson(item as Map<String, dynamic>))
+        .toList();
+  }
+
+  static List<GenericModel> fromJsonCitiesList(Map<String, dynamic> response) {
+    final List<dynamic> dataList = response['data']['cities'] as List<dynamic>;
+    return dataList
+        .map((item) => GenericModel.fromJson(item as Map<String, dynamic>))
+        .toList();
+  }
+
   Map<String, dynamic> toMap() => {
     "id": id,
     "title": title,

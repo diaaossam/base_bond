@@ -1,9 +1,16 @@
 class EndPoints {
+
+  /////////////////////// Location //////////////////
+
+  static const String governorates = "governorates";
+
+
   ///////// Auth ////////////////////////
+
 
   static const String profile = "v1/profile/me";
 
-  static getUserByUid(String ulid) => 'v1/auth/user/$ulid';
+  static String getUserByUid(String ulid) => 'v1/auth/user/$ulid';
 
   static const String loginUser = "v1/auth/login";
   static const String update = "v1/profile/update";
@@ -26,8 +33,6 @@ class EndPoints {
   static const String skinProblem = "v1/skin-problems";
 
 
-  static const String provinces = "v1/provinces";
-  static const String region = "v1/regions";
 
   //////////////////////////// Notification //////////////////
   static const String notfications = "v1/notification";

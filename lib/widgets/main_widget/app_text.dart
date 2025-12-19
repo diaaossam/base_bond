@@ -1,3 +1,4 @@
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/utils/app_strings.dart';
@@ -99,7 +100,7 @@ class AppText extends StatelessWidget {
         fontFamily: fontFamily ?? AppStrings.arabicFont,
         height: textHeight,
         decoration: textDecoration,
-        color: color ?? baseStyle.color,
+        color: fontColor(context: context),
         fontSize: fontSize(),
         fontWeight: fontWeightHandler(),
       ),
@@ -114,11 +115,10 @@ class AppText extends StatelessWidget {
       case TextType.title:
         return 18.sp;
       case TextType.regular:
+      case TextType.body:
         return 12.sp;
       case TextType.hint:
         return 11.sp;
-      case TextType.body:
-        return 13.sp;
     }
   }
 
@@ -135,6 +135,22 @@ class AppText extends StatelessWidget {
         return FontWeight.w400;
       case TextType.body:
         return FontWeight.w500;
+    }
+  }
+
+  Color? fontColor({required BuildContext context}) {
+    if (color != null) {
+      return color;
+    }
+    switch (type) {
+      case TextType.title:
+        return context.colorScheme.onSurface;
+      case TextType.regular:
+        return context.colorScheme.onSurface;
+      case TextType.hint:
+        return context.colorScheme.shadow;
+      case TextType.body:
+        return context.colorScheme.onSurface.withValues(alpha: 0.7);
     }
   }
 }

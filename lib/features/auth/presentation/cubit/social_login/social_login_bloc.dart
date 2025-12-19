@@ -1,14 +1,23 @@
 import 'package:bloc/bloc.dart';
-import 'package:bond/core/bloc/base_state.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import '../../../../../core/enum/social_enum.dart';
+import '../../../data/repositories/auth_repo_impl.dart';
 
 part 'social_login_event.dart';
 
 @Injectable()
-class SocialLoginBloc extends Bloc<SocialLoginEvent, BaseState<void>> {
-  SocialLoginBloc() : super(BaseState.initial()) {
-    on<LoginWithSocial>((event, emit) async {});
+class SocialLoginBloc extends Cubit<BaseState<void>> {
+  final AuthRepositoryImpl authRepositoryImpl;
+
+  SocialLoginBloc(this.authRepositoryImpl) : super(BaseState.initial());
+
+  Future<void> loginWithSocial({required SocialEnum socialEnum}) async {
+    await runRequest<void, bool>(
+      state: state,
+      emit: emit,
+      request: () => authRepositoryImpl.socialLogin(socialEnum: socialEnum),
+    );
   }
 }

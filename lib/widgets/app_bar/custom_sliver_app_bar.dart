@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import '../../core/utils/app_size.dart';
 import '../main_widget/app_text.dart';
@@ -12,7 +13,6 @@ class CustomSliverAppBar extends StatelessWidget {
   final bool? isCenterTitle;
   final bool? pinned;
   final PreferredSizeWidget? preferredSizeWidget;
-  final bool showLeading;
   final Widget? flexibleSpace;
   final double? expandedHeight;
 
@@ -26,8 +26,7 @@ class CustomSliverAppBar extends StatelessWidget {
     this.preferredSizeWidget,
     this.flexibleSpace,
     this.isCenterTitle = true,
-    this.showLeading = true,
-    this.pinned = true, // عشان الاب بار يفضل ثابت فوق لو عاوز
+    this.pinned = true,
   });
 
   @override
@@ -35,6 +34,7 @@ class CustomSliverAppBar extends StatelessWidget {
     return SliverAppBar(
       pinned: pinned ?? true,
       automaticallyImplyLeading: false,
+      backgroundColor: context.colorScheme.surface,
       leadingWidth: SizeConfig.screenWidth * .2,
       centerTitle: isCenterTitle,
       elevation: 1,
@@ -44,15 +44,10 @@ class CustomSliverAppBar extends StatelessWidget {
           AppText(
             text: title != null ? title.toString() : "",
             fontWeight: FontWeight.w600,
-            textSize: 14,
+            textSize: 13,
           ),
       bottom: preferredSizeWidget,
-      leading: showLeading
-          ? BackArrowWidget(
-              margin: const EdgeInsetsDirectional.all(5),
-              callback: pressIcon ?? () => Navigator.pop(context),
-            )
-          : null,
+      leading: BackArrowWidget(),
       actions: actions,
       flexibleSpace: flexibleSpace,
       expandedHeight: expandedHeight,

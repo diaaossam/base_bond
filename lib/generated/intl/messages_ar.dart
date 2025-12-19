@@ -63,6 +63,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noData": MessageLookupByLibrary.simpleMessage(
       "لا توجد بيانات ، يرجى المحاولة مرة أخرى لاحقًا",
     ),
+    "otpBody": MessageLookupByLibrary.simpleMessage(
+      "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
+    ),
+    "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),

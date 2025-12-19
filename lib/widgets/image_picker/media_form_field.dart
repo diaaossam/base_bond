@@ -57,36 +57,38 @@ class _MediaFormFieldState extends State<MediaFormField> {
       name: 'media',
       validator: widget.validator,
       builder: (FormFieldState<File?> field) {
-        return Stack(
-          alignment: AlignmentDirectional.bottomStart,
-          children: [
-            GestureDetector(
-              onTap: !widget.isClickable
-                  ? null
-                  : () async {
-                      await showMaterialModalBottomSheet(
-                        context: context,
-                        builder: (context) => PickMediaFileSheet(
-                          mediaType: widget.mediaType,
-                          onPickFile: (file, thumbnail) {
-                            setState(() {
-                              _selectedFile = file;
-                            });
-                            widget.onImagePicked?.call();
-                            widget.onDataReceived(file);
-                          },
-                        ),
-                      );
-                    },
-              child: Container(
+        return InkWell(
+          onTap: () async {
+            if (!widget.isClickable) {
+              return;
+            }
+
+            await showMaterialModalBottomSheet(
+              context: context,
+              builder: (context) => PickMediaFileSheet(
+                mediaType: widget.mediaType,
+                onPickFile: (file, thumbnail) {
+                  setState(() {
+                    _selectedFile = file;
+                  });
+                  widget.onImagePicked?.call();
+                  widget.onDataReceived(file);
+                },
+              ),
+            );
+          },
+          child: Stack(
+            alignment: AlignmentDirectional.bottomStart,
+            children: [
+              Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: field.hasError
                         ? context.colorScheme.error
-                        : context.colorScheme.tertiary,
+                        : context.colorScheme.primary,
                     strokeAlign: BorderSide.strokeAlignOutside,
-                    width: 4,
+                    width: 3,
                   ),
                 ),
                 width: widget.width,
@@ -94,28 +96,16 @@ class _MediaFormFieldState extends State<MediaFormField> {
                 clipBehavior: Clip.antiAlias,
                 child: _setUpImage(_selectedFile, field),
               ),
-            ),
-            GestureDetector(
-              onTap: !widget.isClickable
-                  ? null
-                  : () async {
-                      await showMaterialModalBottomSheet(
-                        context: context,
-                        builder: (context) => PickMediaFileSheet(
-                          mediaType: widget.mediaType,
-                          onPickFile: (file, thumbnail) {
-                            setState(() {
-                              _selectedFile = file;
-                            });
-                            widget.onImagePicked?.call();
-                            widget.onDataReceived(file);
-                          },
-                        ),
-                      );
-                    },
-              child: SvgPicture.asset(Assets.icons.edit2, height: 30),
-            ),
-          ],
+              Container(
+                decoration: BoxDecoration(
+                  color: context.colorScheme.surface,
+                  shape: BoxShape.circle
+                ),
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(Assets.icons.camera, height: 22),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -144,19 +134,7 @@ class _MediaFormFieldState extends State<MediaFormField> {
           );
         }
       } else {
-        return widget.defaultImage ??
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppImage.asset(
-                  Assets.icons.gallery,
-                  width: 20.w,
-                  color: field.hasError
-                      ? context.colorScheme.error
-                      : context.colorScheme.tertiary,
-                ),
-              ],
-            );
+        return AppImage.asset(Assets.images.person.path, width: 120.w);
       }
     }
   }

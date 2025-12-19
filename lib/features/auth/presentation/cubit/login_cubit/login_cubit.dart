@@ -1,4 +1,4 @@
-import 'package:bond/core/bloc/base_state.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../data/repositories/auth_repo_impl.dart';

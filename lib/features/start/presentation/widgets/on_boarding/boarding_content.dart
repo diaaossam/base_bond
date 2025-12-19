@@ -94,7 +94,7 @@ class BoardingContent extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 20,
-                            vertical: 15,
+                            vertical: 6,
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -105,8 +105,8 @@ class BoardingContent extends StatelessWidget {
                               AppText(
                                 text: context.localizations.startNow,
                                 color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                textSize: 16,
+                                fontWeight: FontWeight.w500,
+                                textSize: 12,
                               ),
                               10.horizontalSpace,
                               AppImage.asset(Assets.icons.arrow3),

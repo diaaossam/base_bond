@@ -1,4 +1,7 @@
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../services/network/error/failures.dart';
 
 enum BaseStatus { initial, loading, success, failure }
 
@@ -86,4 +89,25 @@ extension BaseStateExtensions<T> on BaseState<T> {
   BaseState<T> failure(Object error, {String? identifier}) {
     return BaseState.failure(error: error, identifier: identifier);
   }
+}
+
+Future<void> runRequest<T, R>({
+  required BaseState<T> state,
+  required void Function(BaseState<T>) emit,
+  required Future<Either<Failure, R>> Function() request,
+  T Function(R result)? onSuccess,
+}) async {
+  emit(state.toLoading());
+  final result = await request();
+  emit(
+    result.fold((l) => state.toFailure(l.message), (r) {
+      if (onSuccess != null) {
+        return state.toSuccess(newData: onSuccess(r));
+      }
+      if (r is T) {
+        return state.toSuccess(newData: r);
+      }
+      return state.toSuccess();
+    }),
+  );
 }

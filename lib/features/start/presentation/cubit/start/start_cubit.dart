@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/bloc/base_state.dart';
+import '../../../../../core/bloc/helper/base_state.dart';
 import '../../../data/repositories/init_repo_impl.dart';
 
 @Injectable()

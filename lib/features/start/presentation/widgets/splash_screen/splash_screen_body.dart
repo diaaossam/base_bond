@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import '../../../../../config/dependencies/injectable_dependencies.dart';
-import '../../../../../core/bloc/base_state_ui.dart';
+import '../../../../../core/bloc/widget/base_state_ui.dart';
 import '../../../../../core/services/deep_link/deep_link.dart';
 import '../../cubit/start/start_cubit.dart';
 
@@ -18,7 +18,7 @@ class SplashBody extends StatelessWidget {
           init(route: state.data!, context: context);
         }
       },
-      onSuccess: (PageRouteInfo data) {
+      onSuccess: (PageRouteInfo? data) {
         return const Center(child: Text("Splash"));
       },
     );

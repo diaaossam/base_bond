@@ -429,11 +429,121 @@ class S {
     );
   }
 
-  /// `أو تسجيل الدخول عبر`
-  String get orLoginWith {
+  /// `أو`
+  String get or {
+    return Intl.message('أو', name: 'or', desc: '', args: []);
+  }
+
+  /// `لم يصلك الرمز ؟`
+  String get dontReceiveCode {
     return Intl.message(
-      'أو تسجيل الدخول عبر',
-      name: 'orLoginWith',
+      'لم يصلك الرمز ؟',
+      name: 'dontReceiveCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إعاده الإرسال`
+  String get resendCode {
+    return Intl.message(
+      'إعاده الإرسال',
+      name: 'resendCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدخل رمز التحقق (OTP)`
+  String get otpTitle {
+    return Intl.message(
+      'أدخل رمز التحقق (OTP)',
+      name: 'otpTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك`
+  String get otpBody {
+    return Intl.message(
+      'قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك',
+      name: 'otpBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تأكيد`
+  String get confirm {
+    return Intl.message('تأكيد', name: 'confirm', desc: '', args: []);
+  }
+
+  /// `الاسم الكامل`
+  String get fullName {
+    return Intl.message('الاسم الكامل', name: 'fullName', desc: '', args: []);
+  }
+
+  /// `المحافظة`
+  String get governorate {
+    return Intl.message('المحافظة', name: 'governorate', desc: '', args: []);
+  }
+
+  /// `المنطقة`
+  String get region {
+    return Intl.message('المنطقة', name: 'region', desc: '', args: []);
+  }
+
+  /// `جارى التحميل`
+  String get loading {
+    return Intl.message('جارى التحميل', name: 'loading', desc: '', args: []);
+  }
+
+  /// `الرئيسية`
+  String get home {
+    return Intl.message('الرئيسية', name: 'home', desc: '', args: []);
+  }
+
+  /// `السلة`
+  String get cart {
+    return Intl.message('السلة', name: 'cart', desc: '', args: []);
+  }
+
+  /// `طلباتى`
+  String get myOrders {
+    return Intl.message('طلباتى', name: 'myOrders', desc: '', args: []);
+  }
+
+  /// `المفضلة`
+  String get favorites {
+    return Intl.message('المفضلة', name: 'favorites', desc: '', args: []);
+  }
+
+  /// `الإعدادات`
+  String get settings {
+    return Intl.message('الإعدادات', name: 'settings', desc: '', args: []);
+  }
+
+  /// `التصنيفات`
+  String get categories {
+    return Intl.message('التصنيفات', name: 'categories', desc: '', args: []);
+  }
+
+  /// `تسجيل الدخول عبر جوجل`
+  String get loginViaGoogle {
+    return Intl.message(
+      'تسجيل الدخول عبر جوجل',
+      name: 'loginViaGoogle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تسجيل الدخول عبر أبل`
+  String get loginViaApple {
+    return Intl.message(
+      'تسجيل الدخول عبر أبل',
+      name: 'loginViaApple',
       desc: '',
       args: [],
     );

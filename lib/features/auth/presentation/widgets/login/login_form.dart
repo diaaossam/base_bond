@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/core/extensions/validitor_extention.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/auth/presentation/widgets/login/phone_text_form_field.dart';
 import 'package:bond/features/auth/presentation/widgets/login/social_button_design.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
+import 'package:bond/widgets/main_widget/app_drop_down.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:bond/widgets/main_widget/custom_text_form_field.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,17 +47,33 @@ class LoginForm extends StatelessWidget {
                 child: AppImage.asset(
                   fit: BoxFit.cover,
                   Assets.images.logo.path,
-                  height: SizeConfig.bodyHeight * .2,
+                  height: SizeConfig.bodyHeight * .12,
                 ),
               ),
+              SizedBox(height: SizeConfig.bodyHeight * .06),
               MobileNumberField(),
-              SizedBox(height: SizeConfig.bodyHeight*.04,),
-              CustomButton(text: context.localizations.loginTitle, press: (){}),
-              SizedBox(height: SizeConfig.bodyHeight*.02,),
-              CustomButton.text(text: context.localizations.loginAsGuest, press: (){}),
-              SizedBox(height: SizeConfig.bodyHeight*.04,),
+              SizedBox(height: SizeConfig.bodyHeight * .04),
+              CustomButton(
+                text: context.localizations.login,
+                press: () {
+                  if (!_formKey.currentState!.saveAndValidate()) {
+                    return;
+                  }
+
+
+                  /*context.router.push(
+                    OtpRoute(phone: _formKey.fieldValue("phone")),
+                  );*/
+                },
+              ),
+              SizedBox(height: SizeConfig.bodyHeight * .02),
+              CustomButton.text(
+                text: context.localizations.loginAsGuest,
+                press: () {},
+              ),
+              SizedBox(height: SizeConfig.bodyHeight * .04),
               DontHaveAccountWidget(),
-              SizedBox(height: SizeConfig.bodyHeight*.04,),
+              SizedBox(height: SizeConfig.bodyHeight * .04),
               SocialButtonDesign(),
             ],
           ),

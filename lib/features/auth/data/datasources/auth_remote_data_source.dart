@@ -10,6 +10,7 @@ import '../../../../core/services/social_login_service/apple_account_login.dart'
 import '../../../../core/services/social_login_service/google_account_login_service.dart';
 import '../models/request/otp_params.dart';
 import '../models/request/register_params.dart';
+import '../models/request/social_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel> verifyOtp({required OtpParams otpParams});
@@ -51,6 +52,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> verifyOtp({required OtpParams otpParams}) async {
     final response = await dioConsumer
         .post(EndPoints.verifyUser, data: otpParams.toJson())
+
         .execute();
     return response;
   }
@@ -77,6 +79,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<bool> socialLogin({required SocialEnum socialEnum}) async {
+    SocialModel? socialModel;
+    if (socialEnum == SocialEnum.google) {
+      socialModel = await googleAccountLoginService.login();
+    }
+    if (socialEnum == SocialEnum.apple) {
+      socialModel = await appleAccountLoginService.login();
+    }
+
     return true;
   }
 

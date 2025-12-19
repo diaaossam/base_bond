@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Heart2.svg
+  String get heart2 => 'assets/icons/Heart2.svg';
+
   /// File path: assets/icons/apple.svg
   String get apple => 'assets/icons/apple.svg';
 
@@ -35,11 +38,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/camera.svg
   String get camera => 'assets/icons/camera.svg';
 
+  /// File path: assets/icons/category.svg
+  String get category => 'assets/icons/category.svg';
+
   /// File path: assets/icons/edit-2.svg
   String get edit2 => 'assets/icons/edit-2.svg';
 
   /// File path: assets/icons/egypt.svg
   String get egypt => 'assets/icons/egypt.svg';
+
+  /// File path: assets/icons/female.svg
+  String get female => 'assets/icons/female.svg';
 
   /// File path: assets/icons/gallery.svg
   String get gallery => 'assets/icons/gallery.svg';
@@ -47,14 +56,48 @@ class $AssetsIconsGen {
   /// File path: assets/icons/google.svg
   String get google => 'assets/icons/google.svg';
 
+  /// File path: assets/icons/governorate.svg
+  String get governorate => 'assets/icons/governorate.svg';
+
+  /// File path: assets/icons/home_active.svg
+  String get homeActive => 'assets/icons/home_active.svg';
+
+  /// File path: assets/icons/home_inactive.svg
+  String get homeInactive => 'assets/icons/home_inactive.svg';
+
+  /// File path: assets/icons/logo.svg
+  String get logo => 'assets/icons/logo.svg';
+
+  /// File path: assets/icons/male.svg
+  String get male => 'assets/icons/male.svg';
+
+  /// File path: assets/icons/notification.svg
+  String get notification => 'assets/icons/notification.svg';
+
+  /// File path: assets/icons/orders.svg
+  String get orders => 'assets/icons/orders.svg';
+
   /// File path: assets/icons/phone.svg
   String get phone => 'assets/icons/phone.svg';
+
+  /// File path: assets/icons/region.svg
+  String get region => 'assets/icons/region.svg';
 
   /// File path: assets/icons/search-normal.svg
   String get searchNormal => 'assets/icons/search-normal.svg';
 
+  /// File path: assets/icons/settings.svg
+  String get settings => 'assets/icons/settings.svg';
+
+  /// File path: assets/icons/shopping-cart.svg
+  String get shoppingCart => 'assets/icons/shopping-cart.svg';
+
+  /// File path: assets/icons/user.svg
+  String get user => 'assets/icons/user.svg';
+
   /// List of all assets
   List<String> get values => [
+    heart2,
     apple,
     arrow3,
     arrowBack,
@@ -62,12 +105,25 @@ class $AssetsIconsGen {
     arrowForward,
     arrowTop,
     camera,
+    category,
     edit2,
     egypt,
+    female,
     gallery,
     google,
+    governorate,
+    homeActive,
+    homeInactive,
+    logo,
+    male,
+    notification,
+    orders,
     phone,
+    region,
     searchNormal,
+    settings,
+    shoppingCart,
+    user,
   ];
 }
 
@@ -93,6 +149,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/person.jpg
+  AssetGenImage get person => const AssetGenImage('assets/images/person.jpg');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     background,
@@ -100,6 +159,7 @@ class $AssetsImagesGen {
     boarding2,
     boarding3,
     logo,
+    person,
   ];
 }
 

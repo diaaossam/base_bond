@@ -12,7 +12,7 @@ class DontHaveAccountWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.router.push(LoginRoute()),
+      onTap: () => context.router.push(RegisterRoute()),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

@@ -3,8 +3,8 @@ part of 'social_login_bloc.dart';
 @immutable
 sealed class SocialLoginEvent {}
 
-class LoginWithSocial extends SocialLoginEvent {
+class LoginWithSocialEvent extends SocialLoginEvent {
   final SocialEnum socialEnum;
 
-  LoginWithSocial({required this.socialEnum});
+  LoginWithSocialEvent({required this.socialEnum});
 }

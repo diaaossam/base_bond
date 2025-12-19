@@ -1,9 +1,9 @@
 import 'dart:math';
-import 'package:bond/core/bloc/base_state_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../config/dependencies/injectable_dependencies.dart';
+import '../core/bloc/widget/base_state_ui.dart';
 import '../core/bloc/global_cubit/global_cubit.dart';
 import '../core/utils/app_strings.dart';
 

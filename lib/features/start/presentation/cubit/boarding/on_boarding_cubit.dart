@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:bond/core/bloc/base_state.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/utils/app_strings.dart';

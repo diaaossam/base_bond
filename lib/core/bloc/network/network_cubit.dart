@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../base_state.dart';
+import '../helper/base_state.dart';
 
 /// Network connection status data model
 class NetworkStatus {

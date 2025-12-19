@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
-import 'package:bond/core/bloc/base_state_ui.dart';
 import 'package:bond/features/start/data/models/intro_model.dart';
 import 'package:bond/features/start/presentation/cubit/boarding/on_boarding_cubit.dart';
 import 'package:flutter/material.dart';
 import '../../../../../config/dependencies/injectable_dependencies.dart';
+import '../../../../../core/bloc/widget/base_state_ui.dart';
 import '../../../../../core/extensions/page_controller_extention.dart';
 import 'boarding_content.dart';
 

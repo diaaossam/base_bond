@@ -39,13 +39,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "boardingTitle3": MessageLookupByLibrary.simpleMessage(
       "Secure Payment & Fast Delivery",
     ),
+    "cart": MessageLookupByLibrary.simpleMessage("السلة"),
+    "categories": MessageLookupByLibrary.simpleMessage("التصنيفات"),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage(
       "Choose From Gallery",
     ),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("Choose Image"),
     "chooseFromGallery2": MessageLookupByLibrary.simpleMessage("Choose video"),
+    "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب !"),
+    "dontReceiveCode": MessageLookupByLibrary.simpleMessage("لم يصلك الرمز ؟"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("Bad Request"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
@@ -65,6 +69,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_unauthorized": MessageLookupByLibrary.simpleMessage(
       "Unauthorized access",
     ),
+    "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
+    "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
+    "governorate": MessageLookupByLibrary.simpleMessage("المحافظة"),
+    "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "loading": MessageLookupByLibrary.simpleMessage("جارى التحميل"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "loginAsGuest": MessageLookupByLibrary.simpleMessage("الدخول كزائر"),
     "loginBody": MessageLookupByLibrary.simpleMessage(
@@ -73,19 +82,33 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginTitle": MessageLookupByLibrary.simpleMessage(
       "سعداء بعودتك من جديد !",
     ),
+    "loginViaApple": MessageLookupByLibrary.simpleMessage(
+      "تسجيل الدخول عبر أبل",
+    ),
+    "loginViaGoogle": MessageLookupByLibrary.simpleMessage(
+      "تسجيل الدخول عبر جوجل",
+    ),
+    "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "No Data Found , please try again later",
     ),
-    "orLoginWith": MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول عبر"),
+    "or": MessageLookupByLibrary.simpleMessage("أو"),
+    "otpBody": MessageLookupByLibrary.simpleMessage(
+      "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
+    ),
+    "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
+    "region": MessageLookupByLibrary.simpleMessage("المنطقة"),
     "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
     "registerBody": MessageLookupByLibrary.simpleMessage(
       "خطوات سريعة فقط… لتبدأ رحلتك معنا",
     ),
     "registerTitle": MessageLookupByLibrary.simpleMessage("سعداء بانضمامك!"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("إعاده الإرسال"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
+    "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("There is An Error"),
     "updateBody": MessageLookupByLibrary.simpleMessage(

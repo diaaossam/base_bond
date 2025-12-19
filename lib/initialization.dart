@@ -5,7 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'config/dependencies/injectable_dependencies.dart';
 import 'config/environment/environment_helper.dart';
-import 'core/bloc/bloc_observer.dart';
+import 'core/bloc/helper/bloc_observer.dart';
 import 'core/services/firebase/firebase_helper.dart';
 import 'core/services/notification_service/notification_service.dart';
 import 'core/utils/api_config.dart';

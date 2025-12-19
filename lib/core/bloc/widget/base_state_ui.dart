@@ -2,11 +2,10 @@ import 'package:bond/core/utils/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../generated/l10n.dart';
-import '../../widgets/app_failure.dart';
-import '../extensions/app_localizations_extension.dart';
-import '../services/network/error/failures.dart';
-import 'base_state.dart';
+import '../../../generated/l10n.dart';
+import '../../../widgets/app_failure.dart';
+import '../../extensions/app_localizations_extension.dart';
+import '../helper/base_state.dart';
 
 class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
   final C cubit;
@@ -15,6 +14,7 @@ class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
   final Widget Function(Object? error)? onError;
   final Widget Function()? onEmpty;
   final void Function(BaseState<T> state)? onStateChanged;
+  final bool isSliver;
 
   const AppApiResponse({
     super.key,
@@ -24,6 +24,7 @@ class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
     this.onError,
     this.onEmpty,
     this.onStateChanged,
+    this.isSliver = false,
   });
 
   @override
@@ -37,39 +38,35 @@ class AppApiResponse<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state.isLoading) {
+        if (state.isLoading && state.data == null) {
           return onLoading?.call() ??
-              const Center(child: CircularProgressIndicator());
+              (isSliver
+                  ? SliverToBoxAdapter(
+                      child: const Center(child: CircularProgressIndicator()),
+                    )
+                  : const Center(child: CircularProgressIndicator()));
         }
-        if (state.isFailure) {
+        if (state.isFailure && state.data == null) {
           return onError?.call(state.error) ??
-              AppFailureWidget(
-                title: _getLocalizedString(
-                  context,
-                  (l) => l.thereIsError,
-                  "Error",
-                ),
-              );
+              (isSliver
+                  ? SliverToBoxAdapter(
+                      child: AppFailureWidget(
+                        title: _getLocalizedString(
+                          context,
+                          (l) => l.thereIsError,
+                          "Error",
+                        ),
+                      ),
+                    )
+                  : AppFailureWidget(
+                      title: _getLocalizedString(
+                        context,
+                        (l) => l.thereIsError,
+                        "Error",
+                      ),
+                    ));
         }
-
-        if (state.isSuccess) {
-          final data = state.data;
-
-          if (data == null) {
-            return onEmpty?.call() ??
-                AppFailureWidget(
-                  title: _getLocalizedString(
-                    context,
-                    (l) => l.noData,
-                    "No Data",
-                  ),
-                );
-          }
-
-          return onSuccess(data);
-        }
-        return onLoading?.call() ??
-            const Center(child: CircularProgressIndicator());
+        return onSuccess.call(state.data as T);
       },
     );
   }

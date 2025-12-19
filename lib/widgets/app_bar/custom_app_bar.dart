@@ -1,6 +1,4 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
 import '../../core/utils/app_size.dart';
 import '../main_widget/app_text.dart';
 import '../main_widget/back_widget.dart';
@@ -51,7 +49,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: BackArrowWidget(
               padding: const EdgeInsets.all(10),
               margin: const EdgeInsetsDirectional.only(start: 10),
-              callback: pressIcon ?? () => context.router.maybePop(),
             ),
           ),
       actions: actions,

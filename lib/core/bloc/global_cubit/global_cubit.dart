@@ -1,4 +1,4 @@
-import 'package:bond/core/bloc/base_state.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -38,6 +38,7 @@ class GlobalCubit extends Cubit<BaseState<void>> {
 
   Locale locale = const Locale(AppStrings.arabicCode);
   Language language = Language.arabic;
+  ThemeMode themeMode = ThemeMode.light;
 
   Future<void> changeLanguage({required Language lang}) async {
     emit(state.loading());
@@ -49,7 +50,6 @@ class GlobalCubit extends Cubit<BaseState<void>> {
 
   //////////////////// Theme ///////////////////////
 
-  ThemeMode themeMode = ThemeMode.light;
 
   Future<void> chooseAppTheme({required ThemeMode theme}) async {
     emit(state.loading(identifier: "ChangeTheme"));

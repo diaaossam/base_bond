@@ -1,11 +1,10 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bond/core/bloc/base_state_ui.dart';
+import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../config/dependencies/injectable_dependencies.dart';
-import '../../../../../core/bloc/base_bloc_ui.dart';
+import '../../../../../core/bloc/widget/base_state_ui.dart';
 import '../../../../../core/enum/social_enum.dart';
 import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../gen/assets.gen.dart';
@@ -17,14 +16,51 @@ class SocialButtonDesign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppApiBlocResponse<SocialLoginBloc, SocialLoginEvent, void>(
-      bloc: sl<SocialLoginBloc>(),
+    return AppApiResponse<SocialLoginBloc, void>(
+      cubit: sl<SocialLoginBloc>(),
+      onStateChanged: (state) {},
       onSuccess: (data) {
         final bloc = context.read<SocialLoginBloc>();
-        return socialButton(
-          socialEnum: SocialEnum.google,
-          bloc: bloc,
-          context: context,
+        return Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 1,
+                    color: context.colorScheme.shadow,
+                  ),
+                ),
+                10.horizontalSpace,
+                AppText(text: context.localizations.or),
+                10.horizontalSpace,
+                Expanded(
+                  child: Container(
+                    height: 1,
+                    color: context.colorScheme.shadow,
+                  ),
+                ),
+              ],
+            ),
+            20.verticalSpace,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                socialButton(
+                  socialEnum: SocialEnum.google,
+                  bloc: bloc,
+                  context: context,
+                ),
+                20.verticalSpace,
+                socialButton(
+                  socialEnum: SocialEnum.apple,
+                  bloc: bloc,
+                  context: context,
+                ),
+              ],
+            ),
+          ],
         );
       },
     );
@@ -36,28 +72,30 @@ class SocialButtonDesign extends StatelessWidget {
     required BuildContext context,
   }) {
     return InkWell(
-      onTap: () async {
-        if (socialEnum == SocialEnum.google) {
-          bloc.add(LoginWithSocial(socialEnum: SocialEnum.google));
-        } else {
-          bloc.add(LoginWithSocial(socialEnum: SocialEnum.apple));
-        }
-      },
+      onTap: () async => bloc.loginWithSocial(socialEnum: socialEnum),
       child: Container(
-        padding: const EdgeInsets.all(16),
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
         decoration: BoxDecoration(
           color: context.colorScheme.surface,
-          border: Border.all(color: context.colorScheme.outline),
-          borderRadius: BorderRadius.circular(32),
+          border: Border.all(color: context.colorScheme.onPrimary),
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            20.horizontalSpace,
-            if (socialEnum == SocialEnum.google)
-              AppImage.asset(Assets.icons.google)
-            else
-              AppImage.asset(Assets.icons.apple),
+            Expanded(
+              child: AppText.body(
+                text: socialEnum == SocialEnum.google
+                    ? context.localizations.loginViaGoogle
+                    : context.localizations.loginViaApple,
+              ),
+            ),
+            AppImage.asset(
+              socialEnum == SocialEnum.google
+                  ? Assets.icons.google
+                  : Assets.icons.apple,
+              size: 25,
+            ),
           ],
         ),
       ),

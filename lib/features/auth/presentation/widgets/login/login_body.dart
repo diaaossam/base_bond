@@ -19,7 +19,6 @@ class LoginBodyWidget extends StatelessWidget {
           fit: BoxFit.cover,
           height: SizeConfig.bodyHeight * .5,
         ),
-
         LoginForm(),
         Center(
           child: Column(

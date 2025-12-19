@@ -32,8 +32,6 @@
   "startNow": "Start Now",
   "phoneNumber": "Phone Number",
   "validation": "This field is required",
-
-
   "registerTitle": "سعداء بانضمامك!",
   "registerBody": "خطوات سريعة فقط… لتبدأ رحلتك معنا",
   "loginTitle": "سعداء بعودتك من جديد !",
@@ -44,5 +42,22 @@
   "loginAsGuest": "الدخول كزائر",
   "dontHaveAccount": "ليس لديك حساب !",
   "alreadyHaveAccount": "لديك حساب !",
-  "orLoginWith": "أو تسجيل الدخول عبر"
+  "or": "أو",
+  "dontReceiveCode": "لم يصلك الرمز ؟",
+  "resendCode": "إعاده الإرسال",
+  "otpTitle": "أدخل رمز التحقق (OTP)",
+  "otpBody": "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
+  "confirm": "تأكيد",
+  "fullName": "الاسم الكامل",
+  "governorate": "المحافظة",
+  "region": "المنطقة",
+  "loading": "جارى التحميل",
+  "home": "الرئيسية",
+  "cart": "السلة",
+  "myOrders": "طلباتى",
+  "favorites": "المفضلة",
+  "settings": "الإعدادات",
+  "categories": "التصنيفات",
+  "loginViaGoogle": "تسجيل الدخول عبر جوجل",
+  "loginViaApple": "تسجيل الدخول عبر أبل"
 }
