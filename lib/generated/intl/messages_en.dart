@@ -108,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "registerTitle": MessageLookupByLibrary.simpleMessage("سعداء بانضمامك!"),
     "resendCode": MessageLookupByLibrary.simpleMessage("إعاده الإرسال"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
+    "seeAll": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("There is An Error"),

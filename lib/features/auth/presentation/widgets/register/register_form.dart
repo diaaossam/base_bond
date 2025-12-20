@@ -6,6 +6,7 @@ import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/app/presentation/cubit/app_cubit.dart';
 import 'package:bond/features/auth/data/models/request/register_params.dart';
+import 'package:bond/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:bond/features/auth/presentation/widgets/login/phone_text_form_field.dart';
 import 'package:bond/features/auth/presentation/widgets/register/already_have_account.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
@@ -23,9 +24,14 @@ import '../../../../../gen/assets.gen.dart';
 import '../../../../../widgets/image_picker/media_form_field.dart';
 import '../../../../app/presentation/cubit/app_state_data.dart';
 
-class RegisterForm extends StatelessWidget {
-  RegisterForm({super.key});
+class RegisterForm extends StatefulWidget {
+  const RegisterForm({super.key});
 
+  @override
+  State<RegisterForm> createState() => _RegisterFormState();
+}
+
+class _RegisterFormState extends State<RegisterForm> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -73,7 +79,9 @@ class RegisterForm extends StatelessWidget {
                       AppDropDown(
                         name: "governorate",
                         hint: context.localizations.governorate,
-                        isLoading: state.isLoading && state.identifier == "governorate",
+                        isLoading:
+                            state.isLoading &&
+                            state.identifier == "governorate",
                         validator: FormBuilderValidators.required(
                           errorText: context.localizations.validation,
                         ),
@@ -95,6 +103,8 @@ class RegisterForm extends StatelessWidget {
                       SizedBox(height: SizeConfig.bodyHeight * .02),
                       AppDropDown(
                         name: "region",
+                        isLoading:
+                            state.isLoading && state.identifier == "cities",
                         hint: context.localizations.region,
                         validator: FormBuilderValidators.required(
                           errorText: context.localizations.validation,
@@ -113,23 +123,27 @@ class RegisterForm extends StatelessWidget {
                 },
               ),
               SizedBox(height: SizeConfig.bodyHeight * .06),
-              CustomButton(
-                text: context.localizations.register,
-                press: () {
-                  if (!_formKey.currentState!.saveAndValidate()) {
-                    return;
-                  }
-                  final fields = _formKey.currentState!.fields;
-                  final file = fields['media']?.value;
-                  // ignore: unused_local_variable
-                  final params = RegisterParams(
-                    name: fields['username']?.value as String?,
-                    phone: fields['phone']?.value as String?,
-                    provinceId: fields['governorate']?.value as int?,
-                    regionId: fields['region']?.value as int?,
-                    imagePath: file is File ? file.path : null,
+              BlocConsumer<RegisterCubit, BaseState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return CustomButton(
+                    text: context.localizations.register,
+                    isLoading: state.isLoading,
+                    press: () {
+                      if (!_formKey.currentState!.saveAndValidate()) {
+                        return;
+                      }
+                      final fields = _formKey.currentState!.fields;
+                      final file = fields['media']?.value;
+                      final params = RegisterParams(
+                        name: fields['username']?.value as String?,
+                        phone: fields['phone']?.value as String?,
+                        provinceId: fields['governorate']?.value as int?,
+                        regionId: fields['region']?.value as int?,
+                        imagePath: file is File ? file.path : null,
+                      );
+                    },
                   );
-                  // TODO: Call register cubit with params
                 },
               ),
               SizedBox(height: SizeConfig.bodyHeight * .04),

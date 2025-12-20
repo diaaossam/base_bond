@@ -67,6 +67,8 @@ dependencies:
 
   ### Ui Design
   another_flushbar: ^1.12.32
+  flutter_native_splash: ^2.4.7
+  flutter_animate: ^4.5.2
   cached_network_image: ^3.4.1
   fluttertoast: ^9.0.0
   carousel_slider: ^5.1.1

@@ -548,6 +548,11 @@ class S {
       args: [],
     );
   }
+
+  /// `رؤية المزيد`
+  String get seeAll {
+    return Intl.message('رؤية المزيد', name: 'seeAll', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

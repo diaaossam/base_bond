@@ -5,16 +5,14 @@ import '../../../data/models/category_model.dart';
 import '../../../data/repositories/main_repository_impl.dart';
 
 @Injectable()
-class CategoriesCubit extends Cubit<BaseState<List<CategoryModel>>> {
+class CategoryCubit extends Cubit<BaseState<List<CategoryModel>>> {
   final MainRepositoryImpl mainRepositoryImpl;
 
-  CategoriesCubit(this.mainRepositoryImpl) : super(BaseState.initial()) {
-    _getCategories();
-  }
+  CategoryCubit(this.mainRepositoryImpl) : super(BaseState.initial());
 
-  Future<void> _getCategories({int page = 1}) async {
+  Future<void> getCategories({int pageKey = 1}) async {
     emit(state.copyWith(status: BaseStatus.loading));
-    final response = await mainRepositoryImpl.getCategories(pageKey: page);
+    final response = await mainRepositoryImpl.getCategories(pageKey: pageKey);
     response.fold(
       (failure) => emit(
         state.copyWith(status: BaseStatus.failure, error: failure.message),

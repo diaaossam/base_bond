@@ -59,5 +59,6 @@
   "settings": "الإعدادات",
   "categories": "التصنيفات",
   "loginViaGoogle": "تسجيل الدخول عبر جوجل",
-  "loginViaApple": "تسجيل الدخول عبر أبل"
+  "loginViaApple": "تسجيل الدخول عبر أبل",
+  "seeAll": "رؤية المزيد"
 }

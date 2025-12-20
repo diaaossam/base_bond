@@ -75,14 +75,8 @@ class AppImage extends StatelessWidget {
   final Widget Function(BuildContext context, String name)? placeholder;
   final String? remoteImage;
   final double? ratio;
-
-  ///pass size will overwrite height and width
   final double? size;
-
-  ///this will be ignored if the image source is [SvgPicture.network]
   final WidgetBuilder? failedBuilder;
-
-  ///only work on svg and color will be ignore
   final ColorFilter? colorFilter;
 
   @override
@@ -137,29 +131,6 @@ class AppImage extends StatelessWidget {
             width: getWidth(),
           );
         case Source.network:
-          if (ratio != null) {
-            return AspectRatio(
-              aspectRatio: ratio!,
-              child: CachedNetworkImage(
-                cacheKey: remoteImage ?? "",
-                imageUrl: path,
-                color: color,
-                placeholder:
-                    placeholder ??
-                    (context, url) {
-                      return BlurHash(
-                        hash: 'L@IY97M{M_of~qRjRjax-.j[t8WB',
-                        decodingHeight: getHeight()?.toInt() ?? 50,
-                        decodingWidth: getWidth()?.toInt() ?? 50,
-                      );
-                    },
-                alignment: alignment ?? Alignment.center,
-                fit: fit,
-                height: getHeight(),
-                width: getWidth(),
-              ),
-            );
-          }
           return CachedNetworkImage(
             cacheKey: path,
             imageUrl: path,
@@ -168,6 +139,8 @@ class AppImage extends StatelessWidget {
             fit: fit,
             height: getHeight(),
             width: getWidth(),
+            placeholder: (context, url) => _buildImagePlaceholder(),
+            errorWidget: (context, url, error) => _buildImagePlaceholder(),
           );
         case Source.file:
           return Image.file(
@@ -207,6 +180,19 @@ class AppImage extends StatelessWidget {
       failedBuilder: failedBuilder,
       loadingBuilder: loadingBuilder,
       key: key,
+    );
+  }
+
+  Widget _buildImagePlaceholder() {
+    return Container(
+      color: Colors.grey.shade200,
+      child: Center(
+        child: Icon(
+          Icons.image_outlined,
+          size: 40,
+          color: Colors.grey.shade400,
+        ),
+      ),
     );
   }
 }

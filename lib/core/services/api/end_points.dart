@@ -1,38 +1,35 @@
 class EndPoints {
+  ////////////////////// Public ///////////////////
+  static const String sliders = "banners";
+  static const String categories = "categories";
 
   /////////////////////// Location //////////////////
 
   static const String governorates = "governorates";
 
-
   ///////// Auth ////////////////////////
-
-
-  static const String profile = "v1/profile/me";
-
-  static String getUserByUid(String ulid) => 'v1/auth/user/$ulid';
-
   static const String loginUser = "v1/auth/login";
   static const String update = "v1/profile/update";
   static const String socialLogin = "v1/auth/social";
   static const String verifyUser = "v1/auth/verify-otp";
-  static updateUserRegister(String ulid) => "v1/auth/update/$ulid";
+
+  static String updateUserRegister(String ulid) => "v1/auth/update/$ulid";
   static String logOut = "v1/profile/logout";
   static String getUserData = "v1/user/profile";
   static String deleteUser = "v1/profile/delete-account";
-  static String checkPhoneNumber = "v1/auth/check-phone";
+  static const String profile = "v1/profile/me";
+
+  ///////////////// Settings////////////////
+  static const String appSettings = "app-settings";
 
   ///////// Public ////////////////////////
 
   static const String introOnBoarding = "v1/intro-images";
   static const String uploadImage = "v1/temp-media";
+
   static deleteImage(String uid) => "v1/profile/delete-image$uid";
-  static const String sliders = "v1/banners";
-  static const String categories = "v1/categories";
   static const String brands = "v1/brands";
   static const String skinProblem = "v1/skin-problems";
-
-
 
   //////////////////////////// Notification //////////////////
   static const String notfications = "v1/notification";
@@ -60,8 +57,6 @@ class EndPoints {
   static pages(String id) => "v1/pages/$id";
   static const String questions = "v1/questions";
   static const String faqQuestions = "v1/faq-questions";
-  static const String appSettings = "v1/app-settings";
-
 
   //////////////////// Chats ///////////////////////
 

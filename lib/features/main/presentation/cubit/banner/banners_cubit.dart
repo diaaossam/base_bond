@@ -9,10 +9,10 @@ class BannersCubit extends Cubit<BaseState<List<BannersModel>>> {
   final MainRepositoryImpl mainRepositoryImpl;
 
   BannersCubit(this.mainRepositoryImpl) : super(BaseState.initial()) {
-    _getBanners();
+    getBanners();
   }
 
-  Future<void> _getBanners() async {
+  Future<void> getBanners() async {
     emit(state.copyWith(status: BaseStatus.loading));
     final response = await mainRepositoryImpl.getAllBanners();
     response.fold(

@@ -1,4 +1,5 @@
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
@@ -13,10 +14,9 @@ class LoginBodyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        AppImage.asset(
-          Assets.images.background.path,
+        Container(
           width: double.infinity,
-          fit: BoxFit.cover,
+          color: context.colorScheme.primary,
           height: SizeConfig.bodyHeight * .5,
         ),
         LoginForm(),

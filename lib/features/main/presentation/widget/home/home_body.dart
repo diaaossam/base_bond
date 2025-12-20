@@ -5,7 +5,8 @@ import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'banners_design.dart';
+import 'banner/banners_design.dart';
+import 'category/home_categories_section.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -19,7 +20,7 @@ class HomeBody extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
-                color: context.colorScheme.surface,
+                color: context.colorScheme.surfaceContainer,
                 shape: BoxShape.circle,
               ),
               child: AppImage.asset(
@@ -31,8 +32,8 @@ class HomeBody extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
-                color: context.colorScheme.surface,
                 shape: BoxShape.circle,
+                color: context.colorScheme.surfaceContainer,
               ),
               child: AppImage.asset(
                 Assets.icons.notification,
@@ -43,7 +44,13 @@ class HomeBody extends StatelessWidget {
           ],
         ),
       ],
-      body: CustomScrollView(slivers: [HomeBannersImage()]),
+      body: CustomScrollView(
+        slivers: [
+          HomeBannersImage(),
+          const HomeCategoriesSection(),
+          SliverToBoxAdapter(child: SizedBox(height: 24.h)),
+        ],
+      ),
     );
   }
 }

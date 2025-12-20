@@ -1,40 +1,79 @@
-import 'dart:math';
-import 'dart:ui';
-
-
 class BannersModel {
-  BannersModel(
-      {this.id,
-      this.title,
-      this.image,
-      this.color,
-      this.type,
-});
+  BannersModel({
+      this.id, 
+      this.title, 
+      this.description, 
+      this.image, 
+      this.imageUrl, 
+      this.videoUrl, 
+      this.targetUrl, 
+      this.type, 
+      this.position, 
+      this.displayOrder, 
+      this.startDate, 
+      this.endDate, 
+      this.isActive, 
+      this.status,});
 
-  BannersModel.fromJson(
-    dynamic json,
-  ) {
+  BannersModel.fromJson(dynamic json) {
     id = json['id'];
     title = json['title'];
+    description = json['description'];
     image = json['image'];
-    type = json['banner_type'];
-    color = getRandomColor();
+    imageUrl = json['image_url'];
+    videoUrl = json['video_url'];
+    targetUrl = json['target_url'];
+    type = json['type'];
+    position = json['position'];
+    displayOrder = json['display_order'];
+    startDate = json['start_date'];
+    endDate = json['end_date'];
+    isActive = json['is_active'];
+    status = json['status'];
   }
-
   num? id;
   String? title;
+  String? description;
   String? image;
-  Color? color;
+  String? imageUrl;
+  dynamic videoUrl;
+  String? targetUrl;
   String? type;
+  String? position;
+  num? displayOrder;
+  String? startDate;
+  String? endDate;
+  bool? isActive;
+  String? status;
 
-  Color? getRandomColor() {
-    List<Color> list = [
-      const Color(0xffFEE9E8),
-      const Color(0xffFAFFE7),
-      const Color(0xffEFEEFF),
-      const Color(0xffFEF6EB),
-      const Color(0xffEDF3FF),
-    ];
-    return list[Random().nextInt(5)];
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id'] = id;
+    map['title'] = title;
+    map['description'] = description;
+    map['image'] = image;
+    map['image_url'] = imageUrl;
+    map['video_url'] = videoUrl;
+    map['target_url'] = targetUrl;
+    map['type'] = type;
+    map['position'] = position;
+    map['display_order'] = displayOrder;
+    map['start_date'] = startDate;
+    map['end_date'] = endDate;
+    map['is_active'] = isActive;
+    map['status'] = status;
+    return map;
   }
+
+
+  static List<BannersModel> fromJsonList(Map<String, dynamic> response) {
+    final List<dynamic> dataList = response['data'] as List<dynamic>;
+    return dataList
+        .map((item) => BannersModel.fromJson(item as Map<String, dynamic>))
+        .toList();
+  }
+
+
+
+
 }

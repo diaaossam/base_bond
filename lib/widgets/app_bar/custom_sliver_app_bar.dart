@@ -49,7 +49,9 @@ class CustomSliverAppBar extends StatelessWidget {
       bottom: preferredSizeWidget,
       leading: BackArrowWidget(),
       actions: actions,
-      flexibleSpace: flexibleSpace,
+      flexibleSpace: Container(
+          color: context.colorScheme.surface,
+          child: flexibleSpace),
       expandedHeight: expandedHeight,
     );
   }

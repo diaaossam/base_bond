@@ -130,9 +130,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/background.png
-  AssetGenImage get background =>
-      const AssetGenImage('assets/images/background.png');
+  /// File path: assets/images/background_splash.png
+  AssetGenImage get backgroundSplash =>
+      const AssetGenImage('assets/images/background_splash.png');
 
   /// File path: assets/images/boarding1.jpg
   AssetGenImage get boarding1 =>
@@ -154,7 +154,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-    background,
+    backgroundSplash,
     boarding1,
     boarding2,
     boarding3,

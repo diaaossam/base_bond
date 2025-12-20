@@ -1,0 +1,85 @@
+import 'package:equatable/equatable.dart';
+
+class ProductParams extends Equatable {
+  const ProductParams({
+    this.page = 1,
+    this.search,
+    this.sortBy,
+    this.categoryId,
+    this.brandId,
+    this.priceFrom,
+    this.priceTo,
+    this.isFeatured,
+    this.isNewArrival,
+    this.isBestSeller,
+  });
+
+  final int page;
+  final String? search;
+  final String? sortBy;
+
+  final int? categoryId;
+  final int? brandId;
+
+  final int? priceFrom;
+  final int? priceTo;
+
+  final bool? isFeatured;
+  final bool? isNewArrival;
+  final bool? isBestSeller;
+
+  ProductParams copyWith({
+    int? page,
+    String? search,
+    String? sortBy,
+    int? categoryId,
+    int? brandId,
+    int? priceFrom,
+    int? priceTo,
+    bool? isFeatured,
+    bool? isNewArrival,
+    bool? isBestSeller,
+  }) {
+    return ProductParams(
+      page: page ?? this.page,
+      search: search ?? this.search,
+      sortBy: sortBy ?? this.sortBy,
+      categoryId: categoryId ?? this.categoryId,
+      brandId: brandId ?? this.brandId,
+      priceFrom: priceFrom ?? this.priceFrom,
+      priceTo: priceTo ?? this.priceTo,
+      isFeatured: isFeatured ?? this.isFeatured,
+      isNewArrival: isNewArrival ?? this.isNewArrival,
+      isBestSeller: isBestSeller ?? this.isBestSeller,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'page': page,
+      if (search != null && search!.isNotEmpty) 'search': search,
+      if (sortBy != null) 'sort_by': sortBy,
+      if (categoryId != null) 'category_id': categoryId,
+      if (brandId != null) 'brand_id': brandId,
+      if (priceFrom != null) 'price_from': priceFrom,
+      if (priceTo != null) 'price_to': priceTo,
+      if (isFeatured != null) 'is_featured': isFeatured! ? 1 : 0,
+      if (isNewArrival != null) 'is_new_arrival': isNewArrival! ? 1 : 0,
+      if (isBestSeller != null) 'is_best_seller': isBestSeller! ? 1 : 0,
+    };
+  }
+
+  @override
+  List<Object?> get props => [
+    page,
+    search,
+    sortBy,
+    categoryId,
+    brandId,
+    priceFrom,
+    priceTo,
+    isFeatured,
+    isNewArrival,
+    isBestSeller,
+  ];
+}

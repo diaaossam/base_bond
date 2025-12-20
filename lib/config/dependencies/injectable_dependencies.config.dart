@@ -54,6 +54,12 @@ import '../../features/main/presentation/cubit/banner/banners_cubit.dart'
 import '../../features/main/presentation/cubit/category/category_cubit.dart'
     as _i844;
 import '../../features/main/presentation/cubit/main/main_cubit.dart' as _i1051;
+import '../../features/settings/data/datasources/settings_remote_data_source.dart'
+    as _i188;
+import '../../features/settings/data/repositories/settings_repo_impl.dart'
+    as _i91;
+import '../../features/settings/presentation/cubit/settings_cubit.dart'
+    as _i792;
 import '../../features/start/data/datasources/init_remote_data_source.dart'
     as _i95;
 import '../../features/start/data/repositories/init_repo_impl.dart' as _i941;
@@ -139,13 +145,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i933.BannersCubit>(
       () => _i933.BannersCubit(gh<_i411.MainRepositoryImpl>()),
     );
-    gh.factory<_i844.CategoriesCubit>(
-      () => _i844.CategoriesCubit(gh<_i411.MainRepositoryImpl>()),
+    gh.factory<_i844.CategoryCubit>(
+      () => _i844.CategoryCubit(gh<_i411.MainRepositoryImpl>()),
     );
     gh.factory<_i95.InitRemoteDataSource>(
       () => _i95.RegisterRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
         sharedPreferences: gh<_i460.SharedPreferences>(),
+      ),
+    );
+    gh.factory<_i188.SettingsRemoteDataSource>(
+      () => _i188.SettingsRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
+    gh.lazySingleton<_i91.SettingsRepositoryImpl>(
+      () => _i91.SettingsRepositoryImpl(
+        settingsRemoteDataSource: gh<_i188.SettingsRemoteDataSource>(),
       ),
     );
     gh.factory<_i107.AuthRemoteDataSource>(
@@ -166,6 +182,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i222.AppCubit>(
       () => _i222.AppCubit(gh<_i344.AppRepositoryImpl>()),
+    );
+    gh.factory<_i792.SettingsCubit>(
+      () => _i792.SettingsCubit(gh<_i91.SettingsRepositoryImpl>()),
     );
     gh.factory<_i33.StartCubit>(() => _i33.StartCubit(gh<_i941.InitRepo>()));
     gh.lazySingleton<_i662.AuthRepositoryImpl>(
