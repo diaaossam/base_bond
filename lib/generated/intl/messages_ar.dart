@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "all": MessageLookupByLibrary.simpleMessage("الكل"),
+    "applyFilter": MessageLookupByLibrary.simpleMessage("تطبيق الفلترة"),
     "arabic": MessageLookupByLibrary.simpleMessage("عربى"),
     "back": MessageLookupByLibrary.simpleMessage("عودة"),
     "bestSellers": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
@@ -39,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "boardingTitle3": MessageLookupByLibrary.simpleMessage(
       "دفع آمن وتوصيل سريع",
     ),
+    "brand": MessageLookupByLibrary.simpleMessage("العلامة التجارية"),
+    "category": MessageLookupByLibrary.simpleMessage("التصنيف"),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage("اختر من المعرض"),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("اختر صورة"),
     "chooseFromGallery2": MessageLookupByLibrary.simpleMessage("اختر فيديو"),
@@ -61,6 +65,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_unauthorized": MessageLookupByLibrary.simpleMessage(
       "غير مصرح لك بالوصول",
     ),
+    "featured": MessageLookupByLibrary.simpleMessage("مميز"),
+    "filter": MessageLookupByLibrary.simpleMessage("الفلترة"),
+    "from": MessageLookupByLibrary.simpleMessage("من"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "لا توجد بيانات ، يرجى المحاولة مرة أخرى لاحقًا",
@@ -72,12 +79,29 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
+    "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
     "recommendedProducts": MessageLookupByLibrary.simpleMessage(
       "منتجات نوصي بها",
     ),
+    "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
+    "selectSortMethod": MessageLookupByLibrary.simpleMessage(
+      "اختر طريقة الترتيب",
+    ),
+    "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
+    "sortNewest": MessageLookupByLibrary.simpleMessage("الأحدث"),
+    "sortOldest": MessageLookupByLibrary.simpleMessage("الأقدم"),
+    "sortPopular": MessageLookupByLibrary.simpleMessage("الأكثر شعبية"),
+    "sortPriceAsc": MessageLookupByLibrary.simpleMessage(
+      "السعر: من الأقل للأعلى",
+    ),
+    "sortPriceDesc": MessageLookupByLibrary.simpleMessage(
+      "السعر: من الأعلى للأقل",
+    ),
+    "specialOptions": MessageLookupByLibrary.simpleMessage("خيارات خاصة"),
     "startNow": MessageLookupByLibrary.simpleMessage("إبدء الأن"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
+    "to": MessageLookupByLibrary.simpleMessage("إلى"),
     "updateBody": MessageLookupByLibrary.simpleMessage(
       "تم إصدار نسخة جديدة من التطبيق تحتوي على تحسينات وإصلاحات مهمة.",
     ),

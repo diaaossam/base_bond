@@ -51,13 +51,15 @@ import '../../features/main/data/repositories/main_repository_impl.dart'
     as _i411;
 import '../../features/main/presentation/cubit/banner/banners_cubit.dart'
     as _i933;
-import '../../features/main/presentation/cubit/category/category_cubit.dart'
-    as _i844;
 import '../../features/main/presentation/cubit/main/main_cubit.dart' as _i1051;
 import '../../features/product/data/datasources/product_remote_data_source.dart'
     as _i1;
 import '../../features/product/data/repositories/product_repository_impl.dart'
     as _i1040;
+import '../../features/product/presentation/cubit/brand/brand_cubit.dart'
+    as _i652;
+import '../../features/product/presentation/cubit/category/category_cubit.dart'
+    as _i34;
 import '../../features/product/presentation/cubit/product_cubit.dart' as _i388;
 import '../../features/settings/data/datasources/settings_remote_data_source.dart'
     as _i188;
@@ -154,9 +156,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i933.BannersCubit>(
       () => _i933.BannersCubit(gh<_i411.MainRepositoryImpl>()),
     );
-    gh.factory<_i844.CategoryCubit>(
-      () => _i844.CategoryCubit(gh<_i411.MainRepositoryImpl>()),
-    );
     gh.factory<_i95.InitRemoteDataSource>(
       () => _i95.RegisterRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
@@ -205,6 +204,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i662.AuthRepositoryImpl(
         authRemoteDataSource: gh<_i107.AuthRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i652.BrandCubit>(
+      () => _i652.BrandCubit(gh<_i1040.ProductRepositoryImpl>()),
+    );
+    gh.factory<_i34.CategoryCubit>(
+      () => _i34.CategoryCubit(gh<_i1040.ProductRepositoryImpl>()),
     );
     gh.factory<_i388.ProductCubit>(
       () => _i388.ProductCubit(gh<_i1040.ProductRepositoryImpl>()),

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../config/dependencies/injectable_dependencies.dart';
 import '../../../../../../widgets/section_header.dart';
-import '../../../../main/presentation/cubit/category/category_cubit.dart';
+import '../../cubit/category/category_cubit.dart';
 import 'category_grid_design.dart';
 
 class HomeCategoriesSection extends StatelessWidget {

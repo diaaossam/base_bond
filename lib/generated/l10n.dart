@@ -593,6 +593,126 @@ class S {
   String get egp {
     return Intl.message('ج.م', name: 'egp', desc: '', args: []);
   }
+
+  /// `Filter`
+  String get filter {
+    return Intl.message('Filter', name: 'filter', desc: '', args: []);
+  }
+
+  /// `Reset`
+  String get reset {
+    return Intl.message('Reset', name: 'reset', desc: '', args: []);
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message('Category', name: 'category', desc: '', args: []);
+  }
+
+  /// `Brand`
+  String get brand {
+    return Intl.message('Brand', name: 'brand', desc: '', args: []);
+  }
+
+  /// `Price Range`
+  String get priceRange {
+    return Intl.message('Price Range', name: 'priceRange', desc: '', args: []);
+  }
+
+  /// `From`
+  String get from {
+    return Intl.message('From', name: 'from', desc: '', args: []);
+  }
+
+  /// `To`
+  String get to {
+    return Intl.message('To', name: 'to', desc: '', args: []);
+  }
+
+  /// `Sort By`
+  String get sortBy {
+    return Intl.message('Sort By', name: 'sortBy', desc: '', args: []);
+  }
+
+  /// `Select Sort Method`
+  String get selectSortMethod {
+    return Intl.message(
+      'Select Sort Method',
+      name: 'selectSortMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Special Options`
+  String get specialOptions {
+    return Intl.message(
+      'Special Options',
+      name: 'specialOptions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Featured`
+  String get featured {
+    return Intl.message('Featured', name: 'featured', desc: '', args: []);
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message('All', name: 'all', desc: '', args: []);
+  }
+
+  /// `Apply Filter`
+  String get applyFilter {
+    return Intl.message(
+      'Apply Filter',
+      name: 'applyFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price: Low to High`
+  String get sortPriceAsc {
+    return Intl.message(
+      'Price: Low to High',
+      name: 'sortPriceAsc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price: High to Low`
+  String get sortPriceDesc {
+    return Intl.message(
+      'Price: High to Low',
+      name: 'sortPriceDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Newest`
+  String get sortNewest {
+    return Intl.message('Newest', name: 'sortNewest', desc: '', args: []);
+  }
+
+  /// `Oldest`
+  String get sortOldest {
+    return Intl.message('Oldest', name: 'sortOldest', desc: '', args: []);
+  }
+
+  /// `Most Popular`
+  String get sortPopular {
+    return Intl.message(
+      'Most Popular',
+      name: 'sortPopular',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -22,8 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "all": MessageLookupByLibrary.simpleMessage("All"),
     "allCategories": MessageLookupByLibrary.simpleMessage("جميع الأقسام"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage("لديك حساب !"),
+    "applyFilter": MessageLookupByLibrary.simpleMessage("Apply Filter"),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
     "bestSellers": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
@@ -41,8 +43,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "boardingTitle3": MessageLookupByLibrary.simpleMessage(
       "Secure Payment & Fast Delivery",
     ),
+    "brand": MessageLookupByLibrary.simpleMessage("Brand"),
     "cart": MessageLookupByLibrary.simpleMessage("السلة"),
     "categories": MessageLookupByLibrary.simpleMessage("التصنيفات"),
+    "category": MessageLookupByLibrary.simpleMessage("Category"),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage(
       "Choose From Gallery",
     ),
@@ -73,6 +77,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Unauthorized access",
     ),
     "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
+    "featured": MessageLookupByLibrary.simpleMessage("Featured"),
+    "filter": MessageLookupByLibrary.simpleMessage("Filter"),
+    "from": MessageLookupByLibrary.simpleMessage("From"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "governorate": MessageLookupByLibrary.simpleMessage("المحافظة"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
@@ -104,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
+    "priceRange": MessageLookupByLibrary.simpleMessage("Price Range"),
     "recommendedProducts": MessageLookupByLibrary.simpleMessage("موصي بها"),
     "region": MessageLookupByLibrary.simpleMessage("المنطقة"),
     "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
@@ -112,11 +120,23 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "registerTitle": MessageLookupByLibrary.simpleMessage("سعداء بانضمامك!"),
     "resendCode": MessageLookupByLibrary.simpleMessage("إعاده الإرسال"),
+    "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
     "seeAll": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
+    "selectSortMethod": MessageLookupByLibrary.simpleMessage(
+      "Select Sort Method",
+    ),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+    "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
+    "sortNewest": MessageLookupByLibrary.simpleMessage("Newest"),
+    "sortOldest": MessageLookupByLibrary.simpleMessage("Oldest"),
+    "sortPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
+    "sortPriceAsc": MessageLookupByLibrary.simpleMessage("Price: Low to High"),
+    "sortPriceDesc": MessageLookupByLibrary.simpleMessage("Price: High to Low"),
+    "specialOptions": MessageLookupByLibrary.simpleMessage("Special Options"),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("There is An Error"),
+    "to": MessageLookupByLibrary.simpleMessage("To"),
     "updateBody": MessageLookupByLibrary.simpleMessage(
       "A new version of the app has been released with important improvements and fixes.",
     ),

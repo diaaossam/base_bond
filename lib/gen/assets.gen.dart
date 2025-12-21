@@ -53,6 +53,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/female.svg
   String get female => 'assets/icons/female.svg';
 
+  /// File path: assets/icons/filter.svg
+  String get filter => 'assets/icons/filter.svg';
+
   /// File path: assets/icons/gallery.svg
   String get gallery => 'assets/icons/gallery.svg';
 
@@ -116,6 +119,7 @@ class $AssetsIconsGen {
     edit2,
     egypt,
     female,
+    filter,
     gallery,
     google,
     governorate,

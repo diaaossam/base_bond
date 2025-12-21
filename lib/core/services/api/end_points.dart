@@ -2,7 +2,7 @@ class EndPoints {
   ////////////////////// Public ///////////////////
   static const String sliders = "banners";
   static const String categories = "categories";
-
+  static const String brands = "brands";
   /////////////////////// Location //////////////////
 
   static const String governorates = "governorates";
@@ -28,7 +28,6 @@ class EndPoints {
   static const String uploadImage = "v1/temp-media";
 
   static deleteImage(String uid) => "v1/profile/delete-image$uid";
-  static const String brands = "v1/brands";
   static const String skinProblem = "v1/skin-problems";
 
   //////////////////////////// Notification //////////////////

@@ -1,3 +1,4 @@
+import 'package:bond/core/global_models/generic_model.dart';
 import 'package:bond/core/services/api/api_handler_mixin.dart';
 import 'package:bond/features/main/data/models/banners_model.dart';
 import 'package:bond/features/main/data/models/category_model.dart';
@@ -15,15 +16,6 @@ class MainRepositoryImpl with ApiHandlerMixin {
   Future<Either<Failure, List<BannersModel>>> getAllBanners() async {
     final response = await handleApi(
       () => mainRemoteDataSource.getAllBanners(),
-    );
-    return response;
-  }
-
-  Future<Either<Failure, List<CategoryModel>>> getCategories({
-    required int pageKey,
-  }) async {
-    final response = await handleApi(
-      () => mainRemoteDataSource.getCategories(pageKey: pageKey),
     );
     return response;
   }

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/dependencies/injectable_dependencies.dart';
-import '../../../main/presentation/cubit/category/category_cubit.dart';
+import '../cubit/category/category_cubit.dart';
 import '../widgets/category/category_grid_design.dart';
 import '../widgets/category/empty_category_design.dart';
 import '../widgets/category/shimmer_category.dart';
