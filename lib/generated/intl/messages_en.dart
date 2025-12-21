@@ -22,9 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "allCategories": MessageLookupByLibrary.simpleMessage("جميع الأقسام"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage("لديك حساب !"),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
+    "bestSellers": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
     "boardingDescription1": MessageLookupByLibrary.simpleMessage(
       "Discover thousands of products and choose what suits you quickly and easily from anywhere.",
     ),
@@ -50,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب !"),
     "dontReceiveCode": MessageLookupByLibrary.simpleMessage("لم يصلك الرمز ؟"),
+    "egp": MessageLookupByLibrary.simpleMessage("ج.م"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("Bad Request"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
@@ -89,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تسجيل الدخول عبر جوجل",
     ),
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
+    "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "No Data Found , please try again later",
     ),
@@ -100,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
+    "recommendedProducts": MessageLookupByLibrary.simpleMessage("موصي بها"),
     "region": MessageLookupByLibrary.simpleMessage("المنطقة"),
     "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
     "registerBody": MessageLookupByLibrary.simpleMessage(

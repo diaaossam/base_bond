@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Heart.svg
+  String get heart => 'assets/icons/Heart.svg';
+
   /// File path: assets/icons/Heart2.svg
   String get heart2 => 'assets/icons/Heart2.svg';
 
@@ -92,11 +95,15 @@ class $AssetsIconsGen {
   /// File path: assets/icons/shopping-cart.svg
   String get shoppingCart => 'assets/icons/shopping-cart.svg';
 
+  /// File path: assets/icons/star-filled.svg
+  String get starFilled => 'assets/icons/star-filled.svg';
+
   /// File path: assets/icons/user.svg
   String get user => 'assets/icons/user.svg';
 
   /// List of all assets
   List<String> get values => [
+    heart,
     heart2,
     apple,
     arrow3,
@@ -123,6 +130,7 @@ class $AssetsIconsGen {
     searchNormal,
     settings,
     shoppingCart,
+    starFilled,
     user,
   ];
 }

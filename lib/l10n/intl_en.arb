@@ -60,5 +60,10 @@
   "categories": "التصنيفات",
   "loginViaGoogle": "تسجيل الدخول عبر جوجل",
   "loginViaApple": "تسجيل الدخول عبر أبل",
-  "seeAll": "رؤية المزيد"
+  "seeAll": "رؤية المزيد",
+  "bestSellers": "الأكثر مبيعاً",
+  "newArrivals": "وصل حديثاً",
+  "recommendedProducts": "موصي بها",
+  "allCategories": "جميع الأقسام",
+  "egp": "ج.م"
 }

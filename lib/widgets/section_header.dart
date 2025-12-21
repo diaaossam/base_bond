@@ -31,12 +31,12 @@ class SectionHeader extends StatelessWidget {
             children: [
               AppText(
                 text: title,
-                textSize: 16,
+                textSize: 13,
                 fontWeight: FontWeight.w700,
               ),
               SizedBox(height: 4.h),
               Container(
-                width: 40.w,
+                width: 70.w,
                 height: 3.h,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -72,8 +72,8 @@ class SectionHeader extends StatelessWidget {
                     children: [
                       AppText(
                         text: actionText!,
-                        textSize: 12,
-                        fontWeight: FontWeight.w600,
+                        textSize: 10,
+                        fontWeight: FontWeight.w500,
                         color: context.colorScheme.primary,
                       ),
                       SizedBox(width: 4.w),
@@ -92,4 +92,5 @@ class SectionHeader extends StatelessWidget {
     );
   }
 }
+
 

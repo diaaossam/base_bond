@@ -63,7 +63,7 @@ class EndPoints {
   static const String supportChat = "v1/support-chat";
   static const String addresses = "v1/addresses";
   static const String makeAddressDefault = "v1/make-default-address";
-  static const String products = "v1/products";
+  static const String products = "products";
   static const String validateCoupon = "v1/validate-coupon";
   static const String placeOrder = "v2/orders";
   static const String orders = "v1/orders";

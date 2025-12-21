@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "arabic": MessageLookupByLibrary.simpleMessage("عربى"),
     "back": MessageLookupByLibrary.simpleMessage("عودة"),
+    "bestSellers": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
     "boardingDescription1": MessageLookupByLibrary.simpleMessage(
       "اكتشف آلاف المنتجات واختر اللي يناسبك بسهولة وسرعة من أي مكان.",
     ),
@@ -60,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_unauthorized": MessageLookupByLibrary.simpleMessage(
       "غير مصرح لك بالوصول",
     ),
+    "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "لا توجد بيانات ، يرجى المحاولة مرة أخرى لاحقًا",
     ),
@@ -70,6 +72,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
+    "recommendedProducts": MessageLookupByLibrary.simpleMessage(
+      "منتجات نوصي بها",
+    ),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
     "startNow": MessageLookupByLibrary.simpleMessage("إبدء الأن"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),

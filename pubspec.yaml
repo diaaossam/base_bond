@@ -97,6 +97,7 @@ dependencies:
 
   ### Routing
   auto_route: ^11.1.0
+  like_button: ^2.1.0
 
 
 dev_dependencies:

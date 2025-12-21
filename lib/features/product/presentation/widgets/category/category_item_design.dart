@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../../core/extensions/color_extensions.dart';
 import '../../../../../../widgets/image_picker/app_image.dart';
-import '../../../../data/models/category_model.dart';
+import '../../../../main/data/models/category_model.dart';
 
 class CategoryItemDesign extends StatefulWidget {
   final CategoryModel category;

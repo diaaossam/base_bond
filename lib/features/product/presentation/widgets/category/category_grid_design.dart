@@ -1,13 +1,18 @@
-import 'package:bond/features/main/presentation/widget/home/category/category_item_design.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../data/models/category_model.dart';
+import '../../../../main/data/models/category_model.dart';
+import 'category_item_design.dart';
 
 class CategoriesGrid extends StatefulWidget {
+  final bool shrinkWrap;
   final List<CategoryModel> categories;
 
-  const CategoriesGrid({required this.categories});
+  const CategoriesGrid({
+    super.key,
+    required this.categories,
+    required this.shrinkWrap,
+  });
 
   @override
   State<CategoriesGrid> createState() => CategoriesGridState();
@@ -66,7 +71,7 @@ class CategoriesGridState extends State<CategoriesGrid>
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: GridView.builder(
-        shrinkWrap: true,
+        shrinkWrap: widget.shrinkWrap,
         padding: EdgeInsets.zero,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

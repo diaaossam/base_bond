@@ -1,12 +1,14 @@
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../../../product/presentation/widgets/category/home_categories_section.dart';
 import 'banner/banners_design.dart';
-import 'category/home_categories_section.dart';
+import '../../../../product/data/models/request/product_params.dart';
+import '../../../../product/presentation/widgets/product/product_section.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -48,7 +50,25 @@ class HomeBody extends StatelessWidget {
         slivers: [
           HomeBannersImage(),
           const HomeCategoriesSection(),
-          SliverToBoxAdapter(child: SizedBox(height: 24.h)),
+          SliverToBoxAdapter(child: SizedBox(height: 12.h)),
+          // Best Sellers Section
+          ProductSection(
+            title: context.localizations.bestSellers,
+            actionText: context.localizations.seeAll,
+            initialParams: const ProductParams(isBestSeller: true),
+          ),
+          // New Arrivals Section
+          ProductSection(
+            title: context.localizations.newArrivals,
+            actionText: context.localizations.seeAll,
+            initialParams: const ProductParams(isNewArrival: true),
+          ),
+          // Recommended Products Section
+          ProductSection(
+            title: context.localizations.recommendedProducts,
+            actionText: context.localizations.seeAll,
+            initialParams: const ProductParams(isFeatured: true),
+          ),
         ],
       ),
     );

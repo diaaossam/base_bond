@@ -54,6 +54,11 @@ import '../../features/main/presentation/cubit/banner/banners_cubit.dart'
 import '../../features/main/presentation/cubit/category/category_cubit.dart'
     as _i844;
 import '../../features/main/presentation/cubit/main/main_cubit.dart' as _i1051;
+import '../../features/product/data/datasources/product_remote_data_source.dart'
+    as _i1;
+import '../../features/product/data/repositories/product_repository_impl.dart'
+    as _i1040;
+import '../../features/product/presentation/cubit/product_cubit.dart' as _i388;
 import '../../features/settings/data/datasources/settings_remote_data_source.dart'
     as _i188;
 import '../../features/settings/data/repositories/settings_repo_impl.dart'
@@ -130,6 +135,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i384.DioConsumer>(
       () => _i384.DioConsumer(client: gh<_i763.DioClient>()),
     );
+    gh.factory<_i1.ProductRemoteDataSource>(
+      () =>
+          _i1.ProductRemoteDataSourceImpl(dioConsumer: gh<_i384.DioConsumer>()),
+    );
     gh.factory<_i584.MainRemoteDataSource>(
       () =>
           _i584.MainRemoteDataSourceImpl(dioConsumer: gh<_i384.DioConsumer>()),
@@ -176,6 +185,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i344.AppRepositoryImpl>(
       () => _i344.AppRepositoryImpl(appDataSource: gh<_i162.AppDataSource>()),
     );
+    gh.lazySingleton<_i1040.ProductRepositoryImpl>(
+      () => _i1040.ProductRepositoryImpl(
+        productRemoteDataSource: gh<_i1.ProductRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i941.InitRepo>(
       () =>
           _i941.InitRepo(initRemoteDataSource: gh<_i95.InitRemoteDataSource>()),
@@ -191,6 +205,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i662.AuthRepositoryImpl(
         authRemoteDataSource: gh<_i107.AuthRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i388.ProductCubit>(
+      () => _i388.ProductCubit(gh<_i1040.ProductRepositoryImpl>()),
     );
     gh.factory<_i153.LoginCubit>(
       () => _i153.LoginCubit(gh<_i662.AuthRepositoryImpl>()),

@@ -553,6 +553,46 @@ class S {
   String get seeAll {
     return Intl.message('رؤية المزيد', name: 'seeAll', desc: '', args: []);
   }
+
+  /// `الأكثر مبيعاً`
+  String get bestSellers {
+    return Intl.message(
+      'الأكثر مبيعاً',
+      name: 'bestSellers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `وصل حديثاً`
+  String get newArrivals {
+    return Intl.message('وصل حديثاً', name: 'newArrivals', desc: '', args: []);
+  }
+
+  /// `موصي بها`
+  String get recommendedProducts {
+    return Intl.message(
+      'موصي بها',
+      name: 'recommendedProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `جميع الأقسام`
+  String get allCategories {
+    return Intl.message(
+      'جميع الأقسام',
+      name: 'allCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ج.م`
+  String get egp {
+    return Intl.message('ج.م', name: 'egp', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
