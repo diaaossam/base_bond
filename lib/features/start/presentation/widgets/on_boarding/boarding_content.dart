@@ -39,12 +39,12 @@ class BoardingContent extends StatelessWidget {
         ),
         GlassContainer(
           child: Padding(
-            padding: EdgeInsets.all(SizeConfig.screenWidth * .03),
+            padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth*.02),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(height: SizeConfig.bodyHeight * .02),
+                SizedBox(height: SizeConfig.bodyHeight * .01),
                 Center(
                   child: AppText(
                     text: title,
@@ -56,7 +56,7 @@ class BoardingContent extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: SizeConfig.bodyHeight * .04),
+                SizedBox(height: SizeConfig.bodyHeight * .015),
                 Padding(
                   padding: screenPadding(),
                   child: AppText(
@@ -70,7 +70,7 @@ class BoardingContent extends StatelessWidget {
                 ),
                 Spacer(),
                 Container(
-                  margin: EdgeInsets.only(bottom: SizeConfig.bodyHeight * .04),
+                  margin: EdgeInsets.only(bottom: SizeConfig.bodyHeight * .02),
                   padding: screenPadding(),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

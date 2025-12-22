@@ -77,6 +77,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/male.svg
   String get male => 'assets/icons/male.svg';
 
+  /// File path: assets/icons/maps-location-01.svg
+  String get mapsLocation01 => 'assets/icons/maps-location-01.svg';
+
   /// File path: assets/icons/notification.svg
   String get notification => 'assets/icons/notification.svg';
 
@@ -85,6 +88,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/phone.svg
   String get phone => 'assets/icons/phone.svg';
+
+  /// File path: assets/icons/pin-location-02.svg
+  String get pinLocation02 => 'assets/icons/pin-location-02.svg';
 
   /// File path: assets/icons/region.svg
   String get region => 'assets/icons/region.svg';
@@ -127,9 +133,11 @@ class $AssetsIconsGen {
     homeInactive,
     logo,
     male,
+    mapsLocation01,
     notification,
     orders,
     phone,
+    pinLocation02,
     region,
     searchNormal,
     settings,
@@ -142,36 +150,81 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/alert-square.png
+  AssetGenImage get alertSquare =>
+      const AssetGenImage('assets/images/alert-square.png');
+
   /// File path: assets/images/background_splash.png
   AssetGenImage get backgroundSplash =>
       const AssetGenImage('assets/images/background_splash.png');
 
-  /// File path: assets/images/boarding1.jpg
+  /// File path: assets/images/boarding1.png
   AssetGenImage get boarding1 =>
-      const AssetGenImage('assets/images/boarding1.jpg');
+      const AssetGenImage('assets/images/boarding1.png');
 
-  /// File path: assets/images/boarding2.jpg
+  /// File path: assets/images/boarding2.png
   AssetGenImage get boarding2 =>
-      const AssetGenImage('assets/images/boarding2.jpg');
+      const AssetGenImage('assets/images/boarding2.png');
 
-  /// File path: assets/images/boarding3.jpg
+  /// File path: assets/images/boarding3.png
   AssetGenImage get boarding3 =>
-      const AssetGenImage('assets/images/boarding3.jpg');
+      const AssetGenImage('assets/images/boarding3.png');
+
+  /// File path: assets/images/chatting-01.png
+  AssetGenImage get chatting01 =>
+      const AssetGenImage('assets/images/chatting-01.png');
+
+  /// File path: assets/images/coins-01.png
+  AssetGenImage get coins01 =>
+      const AssetGenImage('assets/images/coins-01.png');
+
+  /// File path: assets/images/language-circle.png
+  AssetGenImage get languageCircle =>
+      const AssetGenImage('assets/images/language-circle.png');
 
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/logout.png
+  AssetGenImage get logout => const AssetGenImage('assets/images/logout.png');
+
+  /// File path: assets/images/map.png
+  AssetGenImage get map => const AssetGenImage('assets/images/map.png');
+
+  /// File path: assets/images/mode.png
+  AssetGenImage get mode => const AssetGenImage('assets/images/mode.png');
+
+  /// File path: assets/images/orders.jpg
+  AssetGenImage get orders => const AssetGenImage('assets/images/orders.jpg');
+
   /// File path: assets/images/person.jpg
   AssetGenImage get person => const AssetGenImage('assets/images/person.jpg');
 
+  /// File path: assets/images/points.png
+  AssetGenImage get points => const AssetGenImage('assets/images/points.png');
+
+  /// File path: assets/images/shield-key.png
+  AssetGenImage get shieldKey =>
+      const AssetGenImage('assets/images/shield-key.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
+    alertSquare,
     backgroundSplash,
     boarding1,
     boarding2,
     boarding3,
+    chatting01,
+    coins01,
+    languageCircle,
     logo,
+    logout,
+    map,
+    mode,
+    orders,
     person,
+    points,
+    shieldKey,
   ];
 }
 

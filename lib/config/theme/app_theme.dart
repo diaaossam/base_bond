@@ -8,13 +8,13 @@ import 'color_scheme.dart';
 class ThemeManger {
   static ThemeData appTheme({required Language language}) => ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: AppColorScheme.light.background,
+    scaffoldBackgroundColor: AppColorScheme.light.surface,
     textTheme: TextTheme(
       bodyMedium: TextStyle(color: AppColorScheme.light.onSurface),
       headlineMedium: TextStyle(color: AppColorScheme.light.shadow),
     ),
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColorScheme.light.background,
+      backgroundColor: AppColorScheme.light.surface,
       centerTitle: true,
       iconTheme: IconThemeData(color: AppColorScheme.light.shadow),
       actionsIconTheme: IconThemeData(color: AppColorScheme.light.shadow),

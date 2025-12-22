@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "all": MessageLookupByLibrary.simpleMessage("الكل"),
     "applyFilter": MessageLookupByLibrary.simpleMessage("تطبيق الفلترة"),
     "arabic": MessageLookupByLibrary.simpleMessage("عربى"),
+    "available": MessageLookupByLibrary.simpleMessage("متوفر"),
     "back": MessageLookupByLibrary.simpleMessage("عودة"),
     "bestSellers": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
     "boardingDescription1": MessageLookupByLibrary.simpleMessage(
@@ -46,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage("اختر من المعرض"),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("اختر صورة"),
     "chooseFromGallery2": MessageLookupByLibrary.simpleMessage("اختر فيديو"),
+    "cm": MessageLookupByLibrary.simpleMessage("سم"),
+    "dimensions": MessageLookupByLibrary.simpleMessage("الأبعاد"),
     "english": MessageLookupByLibrary.simpleMessage("إنجليزى"),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("الطلب غير صالح"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
@@ -68,10 +71,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "featured": MessageLookupByLibrary.simpleMessage("مميز"),
     "filter": MessageLookupByLibrary.simpleMessage("الفلترة"),
     "from": MessageLookupByLibrary.simpleMessage("من"),
+    "kg": MessageLookupByLibrary.simpleMessage("كجم"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "لا توجد بيانات ، يرجى المحاولة مرة أخرى لاحقًا",
     ),
+    "notAvailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
     "otpBody": MessageLookupByLibrary.simpleMessage(
       "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
     ),
@@ -80,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
     "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
+    "productInfo": MessageLookupByLibrary.simpleMessage("معلومات المنتج"),
     "recommendedProducts": MessageLookupByLibrary.simpleMessage(
       "منتجات نوصي بها",
     ),
@@ -88,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectSortMethod": MessageLookupByLibrary.simpleMessage(
       "اختر طريقة الترتيب",
     ),
+    "sku": MessageLookupByLibrary.simpleMessage("SKU"),
     "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "sortNewest": MessageLookupByLibrary.simpleMessage("الأحدث"),
     "sortOldest": MessageLookupByLibrary.simpleMessage("الأقدم"),
@@ -100,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "specialOptions": MessageLookupByLibrary.simpleMessage("خيارات خاصة"),
     "startNow": MessageLookupByLibrary.simpleMessage("إبدء الأن"),
+    "stock": MessageLookupByLibrary.simpleMessage("المخزون"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
     "to": MessageLookupByLibrary.simpleMessage("إلى"),
     "updateBody": MessageLookupByLibrary.simpleMessage(
@@ -114,5 +122,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "updateBody3": MessageLookupByLibrary.simpleMessage("تحديث الآن"),
     "updateTitle": MessageLookupByLibrary.simpleMessage("تحديث متاح"),
     "validation": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
+    "weight": MessageLookupByLibrary.simpleMessage("الوزن"),
   };
 }

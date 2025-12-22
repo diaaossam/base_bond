@@ -7,6 +7,10 @@ class EndPoints {
 
   static const String governorates = "governorates";
 
+  ///////// Location ////////////////////////
+  static const String addresses = "addresses";
+
+
   ///////// Auth ////////////////////////
   static const String loginUser = "v1/auth/login";
   static const String update = "v1/profile/update";
@@ -60,7 +64,6 @@ class EndPoints {
   //////////////////// Chats ///////////////////////
 
   static const String supportChat = "v1/support-chat";
-  static const String addresses = "v1/addresses";
   static const String makeAddressDefault = "v1/make-default-address";
   static const String products = "products";
   static const String validateCoupon = "v1/validate-coupon";

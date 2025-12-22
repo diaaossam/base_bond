@@ -3,7 +3,7 @@ const pageSize = 6;
 class AppStrings {
 
   ///App Core
-  static const String appName = "Aslol";
+  static const String appName = "Bond";
   static const String arabicFont = "SomarSans";
   static const String englishFont = "SomarSans";
   static const String englishCode = "en";

@@ -23,6 +23,7 @@ class ProductModel {
     this.images,
     this.status,
     this.oldPrice,
+    this.isAddedToFavourite,
   });
 
   ProductModel.fromJson({
@@ -53,6 +54,7 @@ class ProductModel {
     featureImage = json['feature_image'];
     images = json['images'] != null ? json['images'].cast<String>() : [];
     status = json['status'];
+    isAddedToFavourite = json['is_added_to_favourite'];
     if (isRemote) {
       if (salePrice != null &&
           discountPercentage != null &&
@@ -85,6 +87,7 @@ class ProductModel {
   String? featureImage;
   List<String>? images;
   String? status;
+  bool? isAddedToFavourite;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -115,6 +118,7 @@ class ProductModel {
     map['feature_image'] = featureImage;
     map['images'] = images;
     map['status'] = status;
+    map['is_added_to_favourite'] = isAddedToFavourite;
     return map;
   }
 

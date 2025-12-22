@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../config/router/app_router.gr.dart';
 import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../widgets/image_picker/app_image.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
@@ -55,6 +57,11 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
         return Transform.scale(
           scale: _scaleAnimation.value,
           child: GestureDetector(
+            onTap: () {
+              context.router.push(
+                ProductDetailsRoute(product: widget.product),
+              );
+            },
             child: Container(
               width:widget.width?? 160.w,
               margin: EdgeInsets.only(right: 12.w),

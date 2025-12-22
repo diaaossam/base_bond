@@ -23,6 +23,13 @@ class ProductRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
+  Future<Either<Failure, ProductModel>> getProductDetails(num id) async {
+    final response = await handleApi(
+      () => productRemoteDataSource.getProductDetails(id),
+    );
+    return response;
+  }
+
   Future<Either<Failure, List<CategoryModel>>> getCategories() async {
     final response = await handleApi(
       () => productRemoteDataSource.getCategories(),

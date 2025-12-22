@@ -21,5 +21,6 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: AllProductsRoute.page),
+    AutoRoute(page: ProductDetailsRoute.page),
   ];
 }

@@ -9,6 +9,8 @@ import '../../../main/data/models/category_model.dart';
 abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> getProducts(ProductParams params);
 
+  Future<ProductModel> getProductDetails(num id);
+
   Future<List<CategoryModel>> getCategories();
 
   Future<List<GenericModel>> getBrands();
@@ -44,5 +46,12 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
         .factory(GenericModel.fromJsonList)
         .execute();
   }
-}
 
+  @override
+  Future<ProductModel> getProductDetails(num id) async {
+    return await dioConsumer
+        .get("${EndPoints.products}/$id")
+        .factory((json) => ProductModel.fromJson(json: json,isRemote: true),)
+        .execute();
+  }
+}

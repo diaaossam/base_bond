@@ -102,9 +102,7 @@ class BaseState<T> extends Equatable {
   /// Returns true if status is failure
   bool get isFailure => status == BaseStatus.failure;
 
-  // ============================================================================
-  // COPY WITH
-  // ============================================================================
+
 
   BaseState<T> copyWith({
     BaseStatus? status,

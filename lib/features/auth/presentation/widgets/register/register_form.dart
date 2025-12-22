@@ -118,6 +118,25 @@ class _RegisterFormState extends State<RegisterForm> {
                             )
                             .toList(),
                       ),
+                      SizedBox(height: SizeConfig.bodyHeight * .02),
+                      CustomTextFormField(
+                        name: "address",
+                        hintText: context.localizations.address,
+                        prefixIcon: AppImage.asset(Assets.icons.mapsLocation01),
+                        validator: FormBuilderValidators.required(
+                          errorText: context.localizations.validation,
+                        ),
+                      ),
+                      SizedBox(height: SizeConfig.bodyHeight * .02),
+                      CustomTextFormField(
+                        name: "mapLocation",
+                        hintText: context.localizations.locationOnMap,
+                        prefixIcon: AppImage.asset(Assets.icons.pinLocation02),
+                        suffixIcon: AppImage.asset(Assets.icons.arrowForward),
+                        validator: FormBuilderValidators.required(
+                          errorText: context.localizations.validation,
+                        ),
+                      ),
                     ],
                   );
                 },

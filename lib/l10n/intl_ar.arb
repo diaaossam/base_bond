@@ -54,5 +54,14 @@
   "sortPriceDesc": "السعر: من الأعلى للأقل",
   "sortNewest": "الأحدث",
   "sortOldest": "الأقدم",
-  "sortPopular": "الأكثر شعبية"
+  "sortPopular": "الأكثر شعبية",
+  "productInfo": "معلومات المنتج",
+  "sku": "SKU",
+  "notAvailable": "غير متوفر",
+  "weight": "الوزن",
+  "kg": "كجم",
+  "dimensions": "الأبعاد",
+  "cm": "سم",
+  "stock": "المخزون",
+  "available": "متوفر"
 }

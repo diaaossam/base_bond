@@ -713,6 +713,276 @@ class S {
       args: [],
     );
   }
+
+  /// `تعديل`
+  String get edit {
+    return Intl.message('تعديل', name: 'edit', desc: '', args: []);
+  }
+
+  /// `لديك`
+  String get youHave {
+    return Intl.message('لديك', name: 'youHave', desc: '', args: []);
+  }
+
+  /// `نقطة`
+  String get point {
+    return Intl.message('نقطة', name: 'point', desc: '', args: []);
+  }
+
+  /// `استخدم هذا الكود لإستخدام نقاطك`
+  String get pointHint {
+    return Intl.message(
+      'استخدم هذا الكود لإستخدام نقاطك',
+      name: 'pointHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `نسخ`
+  String get copy {
+    return Intl.message('نسخ', name: 'copy', desc: '', args: []);
+  }
+
+  /// `نقاطي`
+  String get myPoints {
+    return Intl.message('نقاطي', name: 'myPoints', desc: '', args: []);
+  }
+
+  /// `الإشعارات`
+  String get notifications {
+    return Intl.message('الإشعارات', name: 'notifications', desc: '', args: []);
+  }
+
+  /// `شروط الخصوصية`
+  String get privacyPolicy {
+    return Intl.message(
+      'شروط الخصوصية',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `سياسة الإستخدام`
+  String get termsAndCon {
+    return Intl.message(
+      'سياسة الإستخدام',
+      name: 'termsAndCon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اللغة`
+  String get language {
+    return Intl.message('اللغة', name: 'language', desc: '', args: []);
+  }
+
+  /// `الوضع الليلي`
+  String get darkMode {
+    return Intl.message('الوضع الليلي', name: 'darkMode', desc: '', args: []);
+  }
+
+  /// `الوضعي النهارى`
+  String get lightMode {
+    return Intl.message(
+      'الوضعي النهارى',
+      name: 'lightMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الوضع`
+  String get mode {
+    return Intl.message('الوضع', name: 'mode', desc: '', args: []);
+  }
+
+  /// `الدعم الفني`
+  String get customerSupport {
+    return Intl.message(
+      'الدعم الفني',
+      name: 'customerSupport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تسجيل الخروج`
+  String get logOut {
+    return Intl.message('تسجيل الخروج', name: 'logOut', desc: '', args: []);
+  }
+
+  /// `تفاصيل المنتج`
+  String get productDetails {
+    return Intl.message(
+      'تفاصيل المنتج',
+      name: 'productDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الوصف`
+  String get description {
+    return Intl.message('الوصف', name: 'description', desc: '', args: []);
+  }
+
+  /// `لا يوجد وصف متاح`
+  String get noDescription {
+    return Intl.message(
+      'لا يوجد وصف متاح',
+      name: 'noDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `عرض المزيد`
+  String get showMore {
+    return Intl.message('عرض المزيد', name: 'showMore', desc: '', args: []);
+  }
+
+  /// `عرض أقل`
+  String get showLess {
+    return Intl.message('عرض أقل', name: 'showLess', desc: '', args: []);
+  }
+
+  /// `خصم`
+  String get discount {
+    return Intl.message('خصم', name: 'discount', desc: '', args: []);
+  }
+
+  /// `Product Information`
+  String get productInfo {
+    return Intl.message(
+      'Product Information',
+      name: 'productInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SKU`
+  String get sku {
+    return Intl.message('SKU', name: 'sku', desc: '', args: []);
+  }
+
+  /// `Not Available`
+  String get notAvailable {
+    return Intl.message(
+      'Not Available',
+      name: 'notAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weight`
+  String get weight {
+    return Intl.message('Weight', name: 'weight', desc: '', args: []);
+  }
+
+  /// `kg`
+  String get kg {
+    return Intl.message('kg', name: 'kg', desc: '', args: []);
+  }
+
+  /// `Dimensions`
+  String get dimensions {
+    return Intl.message('Dimensions', name: 'dimensions', desc: '', args: []);
+  }
+
+  /// `cm`
+  String get cm {
+    return Intl.message('cm', name: 'cm', desc: '', args: []);
+  }
+
+  /// `Stock`
+  String get stock {
+    return Intl.message('Stock', name: 'stock', desc: '', args: []);
+  }
+
+  /// `Available`
+  String get available {
+    return Intl.message('Available', name: 'available', desc: '', args: []);
+  }
+
+  /// `تحت المراجعة`
+  String get underReview {
+    return Intl.message(
+      'تحت المراجعة',
+      name: 'underReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم التأكيد`
+  String get confirmed {
+    return Intl.message('تم التأكيد', name: 'confirmed', desc: '', args: []);
+  }
+
+  /// `تحت المعالجة`
+  String get inProgress {
+    return Intl.message('تحت المعالجة', name: 'inProgress', desc: '', args: []);
+  }
+
+  /// `خرج للتوصيل`
+  String get outForDeleivery {
+    return Intl.message(
+      'خرج للتوصيل',
+      name: 'outForDeleivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مسترجع`
+  String get returns {
+    return Intl.message('مسترجع', name: 'returns', desc: '', args: []);
+  }
+
+  /// `ملغي`
+  String get canceled {
+    return Intl.message('ملغي', name: 'canceled', desc: '', args: []);
+  }
+
+  /// `إضافة إلي السلة`
+  String get addToCart {
+    return Intl.message(
+      'إضافة إلي السلة',
+      name: 'addToCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الذهاب إلي السلة`
+  String get goToCart {
+    return Intl.message(
+      'الذهاب إلي السلة',
+      name: 'goToCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `العنوان`
+  String get address {
+    return Intl.message('العنوان', name: 'address', desc: '', args: []);
+  }
+
+  /// `العنوان علي الخريطة`
+  String get locationOnMap {
+    return Intl.message(
+      'العنوان علي الخريطة',
+      name: 'locationOnMap',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

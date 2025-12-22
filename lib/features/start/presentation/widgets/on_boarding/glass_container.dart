@@ -35,7 +35,7 @@ class GlassContainer extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: SizeConfig.bodyHeight * 0.5,
+      height: SizeConfig.bodyHeight * 0.3,
       margin: EdgeInsets.all(SizeConfig.screenWidth * .04),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
@@ -44,7 +44,6 @@ class GlassContainer extends StatelessWidget {
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(
-                  // Gradient رقيق يعطي إحساس زجاجي
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
