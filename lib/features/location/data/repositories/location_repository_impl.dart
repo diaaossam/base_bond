@@ -7,6 +7,7 @@ import '../../../../core/services/network/error/failures.dart';
 import '../datasources/location_remote_data_source.dart';
 import '../models/requests/saved_location_params.dart';
 
+@LazySingleton()
 class LocationRepositoryImpl with ApiHandlerMixin {
   final LocationRemoteDataSource locationRemoteDataSource;
 

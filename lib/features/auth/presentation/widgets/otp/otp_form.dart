@@ -1,6 +1,12 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/utils/app_size.dart';
+import 'package:bond/features/auth/data/models/request/otp_params.dart';
+import 'package:bond/features/auth/presentation/cubit/otp/otp_cubit.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
@@ -9,7 +15,9 @@ import '../../../../../widgets/main_widget/app_text.dart';
 import 'otp_counter.dart';
 
 class OtpFormWidget extends StatefulWidget {
-  const OtpFormWidget({super.key});
+  final String phone;
+
+  const OtpFormWidget({super.key, required this.phone});
 
   @override
   State<OtpFormWidget> createState() => _OtpFormWidgetState();
@@ -33,11 +41,11 @@ class _OtpFormWidgetState extends State<OtpFormWidget> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: SizeConfig.bodyHeight*.02,),
+            SizedBox(height: SizeConfig.bodyHeight * .02),
             AppText.title(text: context.localizations.otpTitle),
-            SizedBox(height: SizeConfig.bodyHeight*.02,),
-            AppText.body(text: context.localizations.otpBody,),
-            SizedBox(height: SizeConfig.bodyHeight*.05,),
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+            AppText.body(text: context.localizations.otpBody),
+            SizedBox(height: SizeConfig.bodyHeight * .05),
             Directionality(
               textDirection: TextDirection.ltr,
               child: PinCodeTextField(
@@ -45,7 +53,7 @@ class _OtpFormWidgetState extends State<OtpFormWidget> {
                 autoFocus: true,
                 cursorColor: context.colorScheme.primary,
                 keyboardType: TextInputType.number,
-                length: 4,
+                length: 6,
                 textStyle: const TextStyle(color: Colors.black),
                 obscureText: false,
                 animationType: AnimationType.scale,
@@ -53,7 +61,7 @@ class _OtpFormWidgetState extends State<OtpFormWidget> {
                   shape: PinCodeFieldShape.box,
                   borderRadius: BorderRadius.circular(8.r),
                   fieldHeight: 60,
-                  fieldWidth: 60,
+                  fieldWidth: 50,
                   borderWidth: 1,
                   inactiveColor: context.colorScheme.surface,
                   activeFillColor: const Color(0xFFE4EAE8),
@@ -68,10 +76,30 @@ class _OtpFormWidgetState extends State<OtpFormWidget> {
                 onChanged: (String value) {},
               ),
             ),
-            SizedBox(height: SizeConfig.bodyHeight*.04,),
+            SizedBox(height: SizeConfig.bodyHeight * .04),
             OtpTimerDesign(onFinish: () {}),
-            SizedBox(height: SizeConfig.bodyHeight*.1,),
-            CustomButton(text: context.localizations.confirm, press: (){}),
+            SizedBox(height: SizeConfig.bodyHeight * .1),
+            BlocConsumer<OtpCubit, BaseState<void>>(
+              listener: (context, state) {
+                if (state.isSuccess) {
+                  context.router.pushAndPopUntil(
+                    MainLayoutRoute(),
+                    predicate: (route) => false,
+                  );
+                }
+              },
+              builder: (context, state) {
+                return CustomButton(
+                  isLoading: state.isLoading,
+                  text: context.localizations.confirm,
+                  press: () {
+                    context.read<OtpCubit>().verifyOtp(
+                      params: OtpParams(phone: widget.phone, otpCode: otpCode),
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

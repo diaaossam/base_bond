@@ -14,6 +14,8 @@ import 'package:bond/features/auth/presentation/pages/login_screen.dart' as _i7;
 import 'package:bond/features/auth/presentation/pages/otp_screen.dart' as _i10;
 import 'package:bond/features/auth/presentation/pages/register_screen.dart'
     as _i13;
+import 'package:bond/features/location/data/models/response/my_address.dart'
+    as _i18;
 import 'package:bond/features/location/presentation/pages/add_address_screen.dart'
     as _i1;
 import 'package:bond/features/location/presentation/pages/pick_location_page.dart'
@@ -23,9 +25,9 @@ import 'package:bond/features/main/presentation/pages/main_layout.dart' as _i8;
 import 'package:bond/features/orders/presentation/pages/cart_screen.dart'
     as _i3;
 import 'package:bond/features/product/data/models/request/product_params.dart'
-    as _i18;
-import 'package:bond/features/product/data/models/response/product_model.dart'
     as _i19;
+import 'package:bond/features/product/data/models/response/product_model.dart'
+    as _i20;
 import 'package:bond/features/product/presentation/pages/all_products_screen.dart'
     as _i2;
 import 'package:bond/features/product/presentation/pages/categories_screen.dart'
@@ -47,7 +49,7 @@ import 'package:flutter/material.dart' as _i17;
 class AddAddressRoute extends _i16.PageRouteInfo<AddAddressRouteArgs> {
   AddAddressRoute({
     _i17.Key? key,
-    InvalidType address,
+    _i18.MyAddress? address,
     List<_i16.PageRouteInfo>? children,
   }) : super(
          AddAddressRoute.name,
@@ -73,7 +75,7 @@ class AddAddressRouteArgs {
 
   final _i17.Key? key;
 
-  final InvalidType address;
+  final _i18.MyAddress? address;
 
   @override
   String toString() {
@@ -97,7 +99,7 @@ class AllProductsRoute extends _i16.PageRouteInfo<AllProductsRouteArgs> {
   AllProductsRoute({
     _i17.Key? key,
     required String title,
-    required _i18.ProductParams initialParams,
+    required _i19.ProductParams initialParams,
     List<_i16.PageRouteInfo>? children,
   }) : super(
          AllProductsRoute.name,
@@ -135,7 +137,7 @@ class AllProductsRouteArgs {
 
   final String title;
 
-  final _i18.ProductParams initialParams;
+  final _i19.ProductParams initialParams;
 
   @override
   String toString() {
@@ -335,7 +337,7 @@ class PickLocationRoute extends _i16.PageRouteInfo<void> {
 class ProductDetailsRoute extends _i16.PageRouteInfo<ProductDetailsRouteArgs> {
   ProductDetailsRoute({
     _i17.Key? key,
-    required _i19.ProductModel product,
+    required _i20.ProductModel product,
     List<_i16.PageRouteInfo>? children,
   }) : super(
          ProductDetailsRoute.name,
@@ -359,7 +361,7 @@ class ProductDetailsRouteArgs {
 
   final _i17.Key? key;
 
-  final _i19.ProductModel product;
+  final _i20.ProductModel product;
 
   @override
   String toString() {

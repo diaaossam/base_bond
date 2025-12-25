@@ -46,7 +46,6 @@ class MobileNumberField extends StatelessWidget {
           minWidth: 40.w,
         ),
         keyboardType: TextInputType.phone,
-        valueTransformer: (value) => '+20$value',
         maxLength: 10,
         prefixIcon: Row(
           mainAxisSize: MainAxisSize.min,
@@ -58,6 +57,7 @@ class MobileNumberField extends StatelessWidget {
             10.horizontalSpace,
           ],
         ),
+
         suffixIcon: AppImage.asset(Assets.icons.phone,size: 20,),
       ),
     );

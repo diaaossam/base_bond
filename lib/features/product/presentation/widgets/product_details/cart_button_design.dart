@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
@@ -13,8 +12,6 @@ import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../config/router/app_router.gr.dart';
 import '../../../../orders/presentation/cubit/cart/cart_cubit.dart';
 import '../../cubit/details/product_details_cubit.dart';
 
@@ -98,8 +95,7 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
           builder: (context, state) {
             final bloc = context.read<ProductDetailsCubit>();
             final cartList = cartState.data?.cartList ?? [];
-            final uniqueProductId = _generateUniqueProductId(bloc.cartItem);
-            final isExists = _findProductInCart(cartList, uniqueProductId) != null;
+
             if (state.isLoading && state.identifier == 'product_details') {
               return Padding(
                 padding: screenPadding(),
@@ -117,12 +113,11 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
                 ),
               );
             } else {
+              final CartItem cartItem = state.data??CartItem();
+              final uniqueProductId = _generateUniqueProductId(cartItem);
+              final isExists = _findProductInCart(cartList, uniqueProductId) != null;
               return InkWell(
                 onTap: () async {
-                  final cartItem = bloc.cartItem.copyWith(
-                    uniqueProductId: uniqueProductId,
-                  );
-
                   if (isExists) {
                     final existingItem = _findProductInCart(
                       cartList,
@@ -130,19 +125,16 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
                     );
                     if (existingItem != null) {
                       num currentQtyInCart = existingItem.qty ?? 0;
-                      num requestedQty = bloc.cartItem.qty ?? 1;
-                      num availableStock = bloc.cartItem.stock ?? 0;
-
-                      // التحقق من الكمية المتاحة
+                      num requestedQty = cartItem.qty ?? 1;
+                      num availableStock = cartItem.stock ?? 0;
                       if (currentQtyInCart + requestedQty <= availableStock) {
                         context.read<CartCubit>().addToCart(cartItem);
                       } else {
-                        /*// عرض رسالة خطأ - الكمية غير متاحة
                         AppConstant.showCustomSnakeBar(
                           context,
-                          "الكمية المتاحة فقط ${availableStock - currentQtyInCart}",
+                          "${context.localizations.availableQuantity} ${availableStock - currentQtyInCart}",
                           false,
-                        );*/
+                        );
                       }
                     }
                   } else {
@@ -175,7 +167,7 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
                         ),
                       ),
                       AppText(
-                        text: "${bloc.cartItem.price?.toStringAsFixed(2)} ${context.localizations.egp}",
+                        text: "${cartItem.price?.toStringAsFixed(2)} ${context.localizations.egp}",
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),

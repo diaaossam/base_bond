@@ -4,44 +4,55 @@ import 'package:bond/features/location/presentation/cubit/location_picker/locati
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../core/services/location/location_permission_service.dart';
+
 @Injectable()
 class LocationPickerCubit extends Cubit<BaseState<LocationPickerData>> {
   LocationPickerCubit() : super(BaseState());
 
   Future<void> initLocationService() async {
     try {
-      emit(InitLocationServiceLoading());
+      emit(state.copyWith(status: BaseStatus.loading));
       final result = await LocationPermissionService()
           .requestPermissionAndLocation();
       if (result != null) {
-        currentLocation = result;
-        markers.add(
-          Marker(
-            markerId: const MarkerId("Me"),
-            position: result,
-            icon: BitmapDescriptor.defaultMarker,
+        emit(
+          state.copyWith(
+            status: BaseStatus.success,
+            data: LocationPickerData(
+              currentLocation: result,
+              markers: {
+                Marker(
+                  markerId: const MarkerId("Me"),
+                  position: result,
+                  icon: BitmapDescriptor.defaultMarker,
+                ),
+              },
+            ),
           ),
         );
-        emit(InitLocationServiceSuccess());
       } else {
-        emit(InitLocationServiceFailure());
+        emit(state.copyWith(status: BaseStatus.failure));
       }
     } catch (error) {
-      print(error.toString());
-      emit(InitLocationServiceFailure());
+      emit(state.copyWith(status: BaseStatus.loading));
     }
   }
 
   Future<void> changeLocation({required LatLng value}) async {
-    markers.clear();
-    currentLocation = value;
-    markers.add(
-      Marker(
-        markerId: const MarkerId("Me"),
-        position: value,
-        icon: BitmapDescriptor.defaultMarker,
+    emit(
+      state.copyWith(
+        data: LocationPickerData(
+          currentLocation: value,
+          markers: {
+            Marker(
+              markerId: const MarkerId("Me"),
+              position: value,
+              icon: BitmapDescriptor.defaultMarker,
+            ),
+          },
+        ),
       ),
     );
-    emit(ChangeUserLocationOnMapState());
   }
 }

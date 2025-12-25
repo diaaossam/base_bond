@@ -1,95 +1,78 @@
-import '../../../../../core/global_models/generic_model.dart';
-
 class UserModel {
   UserModel({
-    this.id,
-    this.name,
-    this.phone,
-    this.email,
-    this.points,
-    this.customerCompleteProfile,
-    this.orders,
-    this.province,
-    this.region,
-    this.image,
-    this.createdAt,
-  });
+      this.id, 
+      this.name, 
+      this.email, 
+      this.phone, 
+      this.status, 
+      this.deviceType, 
+      this.defaultLang, 
+      this.isPhoneVerified, 
+      this.profileImage, 
+      this.createdAt, 
+      this.updatedAt,});
 
   UserModel.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
-    phone = json['phone'];
     email = json['email'];
-    points = json['points'];
-    orders = json['orders'];
-    province = json['province'] != null
-        ? GenericModel.fromJson(json['province'])
-        : null;
-    region = json['region'] != null
-        ? GenericModel.fromJson(json['region'])
-        : null;
-    customerCompleteProfile = json['customer_complete_profile'] == 1;
-    image = json['image'];
-
+    phone = json['phone'];
+    status = json['status'];
+    deviceType = json['device_type'];
+    defaultLang = json['default_lang'];
+    isPhoneVerified = json['is_phone_verified'];
+    profileImage = json['profile_image'];
     createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
-
   num? id;
   String? name;
-  String? phone;
   String? email;
-  num? points;
-  num? orders;
-  GenericModel? province;
-  GenericModel? region;
-  bool? customerCompleteProfile;
-  String? image;
+  String? phone;
+  String? status;
+  String? deviceType;
+  String? defaultLang;
+  bool? isPhoneVerified;
+  String? profileImage;
   String? createdAt;
-
-  UserModel copyWith({
-    num? id,
-    String? name,
-    String? phone,
-    String? email,
-    num? points,
-    num? orders,
-    GenericModel? province,
-    GenericModel? region,
-    bool? customerCompleteProfile,
-    String? image,
-    String? createdAt,
-  }) => UserModel(
-    id: id ?? this.id,
-    name: name ?? this.name,
-    phone: phone ?? this.phone,
-    email: email ?? this.email,
-    points: points ?? this.points,
-    orders: orders ?? this.orders,
-    province: province ?? this.province,
-    region: region ?? this.region,
-    customerCompleteProfile:
-        customerCompleteProfile ?? this.customerCompleteProfile,
-    image: image ?? this.image,
-    createdAt: createdAt ?? this.createdAt,
-  );
-
+  String? updatedAt;
+UserModel copyWith({  num? id,
+  String? name,
+  String? email,
+  String? phone,
+  String? status,
+  String? deviceType,
+  String? defaultLang,
+  bool? isPhoneVerified,
+  String? profileImage,
+  String? createdAt,
+  String? updatedAt,
+}) => UserModel(  id: id ?? this.id,
+  name: name ?? this.name,
+  email: email ?? this.email,
+  phone: phone ?? this.phone,
+  status: status ?? this.status,
+  deviceType: deviceType ?? this.deviceType,
+  defaultLang: defaultLang ?? this.defaultLang,
+  isPhoneVerified: isPhoneVerified ?? this.isPhoneVerified,
+  profileImage: profileImage ?? this.profileImage,
+  createdAt: createdAt ?? this.createdAt,
+  updatedAt: updatedAt ?? this.updatedAt,
+);
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
     map['name'] = name;
-    map['phone'] = phone;
     map['email'] = email;
-    map['points'] = points;
-    map['orders'] = orders;
-    if (province != null) {
-      map['province'] = province?.toMap();
-    }
-    if (region != null) {
-      map['region'] = region?.toMap();
-    }
-    map['customer_complete_profile'] = customerCompleteProfile;
-    map['image'] = image;
+    map['phone'] = phone;
+    map['status'] = status;
+    map['device_type'] = deviceType;
+    map['default_lang'] = defaultLang;
+    map['is_phone_verified'] = isPhoneVerified;
+    map['profile_image'] = profileImage;
     map['created_at'] = createdAt;
+    map['updated_at'] = updatedAt;
     return map;
   }
+
 }

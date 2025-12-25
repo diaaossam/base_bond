@@ -241,6 +241,22 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
     emit(state.success(data: const CartStateData()));
   }
 
+  void refreshOnAddressChange() {
+    getCartData();
+  }
+
+  /* ======================== Getters ======================== */
+
+  List<CartItem> get cartList => state.data?.cartList ?? [];
+  double get amount => state.data?.amount ?? 0.0;
+  String? get couponCode => state.data?.couponCode;
+  double get couponDiscount => state.data?.couponDiscount ?? 0.0;
+  double get pointDiscount => state.data?.pointDiscount ?? 0.0;
+  bool get isFreeDeleivery => state.data?.isFreeDelivery ?? false;
+  AvailablePoints? get availablePoints => state.data?.availablePoints;
+
+  static const double freeDeliveryThreshold = 50000.0;
+
   /* ======================== Helpers ======================== */
 
   ({double amount, num totalCount}) _calculateTotals(List<CartItem> list) {

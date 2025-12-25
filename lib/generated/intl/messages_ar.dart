@@ -22,7 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "addAddressDeleivery": MessageLookupByLibrary.simpleMessage(
+      "إضافة عنوان التوصيل",
+    ),
+    "addNote": MessageLookupByLibrary.simpleMessage("إضافة ملاحظة"),
+    "addNoteHint": MessageLookupByLibrary.simpleMessage("أضف ملاحظة للطلب"),
     "all": MessageLookupByLibrary.simpleMessage("الكل"),
+    "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
     "applyFilter": MessageLookupByLibrary.simpleMessage("تطبيق الفلترة"),
     "arabic": MessageLookupByLibrary.simpleMessage("عربى"),
     "available": MessageLookupByLibrary.simpleMessage("متوفر"),
@@ -43,12 +49,29 @@ class MessageLookup extends MessageLookupByLibrary {
       "دفع آمن وتوصيل سريع",
     ),
     "brand": MessageLookupByLibrary.simpleMessage("العلامة التجارية"),
+    "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "category": MessageLookupByLibrary.simpleMessage("التصنيف"),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage("اختر من المعرض"),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("اختر صورة"),
     "chooseFromGallery2": MessageLookupByLibrary.simpleMessage("اختر فيديو"),
+    "clickToReplacePoints": MessageLookupByLibrary.simpleMessage(
+      "اضغط لاستبدال النقاط",
+    ),
     "cm": MessageLookupByLibrary.simpleMessage("سم"),
+    "confirmOrder": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد من تقديم هذا الطلب؟",
+    ),
+    "confirmOrderTitle": MessageLookupByLibrary.simpleMessage("تأكيد الطلب"),
     "dimensions": MessageLookupByLibrary.simpleMessage("الأبعاد"),
+    "discountApplied": MessageLookupByLibrary.simpleMessage(
+      "تم تطبيق الخصم بنجاح",
+    ),
+    "doYouHaveDiscount": MessageLookupByLibrary.simpleMessage(
+      "هل لديك كود خصم؟",
+    ),
+    "doYouHaveDiscountHint": MessageLookupByLibrary.simpleMessage(
+      "أدخل كود الخصم",
+    ),
     "english": MessageLookupByLibrary.simpleMessage("إنجليزى"),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("الطلب غير صالح"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
@@ -70,20 +93,42 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "featured": MessageLookupByLibrary.simpleMessage("مميز"),
     "filter": MessageLookupByLibrary.simpleMessage("الفلترة"),
+    "freeDeleivery": MessageLookupByLibrary.simpleMessage("توصيل مجاني"),
     "from": MessageLookupByLibrary.simpleMessage("من"),
+    "invoice": MessageLookupByLibrary.simpleMessage("الفاتورة"),
+    "iqd": MessageLookupByLibrary.simpleMessage("د.ع"),
     "kg": MessageLookupByLibrary.simpleMessage("كجم"),
+    "locationValidation": MessageLookupByLibrary.simpleMessage(
+      "يرجى إضافة عنوان التوصيل",
+    ),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
+    "noCart": MessageLookupByLibrary.simpleMessage("السلة فارغة"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "لا توجد بيانات ، يرجى المحاولة مرة أخرى لاحقًا",
     ),
     "notAvailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
+    "orderPlacedSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم تقديم الطلب بنجاح",
+    ),
+    "orderPlacedSuccess2": MessageLookupByLibrary.simpleMessage(
+      "شكراً لك! تم استلام طلبك وسيتم معالجته قريباً",
+    ),
     "otpBody": MessageLookupByLibrary.simpleMessage(
       "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
     ),
     "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
+    "outOfStock": MessageLookupByLibrary.simpleMessage("غير متوفر"),
+    "outOfStock1": MessageLookupByLibrary.simpleMessage(
+      "أحد المنتجات غير متوفر",
+    ),
+    "paymentType": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
+    "paymentValidation": MessageLookupByLibrary.simpleMessage(
+      "يرجى اختيار طريقة الدفع",
+    ),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
+    "placeOrder": MessageLookupByLibrary.simpleMessage("تقديم الطلب"),
     "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
     "productInfo": MessageLookupByLibrary.simpleMessage("معلومات المنتج"),
     "recommendedProducts": MessageLookupByLibrary.simpleMessage(
@@ -94,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectSortMethod": MessageLookupByLibrary.simpleMessage(
       "اختر طريقة الترتيب",
     ),
+    "shippingCost": MessageLookupByLibrary.simpleMessage("تكلفة التوصيل"),
     "sku": MessageLookupByLibrary.simpleMessage("SKU"),
     "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "sortNewest": MessageLookupByLibrary.simpleMessage("الأحدث"),
@@ -110,6 +156,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "stock": MessageLookupByLibrary.simpleMessage("المخزون"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
     "to": MessageLookupByLibrary.simpleMessage("إلى"),
+    "total": MessageLookupByLibrary.simpleMessage("المجموع"),
+    "totalPrice": MessageLookupByLibrary.simpleMessage("السعر الإجمالي"),
+    "trackOrder": MessageLookupByLibrary.simpleMessage("تتبع الطلب"),
     "updateBody": MessageLookupByLibrary.simpleMessage(
       "تم إصدار نسخة جديدة من التطبيق تحتوي على تحسينات وإصلاحات مهمة.",
     ),
@@ -123,5 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "updateTitle": MessageLookupByLibrary.simpleMessage("تحديث متاح"),
     "validation": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
     "weight": MessageLookupByLibrary.simpleMessage("الوزن"),
+    "youWillWin": MessageLookupByLibrary.simpleMessage("ستحصل على"),
+    "youWillWin2": MessageLookupByLibrary.simpleMessage("نقطة"),
   };
 }

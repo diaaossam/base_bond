@@ -1,65 +1,42 @@
-import 'package:aslol/features/location/data/models/response/my_address.dart';
-import 'package:aslol/features/location/domain/usecases/delete_address_use_case.dart';
-import 'package:aslol/features/location/domain/usecases/get_address_use_case.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
-
+import '../../../../../core/bloc/helper/either_extensions.dart';
 import '../../../data/models/response/my_address.dart';
-import '../../../domain/usecases/make_address_default_use_case.dart';
-
-part 'my_address_state.dart';
+import '../../../data/repositories/location_repository_impl.dart';
 
 @Injectable()
-class MyAddressCubit extends Cubit<BaseState<List<MyAddress>>> {
-  final GetAddressUseCase getAddressUseCase;
-  final MakeAddressDefaultUseCase makeAddressDefaultUseCase;
-  final DeleteAddressUseCase deleteAddressUseCase;
+class MyAddressCubit extends Cubit<BaseState<List<MyAddress>>>
+    with AsyncHandler<List<MyAddress>> {
+  final LocationRepositoryImpl locationRepositoryImpl;
 
-  MyAddressCubit(
-    this.getAddressUseCase,
-    this.makeAddressDefaultUseCase,
-    this.deleteAddressUseCase,
-  ) : super(MyAddressInitial()) {
+  MyAddressCubit(this.locationRepositoryImpl)
+    : super(BaseState.initial(data: <MyAddress>[])) {
     getMyAddress();
   }
 
-  List<MyAddress> addressList = [];
-
   Future<void> getMyAddress() async {
-    emit(GetMyAddressLoading());
-    final response = await getAddressUseCase();
-    emit(
-      response.fold((l) => GetMyAddressFailure(msg: l.msg), (r) {
-        addressList = r.data;
-        return GetMyAddressSuccess();
-      }),
+    await handleAsync(
+      identifier: 'getMyAddress',
+      call: () => locationRepositoryImpl.getMyAddress(),
+      onSuccess: (response) => response,
     );
   }
 
   Future<void> makeAddressDefault({required MyAddress myAddress}) async {
-    emit(MakeAddressDefaultLoading());
-    final response = await makeAddressDefaultUseCase(myAddress: myAddress);
-    emit(
-      response.fold(
-        (l) => MakeAddressDefaultFailure(msg: l.msg),
-        (r) => MakeAddressDefaultSuccess(
-          msg: r.message ?? "",
-          myAddress: myAddress,
-        ),
-      ),
+    await handleAsync(
+      identifier: 'makeAddressDefault',
+      call: () =>
+          locationRepositoryImpl.makeAddressDefault(myAddress: myAddress),
+      onSuccess: (data) => state.data ?? [],
     );
   }
 
   Future<void> deleteAddress({required num id}) async {
-    emit(DeleteAddressLoading());
-    final response = await deleteAddressUseCase(id: id);
-    emit(
-      response.fold((l) => DeleteAddressFailure(msg: l.msg), (r) {
-        addressList.removeWhere((element) => element.id == id);
-        return DeleteAddressSuccess(msg: r.message ?? "");
-      }),
+    await handleAsync(
+      identifier: 'deleteAddress',
+      call: () => locationRepositoryImpl.deleteAddress(id: id),
+      onSuccess: (data) => state.data ?? [],
     );
   }
 }

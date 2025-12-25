@@ -54,13 +54,6 @@ class AuthRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, bool>> getUserByUid({required String ulid}) async {
-    final response = await handleApi(
-      () => authRemoteDataSource.getUserByUid(ulid: ulid),
-    );
-    return response;
-  }
-
   Future<Either<Failure, bool>> updateUserData({
     required RegisterParams params,
   }) async {
@@ -70,11 +63,11 @@ class AuthRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, bool>> checkPhoneNumber({
-    required String phone,
+  Future<Either<Failure, Unit>> register({
+    required RegisterParams params,
   }) async {
     final response = await handleApi(
-      () => authRemoteDataSource.checkPhoneNumber(phone: phone),
+      () => authRemoteDataSource.register(params: params),
     );
     return response;
   }

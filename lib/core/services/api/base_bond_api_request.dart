@@ -80,8 +80,8 @@ class BaseBondApiRequest<T> {
   /// ```dart
   /// .cacheToken(path: 'accessToken')
   /// ```
-  BaseBondApiRequest<T> cacheToken({required String path}) {
-    _builder.cacheToken(path: path);
+  BaseBondApiRequest<T> cacheToken({String? value}) {
+    _builder.cacheToken(value: value);
     return this;
   }
 

@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:bond/config/dependencies/injectable_dependencies.dart';
 import 'package:bond/features/location/data/models/response/my_address.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,9 +67,10 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
 
   @override
   Future<String> deleteAddress({required num id}) async {
+    final apiConfig = sl<ApiConfig>();
     if (id == ApiConfig.address?.id) {
       sharedPreferences.remove(AppStrings.location);
-      await ApiConfig().init();
+      await apiConfig.init();
     }
     final response = await dioConsumer
         .deleteRequest("${EndPoints.addresses}/$id")

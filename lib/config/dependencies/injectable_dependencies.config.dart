@@ -41,6 +41,7 @@ import '../../features/auth/data/datasources/auth_remote_data_source.dart'
 import '../../features/auth/data/repositories/auth_repo_impl.dart' as _i662;
 import '../../features/auth/presentation/cubit/login_cubit/login_cubit.dart'
     as _i153;
+import '../../features/auth/presentation/cubit/otp/otp_cubit.dart' as _i90;
 import '../../features/auth/presentation/cubit/register_cubit/register_cubit.dart'
     as _i1006;
 import '../../features/auth/presentation/cubit/social_login/social_login_bloc.dart'
@@ -118,7 +119,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i183.ImagePicker>(() => registerModule.imagePicker);
     gh.factory<_i730.NetworkCubit>(() => _i730.NetworkCubit());
     gh.factory<_i665.ApiErrorHandler>(() => _i665.ApiErrorHandler());
-    gh.factory<_i1006.RegisterCubit>(() => _i1006.RegisterCubit());
     gh.factory<_i798.LocationPickerCubit>(() => _i798.LocationPickerCubit());
     gh.factory<_i1051.MainCubit>(() => _i1051.MainCubit());
     gh.factory<_i1035.NetworkInfo>(() => _i1035.NetworkInfoImpl());
@@ -139,19 +139,9 @@ extension GetItInjectableX on _i174.GetIt {
         firebaseAuth: gh<_i59.FirebaseAuth>(),
       ),
     );
-    gh.factory<_i820.AddNewAddressCubit>(
-      () => _i820.AddNewAddressCubit(gh<_i115.LocationRepositoryImpl>()),
-    );
     gh.factory<_i734.TokenRepository>(
       () => _i734.TokenRepositoryImp(
         secureStorage: gh<_i558.FlutterSecureStorage>(),
-      ),
-    );
-    gh.factory<_i161.MyAddressCubit>(
-      () => _i161.MyAddressCubit(
-        gh<InvalidType>(),
-        gh<InvalidType>(),
-        gh<InvalidType>(),
       ),
     );
     gh.factory<_i96.OrderLocaleDataSource>(
@@ -175,6 +165,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1011.OrderRemoteDataSource>(
       () => _i1011.OrderRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
+    gh.factory<_i95.InitRemoteDataSource>(
+      () => _i95.RegisterRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+        sharedPreferences: gh<_i460.SharedPreferences>(),
+        tokenRepository: gh<_i734.TokenRepository>(),
       ),
     );
     gh.factory<_i584.MainRemoteDataSource>(
@@ -208,12 +205,6 @@ extension GetItInjectableX on _i174.GetIt {
         sharedPreferences: gh<_i460.SharedPreferences>(),
       ),
     );
-    gh.factory<_i95.InitRemoteDataSource>(
-      () => _i95.RegisterRemoteDataSourceImpl(
-        dioConsumer: gh<_i384.DioConsumer>(),
-        sharedPreferences: gh<_i460.SharedPreferences>(),
-      ),
-    );
     gh.factory<_i682.ProductDetailsCubit>(
       () => _i682.ProductDetailsCubit(gh<_i1040.ProductRepositoryImpl>()),
     );
@@ -228,10 +219,21 @@ extension GetItInjectableX on _i174.GetIt {
         orderLocaleDataSource: gh<_i96.OrderLocaleDataSource>(),
       ),
     );
+    gh.lazySingleton<_i115.LocationRepositoryImpl>(
+      () => _i115.LocationRepositoryImpl(
+        locationRemoteDataSource: gh<_i823.LocationRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i188.SettingsRemoteDataSource>(
       () => _i188.SettingsRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
+    );
+    gh.factory<_i820.AddNewAddressCubit>(
+      () => _i820.AddNewAddressCubit(gh<_i115.LocationRepositoryImpl>()),
+    );
+    gh.factory<_i161.MyAddressCubit>(
+      () => _i161.MyAddressCubit(gh<_i115.LocationRepositoryImpl>()),
     );
     gh.factory<_i12.CartCubit>(
       () => _i12.CartCubit(
@@ -273,6 +275,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i153.LoginCubit>(
       () => _i153.LoginCubit(gh<_i662.AuthRepositoryImpl>()),
+    );
+    gh.factory<_i90.OtpCubit>(
+      () => _i90.OtpCubit(gh<_i662.AuthRepositoryImpl>()),
+    );
+    gh.factory<_i1006.RegisterCubit>(
+      () => _i1006.RegisterCubit(gh<_i662.AuthRepositoryImpl>()),
     );
     gh.factory<_i396.SocialLoginBloc>(
       () => _i396.SocialLoginBloc(gh<_i662.AuthRepositoryImpl>()),

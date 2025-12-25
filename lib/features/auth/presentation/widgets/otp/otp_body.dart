@@ -19,7 +19,7 @@ class OtpBodyWidget extends StatelessWidget {
           color: context.colorScheme.primary,
           height: SizeConfig.bodyHeight * .5,
         ),
-        OtpFormWidget(),
+        OtpFormWidget(phone: phone),
         Positioned(
           left: 0,
           right: 0,

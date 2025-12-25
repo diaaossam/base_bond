@@ -30,18 +30,10 @@ class AppInterceptors extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    if (TokenDataService().getTokenData() == null) {
-      final accessToken = await _tokenDataSource.getToken();
-      if (accessToken != null) {
-        TokenDataService().setTokenData(accessToken);
-      }
-    }else{
-      if (TokenDataService().getTokenData() != null) {
-        options.headers['Authorization'] =
-        'Bearer ${TokenDataService().getTokenData()}';
-      }
+    if (TokenDataService().getTokenData() != null) {
+      options.headers['Authorization'] =
+          'Bearer ${TokenDataService().getTokenData()}';
     }
-
     options.headers[AppStrings.acceptLanguage] = ApiConfig.language?.name;
     options.headers[AppStrings.contentType] = AppStrings.applicationJson;
     options.headers[AppStrings.accept] = AppStrings.applicationJson;

@@ -1,22 +1,19 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../data/repositories/auth_repo_impl.dart';
 
 @injectable
-class LoginCubit extends Cubit<BaseState<bool>> {
+class LoginCubit extends Cubit<BaseState<bool>> with AsyncHandler<bool> {
   final AuthRepositoryImpl authRepositoryImpl;
 
-  LoginCubit(this.authRepositoryImpl) : super(BaseState.initial());
+  LoginCubit(this.authRepositoryImpl) : super(BaseState());
 
   Future<void> sendOtp({required String phone}) async {
-    emit(BaseState.loading());
-    final response = await authRepositoryImpl.loginUser(phone);
-    emit(
-      response.fold(
-        (failure) => BaseState.failure(error: failure),
-        (success) => BaseState.success(data: success),
-      ),
+    await handleAsync(
+      call: () => authRepositoryImpl.loginUser(phone),
+      onSuccess: (data) => data,
     );
   }
 }

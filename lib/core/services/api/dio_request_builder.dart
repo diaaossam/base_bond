@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:bond/config/helper/token_helper.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../caching/cache_store.dart';
@@ -126,25 +128,12 @@ class DioRequestBuilder<T> {
   /// ```dart
   /// .cacheToken(path: 'accessToken')
   /// ```
-  DioRequestBuilder<T> cacheToken({required String path}) {
-    final segments = path.split('.');
-
+  DioRequestBuilder<T> cacheToken({String? value}) {
     return onResponse((responseJson) async {
-      dynamic current = responseJson;
-
-      for (final segment in segments) {
-        if (current is Map<String, dynamic> && current.containsKey(segment)) {
-          current = current[segment];
-        } else {
-          current = null;
-          break;
-        }
-      }
-
-      if (current != null) {
-        const storage = FlutterSecureStorage();
-        await storage.write(key: 'token', value: current.toString());
-      }
+      final String token = value ?? responseJson['data']['access_token'];
+      const storage = FlutterSecureStorage();
+      await storage.write(key: 'token', value: token);
+      TokenDataService().setTokenData(token);
     });
   }
 

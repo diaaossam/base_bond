@@ -20,6 +20,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Heart2.svg
   String get heart2 => 'assets/icons/Heart2.svg';
 
+  /// File path: assets/icons/add.svg
+  String get add => 'assets/icons/add.svg';
+
   /// File path: assets/icons/apple.svg
   String get apple => 'assets/icons/apple.svg';
 
@@ -49,6 +52,12 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/egypt.svg
   String get egypt => 'assets/icons/egypt.svg';
+
+  /// File path: assets/icons/email.svg
+  String get email => 'assets/icons/email.svg';
+
+  /// File path: assets/icons/empty_cart.svg
+  String get emptyCart => 'assets/icons/empty_cart.svg';
 
   /// File path: assets/icons/female.svg
   String get female => 'assets/icons/female.svg';
@@ -80,6 +89,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/maps-location-01.svg
   String get mapsLocation01 => 'assets/icons/maps-location-01.svg';
 
+  /// File path: assets/icons/minus.svg
+  String get minus => 'assets/icons/minus.svg';
+
   /// File path: assets/icons/notification.svg
   String get notification => 'assets/icons/notification.svg';
 
@@ -107,6 +119,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/star-filled.svg
   String get starFilled => 'assets/icons/star-filled.svg';
 
+  /// File path: assets/icons/tick-circle.svg
+  String get tickCircle => 'assets/icons/tick-circle.svg';
+
+  /// File path: assets/icons/trash.svg
+  String get trash => 'assets/icons/trash.svg';
+
   /// File path: assets/icons/user.svg
   String get user => 'assets/icons/user.svg';
 
@@ -114,6 +132,7 @@ class $AssetsIconsGen {
   List<String> get values => [
     heart,
     heart2,
+    add,
     apple,
     arrow3,
     arrowBack,
@@ -124,6 +143,8 @@ class $AssetsIconsGen {
     category,
     edit2,
     egypt,
+    email,
+    emptyCart,
     female,
     filter,
     gallery,
@@ -134,6 +155,7 @@ class $AssetsIconsGen {
     logo,
     male,
     mapsLocation01,
+    minus,
     notification,
     orders,
     phone,
@@ -143,6 +165,8 @@ class $AssetsIconsGen {
     settings,
     shoppingCart,
     starFilled,
+    tickCircle,
+    trash,
     user,
   ];
 }
@@ -194,6 +218,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/mode.png
   AssetGenImage get mode => const AssetGenImage('assets/images/mode.png');
 
+  /// File path: assets/images/no_location.png
+  AssetGenImage get noLocation =>
+      const AssetGenImage('assets/images/no_location.png');
+
+  /// File path: assets/images/no_network.png
+  AssetGenImage get noNetwork =>
+      const AssetGenImage('assets/images/no_network.png');
+
   /// File path: assets/images/orders.jpg
   AssetGenImage get orders => const AssetGenImage('assets/images/orders.jpg');
 
@@ -221,6 +253,8 @@ class $AssetsImagesGen {
     logout,
     map,
     mode,
+    noLocation,
+    noNetwork,
     orders,
     person,
     points,

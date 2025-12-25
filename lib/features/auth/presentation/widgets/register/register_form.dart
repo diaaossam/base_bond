@@ -1,14 +1,18 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/core/extensions/validitor_extention.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/app/presentation/cubit/app_cubit.dart';
 import 'package:bond/features/auth/data/models/request/register_params.dart';
 import 'package:bond/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:bond/features/auth/presentation/widgets/login/phone_text_form_field.dart';
 import 'package:bond/features/auth/presentation/widgets/register/already_have_account.dart';
+import 'package:bond/features/location/data/models/requests/location_entity.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_drop_down.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
@@ -19,6 +23,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../widgets/image_picker/media_form_field.dart';
@@ -33,6 +38,8 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+
+  final ValueNotifier<LocationEntity?> _location = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +77,15 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
               SizedBox(height: SizeConfig.bodyHeight * .02),
               MobileNumberField(),
+              SizedBox(height: SizeConfig.bodyHeight * .02),
+              CustomTextFormField(
+                name: "email",
+                hintText: context.localizations.email,
+                prefixIcon: AppImage.asset(Assets.icons.email),
+                validator: FormBuilderValidators.required(
+                  errorText: context.localizations.validation,
+                ),
+              ),
               SizedBox(height: SizeConfig.bodyHeight * .02),
               BlocBuilder<AppCubit, BaseState<AppStateData>>(
                 builder: (context, state) {
@@ -128,7 +144,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         ),
                       ),
                       SizedBox(height: SizeConfig.bodyHeight * .02),
-                      CustomTextFormField(
+                      ValueListenableBuilder(valueListenable: _location, builder: (context, value, child) => CustomTextFormField(
                         name: "mapLocation",
                         hintText: context.localizations.locationOnMap,
                         prefixIcon: AppImage.asset(Assets.icons.pinLocation02),
@@ -136,14 +152,30 @@ class _RegisterFormState extends State<RegisterForm> {
                         validator: FormBuilderValidators.required(
                           errorText: context.localizations.validation,
                         ),
-                      ),
+                        onTap: () async{
+                         final result = await context.router.push(PickLocationRoute());
+                         print(result);
+                          if(result != null){
+                            final data =result as LocationEntity;
+                            _location.value = data;
+                            _formKey.currentState?.patchValue({
+                              "mapLocation":data.address
+                            });
+                          }
+                        },
+                        readOnly: true,
+                      ),),
                     ],
                   );
                 },
               ),
               SizedBox(height: SizeConfig.bodyHeight * .06),
               BlocConsumer<RegisterCubit, BaseState>(
-                listener: (context, state) {},
+                listener: (context, state) {
+                  if(state.isSuccess) {
+                    context.router.push(OtpRoute(phone: _formKey.fieldValue("phone")));
+                  }
+                },
                 builder: (context, state) {
                   return CustomButton(
                     text: context.localizations.register,
@@ -153,14 +185,20 @@ class _RegisterFormState extends State<RegisterForm> {
                         return;
                       }
                       final fields = _formKey.currentState!.fields;
-                      final file = fields['media']?.value;
+
                       final params = RegisterParams(
                         name: fields['username']?.value as String?,
                         phone: fields['phone']?.value as String?,
-                        provinceId: fields['governorate']?.value as int?,
-                        regionId: fields['region']?.value as int?,
-                        imagePath: file is File ? file.path : null,
+                        address: fields['address']?.value as String?,
+                        latitude: _location.value?.lat.toString(),
+                        longitude: _location.value?.lon.toString(),
+                        governorateId: fields['governorate']?.value as int?,
+                        cityId: fields['region']?.value as int?,
+                        email: fields['email']?.value as String?,
+
                       );
+
+                      context.read<RegisterCubit>().register(params: params);
                     },
                   );
                 },

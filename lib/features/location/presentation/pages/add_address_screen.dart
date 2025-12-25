@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/dependencies/injectable_dependencies.dart';
+import '../../../../core/extensions/app_localizations_extension.dart';
+import '../../../../widgets/app_bar/custom_app_bar.dart';
+import '../../data/models/response/my_address.dart';
+import '../cubit/add_new_address/add_new_address_cubit.dart';
+import '../widgets/add_new_address_body.dart';
 
 @RoutePage()
 class AddAddressScreen extends StatelessWidget {
@@ -13,11 +18,8 @@ class AddAddressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => sl<GlobalLocationCubit>()),
-        BlocProvider(create: (context) => sl<AddNewAddressCubit>()),
-      ],
+    return BlocProvider(
+      create: (context) => sl<AddNewAddressCubit>(),
       child: Scaffold(
         appBar: CustomAppBar(title: context.localizations.addNewAddress),
         body: AddNewAddressBody(address: address),

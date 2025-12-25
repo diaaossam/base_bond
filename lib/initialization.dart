@@ -10,7 +10,6 @@ import 'core/services/firebase/firebase_helper.dart';
 import 'core/services/notification_service/notification_service.dart';
 import 'core/utils/api_config.dart';
 
-
 Future<void> initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();

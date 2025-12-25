@@ -983,6 +983,306 @@ class S {
       args: [],
     );
   }
+
+  /// `إضافة عنوان جديد`
+  String get addNewAddress {
+    return Intl.message(
+      'إضافة عنوان جديد',
+      name: 'addNewAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `حفظ العنوان`
+  String get saveLocation {
+    return Intl.message(
+      'حفظ العنوان',
+      name: 'saveLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم حفظ العنوان بنجاح`
+  String get locationPickedSuccessFully {
+    return Intl.message(
+      'تم حفظ العنوان بنجاح',
+      name: 'locationPickedSuccessFully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لا توجد عناوين محفوظة`
+  String get noLocation {
+    return Intl.message(
+      'لا توجد عناوين محفوظة',
+      name: 'noLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `البريد الإلكترونى`
+  String get email {
+    return Intl.message('البريد الإلكترونى', name: 'email', desc: '', args: []);
+  }
+
+  /// `الكمية المتاحة فقط `
+  String get availableQuantity {
+    return Intl.message(
+      'الكمية المتاحة فقط ',
+      name: 'availableQuantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `نقدي`
+  String get cash {
+    return Intl.message('نقدي', name: 'cash', desc: '', args: []);
+  }
+
+  /// `بطاقة إلكترونية`
+  String get visa {
+    return Intl.message('بطاقة إلكترونية', name: 'visa', desc: '', args: []);
+  }
+
+  /// `Order Placed Successfully`
+  String get orderPlacedSuccess {
+    return Intl.message(
+      'Order Placed Successfully',
+      name: 'orderPlacedSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you! Your order has been received and will be processed soon`
+  String get orderPlacedSuccess2 {
+    return Intl.message(
+      'Thank you! Your order has been received and will be processed soon',
+      name: 'orderPlacedSuccess2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track Order`
+  String get trackOrder {
+    return Intl.message('Track Order', name: 'trackOrder', desc: '', args: []);
+  }
+
+  /// `Do you have a discount code?`
+  String get doYouHaveDiscount {
+    return Intl.message(
+      'Do you have a discount code?',
+      name: 'doYouHaveDiscount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter discount code`
+  String get doYouHaveDiscountHint {
+    return Intl.message(
+      'Enter discount code',
+      name: 'doYouHaveDiscountHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get apply {
+    return Intl.message('Apply', name: 'apply', desc: '', args: []);
+  }
+
+  /// `Discount applied successfully`
+  String get discountApplied {
+    return Intl.message(
+      'Discount applied successfully',
+      name: 'discountApplied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Add Delivery Address`
+  String get addAddressDeleivery {
+    return Intl.message(
+      'Add Delivery Address',
+      name: 'addAddressDeleivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add a delivery address`
+  String get locationValidation {
+    return Intl.message(
+      'Please add a delivery address',
+      name: 'locationValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a payment method`
+  String get paymentValidation {
+    return Intl.message(
+      'Please select a payment method',
+      name: 'paymentValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Out of Stock`
+  String get outOfStock {
+    return Intl.message('Out of Stock', name: 'outOfStock', desc: '', args: []);
+  }
+
+  /// `One of the products is out of stock`
+  String get outOfStock1 {
+    return Intl.message(
+      'One of the products is out of stock',
+      name: 'outOfStock1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place Order`
+  String get placeOrder {
+    return Intl.message('Place Order', name: 'placeOrder', desc: '', args: []);
+  }
+
+  /// `Confirm Order`
+  String get confirmOrderTitle {
+    return Intl.message(
+      'Confirm Order',
+      name: 'confirmOrderTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to place this order?`
+  String get confirmOrder {
+    return Intl.message(
+      'Are you sure you want to place this order?',
+      name: 'confirmOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cart is empty`
+  String get noCart {
+    return Intl.message('Cart is empty', name: 'noCart', desc: '', args: []);
+  }
+
+  /// `سلة المشتريات الخاصه بك فارغه قم بإضافة منتجات اولاً`
+  String get emptyCartHint {
+    return Intl.message(
+      'سلة المشتريات الخاصه بك فارغه قم بإضافة منتجات اولاً',
+      name: 'emptyCartHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Method`
+  String get paymentType {
+    return Intl.message(
+      'Payment Method',
+      name: 'paymentType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invoice`
+  String get invoice {
+    return Intl.message('Invoice', name: 'invoice', desc: '', args: []);
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message('Total', name: 'total', desc: '', args: []);
+  }
+
+  /// `Shipping Cost`
+  String get shippingCost {
+    return Intl.message(
+      'Shipping Cost',
+      name: 'shippingCost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Price`
+  String get totalPrice {
+    return Intl.message('Total Price', name: 'totalPrice', desc: '', args: []);
+  }
+
+  /// `Free Delivery`
+  String get freeDeleivery {
+    return Intl.message(
+      'Free Delivery',
+      name: 'freeDeleivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will get`
+  String get youWillWin {
+    return Intl.message('You will get', name: 'youWillWin', desc: '', args: []);
+  }
+
+  /// `points`
+  String get youWillWin2 {
+    return Intl.message('points', name: 'youWillWin2', desc: '', args: []);
+  }
+
+  /// `Click to replace points`
+  String get clickToReplacePoints {
+    return Intl.message(
+      'Click to replace points',
+      name: 'clickToReplacePoints',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Note`
+  String get addNote {
+    return Intl.message('Add Note', name: 'addNote', desc: '', args: []);
+  }
+
+  /// `Add a note to the order`
+  String get addNoteHint {
+    return Intl.message(
+      'Add a note to the order',
+      name: 'addNoteHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IQD`
+  String get iqd {
+    return Intl.message('IQD', name: 'iqd', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

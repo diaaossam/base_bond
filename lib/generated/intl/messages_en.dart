@@ -22,14 +22,26 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "addAddressDeleivery": MessageLookupByLibrary.simpleMessage(
+      "Add Delivery Address",
+    ),
+    "addNewAddress": MessageLookupByLibrary.simpleMessage("إضافة عنوان جديد"),
+    "addNote": MessageLookupByLibrary.simpleMessage("Add Note"),
+    "addNoteHint": MessageLookupByLibrary.simpleMessage(
+      "Add a note to the order",
+    ),
     "addToCart": MessageLookupByLibrary.simpleMessage("إضافة إلي السلة"),
     "address": MessageLookupByLibrary.simpleMessage("العنوان"),
     "all": MessageLookupByLibrary.simpleMessage("All"),
     "allCategories": MessageLookupByLibrary.simpleMessage("جميع الأقسام"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage("لديك حساب !"),
+    "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "applyFilter": MessageLookupByLibrary.simpleMessage("Apply Filter"),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "available": MessageLookupByLibrary.simpleMessage("Available"),
+    "availableQuantity": MessageLookupByLibrary.simpleMessage(
+      "الكمية المتاحة فقط ",
+    ),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
     "bestSellers": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
     "boardingDescription1": MessageLookupByLibrary.simpleMessage(
@@ -47,8 +59,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Secure Payment & Fast Delivery",
     ),
     "brand": MessageLookupByLibrary.simpleMessage("Brand"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "canceled": MessageLookupByLibrary.simpleMessage("ملغي"),
     "cart": MessageLookupByLibrary.simpleMessage("السلة"),
+    "cash": MessageLookupByLibrary.simpleMessage("نقدي"),
     "categories": MessageLookupByLibrary.simpleMessage("التصنيفات"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage(
@@ -56,8 +70,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("Choose Image"),
     "chooseFromGallery2": MessageLookupByLibrary.simpleMessage("Choose video"),
+    "clickToReplacePoints": MessageLookupByLibrary.simpleMessage(
+      "Click to replace points",
+    ),
     "cm": MessageLookupByLibrary.simpleMessage("cm"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
+    "confirmOrder": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to place this order?",
+    ),
+    "confirmOrderTitle": MessageLookupByLibrary.simpleMessage("Confirm Order"),
     "confirmed": MessageLookupByLibrary.simpleMessage("تم التأكيد"),
     "copy": MessageLookupByLibrary.simpleMessage("نسخ"),
     "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
@@ -66,10 +87,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "description": MessageLookupByLibrary.simpleMessage("الوصف"),
     "dimensions": MessageLookupByLibrary.simpleMessage("Dimensions"),
     "discount": MessageLookupByLibrary.simpleMessage("خصم"),
+    "discountApplied": MessageLookupByLibrary.simpleMessage(
+      "Discount applied successfully",
+    ),
+    "doYouHaveDiscount": MessageLookupByLibrary.simpleMessage(
+      "Do you have a discount code?",
+    ),
+    "doYouHaveDiscountHint": MessageLookupByLibrary.simpleMessage(
+      "Enter discount code",
+    ),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب !"),
     "dontReceiveCode": MessageLookupByLibrary.simpleMessage("لم يصلك الرمز ؟"),
     "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
     "egp": MessageLookupByLibrary.simpleMessage("ج.م"),
+    "email": MessageLookupByLibrary.simpleMessage("البريد الإلكترونى"),
+    "emptyCartHint": MessageLookupByLibrary.simpleMessage(
+      "سلة المشتريات الخاصه بك فارغه قم بإضافة منتجات اولاً",
+    ),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("Bad Request"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
@@ -92,18 +126,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
     "featured": MessageLookupByLibrary.simpleMessage("Featured"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
+    "freeDeleivery": MessageLookupByLibrary.simpleMessage("Free Delivery"),
     "from": MessageLookupByLibrary.simpleMessage("From"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "goToCart": MessageLookupByLibrary.simpleMessage("الذهاب إلي السلة"),
     "governorate": MessageLookupByLibrary.simpleMessage("المحافظة"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "inProgress": MessageLookupByLibrary.simpleMessage("تحت المعالجة"),
+    "invoice": MessageLookupByLibrary.simpleMessage("Invoice"),
+    "iqd": MessageLookupByLibrary.simpleMessage("IQD"),
     "kg": MessageLookupByLibrary.simpleMessage("kg"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "lightMode": MessageLookupByLibrary.simpleMessage("الوضعي النهارى"),
     "loading": MessageLookupByLibrary.simpleMessage("جارى التحميل"),
     "locationOnMap": MessageLookupByLibrary.simpleMessage(
       "العنوان علي الخريطة",
+    ),
+    "locationPickedSuccessFully": MessageLookupByLibrary.simpleMessage(
+      "تم حفظ العنوان بنجاح",
+    ),
+    "locationValidation": MessageLookupByLibrary.simpleMessage(
+      "Please add a delivery address",
     ),
     "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
@@ -124,21 +167,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
     "myPoints": MessageLookupByLibrary.simpleMessage("نقاطي"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
+    "noCart": MessageLookupByLibrary.simpleMessage("Cart is empty"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "No Data Found , please try again later",
     ),
     "noDescription": MessageLookupByLibrary.simpleMessage("لا يوجد وصف متاح"),
+    "noLocation": MessageLookupByLibrary.simpleMessage("لا توجد عناوين محفوظة"),
     "notAvailable": MessageLookupByLibrary.simpleMessage("Not Available"),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
+    "orderPlacedSuccess": MessageLookupByLibrary.simpleMessage(
+      "Order Placed Successfully",
+    ),
+    "orderPlacedSuccess2": MessageLookupByLibrary.simpleMessage(
+      "Thank you! Your order has been received and will be processed soon",
+    ),
     "otpBody": MessageLookupByLibrary.simpleMessage(
       "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
     ),
     "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
     "outForDeleivery": MessageLookupByLibrary.simpleMessage("خرج للتوصيل"),
+    "outOfStock": MessageLookupByLibrary.simpleMessage("Out of Stock"),
+    "outOfStock1": MessageLookupByLibrary.simpleMessage(
+      "One of the products is out of stock",
+    ),
+    "paymentType": MessageLookupByLibrary.simpleMessage("Payment Method"),
+    "paymentValidation": MessageLookupByLibrary.simpleMessage(
+      "Please select a payment method",
+    ),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
+    "placeOrder": MessageLookupByLibrary.simpleMessage("Place Order"),
     "point": MessageLookupByLibrary.simpleMessage("نقطة"),
     "pointHint": MessageLookupByLibrary.simpleMessage(
       "استخدم هذا الكود لإستخدام نقاطك",
@@ -157,12 +217,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "resendCode": MessageLookupByLibrary.simpleMessage("إعاده الإرسال"),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "returns": MessageLookupByLibrary.simpleMessage("مسترجع"),
+    "saveLocation": MessageLookupByLibrary.simpleMessage("حفظ العنوان"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
     "seeAll": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
     "selectSortMethod": MessageLookupByLibrary.simpleMessage(
       "Select Sort Method",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+    "shippingCost": MessageLookupByLibrary.simpleMessage("Shipping Cost"),
     "showLess": MessageLookupByLibrary.simpleMessage("عرض أقل"),
     "showMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
     "sku": MessageLookupByLibrary.simpleMessage("SKU"),
@@ -178,6 +240,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "termsAndCon": MessageLookupByLibrary.simpleMessage("سياسة الإستخدام"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("There is An Error"),
     "to": MessageLookupByLibrary.simpleMessage("To"),
+    "total": MessageLookupByLibrary.simpleMessage("Total"),
+    "totalPrice": MessageLookupByLibrary.simpleMessage("Total Price"),
+    "trackOrder": MessageLookupByLibrary.simpleMessage("Track Order"),
     "underReview": MessageLookupByLibrary.simpleMessage("تحت المراجعة"),
     "updateBody": MessageLookupByLibrary.simpleMessage(
       "A new version of the app has been released with important improvements and fixes.",
@@ -191,7 +256,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "validation": MessageLookupByLibrary.simpleMessage(
       "This field is required",
     ),
+    "visa": MessageLookupByLibrary.simpleMessage("بطاقة إلكترونية"),
     "weight": MessageLookupByLibrary.simpleMessage("Weight"),
     "youHave": MessageLookupByLibrary.simpleMessage("لديك"),
+    "youWillWin": MessageLookupByLibrary.simpleMessage("You will get"),
+    "youWillWin2": MessageLookupByLibrary.simpleMessage("points"),
   };
 }

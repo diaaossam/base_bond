@@ -63,5 +63,44 @@
   "dimensions": "الأبعاد",
   "cm": "سم",
   "stock": "المخزون",
-  "available": "متوفر"
+  "available": "متوفر",
+  "orderPlacedSuccess": "تم تقديم الطلب بنجاح",
+  "orderPlacedSuccess2": "شكراً لك! تم استلام طلبك وسيتم معالجته قريباً",
+  "trackOrder": "تتبع الطلب",
+  "doYouHaveDiscount": "هل لديك كود خصم؟",
+  "doYouHaveDiscountHint": "أدخل كود الخصم",
+  "apply": "تطبيق",
+  "discountApplied": "تم تطبيق الخصم بنجاح",
+  "cancel": "إلغاء",
+  "addAddressDeleivery": "إضافة عنوان التوصيل",
+  "locationValidation": "يرجى إضافة عنوان التوصيل",
+  "paymentValidation": "يرجى اختيار طريقة الدفع",
+  "outOfStock": "غير متوفر",
+  "outOfStock1": "أحد المنتجات غير متوفر",
+  "placeOrder": "تقديم الطلب",
+  "confirmOrderTitle": "تأكيد الطلب",
+  "confirmOrder": "هل أنت متأكد من تقديم هذا الطلب؟",
+  "noCart": "السلة فارغة",
+  "paymentType": "طريقة الدفع",
+  "invoice": "الفاتورة",
+  "total": "المجموع",
+  "shippingCost": "تكلفة التوصيل",
+  "totalPrice": "السعر الإجمالي",
+  "freeDeleivery": "توصيل مجاني",
+  "freeDeliveryThresholdTitle": "أضف للحصول على توصيل مجاني",
+  "freeDeliveryUnlocked": "تهانينا! التوصيل مجاني",
+  "freeDeliveryRemaining": "أضف {amount} للحصول على توصيل مجاني",
+  "@freeDeliveryRemaining": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "youWillWin": "ستحصل على",
+  "youWillWin2": "نقطة",
+  "clickToReplacePoints": "اضغط لاستبدال النقاط",
+  "addNote": "إضافة ملاحظة",
+  "addNoteHint": "أضف ملاحظة للطلب",
+  "iqd": "د.ع"
 }

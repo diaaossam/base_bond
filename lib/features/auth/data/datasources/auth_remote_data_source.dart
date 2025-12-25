@@ -1,5 +1,7 @@
 import 'package:bond/features/auth/data/models/response/user_model.dart';
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../config/helper/device_helper.dart';
@@ -24,11 +26,9 @@ abstract class AuthRemoteDataSource {
 
   Future<bool> socialLogin({required SocialEnum socialEnum});
 
-  Future<bool> getUserByUid({required String ulid});
-
   Future<bool> updateUserData({required RegisterParams params});
 
-  Future<bool> checkPhoneNumber({required String phone});
+  Future<Unit> register({required RegisterParams params});
 }
 
 @Injectable(as: AuthRemoteDataSource)
@@ -49,9 +49,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<UserModel> verifyOtp({required OtpParams otpParams}) async {
-    final response = await dioConsumer
-        .post(EndPoints.verifyUser, data: otpParams.toJson())
+    otpParams = otpParams.copyWith(
+      deviceToken: await deviceHelper.deviceToken,
+      deviceType: deviceHelper.devicePlatform,
+    );
+    final data = otpParams.toJson();
 
+    final response = await dioConsumer
+        .post(EndPoints.verifyUser, data: data)
+        .factory(UserModel.fromJson)
+        .cacheToken()
         .execute();
     return response;
   }
@@ -88,17 +95,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<bool> getUserByUid({required String ulid}) async {
-    return true;
-  }
-
-  @override
   Future<bool> updateUserData({required RegisterParams params}) async {
     return true;
   }
 
   @override
-  Future<bool> checkPhoneNumber({required String phone}) async {
-    return true;
+  Future<Unit> register({required RegisterParams params}) async {
+    params = params.copyWith(
+      deviceToken: await deviceHelper.deviceToken,
+      deviceType: deviceHelper.devicePlatform,
+    );
+    return await dioConsumer
+        .post(EndPoints.register)
+        .body(params.toJson())
+        .factory((json) => unit)
+        .execute();
   }
 }

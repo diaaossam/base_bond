@@ -11,11 +11,8 @@ import '../../../data/models/response/product_model.dart';
 class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
     with AsyncHandler<CartItem> {
   final ProductRepositoryImpl productRepositoryImpl;
-  CartItem? _cartItem;
 
   ProductDetailsCubit(this.productRepositoryImpl) : super(BaseState());
-
-  CartItem get cartItem => _cartItem ?? CartItem();
 
   Future<void> getProductDetails({
     required num id,
@@ -29,7 +26,7 @@ class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
         call: () => productRepositoryImpl.getProductDetails(id),
         onSuccess: (data) {
           _initCartData(productModel: data);
-          return cartItem;
+          return state.data ?? CartItem();
         },
       );
     }
@@ -37,12 +34,10 @@ class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
 
   Future<void> toggleWishlist({required num id}) async {
     emit(state.loading(identifier: 'toggle_wishlist'));
-
-    emit(state.success(data: cartItem, identifier: 'toggle_wishlist'));
+    emit(state.success(data: state.data, identifier: 'toggle_wishlist'));
   }
 
   void updateCartItem({required CartItem item}) {
-    _cartItem = item;
     emit(state.success(data: item, identifier: 'update_cart_item'));
   }
 
@@ -52,7 +47,7 @@ class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
         : null;
     final price = productModel.salePrice ?? 0;
 
-    _cartItem = cartItem.copyWith(
+    CartItem cartItem = (state.data ?? CartItem()).copyWith(
       currentItemPrice: price,
       productModel: productModel,
       price: price,
@@ -61,6 +56,6 @@ class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
       productId: productModel.id,
       uniqueProductId: productModel.id.toString(),
     );
-    emit(state.success(data: _cartItem!, identifier: 'init_cart_data'));
+    emit(state.success(data: cartItem, identifier: 'init_cart_data'));
   }
 }
