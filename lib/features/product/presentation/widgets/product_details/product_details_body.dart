@@ -1,5 +1,4 @@
 import 'package:bond/features/product/data/models/response/product_model.dart';
-import 'package:bond/features/product/presentation/widgets/product_details/product_description_section.dart';
 import 'package:bond/features/product/presentation/widgets/product_details/product_header_section.dart';
 import 'package:bond/features/product/presentation/widgets/product_details/product_image_gallery.dart';
 import 'package:bond/features/product/presentation/widgets/product_details/product_info_section.dart';
@@ -37,7 +36,7 @@ class ProductDetailsBody extends StatelessWidget {
               ProductPriceSection(product: productModel),
               SizedBox(height: 24.h),
               ProductInfoSection(product: productModel),
-              CartButtonDesign(),// fo
+              CartButtonDesign(productModel: productModel,),// fo
               SizedBox(height: 40.h), // Space// r bottom buttons
             ]),
           ),

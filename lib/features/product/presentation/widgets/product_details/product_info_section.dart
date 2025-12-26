@@ -29,57 +29,82 @@ class ProductInfoSection extends StatelessWidget {
             textSize: 12,
             fontWeight: FontWeight.w700,
           ),
-          SizedBox(height: 16.h),
-          _buildInfoRow(
-            context,
-            context.localizations.sku,
-            product.sku ?? context.localizations.notAvailable,
-            Icons.qr_code_outlined,
+          SizedBox(height: 20.h),
+          Row(
+            children: [
+              _buildInfoRow(
+                context,
+                context.localizations.stock,
+                _getStockStatus(context),
+                Icons.inventory_2_outlined,
+                statusColor: _getStockColor(context),
+              ),
+              _buildInfoRow(
+                context,
+                context.localizations.activeSubstance,
+                product.activeSubstance?.title??"",
+                Icons.data_exploration,
+                statusColor: _getStockColor(context),
+              ),
+            ],
           ),
-          if (product.brand != null) ...[
-            SizedBox(height: 12.h),
-            _buildInfoRow(
-              context,
-              context.localizations.brand,
-              product.brand!.title ?? '',
-              Icons.branding_watermark_outlined,
-            ),
-          ],
-          if (product.category != null) ...[
-            SizedBox(height: 12.h),
-            _buildInfoRow(
-              context,
-              context.localizations.category,
-              product.category!.title ?? '',
-              Icons.category_outlined,
-            ),
-          ],
-          if (product.weightKg != null) ...[
-            SizedBox(height: 12.h),
-            _buildInfoRow(
-              context,
-              context.localizations.weight,
-              '${product.weightKg} ${context.localizations.kg}',
-              Icons.scale_outlined,
-            ),
-          ],
-          if (product.dimensions != null) ...[
-            SizedBox(height: 12.h),
-            _buildInfoRow(
-              context,
-              context.localizations.dimensions,
-              '${product.dimensions!.length} × ${product.dimensions!.width} × ${product.dimensions!.height} ${context.localizations.cm}',
-              Icons.aspect_ratio_outlined,
-            ),
-          ],
-          SizedBox(height: 12.h),
-          _buildInfoRow(
-            context,
-            context.localizations.stock,
-            _getStockStatus(context),
-            Icons.inventory_2_outlined,
-            statusColor: _getStockColor(context),
+          SizedBox(height: 20.h),
+          Row(
+            children: [
+              _buildInfoRow(
+                context,
+                context.localizations.sku,
+                product.sku ?? context.localizations.notAvailable,
+                Icons.qr_code_outlined,
+              ),
+
+              if (product.brand != null) ...[
+                SizedBox(height: 12.h),
+                _buildInfoRow(
+                  context,
+                  context.localizations.brand,
+                  product.brand!.title ?? '',
+                  Icons.branding_watermark_outlined,
+                ),
+              ],
+            ],
           ),
+          SizedBox(height: 20.h),
+          Row(
+            children: [
+              if (product.category != null) ...[
+                _buildInfoRow(
+                  context,
+                  context.localizations.category,
+                  product.category!.title ?? '',
+                  Icons.category_outlined,
+                ),
+              ],
+              if (product.weightKg != null) ...[
+                _buildInfoRow(
+                  context,
+                  context.localizations.weight,
+                  '${product.weightKg} ${context.localizations.kg}',
+                  Icons.scale_outlined,
+                ),
+              ],
+            ],
+          ),
+          SizedBox(height: 20.h),
+          Row(
+            children: [
+              if (product.dimensions != null) ...[
+                SizedBox(height: 12.h),
+                _buildInfoRow(
+                  context,
+                  context.localizations.dimensions,
+                  '${product.dimensions!.length} × ${product.dimensions!.width} × ${product.dimensions!.height} ${context.localizations.cm}',
+                  Icons.aspect_ratio_outlined,
+                ),
+              ],
+            ],
+          ),
+
         ],
       ),
     );
@@ -92,41 +117,43 @@ class ProductInfoSection extends StatelessWidget {
     IconData icon, {
     Color? statusColor,
   }) {
-    return Row(
-      children: [
-        Container(
-          padding: EdgeInsets.all(8.w),
-          decoration: BoxDecoration(
-            color: (statusColor ?? context.colorScheme.primary)
-                .withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(10.r),
+    return Expanded(
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.all(8.w),
+            decoration: BoxDecoration(
+              color: (statusColor ?? context.colorScheme.primary)
+                  .withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(10.r),
+            ),
+            child: Icon(
+              icon,
+              size: 17.sp,
+              color: statusColor ?? context.colorScheme.primary,
+            ),
           ),
-          child: Icon(
-            icon,
-            size: 17.sp,
-            color: statusColor ?? context.colorScheme.primary,
+          SizedBox(width: 12.w),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppText.hint(
+                  text: label,
+                  textSize: 10,
+                ),
+                SizedBox(height: 8.h),
+                AppText(
+                  text: value,
+                  textSize: 11,
+                  fontWeight: FontWeight.w600,
+                  color: statusColor,
+                ),
+              ],
+            ),
           ),
-        ),
-        SizedBox(width: 12.w),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppText.hint(
-                text: label,
-                textSize: 10,
-              ),
-              SizedBox(height: 2.h),
-              AppText(
-                text: value,
-                textSize: 11,
-                fontWeight: FontWeight.w600,
-                color: statusColor,
-              ),
-            ],
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

@@ -1468,6 +1468,16 @@ class S {
       args: [],
     );
   }
+
+  /// `المادة الفعالة`
+  String get activeSubstance {
+    return Intl.message(
+      'المادة الفعالة',
+      name: 'activeSubstance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

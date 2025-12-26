@@ -2,14 +2,11 @@ import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/features/product/presentation/cubit/details/product_details_cubit.dart';
-import 'package:bond/features/product/presentation/widgets/product_details/quantity_design.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/features/product/data/models/response/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../orders/data/models/request/cart_params.dart';
 
 class ProductPriceSection extends StatelessWidget {
   final ProductModel product;
@@ -36,21 +33,6 @@ class ProductPriceSection extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              QuantityDesign(
-                isCart: false,
-                key: ValueKey(product.id),
-                isActive: (state.data.qty ?? 0) > 0,
-                stock: state.data.stock,
-                callback: (info) {
-                  CartItem cartItem = state.data.copyWith(
-                    qty: info['count'],
-                    price: info['count'] * state.data.currentItemPrice,
-                  );
-                  context.read<ProductDetailsCubit>().updateCartItem(
-                    item: cartItem,
-                  );
-                },
-              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

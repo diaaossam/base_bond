@@ -180,5 +180,6 @@
   "selectProvince": "Select Province",
   "selectRegion": "Select Region",
   "enterAddressDetails": "Enter address details",
-  "enterNotes": "Enter additional notes (optional)"
+  "enterNotes": "Enter additional notes (optional)",
+  "activeSubstance": "المادة الفعالة"
 }

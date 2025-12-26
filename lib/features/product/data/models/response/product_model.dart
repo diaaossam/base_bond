@@ -1,5 +1,4 @@
 import 'package:bond/core/global_models/generic_model.dart';
-import 'package:logger/logger.dart';
 
 class ProductModel {
   ProductModel({
@@ -25,6 +24,7 @@ class ProductModel {
     this.status,
     this.oldPrice,
     this.isAddedToFavourite,
+    this.activeSubstance
   });
 
   ProductModel.fromJson({
@@ -37,6 +37,9 @@ class ProductModel {
     description = json['description'];
     category = json['category'] != null
         ? GenericModel.fromJson(json['category'])
+        : null;
+    activeSubstance = json['active_substance'] != null
+        ? GenericModel.fromJson(json['active_substance'])
         : null;
     brand = json['brand'] != null ? GenericModel.fromJson(json['brand']) : null;
     discountPercentage = json['discount_percentage'];
@@ -73,6 +76,7 @@ class ProductModel {
   String? description;
   GenericModel? category;
   GenericModel? brand;
+  GenericModel? activeSubstance;
   num? discountPercentage;
   num? salePrice;
   num? oldPrice;
@@ -101,6 +105,9 @@ class ProductModel {
     }
     if (brand != null) {
       map['brand'] = brand?.toMap();
+    }
+    if (activeSubstance != null) {
+      map['active_substance'] = activeSubstance?.toMap();
     }
     map['discount_percentage'] = discountPercentage;
     map['sale_price'] = salePrice;

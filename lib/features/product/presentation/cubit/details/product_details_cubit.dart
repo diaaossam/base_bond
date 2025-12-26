@@ -55,6 +55,7 @@ class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
       qty: 1,
       productId: productModel.id,
       uniqueProductId: productModel.id.toString(),
+
     );
     emit(state.success(data: cartItem, identifier: 'init_cart_data'));
   }

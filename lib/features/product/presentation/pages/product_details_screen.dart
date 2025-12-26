@@ -47,6 +47,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     ),
                     child: Badge(
                       backgroundColor: Colors.red,
+                      isLabelVisible:state.data!.cartList.length.toString()!="0" ,
                       label: AppText(text: state.data!.cartList.length.toString(), color: Colors.white,),
                       child: AppImage.asset(
                         Assets.icons.shoppingCart,
