@@ -15,33 +15,35 @@ class ProductDetailsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(),
-      slivers: [
-        SliverToBoxAdapter(
-          child: ProductImageGallery(
-            images: [
-              if (productModel.featureImage != null) productModel.featureImage!,
-              ...?productModel.images,
-            ],
+    return Scaffold(
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: ProductImageGallery(
+              images: [
+                if (productModel.featureImage != null) productModel.featureImage!,
+                ...?productModel.images,
+              ],
+            ),
           ),
-        ),
-        SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              SizedBox(height: 16.h),
-              ProductHeaderSection(product: productModel),
-              SizedBox(height: 20.h),
-              ProductPriceSection(product: productModel),
-              SizedBox(height: 24.h),
-              ProductInfoSection(product: productModel),
-              CartButtonDesign(productModel: productModel,),// fo
-              SizedBox(height: 40.h), // Space// r bottom buttons
-            ]),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                SizedBox(height: 16.h),
+                ProductHeaderSection(product: productModel),
+                SizedBox(height: 20.h),
+                ProductPriceSection(product: productModel),
+                SizedBox(height: 24.h),
+                ProductInfoSection(product: productModel),
+                SizedBox(height: 40.h), // Space// r bottom buttons
+              ]),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
+      bottomNavigationBar:  CartButtonDesign(productModel: productModel,),
     );
   }
 }
