@@ -41,4 +41,18 @@ class ProductRepositoryImpl with ApiHandlerMixin {
     final response = await handleApi(() => productRemoteDataSource.getBrands());
     return response;
   }
+
+  Future<Either<Failure, Unit>> toggleWishList(num productId) async {
+    final response = await handleApi(
+      () => productRemoteDataSource.toggleWishList(productId),
+    );
+    return response;
+  }
+
+  Future<Either<Failure, List<ProductModel>>> getWishList() async {
+    final response = await handleApi(
+      () => productRemoteDataSource.getWishList(),
+    );
+    return response;
+  }
 }

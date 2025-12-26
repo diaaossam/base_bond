@@ -1,4 +1,7 @@
+import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/features/product/presentation/cubit/wishlist/wishlist_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../data/models/response/product_model.dart';
@@ -73,31 +76,44 @@ class _ProductHorizontalListState extends State<ProductHorizontalList>
   @override
   Widget build(BuildContext context) {
     final displayProducts = widget.products.take(widget.maxItems).toList();
-    return SizedBox(
-      height: 220.h,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        itemCount: displayProducts.length,
-        itemBuilder: (context, index) {
-          return AnimatedBuilder(
-            animation: _controller,
-            builder: (context, child) {
-              return Opacity(
-                opacity: _fadeAnimations[index].value,
-                child: Transform.translate(
-                  offset: Offset(0, _slideAnimations[index].value),
-                  child: ProductItemWidget(
-                    product: displayProducts[index],
-                    index: index,
-                  ),
-                ),
+    return BlocBuilder<WishlistCubit, BaseState>(
+      builder: (context, state) {
+        return SizedBox(
+          height: 220.h,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            itemCount: displayProducts.length,
+            itemBuilder: (context, index) {
+              final item = displayProducts[index];
+
+              return AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Opacity(
+                    opacity: _fadeAnimations[index].value,
+                    child: Transform.translate(
+                      offset: Offset(0, _slideAnimations[index].value),
+                      child: ProductItemWidget(
+                        key: ValueKey(item.id),
+                        isLiked: item.isAddedToFavourite ?? false,
+                        onFavTapped: (data) {
+                          item.isAddedToFavourite = data;
+                          context.read<WishlistCubit>().toggleWishList(
+                            productId: item.id ?? 0,
+                          );
+                        },
+                        product: item,
+                        index: index,
+                      ),
+                    ),
+                  );
+                },
               );
             },
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
-

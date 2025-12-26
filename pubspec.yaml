@@ -13,7 +13,7 @@ dependencies:
 
   ### Common Package
   cupertino_icons: ^1.0.8
-  flutter_local_notifications: ^19.4.2
+  flutter_local_notifications:
   shared_preferences: ^2.5.3
   path_provider: ^2.1.5
   loading_animation_widget: ^1.3.0

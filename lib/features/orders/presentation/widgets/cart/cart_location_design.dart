@@ -101,13 +101,13 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AppText(
-                              text: ApiConfig.address?.name ?? "",
+                              text: ApiConfig.address?.address ?? "",
                               fontWeight: FontWeight.w500,
                               textSize: 12,
                             ),
                             SizedBox(height: 7.h),
                             AppText(
-                              text: ApiConfig.address?.notes ?? "",
+                              text: ApiConfig.address?.additionalNotes ?? "",
                               textSize: 11,
                               maxLines: 2,
                               color: context.colorScheme.shadow,

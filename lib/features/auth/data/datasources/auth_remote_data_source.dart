@@ -1,8 +1,6 @@
 import 'package:bond/features/auth/data/models/response/user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../config/helper/device_helper.dart';
 import '../../../../core/enum/social_enum.dart';
@@ -75,7 +73,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<bool> loginUser(String phone) async {
-    return true;
+    return await dioConsumer
+        .post(EndPoints.login)
+        .body({"phone": "+2$phone"})
+        .factory((json) => true)
+        .execute();
   }
 
   @override
@@ -107,7 +109,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
     return await dioConsumer
         .post(EndPoints.register)
-        .body(params.toJson())
+        .body(await params.toFormData())
         .factory((json) => unit)
         .execute();
   }

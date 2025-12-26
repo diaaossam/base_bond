@@ -18,7 +18,7 @@ class LocationRepositoryImpl with ApiHandlerMixin {
     num? id,
   }) async {
     final response = await handleApi(
-      () => locationRemoteDataSource.addNewAddress(params: params),
+      () => locationRemoteDataSource.addNewAddress(params: params, id: id),
     );
     return response;
   }

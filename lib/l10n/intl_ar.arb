@@ -102,5 +102,22 @@
   "clickToReplacePoints": "اضغط لاستبدال النقاط",
   "addNote": "إضافة ملاحظة",
   "addNoteHint": "أضف ملاحظة للطلب",
-  "iqd": "د.ع"
+  "iqd": "د.ع",
+  "myAddresses": "عناويني",
+  "editAddress": "تعديل العنوان",
+  "deleteAddress": "حذف العنوان",
+  "deleteAddressConfirm": "هل أنت متأكد من حذف هذا العنوان؟",
+  "delete": "حذف",
+  "addressName": "اسم العنوان",
+  "addressDetails": "تفاصيل العنوان",
+  "additionalNotes": "ملاحظات إضافية",
+  "makeDefault": "تعيين كافتراضي",
+  "defaultAddress": "العنوان الافتراضي",
+  "addressSaved": "تم حفظ العنوان بنجاح",
+  "addressUpdated": "تم تحديث العنوان بنجاح",
+  "addressDeleted": "تم حذف العنوان بنجاح",
+  "selectProvince": "اختر المحافظة",
+  "selectRegion": "اختر المنطقة",
+  "enterAddressDetails": "أدخل تفاصيل العنوان",
+  "enterNotes": "أدخل ملاحظات إضافية (اختياري)"
 }

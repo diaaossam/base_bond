@@ -1,6 +1,4 @@
 import 'package:bond/core/extensions/app_localizations_extension.dart';
-import 'package:bond/gen/assets.gen.dart';
-import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/extensions/color_extensions.dart';
@@ -24,10 +22,20 @@ class RegisterBodyWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: SizeConfig.bodyHeight*.1,),
-              AppText(text: context.localizations.loginTitle,fontWeight: FontWeight.w700,color: Colors.white,textSize: 20,),
-              SizedBox(height: SizeConfig.bodyHeight*.02,),
-              AppText(text: context.localizations.loginBody,color: Colors.white,textSize: 13,fontWeight: FontWeight.w600,)
+              SizedBox(height: SizeConfig.bodyHeight * .1),
+              AppText(
+                text: context.localizations.loginTitle,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+                textSize: 20,
+              ),
+              SizedBox(height: SizeConfig.bodyHeight * .02),
+              AppText(
+                text: context.localizations.loginBody,
+                color: Colors.white,
+                textSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
             ],
           ),
         ),

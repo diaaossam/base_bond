@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/services/api/api_handler_mixin.dart';
 import '../../../../core/services/network/error/failures.dart';
 import '../models/app_settings.dart';
+import '../models/page_model.dart';
 
 @LazySingleton()
 class SettingsRepositoryImpl with ApiHandlerMixin {
@@ -14,6 +15,13 @@ class SettingsRepositoryImpl with ApiHandlerMixin {
   Future<Either<Failure, AppSettings>> getAppSettings() async {
     final response = await handleApi(
       () => settingsRemoteDataSource.getAppSettings(),
+    );
+    return response;
+  }
+
+  Future<Either<Failure, PageModel>> getCustomPage({required int page}) async {
+    final response = await handleApi(
+      () => settingsRemoteDataSource.getCustomPage(id: page),
     );
     return response;
   }

@@ -1,4 +1,5 @@
 import 'package:bond/core/global_models/generic_model.dart';
+import 'package:logger/logger.dart';
 
 class ProductModel {
   ProductModel({
@@ -54,7 +55,7 @@ class ProductModel {
     featureImage = json['feature_image'];
     images = json['images'] != null ? json['images'].cast<String>() : [];
     status = json['status'];
-    isAddedToFavourite = json['is_added_to_favourite'];
+    isAddedToFavourite = json['is_added_to_wishlist'];
     if (isRemote) {
       if (salePrice != null &&
           discountPercentage != null &&

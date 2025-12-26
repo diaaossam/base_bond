@@ -4,6 +4,7 @@ import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/features/product/data/models/request/product_params.dart';
 import 'package:bond/features/product/data/models/response/product_model.dart';
 import 'package:bond/features/product/presentation/cubit/product_cubit.dart';
+import 'package:bond/features/product/presentation/cubit/wishlist/wishlist_cubit.dart';
 import 'package:bond/features/product/presentation/widgets/product/all_product_body.dart';
 import 'package:bond/features/product/presentation/widgets/product/product_item_widget.dart';
 import 'package:bond/widgets/app_bar/custom_app_bar.dart';
@@ -27,11 +28,14 @@ class AllProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<ProductCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => sl<ProductCubit>()),
+        BlocProvider(create: (context) => sl<WishlistCubit>()),
+      ],
       child: Scaffold(
         appBar: CustomAppBar(title: title),
-        body: AllProductBody(initialParams: initialParams,),
+        body: AllProductBody(initialParams: initialParams),
       ),
     );
   }

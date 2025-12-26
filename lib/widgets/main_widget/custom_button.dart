@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/extensions/color_extensions.dart';
 import '../../core/utils/app_size.dart';
 import 'app_text.dart';
-import '../loading/loading_widget.dart';
+import '../loading/modern_button_loading.dart';
 
 enum CustomButtonType { normal, outline, text }
 
@@ -99,10 +99,13 @@ class _CustomButtonState extends State<CustomButton> {
           borderRadius: BorderRadius.circular(widget.radius ?? 16),
         ),
         child: widget.isLoading
-            ? const Center(
+            ? Center(
                 child: Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: LoadingWidget(color: Colors.white),
+                  padding: const EdgeInsets.all(5.0),
+                  child: MorphingLoading(
+                    color: _getLoadingColor(context),
+                    size: 28,
+                  ),
                 ),
               )
             : MaterialButton(
@@ -159,6 +162,17 @@ class _CustomButtonState extends State<CustomButton> {
 
       case CustomButtonType.text:
         return null;
+    }
+  }
+
+  Color _getLoadingColor(BuildContext context) {
+    switch (widget.type) {
+      case CustomButtonType.normal:
+        return Colors.white;
+
+      case CustomButtonType.outline:
+      case CustomButtonType.text:
+        return context.colorScheme.primary;
     }
   }
 }

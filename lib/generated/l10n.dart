@@ -1184,6 +1184,16 @@ class S {
     );
   }
 
+  /// `قائمة المفضلة فارغة`
+  String get noWithList {
+    return Intl.message(
+      'قائمة المفضلة فارغة',
+      name: 'noWithList',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cart is empty`
   String get noCart {
     return Intl.message('Cart is empty', name: 'noCart', desc: '', args: []);
@@ -1194,6 +1204,16 @@ class S {
     return Intl.message(
       'سلة المشتريات الخاصه بك فارغه قم بإضافة منتجات اولاً',
       name: 'emptyCartHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `قائمة المنتجات الفضلة الخاصه بك فارغه قم بإضافة منتجات اولاً`
+  String get emptyWishHint {
+    return Intl.message(
+      'قائمة المنتجات الفضلة الخاصه بك فارغه قم بإضافة منتجات اولاً',
+      name: 'emptyWishHint',
       desc: '',
       args: [],
     );
@@ -1282,6 +1302,171 @@ class S {
   /// `IQD`
   String get iqd {
     return Intl.message('IQD', name: 'iqd', desc: '', args: []);
+  }
+
+  /// `My Addresses`
+  String get myAddresses {
+    return Intl.message(
+      'My Addresses',
+      name: 'myAddresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Address`
+  String get editAddress {
+    return Intl.message(
+      'Edit Address',
+      name: 'editAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Address`
+  String get deleteAddress {
+    return Intl.message(
+      'Delete Address',
+      name: 'deleteAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this address?`
+  String get deleteAddressConfirm {
+    return Intl.message(
+      'Are you sure you want to delete this address?',
+      name: 'deleteAddressConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
+  }
+
+  /// `Address Name`
+  String get addressName {
+    return Intl.message(
+      'Address Name',
+      name: 'addressName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address Details`
+  String get addressDetails {
+    return Intl.message(
+      'Address Details',
+      name: 'addressDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Notes`
+  String get additionalNotes {
+    return Intl.message(
+      'Additional Notes',
+      name: 'additionalNotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set as Default`
+  String get makeDefault {
+    return Intl.message(
+      'Set as Default',
+      name: 'makeDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Default Address`
+  String get defaultAddress {
+    return Intl.message(
+      'Default Address',
+      name: 'defaultAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address saved successfully`
+  String get addressSaved {
+    return Intl.message(
+      'Address saved successfully',
+      name: 'addressSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address updated successfully`
+  String get addressUpdated {
+    return Intl.message(
+      'Address updated successfully',
+      name: 'addressUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address deleted successfully`
+  String get addressDeleted {
+    return Intl.message(
+      'Address deleted successfully',
+      name: 'addressDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Province`
+  String get selectProvince {
+    return Intl.message(
+      'Select Province',
+      name: 'selectProvince',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Region`
+  String get selectRegion {
+    return Intl.message(
+      'Select Region',
+      name: 'selectRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter address details`
+  String get enterAddressDetails {
+    return Intl.message(
+      'Enter address details',
+      name: 'enterAddressDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter additional notes (optional)`
+  String get enterNotes {
+    return Intl.message(
+      'Enter additional notes (optional)',
+      name: 'enterNotes',
+      desc: '',
+      args: [],
+    );
   }
 }
 

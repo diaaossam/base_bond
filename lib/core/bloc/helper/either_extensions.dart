@@ -1,4 +1,7 @@
+import 'package:bond/config/helper/context_helper.dart';
+import 'package:bond/core/utils/app_constant.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -15,7 +18,14 @@ mixin AsyncHandler<T> on Cubit<BaseState<T>> {
     final result = await call();
     return result.fold(
       (failure) {
-        Fluttertoast.showToast(msg: failure.message.toString());
+        final context= NavigationService.navigatorKey.currentContext;
+        Fluttertoast.showToast(msg: failure.message.toString(),backgroundColor:Colors.red ,gravity: ToastGravity.TOP);
+
+        /* if(context != null){
+          AppConstant.showCustomSnakeBar(context, failure.message.toString(), false);
+        }else{
+           Fluttertoast.showToast(msg: failure.message.toString(),backgroundColor:Colors.red );
+        }*/
         emit(
           state.copyWith(status: BaseStatus.failure, identifier: identifier),
         );

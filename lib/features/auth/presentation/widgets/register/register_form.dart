@@ -78,15 +78,6 @@ class _RegisterFormState extends State<RegisterForm> {
               SizedBox(height: SizeConfig.bodyHeight * .02),
               MobileNumberField(),
               SizedBox(height: SizeConfig.bodyHeight * .02),
-              CustomTextFormField(
-                name: "email",
-                hintText: context.localizations.email,
-                prefixIcon: AppImage.asset(Assets.icons.email),
-                validator: FormBuilderValidators.required(
-                  errorText: context.localizations.validation,
-                ),
-              ),
-              SizedBox(height: SizeConfig.bodyHeight * .02),
               BlocBuilder<AppCubit, BaseState<AppStateData>>(
                 builder: (context, state) {
                   final data = state.data ?? const AppStateData();
@@ -194,7 +185,6 @@ class _RegisterFormState extends State<RegisterForm> {
                         longitude: _location.value?.lon.toString(),
                         governorateId: fields['governorate']?.value as int?,
                         cityId: fields['region']?.value as int?,
-                        email: fields['email']?.value as String?,
 
                       );
 
@@ -205,6 +195,7 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
               SizedBox(height: SizeConfig.bodyHeight * .04),
               AlreadyHaveAccountWidget(),
+              SizedBox(height: SizeConfig.bodyHeight * .04),
             ],
           ),
         ),

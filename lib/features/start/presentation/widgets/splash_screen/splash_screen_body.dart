@@ -1,11 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/utils/app_size.dart';
-import 'package:bond/core/utils/app_strings.dart';
 import 'package:bond/features/settings/data/models/app_settings.dart';
 import 'package:bond/features/settings/presentation/cubit/settings_cubit.dart';
-import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -67,15 +64,6 @@ class SplashBody extends StatelessWidget {
                               .slideX(begin: 3, duration: 0.5.seconds),
                         ),
                         const SizedBox(height: 20),
-                        AppText(
-                          text: AppStrings.appName,
-                          color: context.colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                          textSize: 26,
-                        ).animate().fadeIn(
-                          delay: 0.5.seconds,
-                          duration: 900.milliseconds,
-                        ),
                       ],
                     ),
                   ),

@@ -31,7 +31,19 @@ class MessageLookup extends MessageLookupByLibrary {
       "Add a note to the order",
     ),
     "addToCart": MessageLookupByLibrary.simpleMessage("إضافة إلي السلة"),
+    "additionalNotes": MessageLookupByLibrary.simpleMessage("Additional Notes"),
     "address": MessageLookupByLibrary.simpleMessage("العنوان"),
+    "addressDeleted": MessageLookupByLibrary.simpleMessage(
+      "Address deleted successfully",
+    ),
+    "addressDetails": MessageLookupByLibrary.simpleMessage("Address Details"),
+    "addressName": MessageLookupByLibrary.simpleMessage("Address Name"),
+    "addressSaved": MessageLookupByLibrary.simpleMessage(
+      "Address saved successfully",
+    ),
+    "addressUpdated": MessageLookupByLibrary.simpleMessage(
+      "Address updated successfully",
+    ),
     "all": MessageLookupByLibrary.simpleMessage("All"),
     "allCategories": MessageLookupByLibrary.simpleMessage("جميع الأقسام"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage("لديك حساب !"),
@@ -84,6 +96,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
     "customerSupport": MessageLookupByLibrary.simpleMessage("الدعم الفني"),
     "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
+    "defaultAddress": MessageLookupByLibrary.simpleMessage("Default Address"),
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "deleteAddress": MessageLookupByLibrary.simpleMessage("Delete Address"),
+    "deleteAddressConfirm": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to delete this address?",
+    ),
     "description": MessageLookupByLibrary.simpleMessage("الوصف"),
     "dimensions": MessageLookupByLibrary.simpleMessage("Dimensions"),
     "discount": MessageLookupByLibrary.simpleMessage("خصم"),
@@ -99,12 +117,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب !"),
     "dontReceiveCode": MessageLookupByLibrary.simpleMessage("لم يصلك الرمز ؟"),
     "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
+    "editAddress": MessageLookupByLibrary.simpleMessage("Edit Address"),
     "egp": MessageLookupByLibrary.simpleMessage("ج.م"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكترونى"),
     "emptyCartHint": MessageLookupByLibrary.simpleMessage(
       "سلة المشتريات الخاصه بك فارغه قم بإضافة منتجات اولاً",
     ),
+    "emptyWishHint": MessageLookupByLibrary.simpleMessage(
+      "قائمة المنتجات الفضلة الخاصه بك فارغه قم بإضافة منتجات اولاً",
+    ),
     "english": MessageLookupByLibrary.simpleMessage("English"),
+    "enterAddressDetails": MessageLookupByLibrary.simpleMessage(
+      "Enter address details",
+    ),
+    "enterNotes": MessageLookupByLibrary.simpleMessage(
+      "Enter additional notes (optional)",
+    ),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("Bad Request"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
       "Bad response from server",
@@ -163,7 +191,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginViaGoogle": MessageLookupByLibrary.simpleMessage(
       "تسجيل الدخول عبر جوجل",
     ),
+    "makeDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
     "mode": MessageLookupByLibrary.simpleMessage("الوضع"),
+    "myAddresses": MessageLookupByLibrary.simpleMessage("My Addresses"),
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
     "myPoints": MessageLookupByLibrary.simpleMessage("نقاطي"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
@@ -173,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noDescription": MessageLookupByLibrary.simpleMessage("لا يوجد وصف متاح"),
     "noLocation": MessageLookupByLibrary.simpleMessage("لا توجد عناوين محفوظة"),
+    "noWithList": MessageLookupByLibrary.simpleMessage("قائمة المفضلة فارغة"),
     "notAvailable": MessageLookupByLibrary.simpleMessage("Not Available"),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
@@ -220,6 +251,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "saveLocation": MessageLookupByLibrary.simpleMessage("حفظ العنوان"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
     "seeAll": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
+    "selectProvince": MessageLookupByLibrary.simpleMessage("Select Province"),
+    "selectRegion": MessageLookupByLibrary.simpleMessage("Select Region"),
     "selectSortMethod": MessageLookupByLibrary.simpleMessage(
       "Select Sort Method",
     ),

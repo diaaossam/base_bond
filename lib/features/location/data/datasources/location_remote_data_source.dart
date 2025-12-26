@@ -1,4 +1,3 @@
-import 'package:bond/config/dependencies/injectable_dependencies.dart';
 import 'package:bond/features/location/data/models/response/my_address.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,17 +34,17 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
     num? id,
   }) async {
     if (id != null) {
-      final response = await dioConsumer
+      return await dioConsumer
           .put("${EndPoints.addresses}/$id")
           .body(params.toJson())
+          .factory((json) => json['message'])
           .execute();
-      return response['message'];
     } else {
-      final response = await dioConsumer
+      return await dioConsumer
           .post(EndPoints.addresses)
           .body(params.toJson())
+          .factory((json) => json['message'])
           .execute();
-      return response['message'];
     }
   }
 
@@ -67,14 +66,13 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
 
   @override
   Future<String> deleteAddress({required num id}) async {
-    final apiConfig = sl<ApiConfig>();
     if (id == ApiConfig.address?.id) {
       sharedPreferences.remove(AppStrings.location);
-      await apiConfig.init();
+      await ApiConfig().init();
     }
-    final response = await dioConsumer
+    return await dioConsumer
         .deleteRequest("${EndPoints.addresses}/$id")
+        .factory((json) => json['message'])
         .execute();
-    return response['message'];
   }
 }

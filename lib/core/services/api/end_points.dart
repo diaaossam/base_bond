@@ -7,12 +7,13 @@ class EndPoints {
   /////////////////////// Location //////////////////
 
   static const String governorates = "governorates";
-
-  ///////// Location ////////////////////////
   static const String addresses = "addresses";
+  static const String makeAddressDefault = "make-default-address";
+
 
   ///////// Auth ////////////////////////
-  static const String loginUser = "auth/login";
+  static const String register = "auth/register";
+  static const String login = "auth/login";
   static const String update = "profile/update";
   static const String socialLogin = "auth/social";
   static const String sendOtp = "auth/send-phone-otp";
@@ -29,7 +30,6 @@ class EndPoints {
 
   static const String introOnBoarding = "intro-images";
   static const String uploadImage = "temp-media";
-
   static deleteImage(String uid) => "profile/delete-image$uid";
   static const String skinProblem = "skin-problems";
 
@@ -39,38 +39,17 @@ class EndPoints {
   static const String markAllAsRead = "mark-all-notifications-as-read";
   static const String deletionReasons = "deletion-reasons";
 
-  ///////// Register //////////////////
-
-  static const String register = "auth/register";
-
-  //////////////////// Users /////////////////////////////
-  static user(String userId) => 'users/$userId';
+  //////////////////// Settings /////////////////////////////
   static const String language = "profile/language";
-  static const String explore = "explore";
-
-  static sendBlock(String userId) => "blocklists/$userId";
-  static const String block = "blocklists";
-  static const String report = "report-types";
-  static const String sendReport = "user-report";
-  static const String suggestions = "suggestion-types";
-  static const String sendSuggestion = "user-suggestion";
-  static const String plans = "plans";
-
-  static pages(String id) => "pages/$id";
-  static const String questions = "questions";
-  static const String faqQuestions = "faq-questions";
+  static String pages(String id) => "pages/$id";
 
   //////////////////// Chats ///////////////////////
 
-  static const String supportChat = "support-chat";
-  static const String makeAddressDefault = "make-default-address";
   static const String products = "products";
   static const String validateCoupon = "validate-coupon";
-  static const String placeOrder = "v2/orders";
   static const String orders = "orders";
-  static const String favourites = "favourites";
+  static const String favourites = "wishlist";
   static const String rateOrder = "rate-order";
   static const String checkOrderPoints = "check-order-points";
-  static const String productAvailability = "product-availability";
   static const String checkProduct = "check-products";
 }

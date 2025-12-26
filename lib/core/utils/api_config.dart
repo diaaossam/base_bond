@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../features/location/data/models/response/my_address.dart';
@@ -19,5 +21,11 @@ class ApiConfig {
         sharedPreferences.getString(AppStrings.locale) ?? AppStrings.arabicCode;
     language = handleLanguageByString(code: stringLanguage);
     themeMode = mode == AppStrings.light ? ThemeMode.light : ThemeMode.dark;
+    String? location = sharedPreferences.getString(AppStrings.location);
+    if (location != null) {
+      address = MyAddress.fromJson(json.decode(location));
+    } else {
+      address = null;
+    }
   }
 }

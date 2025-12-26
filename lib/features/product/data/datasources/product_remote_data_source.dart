@@ -1,5 +1,6 @@
 import 'package:bond/features/product/data/models/request/product_params.dart';
 import 'package:bond/features/product/data/models/response/product_model.dart';
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/global_models/generic_model.dart';
 import '../../../../core/services/api/dio_consumer.dart';
@@ -14,6 +15,10 @@ abstract class ProductRemoteDataSource {
   Future<List<CategoryModel>> getCategories();
 
   Future<List<GenericModel>> getBrands();
+
+  Future<Unit> toggleWishList(num productId);
+
+  Future<List<ProductModel>> getWishList();
 }
 
 @Injectable(as: ProductRemoteDataSource)
@@ -51,7 +56,25 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   Future<ProductModel> getProductDetails(num id) async {
     return await dioConsumer
         .get("${EndPoints.products}/$id")
-        .factory((json) => ProductModel.fromJson(json: json,isRemote: true),)
+        .factory((json) => ProductModel.fromJson(json: json, isRemote: true))
         .execute();
+  }
+
+  @override
+  Future<Unit> toggleWishList(num productId) async {
+    return await dioConsumer
+        .post("${EndPoints.favourites}/$productId/toggle")
+        .factory((json) => null)
+        .execute();
+  }
+
+  @override
+  Future<List<ProductModel>> getWishList() async {
+    final data =await dioConsumer
+        .get<List<ProductModel>>(EndPoints.favourites)
+        .factory(ProductModel.fromJsonList)
+        .execute();
+
+    return data;
   }
 }

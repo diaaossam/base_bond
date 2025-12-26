@@ -14,12 +14,16 @@ class ProductItemWidget extends StatefulWidget {
   final ProductModel product;
   final int index;
   final double? width;
+  final bool isLiked;
+  final Function(bool) onFavTapped;
 
   const ProductItemWidget({
     super.key,
     required this.product,
     required this.index,
     this.width,
+    required this.isLiked,
+    required this.onFavTapped,
   });
 
   @override
@@ -58,12 +62,10 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
           scale: _scaleAnimation.value,
           child: GestureDetector(
             onTap: () {
-              context.router.push(
-                ProductDetailsRoute(product: widget.product),
-              );
+              context.router.push(ProductDetailsRoute(product: widget.product));
             },
             child: Container(
-              width:widget.width?? 160.w,
+              width: widget.width ?? 160.w,
               margin: EdgeInsets.only(right: 12.w),
               decoration: BoxDecoration(
                 color: context.colorScheme.surface,
@@ -110,15 +112,18 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                               height: double.infinity,
                             ),
                           ),
-                            if (widget.product.averageRating != null)
+                          if (widget.product.averageRating != null)
                             Positioned(
                               bottom: 10,
                               child: Container(
                                 margin: EdgeInsetsDirectional.only(start: 10),
-                                padding: EdgeInsets.symmetric(horizontal: 15,vertical: 5),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                  vertical: 5,
+                                ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: context.colorScheme.surfaceContainer
+                                  color: context.colorScheme.surfaceContainer,
                                 ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -156,7 +161,10 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                                 ),
                                 decoration: BoxDecoration(
                                   color: context.colorScheme.error,
-                                  borderRadius:  BorderRadiusDirectional.horizontal(start: Radius.circular(20)),
+                                  borderRadius:
+                                      BorderRadiusDirectional.horizontal(
+                                        start: Radius.circular(20),
+                                      ),
                                 ),
                                 child: Center(
                                   child: Text(
@@ -178,7 +186,10 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                               textDirection: TextDirection.rtl,
                               start: 10,
                               top: 10,
-                              child: LikeButtonDesign(onTapped: (p1) {  }, isLiked: false,),
+                              child: LikeButtonDesign(
+                                onTapped: widget.onFavTapped,
+                                isLiked: widget.isLiked,
+                              ),
                             ),
                         ],
                       ),
@@ -199,30 +210,34 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                           ),
                           Row(
                             children: [
-                             Row(
-                               children: [
-                                 AppText(
-                                   text:
-                                   widget.product.salePrice?.toStringAsFixed(0,) ?? '0',
-                                   textSize: 12,
-                                   fontWeight: FontWeight.w700,
-                                   color: context.colorScheme.primary,
-                                 ),
-                                 SizedBox(width: 4.w),
-                                 AppText(
-                                   text: context.localizations.egp,
-                                   textSize: 10,
-                                   fontWeight: FontWeight.w500,
-                                   color: context.colorScheme.shadow,
-                                 ),
-                               ],
-                             ),
+                              Row(
+                                children: [
+                                  AppText(
+                                    text:
+                                        widget.product.salePrice
+                                            ?.toStringAsFixed(0) ??
+                                        '0',
+                                    textSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                    color: context.colorScheme.primary,
+                                  ),
+                                  SizedBox(width: 4.w),
+                                  AppText(
+                                    text: context.localizations.egp,
+                                    textSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                    color: context.colorScheme.shadow,
+                                  ),
+                                ],
+                              ),
                               20.horizontalSpace,
                               Row(
                                 children: [
                                   AppText(
                                     text:
-                                    widget.product.oldPrice?.toStringAsFixed(0,) ?? '0',
+                                        widget.product.oldPrice
+                                            ?.toStringAsFixed(0) ??
+                                        '0',
                                     textSize: 10,
                                     fontWeight: FontWeight.w700,
                                     color: context.colorScheme.shadow,

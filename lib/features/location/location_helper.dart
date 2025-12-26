@@ -1,39 +1,21 @@
+import 'package:bond/features/location/data/models/response/my_address.dart';
+import 'package:bond/features/location/presentation/widgets/delete_confirmation_design.dart';
+import 'package:flutter/material.dart';
+
 class LocationHelper {
-  /*  Future<void> showLocationDailog({
+  Future<bool> showDelete({
     required BuildContext context,
-    required Function(MyAddress) myAddress,
+    required MyAddress address,
   }) async {
-    showModalBottomSheet(
+    final response = await showModalBottomSheet<bool>(
       context: context,
-      isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) {
-        return Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 20.h),
-              child: AddressDialogDesign(onChoose: myAddress),
-            ),
-            Positioned(
-              top: 0,
-              left: 16,
-              child: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Container(
-                  width: 36.h,
-                  height: 36.h,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: context.colorScheme.primary),
-                  ),
-                  child: const Icon(Icons.close, size: 20),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+      builder: (context) => DeleteConfirmationSheet(
+        address: address,
+        onConfirm: () => Navigator.pop(context, true),
+        onCancel: () => Navigator.pop(context, false),
+      ),
     );
-  }*/
+    return response ?? false;
+  }
 }

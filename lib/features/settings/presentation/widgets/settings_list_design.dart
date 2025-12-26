@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/features/settings/presentation/widgets/settings_item_design.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geocoding/geocoding.dart';
 
 import '../../../../core/extensions/color_extensions.dart';
 
@@ -40,17 +43,17 @@ class SettingsListDesign extends StatelessWidget {
           ),
           SettingsItemDesign(
             text: context.localizations.address,
-            press: () {},
+            press: () =>context.router.push(LocationsRoute()),
             image: Assets.images.map.path,
           ),
           SettingsItemDesign(
             text: context.localizations.privacyPolicy,
-            press: () {},
+            press: () =>context.router.push(PrivacyRoute(title: context.localizations.privacyPolicy, id: 3)),
             image: Assets.images.shieldKey.path,
           ),
           SettingsItemDesign(
             text: context.localizations.termsAndCon,
-            press: () {},
+            press: () =>context.router.push(PrivacyRoute(title: context.localizations.termsAndCon, id: 2)),
             image: Assets.images.alertSquare.path,
           ),
           SettingsItemDesign(

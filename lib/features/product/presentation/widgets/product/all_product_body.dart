@@ -1,17 +1,19 @@
 import 'dart:async';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/product/presentation/cubit/product_cubit.dart';
+import 'package:bond/features/product/presentation/cubit/wishlist/wishlist_cubit.dart';
 import 'package:bond/features/product/presentation/widgets/product/filter/product_filter_bottom_sheet.dart';
-import 'package:bond/features/product/presentation/widgets/product/product_item_widget.dart';
+import 'package:bond/features/product/presentation/widgets/product/products_pagination_grid_list.dart';
 import 'package:bond/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:bond/widgets/main_widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../config/dependencies/injectable_dependencies.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
-import '../../../../../core/utils/app_size.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../widgets/image_picker/app_image.dart';
 import '../../../data/models/request/product_params.dart';
@@ -65,25 +67,18 @@ class _AllProductBodyState extends State<AllProductBody> {
       ],
       body: CustomScrollView(
         slivers: [
-          SliverPadding(
-            padding: screenPadding(),
-            sliver: PagingListener<int, ProductModel>(
-              controller: _pagingController,
-              builder: (context, state, fetchNextPage) => PagedSliverGrid(
-                state: state,
-                fetchNextPage: fetchNextPage,
-                builderDelegate: PagedChildBuilderDelegate<ProductModel>(
-                  itemBuilder: (context, item, index) =>
-                      ProductItemWidget(product: item, index: index),
-                ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: .98,
-                  mainAxisSpacing: 10.h,
-                  crossAxisSpacing: 10.h,
-                ),
-              ),
-            ),
+          BlocBuilder<WishlistCubit, BaseState>(
+            builder: (context, state) {
+              return ProductsPaginationGridList(
+                pagingController: _pagingController,
+                onFavTapped: (data, item) {
+                  item.isAddedToFavourite = data;
+                  context.read<WishlistCubit>().toggleWishList(
+                    productId: item.id ?? 0,
+                  );
+                },
+              );
+            },
           ),
         ],
       ),

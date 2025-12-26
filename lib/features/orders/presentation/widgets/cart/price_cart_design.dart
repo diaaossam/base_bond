@@ -66,7 +66,7 @@ class PriceCartDesign extends StatelessWidget {
                             ),
                             AppText(
                               text:
-                                  "${formatter.format(ApiConfig.address?.province?.deliveryPrice ?? 0)} ${context.localizations.iqd}",
+                                  "${formatter.format(ApiConfig.address?.governorate?.deliveryPrice ?? 0)} ${context.localizations.iqd}",
                               fontWeight: FontWeight.w600,
                             ),
                           ],
@@ -112,7 +112,7 @@ class PriceCartDesign extends StatelessWidget {
                         SizedBox(height: 15.h),
                       },
                       if (bloc.isFreeDeleivery &&
-                          ApiConfig.address?.province?.deliveryPrice !=
+                          ApiConfig.address?.governorate?.deliveryPrice !=
                               null) ...{
                         Row(
                           children: [
@@ -125,7 +125,7 @@ class PriceCartDesign extends StatelessWidget {
                             AppText(
                               color: context.colorScheme.error,
                               text:
-                                  " -  ${formatter.format(ApiConfig.address?.province?.deliveryPrice ?? 0)} ${context.localizations.iqd}",
+                                  " -  ${formatter.format(ApiConfig.address?.governorate?.deliveryPrice ?? 0)} ${context.localizations.iqd}",
                               fontWeight: FontWeight.w600,
                             ),
                           ],
@@ -150,7 +150,10 @@ class PriceCartDesign extends StatelessWidget {
                               couponDiscount: bloc.couponDiscount,
                               pointDiscount: bloc.pointDiscount,
                               deleivery:
-                                  (ApiConfig.address?.province?.deliveryPrice ??
+                                  (ApiConfig
+                                      .address
+                                      ?.governorate
+                                      ?.deliveryPrice ??
                                   0),
                             ),
                             fontWeight: FontWeight.w700,

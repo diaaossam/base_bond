@@ -27,6 +27,18 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addNote": MessageLookupByLibrary.simpleMessage("إضافة ملاحظة"),
     "addNoteHint": MessageLookupByLibrary.simpleMessage("أضف ملاحظة للطلب"),
+    "additionalNotes": MessageLookupByLibrary.simpleMessage("ملاحظات إضافية"),
+    "addressDeleted": MessageLookupByLibrary.simpleMessage(
+      "تم حذف العنوان بنجاح",
+    ),
+    "addressDetails": MessageLookupByLibrary.simpleMessage("تفاصيل العنوان"),
+    "addressName": MessageLookupByLibrary.simpleMessage("اسم العنوان"),
+    "addressSaved": MessageLookupByLibrary.simpleMessage(
+      "تم حفظ العنوان بنجاح",
+    ),
+    "addressUpdated": MessageLookupByLibrary.simpleMessage(
+      "تم تحديث العنوان بنجاح",
+    ),
     "all": MessageLookupByLibrary.simpleMessage("الكل"),
     "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
     "applyFilter": MessageLookupByLibrary.simpleMessage("تطبيق الفلترة"),
@@ -62,6 +74,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل أنت متأكد من تقديم هذا الطلب؟",
     ),
     "confirmOrderTitle": MessageLookupByLibrary.simpleMessage("تأكيد الطلب"),
+    "defaultAddress": MessageLookupByLibrary.simpleMessage("العنوان الافتراضي"),
+    "delete": MessageLookupByLibrary.simpleMessage("حذف"),
+    "deleteAddress": MessageLookupByLibrary.simpleMessage("حذف العنوان"),
+    "deleteAddressConfirm": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد من حذف هذا العنوان؟",
+    ),
     "dimensions": MessageLookupByLibrary.simpleMessage("الأبعاد"),
     "discountApplied": MessageLookupByLibrary.simpleMessage(
       "تم تطبيق الخصم بنجاح",
@@ -72,7 +90,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "doYouHaveDiscountHint": MessageLookupByLibrary.simpleMessage(
       "أدخل كود الخصم",
     ),
+    "editAddress": MessageLookupByLibrary.simpleMessage("تعديل العنوان"),
     "english": MessageLookupByLibrary.simpleMessage("إنجليزى"),
+    "enterAddressDetails": MessageLookupByLibrary.simpleMessage(
+      "أدخل تفاصيل العنوان",
+    ),
+    "enterNotes": MessageLookupByLibrary.simpleMessage(
+      "أدخل ملاحظات إضافية (اختياري)",
+    ),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("الطلب غير صالح"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
       "استجابة غير صحيحة من الخادم",
@@ -101,6 +126,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "locationValidation": MessageLookupByLibrary.simpleMessage(
       "يرجى إضافة عنوان التوصيل",
     ),
+    "makeDefault": MessageLookupByLibrary.simpleMessage("تعيين كافتراضي"),
+    "myAddresses": MessageLookupByLibrary.simpleMessage("عناويني"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
     "noCart": MessageLookupByLibrary.simpleMessage("السلة فارغة"),
     "noData": MessageLookupByLibrary.simpleMessage(
@@ -136,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
+    "selectProvince": MessageLookupByLibrary.simpleMessage("اختر المحافظة"),
+    "selectRegion": MessageLookupByLibrary.simpleMessage("اختر المنطقة"),
     "selectSortMethod": MessageLookupByLibrary.simpleMessage(
       "اختر طريقة الترتيب",
     ),

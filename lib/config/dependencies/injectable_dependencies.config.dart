@@ -81,10 +81,13 @@ import '../../features/product/presentation/cubit/category/category_cubit.dart'
 import '../../features/product/presentation/cubit/details/product_details_cubit.dart'
     as _i682;
 import '../../features/product/presentation/cubit/product_cubit.dart' as _i388;
+import '../../features/product/presentation/cubit/wishlist/wishlist_cubit.dart'
+    as _i915;
 import '../../features/settings/data/datasources/settings_remote_data_source.dart'
     as _i188;
 import '../../features/settings/data/repositories/settings_repo_impl.dart'
     as _i91;
+import '../../features/settings/presentation/cubit/pages_cubit.dart' as _i809;
 import '../../features/settings/presentation/cubit/settings_cubit.dart'
     as _i792;
 import '../../features/start/data/datasources/init_remote_data_source.dart'
@@ -208,6 +211,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i682.ProductDetailsCubit>(
       () => _i682.ProductDetailsCubit(gh<_i1040.ProductRepositoryImpl>()),
     );
+    gh.factory<_i915.WishlistCubit>(
+      () => _i915.WishlistCubit(gh<_i1040.ProductRepositoryImpl>()),
+    );
     gh.lazySingleton<_i662.AuthRepositoryImpl>(
       () => _i662.AuthRepositoryImpl(
         authRemoteDataSource: gh<_i107.AuthRemoteDataSource>(),
@@ -286,6 +292,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i396.SocialLoginBloc(gh<_i662.AuthRepositoryImpl>()),
     );
     gh.factory<_i33.StartCubit>(() => _i33.StartCubit(gh<_i941.InitRepo>()));
+    gh.factory<_i809.PagesCubit>(
+      () => _i809.PagesCubit(gh<_i91.SettingsRepositoryImpl>()),
+    );
     gh.factory<_i792.SettingsCubit>(
       () => _i792.SettingsCubit(gh<_i91.SettingsRepositoryImpl>()),
     );

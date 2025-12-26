@@ -46,7 +46,7 @@ class MobileNumberField extends StatelessWidget {
           minWidth: 40.w,
         ),
         keyboardType: TextInputType.phone,
-        maxLength: 10,
+        maxLength: 11,
         prefixIcon: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

@@ -1,3 +1,4 @@
+import 'package:bond/features/product/presentation/cubit/wishlist/wishlist_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,8 +30,13 @@ class ProductSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<ProductCubit>()..getProducts(initialParams),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<ProductCubit>()..getProducts(initialParams),
+        ),
+        BlocProvider(create: (context) => sl<WishlistCubit>()),
+      ],
       child: BlocBuilder<ProductCubit, BaseState<List<ProductModel>>>(
         builder: (context, state) {
           if (state.isLoading) {
@@ -40,7 +46,6 @@ class ProductSection extends StatelessWidget {
           if (products.isEmpty) {
             return const SliverToBoxAdapter(child: SizedBox.shrink());
           }
-
           return SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,10 +63,7 @@ class ProductSection extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 6.h),
-                ProductHorizontalList(
-                  products: products,
-                  maxItems: maxItems,
-                ),
+                ProductHorizontalList(products: products, maxItems: maxItems),
                 SizedBox(height: 12.h),
               ],
             ),
@@ -71,4 +73,3 @@ class ProductSection extends StatelessWidget {
     );
   }
 }
-

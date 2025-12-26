@@ -59,6 +59,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/empty_cart.svg
   String get emptyCart => 'assets/icons/empty_cart.svg';
 
+  /// File path: assets/icons/empty_favourite.svg
+  String get emptyFavourite => 'assets/icons/empty_favourite.svg';
+
   /// File path: assets/icons/female.svg
   String get female => 'assets/icons/female.svg';
 
@@ -145,6 +148,7 @@ class $AssetsIconsGen {
     egypt,
     email,
     emptyCart,
+    emptyFavourite,
     female,
     filter,
     gallery,
