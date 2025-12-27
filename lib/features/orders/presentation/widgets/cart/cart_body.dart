@@ -80,7 +80,7 @@ class _CartBodyState extends State<CartBody> {
                       child: CartItemDesign(
                         onDelete: (p0) {
                           bloc.deleteItemFromCart(
-                            id: p0.uniqueProductId.toString(),
+                            id: p0.productId.toString(),
                           );
                         },
                         cartItem: bloc.cartList[index],

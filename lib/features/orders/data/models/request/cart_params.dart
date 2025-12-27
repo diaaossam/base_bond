@@ -50,11 +50,9 @@ class CartItem {
     this.productModel,
     this.stock,
     this.currentItemPrice,
-    this.uniqueProductId,
   });
 
   CartItem.fromJson(dynamic json) {
-    uniqueProductId = json['uniqueProductId'];
     productId = json['product_id'];
     qty = json['qty'];
     stock = json['stock'];
@@ -65,7 +63,6 @@ class CartItem {
         : null;
   }
 
-  String? uniqueProductId;
   num? productId;
   num? qty;
   num? price;
@@ -75,18 +72,12 @@ class CartItem {
 
   CartItem copyWith({
     num? productId,
-    num? sizeId,
-    num? colorId,
     num? qty,
     num? price,
     num? stock,
     num? currentItemPrice,
     ProductModel? productModel,
-    String? uniqueProductId,
-    String? colorSku,
-    String? sizeSku,
   }) => CartItem(
-    uniqueProductId: uniqueProductId ?? this.uniqueProductId,
     productId: productId ?? this.productId,
     qty: qty ?? this.qty,
     price: price ?? this.price,
@@ -101,7 +92,6 @@ class CartItem {
     map['qty'] = qty;
     map['stock'] = stock;
     map['price'] = price;
-    map['uniqueProductId'] = uniqueProductId;
     map['currentItemPrice'] = currentItemPrice;
     map['product'] = productModel?.toJson();
     return map;

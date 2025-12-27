@@ -45,9 +45,7 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
   Future<void> addToCart(CartItem cartModel) async {
     final list = List<CartItem>.from(state.data!.cartList);
 
-    final index = list.indexWhere(
-      (e) => e.uniqueProductId == cartModel.uniqueProductId,
-    );
+    final index = list.indexWhere((e) => e.productId == cartModel.productId);
 
     if (index != -1) {
       list[index] = list[index].copyWith(qty: (list[index].qty ?? 1) + 1);
@@ -77,7 +75,7 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
 
   Future<void> deleteItemFromCart({required String id}) async {
     final list = List<CartItem>.from(state.data!.cartList)
-      ..removeWhere((e) => e.uniqueProductId == id);
+      ..removeWhere((e) => e.productId.toString() == id);
 
     final totals = _calculateTotals(list);
 
@@ -248,11 +246,17 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
   /* ======================== Getters ======================== */
 
   List<CartItem> get cartList => state.data?.cartList ?? [];
+
   double get amount => state.data?.amount ?? 0.0;
+
   String? get couponCode => state.data?.couponCode;
+
   double get couponDiscount => state.data?.couponDiscount ?? 0.0;
+
   double get pointDiscount => state.data?.pointDiscount ?? 0.0;
+
   bool get isFreeDeleivery => state.data?.isFreeDelivery ?? false;
+
   AvailablePoints? get availablePoints => state.data?.availablePoints;
 
   static const double freeDeliveryThreshold = 50000.0;

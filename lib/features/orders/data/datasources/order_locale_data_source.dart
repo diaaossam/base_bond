@@ -73,7 +73,9 @@ class OrderLocaleDataSourceImpl implements OrderLocaleDataSource {
     required List<CartItem> cartProductList,
     required String id,
   }) async {
-    cartProductList.removeWhere((cartItem) => cartItem.uniqueProductId == id);
+    cartProductList.removeWhere(
+      (cartItem) => cartItem.productId.toString() == id,
+    );
     List<String> carts = [];
     for (var cartModel in cartProductList) {
       carts.add(jsonEncode(cartModel));
@@ -89,7 +91,7 @@ class OrderLocaleDataSourceImpl implements OrderLocaleDataSource {
     required bool isIncrease,
   }) {
     final cartItemIndex = cartProductList.indexWhere(
-      (cartItem) => cartItem.uniqueProductId == productId,
+      (cartItem) => cartItem.productId.toString() == productId,
     );
     if (cartItemIndex != -1) {
       CartItem? cartItem = cartProductList[cartItemIndex];
@@ -98,11 +100,11 @@ class OrderLocaleDataSourceImpl implements OrderLocaleDataSource {
       cartItem = cartItem.copyWith(qty: qty, price: price);
       if (cartItem.qty == 0) {
         cartProductList.removeWhere(
-          (element) => element.uniqueProductId == productId,
+          (element) => element.productId.toString() == productId,
         );
       } else {
         cartProductList.removeWhere(
-          (element) => element.uniqueProductId == productId,
+          (element) => element.productId.toString() == productId,
         );
         cartProductList.insert(cartItemIndex, cartItem);
       }

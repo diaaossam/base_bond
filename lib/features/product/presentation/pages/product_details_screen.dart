@@ -28,8 +28,7 @@ class ProductDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-      sl<ProductDetailsCubit>()
-        ..getProductDetails(id: product.id ?? 0, productModel: product),
+      sl<ProductDetailsCubit>()..getProductDetails(id: product.id ?? 0, productModel: product),
       child: Scaffold(
         backgroundColor: context.colorScheme.surface,
         appBar: CustomAppBar(

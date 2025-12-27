@@ -35,36 +35,48 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CartCubit, BaseState<CartStateData>>(
-      listener: (context, state) {
-        if (state.isSuccess && state.identifier == "cart") {
-          checkIfProductInCart(carts: state.data!.cartList);
-        }
-      },
-      builder: (context, cartState) {
-        return BlocBuilder<ProductDetailsCubit, BaseState<CartItem>>(
-          builder: (context, state) {
+    return BlocBuilder<ProductDetailsCubit, BaseState<CartItem>>(
+      builder: (context, state) {
+        return BlocConsumer<CartCubit, BaseState<CartStateData>>(
+          listener: (context, cartState) {
+            if (cartState.isSuccess && cartState.identifier == "cart") {
+             final data = checkIfProductInCart(carts: cartState.data!.cartList);
+              if(data != null){
+               context.read<ProductDetailsCubit>().updateCartItem(item: data);
+              }
+            }
+          },
+          builder: (context, cartState) {
             if (isExists) {
               return QuantityDesign(
                 isCart: false,
                 key: ValueKey(state.data?.productModel?.id),
                 isActive: (state.data?.qty ?? 0) > 0,
+                count: state.data!.qty!.toInt(),
                 stock: state.data?.stock,
                 callback: (info) {
-                  CartItem? cartItem = state.data?.copyWith(
-                    qty: info['count'],
-                    price: info['count'] * state.data?.currentItemPrice,
-                  );
-                  context.read<ProductDetailsCubit>().updateCartItem(
-                    item: cartItem ?? CartItem(),
+                  if (info['isIncrease'] == false && info['count'] == 0) {
+                    context.read<CartCubit>().deleteItemFromCart(
+                      id: widget.productModel.id.toString(),
+                    );
+                    context.read<ProductDetailsCubit>().initCartData(productModel: widget.productModel);
+                    setState(() => isExists = false);
+                    return;
+                  }
+                  context.read<CartCubit>().setQuantity(
+                    productId: widget.productModel.id.toString(),
+                    isIncrease: info['isIncrease'],
                   );
                 },
               );
-            } else {
+            }
+            else {
               final CartItem cartItem = state.data ?? CartItem();
               return InkWell(
-                onTap: () async =>
-                    context.read<CartCubit>().addToCart(cartItem),
+                onTap: () async {
+                  setState(() => isExists = true);
+                  return context.read<CartCubit>().addToCart(cartItem);
+                },
                 child: Container(
                   margin: EdgeInsets.symmetric(
                     horizontal: SizeConfig.screenWidth * 0.04,
@@ -94,7 +106,7 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
                       ),
                       AppText(
                         text:
-                            "${cartItem.price?.toStringAsFixed(2)} ${context.localizations.egp}",
+                        "${cartItem.price?.toStringAsFixed(2)} ${context.localizations.egp}",
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
@@ -103,17 +115,21 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
                 ),
               );
             }
+
           },
         );
       },
     );
   }
 
-  void checkIfProductInCart({required List<CartItem> carts}) {
+  CartItem ? checkIfProductInCart({required List<CartItem> carts}) {
     var contain = carts.where((element) {
-      return element.uniqueProductId.toString() ==
-          widget.productModel.id.toString();
+      return element.productId.toString() == widget.productModel.id.toString();
     }).toList();
     setState(() => isExists = contain.isNotEmpty);
+    if(isExists){
+      return contain.first;
+    }
+    return null;
   }
 }

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/product/data/repositories/product_repository_impl.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../../core/bloc/helper/either_extensions.dart';
 import '../../../../orders/data/models/request/cart_params.dart';
@@ -19,13 +20,13 @@ class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
     ProductModel? productModel,
   }) async {
     if (productModel != null) {
-      _initCartData(productModel: productModel);
+      initCartData(productModel: productModel);
     } else {
       await handleAsync(
         identifier: 'product_details',
         call: () => productRepositoryImpl.getProductDetails(id),
         onSuccess: (data) {
-          _initCartData(productModel: data);
+          initCartData(productModel: data);
           return state.data ?? CartItem();
         },
       );
@@ -41,7 +42,7 @@ class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
     emit(state.success(data: item, identifier: 'update_cart_item'));
   }
 
-  void _initCartData({required ProductModel productModel}) {
+  void initCartData({required ProductModel productModel}) {
     final stock = productModel.currentStock != null
         ? (num.tryParse(productModel.currentStock!) ?? 0)
         : null;
@@ -54,8 +55,6 @@ class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
       stock: stock,
       qty: 1,
       productId: productModel.id,
-      uniqueProductId: productModel.id.toString(),
-
     );
     emit(state.success(data: cartItem, identifier: 'init_cart_data'));
   }
