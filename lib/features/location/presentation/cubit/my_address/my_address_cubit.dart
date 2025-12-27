@@ -17,11 +17,19 @@ class MyAddressCubit extends Cubit<BaseState<List<MyAddress>>>
     getMyAddress();
   }
 
+  MyAddress ? defaultAddress;
   Future<void> getMyAddress() async {
     await handleAsync(
       identifier: 'getMyAddress',
       call: () => locationRepositoryImpl.getMyAddress(),
-      onSuccess: (response) => response,
+      onSuccess: (response) {
+        for (var element in response) {
+          if(element.isDefault == true){
+            defaultAddress = element;
+          }
+        }
+        return response;
+      },
     );
   }
 

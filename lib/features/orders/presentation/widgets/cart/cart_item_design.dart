@@ -6,14 +6,13 @@ import 'package:bond/features/orders/data/models/request/cart_params.dart';
 import 'package:bond/features/orders/presentation/cubit/cart/cart_cubit.dart';
 import 'package:bond/features/orders/presentation/cubit/cart/cart_state_data.dart';
 import 'package:bond/features/product/presentation/widgets/product_details/quantity_design.dart';
-import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CartItemDesign extends StatelessWidget {
+class CartItemDesign extends StatefulWidget {
   final CartItem cartItem;
   final Function(CartItem) onDelete;
 
@@ -24,93 +23,118 @@ class CartItemDesign extends StatelessWidget {
   });
 
   @override
+  State<CartItemDesign> createState() => _CartItemDesignState();
+}
+
+class _CartItemDesignState extends State<CartItemDesign> with SingleTickerProviderStateMixin {
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, BaseState<CartStateData>>(
       builder: (context, state) {
-        return Container(
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
           decoration: BoxDecoration(
             color: context.colorScheme.surface,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: context.colorScheme.primary.withValues(alpha: 0.2),
+                blurRadius: 4,
+                offset: Offset(0, 2 + 1),
+                spreadRadius: 2,
+              ),
+            ],
           ),
-          padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth * .02,
-            vertical: SizeConfig.bodyHeight * .02,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(height: SizeConfig.bodyHeight * 0.02),
-                    AppText(
-                      text: cartItem.productModel?.title ?? "",
-                      textSize: 14,
-                      fontWeight: FontWeight.w500,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(10),
+                    child: AppImage.network(
+                      height: SizeConfig.bodyHeight * .12,
+                      width: SizeConfig.screenWidth * .25,
+                      remoteImage:
+                          widget.cartItem.productModel?.images?.isNotEmpty == true
+                          ? widget.cartItem.productModel!.images![0]
+                          : widget.cartItem.productModel?.featureImage,
+                      fit: BoxFit.cover,
                     ),
-                    SizedBox(height: SizeConfig.bodyHeight * 0.01),
-                    Row(
+                  ),
+                  14.horizontalSpace,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: AppText(
-                            text:
-                                "${((cartItem.currentItemPrice ?? cartItem.price ?? 1) * (cartItem.qty ?? 1)).toStringAsFixed(2)} ${context.localizations.iqd}",
-                            fontWeight: FontWeight.w600,
-                            textSize: 14,
-                          ),
+                        AppText(
+                          text: widget.cartItem.productModel?.title ?? "",
+                          textSize: 12,
+                          fontWeight: FontWeight.w600,
+                          maxLines: 2,
+                          color: context.colorScheme.onSurface,
                         ),
-                        if (cartItem.stock == 0)
-                          InkWell(
-                            onTap: () => onDelete(cartItem),
-                            child: Row(
-                              children: [
-                                AppImage.asset(Assets.icons.trash),
-                                SizedBox(width: 10.w),
-                                AppText(
-                                  text: context.localizations.outOfStock,
-                                  color: context.colorScheme.error,
+                        8.verticalSpace,
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 4.h,
+                          ),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                context.colorScheme.tertiary.withValues(
+                                  alpha: 0.15,
+                                ),
+                                context.colorScheme.tertiary.withValues(
+                                  alpha: 0.08,
                                 ),
                               ],
                             ),
-                          )
-                        else
-                          QuantityDesign(
-                            key: ValueKey('${cartItem.productModel?.id}'),
-                            isCart: true,
-                            count: cartItem.qty!.toInt(),
-                            stock: cartItem.stock,
-                            callback: (info) {
-                                       if (info['count'] == 0) {
-                                onDelete(cartItem);
-                              } else {
-                                context.read<CartCubit>().setQuantity(
-                                  productId: cartItem.productId.toString(),
-                                  isIncrease: info['isIncrease'],
-                                );
-                              }
-                            },
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                        SizedBox(width: SizeConfig.screenWidth * .06),
+                          child: AppText(
+                            text:
+                            "${widget.cartItem.price?.toStringAsFixed(0)} ${context.localizations.egp}",
+                            fontWeight: FontWeight.w700,
+                            textSize: 12,
+                            color: context.colorScheme.tertiary,
+                          ),
+                        ),
+                        12.verticalSpace,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            QuantityDesign(
+                              key: ValueKey(
+                                '${widget.cartItem.productModel?.id}',
+                              ),
+                              isCart: true,
+                              count: widget.cartItem.qty!.toInt(),
+                              stock: widget.cartItem.stock,
+                              callback: (info) {
+                                if (info['count'] == 0) {
+                                  widget.onDelete(widget.cartItem);
+                                } else {
+                                  context.read<CartCubit>().setQuantity(
+                                    productId: widget.cartItem.productId
+                                        .toString(),
+                                    isIncrease: info['isIncrease'],
+                                  );
+                                }
+                              },
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: AppImage.network(
-                  height: SizeConfig.bodyHeight * .12,
-                  width: SizeConfig.screenWidth * .25,
-                  remoteImage: cartItem.productModel?.images?.isNotEmpty == true
-                      ? cartItem.productModel!.images![0]
-                      : cartItem.productModel?.featureImage,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ],
+            ),
           ),
         );
       },

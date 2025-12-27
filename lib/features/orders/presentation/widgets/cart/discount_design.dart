@@ -14,6 +14,7 @@ import 'package:bond/widgets/main_widget/custom_text_form_field.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DiscountDesign extends StatefulWidget {
   const DiscountDesign({super.key});
@@ -22,80 +23,246 @@ class DiscountDesign extends StatefulWidget {
   State<DiscountDesign> createState() => _DiscountDesignState();
 }
 
-class _DiscountDesignState extends State<DiscountDesign> {
+class _DiscountDesignState extends State<DiscountDesign>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _successController;
+  late Animation<double> _successAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _successController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _successAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _successController, curve: Curves.elasticOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _successController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.colorScheme;
     return SliverToBoxAdapter(
       child: Container(
         decoration: BoxDecoration(
-            color: context.colorScheme.surface,
-            borderRadius: BorderRadius.circular(16)),
-        padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth * .02,
-            vertical: SizeConfig.bodyHeight * .02),
+          color: colorScheme.surface,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: colorScheme.primary.withOpacity(0.06),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        padding: EdgeInsets.all(18.w),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppText(
-              text: context.localizations.doYouHaveDiscount,
-              fontWeight: FontWeight.w600,
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(10.w),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        colorScheme.secondary.withOpacity(0.15),
+                        colorScheme.secondary.withOpacity(0.08),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(
+                    Icons.local_offer_rounded,
+                    color: colorScheme.secondary,
+                    size: 22,
+                  ),
+                ),
+                12.horizontalSpace,
+                AppText(
+                  text: context.localizations.doYouHaveDiscount,
+                  fontWeight: FontWeight.w600,
+                  textSize: 12,
+                ),
+              ],
             ),
-            SizedBox(
-              height: SizeConfig.bodyHeight * .02,
-            ),
+
+            SizedBox(height: 12.h),
+
+            // Coupon Input
             BlocConsumer<CartCubit, BaseState<CartStateData>>(
               listener: (context, state) {
                 if (state.isFailure && state.identifier == 'coupon') {
-                  AppConstant.showCustomSnakeBar(context, state.error?.toString() ?? '', false);
-                } else if (state.isSuccess && state.identifier == 'coupon') {
                   AppConstant.showCustomSnakeBar(
-                      context, context.localizations.discountApplied, true);
+                    context,
+                    state.error?.toString() ?? '',
+                    false,
+                  );
+                } else if (state.isSuccess && state.identifier == 'coupon') {
+                  _successController.forward(from: 0);
+                  AppConstant.showCustomSnakeBar(
+                    context,
+                    context.localizations.discountApplied,
+                    true,
+                  );
                 }
               },
               builder: (context, state) {
-                return CustomTextFormField(
-                  controller: context.read<CartCubit>().discount,
-                  hintText: context.localizations.doYouHaveDiscountHint,
-                  prefixIcon: AppImage.asset(Assets.icons.edit2),
-                  filled: true,
-                  readOnly: context.read<CartCubit>().couponDiscount != 0,
-                  fillColor: context.colorScheme.background,
-                  suffixIcon: Padding(
-                    padding: const EdgeInsetsDirectional.only(
-                        end: 10, top: 4, bottom: 4),
-                    child: context.read<CartCubit>().couponDiscount == 0
-                        ? CustomButton(
-                            textSize: 12,
-                            radius: 10,
-                            text: context.localizations.apply,
-                            press: () {
-                              if (ApiConfig.isGuest == true) {
-                                SettingsHelper().showGuestDialog(context,isFromCart: true);
-                                return;
-                              }
-                              if (context.read<CartCubit>().discount.text.isNotEmpty) {
-                                context
-                                    .read<CartCubit>()
-                                    .applyCoupon(code: context.read<CartCubit>().discount.text);
-                              }
-                            },
-                            width: SizeConfig.screenWidth * .22,
-                          )
-                        : InkWell(
-                            onTap: () => context.read<CartCubit>().deleteCoupon(),
-                            child: AppText(
-                              text: context.localizations.cancel,
-                              color: context.colorScheme.error,
-                            )),
-                  ),
+                final bloc = context.read<CartCubit>();
+                final hasDiscount = bloc.couponDiscount != 0;
+
+                return Column(
+                  children: [
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        border: hasDiscount
+                            ? Border.all(
+                                color: colorScheme.tertiary.withOpacity(0.5),
+                                width: 2,
+                              )
+                            : null,
+                      ),
+                      child: CustomTextFormField(
+                        controller: bloc.discount,
+                        hintText: context.localizations.doYouHaveDiscountHint,
+                        prefixIcon: AppImage.asset(Assets.icons.edit2),
+                        filled: true,
+                        readOnly: hasDiscount,
+                        fillColor: hasDiscount
+                            ? colorScheme.tertiary.withOpacity(0.05)
+                            : colorScheme.background,
+                        suffixIcon: Padding(
+                          padding: const EdgeInsetsDirectional.only(
+                            end: 10,
+                            top: 4,
+                            bottom: 4,
+                          ),
+                          child: _buildSuffixButton(
+                            context,
+                            state,
+                            hasDiscount,
+                            bloc,
+                          ),
+                        ),
+                      ),
+                    ),
+                    if (hasDiscount)
+                      AnimatedBuilder(
+                        animation: _successAnimation,
+                        builder: (context, child) {
+                          return Transform.scale(
+                            scale: _successAnimation.value,
+                            child: Container(
+                              margin: EdgeInsets.only(top: 12.h),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 14.w,
+                                vertical: 10.h,
+                              ),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    colorScheme.tertiary.withOpacity(0.15),
+                                    colorScheme.tertiary.withOpacity(0.05),
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: colorScheme.tertiary.withOpacity(0.3),
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.check_circle_rounded,
+                                    color: colorScheme.tertiary,
+                                    size: 20,
+                                  ),
+                                  10.horizontalSpace,
+                                  Expanded(
+                                    child: AppText(
+                                      text: context.localizations.discountApplied,
+                                      textSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                      color: colorScheme.tertiary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                  ],
                 );
               },
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildSuffixButton(
+    BuildContext context,
+    BaseState<CartStateData> state,
+    bool hasDiscount,
+    CartCubit bloc,
+  ) {
+    final colorScheme = context.colorScheme;
+
+    if (hasDiscount) {
+      return GestureDetector(
+        onTap: () => bloc.deleteCoupon(),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          decoration: BoxDecoration(
+            color: colorScheme.error.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.close_rounded,
+                size: 16,
+                color: colorScheme.error,
+              ),
+              6.horizontalSpace,
+              AppText(
+                text: context.localizations.cancel,
+                color: colorScheme.error,
+                fontWeight: FontWeight.w600,
+                textSize: 12,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    return CustomButton(
+      textSize: 12,
+      radius: 10,
+      text: context.localizations.apply,
+      isLoading: state.isLoading && state.identifier == 'coupon',
+      press: () {
+        if (ApiConfig.isGuest == true) {
+          SettingsHelper().showGuestDialog(context, isFromCart: true);
+          return;
+        }
+        if (bloc.discount.text.isNotEmpty) {
+          bloc.applyCoupon(code: bloc.discount.text);
+        }
+      },
+      width: SizeConfig.screenWidth * .22,
     );
   }
 }

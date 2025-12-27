@@ -1,3 +1,4 @@
+import 'package:bond/core/utils/app_strings.dart';
 import 'package:bond/features/auth/data/models/response/user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -58,6 +59,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .factory(UserModel.fromJson)
         .cacheToken()
         .execute();
+    sharedPreferences.setBool(AppStrings.isGuest, false);
     return response;
   }
 

@@ -38,7 +38,7 @@ class MyAddressBody extends StatelessWidget {
                   }
                 },
                 showActions: !isSelectionMode,
-                selectedAddressId: ApiConfig.address?.id,
+                selectedAddressId: 0,
                 onRefresh: () => context.read<MyAddressCubit>().getMyAddress(),
                 onEdit: (address) => context.router
                       .push(AddAddressRoute(address: address))

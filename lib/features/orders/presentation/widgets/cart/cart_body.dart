@@ -1,6 +1,5 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
-import 'package:bond/core/extensions/widget_extensions.dart';
 import 'package:bond/core/utils/api_config.dart';
 import 'package:bond/core/utils/app_constant.dart';
 import 'package:bond/core/utils/app_size.dart';
@@ -20,7 +19,6 @@ import 'cart_location_design.dart';
 import 'cart_note_design.dart';
 import 'discount_design.dart';
 import 'empty_cart_design.dart';
-import 'gift_cart_design.dart';
 import 'payment_type.dart';
 import 'price_cart_design.dart';
 
@@ -31,14 +29,40 @@ class CartBody extends StatefulWidget {
   State<CartBody> createState() => _CartBodyState();
 }
 
-class _CartBodyState extends State<CartBody> {
-  PaymentType? paymentType;
+class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
+  PaymentType paymentType = PaymentType.cash;
   TextEditingController note = TextEditingController();
+  late AnimationController _staggerController;
+  bool _animationsStarted = false;
 
   @override
   void initState() {
-    Future.microtask(() => context.read<CartCubit>().getCartData());
     super.initState();
+    _initAnimations();
+    Future.microtask(() {
+      context.read<CartCubit>().getCartData();
+    });
+  }
+
+  void _initAnimations() {
+    _staggerController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+  }
+
+  void _startAnimations() {
+    if (!_animationsStarted) {
+      _animationsStarted = true;
+      _staggerController.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    _staggerController.dispose();
+    note.dispose();
+    super.dispose();
   }
 
   @override
@@ -61,23 +85,36 @@ class _CartBodyState extends State<CartBody> {
       },
       builder: (context, state) {
         final bloc = context.read<CartCubit>();
+
         if (state.isLoading && state.identifier == 'cart') {
           return const LoadingWidget();
         }
+
         if (bloc.cartList.isEmpty) {
           return const EmptyCartDesign();
         }
+        _startAnimations();
+
         return Scaffold(
           body: RefreshIndicator(
-            onRefresh: () async => bloc.getCartData(),
+            onRefresh: () async {
+              _animationsStarted = false;
+              _staggerController.reset();
+              await bloc.getCartData();
+              _staggerController.forward();
+              _animationsStarted = true;
+            },
             child: CustomScrollView(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               slivers: [
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    childCount: bloc.cartList.length,
-                    (context, index) => Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: CartItemDesign(
+                SliverPadding(
+                  padding: EdgeInsets.only(top: 8.h,left: 10,right: 10),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      childCount: bloc.cartList.length,
+                      (context, index) =>CartItemDesign(
                         onDelete: (p0) {
                           bloc.deleteItemFromCart(
                             id: p0.productId.toString(),
@@ -88,79 +125,138 @@ class _CartBodyState extends State<CartBody> {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(child: SizedBox(height: 15.h)),
                 const DiscountDesign(),
-                SliverToBoxAdapter(child: SizedBox(height: 15.h)),
                 const CartLocationDesign(),
-                SliverToBoxAdapter(child: SizedBox(height: 15.h)),
                 PaymentTypeDesign(
                   payment: (p0) => setState(() => paymentType = p0),
                 ),
-                SliverToBoxAdapter(child: SizedBox(height: 15.h)),
                 CartNoteDesign(note: note),
-                SliverToBoxAdapter(child: SizedBox(height: 15.h)),
-                const GiftCartDesign(),
-                SliverToBoxAdapter(child: SizedBox(height: 15.h)),
+                SliverToBoxAdapter(child: SizedBox(height: 12.h)),
                 const PriceCartDesign(),
-                SliverToBoxAdapter(child: SizedBox(height: 30.h)),
-                CustomButton(
-                  text: context.localizations.placeOrder,
-                  isLoading:
-                      state.isLoading && state.identifier == 'placeOrder',
-                  press: () {
-                    if (ApiConfig.isGuest == true) {
-                      SettingsHelper().showGuestDialog(
-                        context,
-                        isFromCart: true,
-                      );
-                      return;
-                    }
-                    if (ApiConfig.address == null) {
-                      AppConstant.showCustomSnakeBar(
-                        context,
-                        context.localizations.locationValidation,
-                        false,
-                      );
-                      return;
-                    }
-                    if (paymentType == null) {
-                      AppConstant.showCustomSnakeBar(
-                        context,
-                        context.localizations.paymentValidation,
-                        false,
-                      );
-                      return;
-                    }
-                    for (var element in bloc.cartList) {
-                      if (element.stock == 0) {
-                        AppConstant.showCustomSnakeBar(
-                          context,
-                          context.localizations.outOfStock1,
-                          false,
-                        );
-                        return;
-                      }
-                    }
-                    OrderHelper().showConfirmOrderDialog(
-                      context: context,
-                      onReceive: (p0) {
-                        if (p0) {
-                          bloc.placeOrder(
-                            cart: CartParams(
-                              pointsId: bloc.availablePoints?.id,
-                              discountCode: bloc.couponCode,
-                              note: note.text,
-                              addressId: ApiConfig.address?.id,
-                              items: bloc.cartList,
-                            ),
-                          );
-                        }
-                      },
-                    );
-                  },
-                ).toSliverPadding(padding: screenPadding()),
-                SliverToBoxAdapter(child: SizedBox(height: 40.h)),
+                SliverToBoxAdapter(
+                  child: _PlaceOrderButton(
+                    isLoading:
+                        state.isLoading && state.identifier == 'placeOrder',
+                    onPressed: () => _handlePlaceOrder(bloc),
+                  ),
+                ),
               ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _handlePlaceOrder(CartCubit bloc) {
+/*    if (ApiConfig.isGuest == true) {
+      SettingsHelper().showGuestDialog(
+        context,
+        isFromCart: true,
+      );
+      return;
+    }
+
+    if (ApiConfig.address == null) {
+      AppConstant.showCustomSnakeBar(
+        context,
+        context.localizations.locationValidation,
+        false,
+      );
+      return;
+    }
+
+    if (paymentType == null) {
+      AppConstant.showCustomSnakeBar(
+        context,
+        context.localizations.paymentValidation,
+        false,
+      );
+      return;
+    }
+
+    for (var element in bloc.cartList) {
+      if (element.stock == 0) {
+        AppConstant.showCustomSnakeBar(
+          context,
+          context.localizations.outOfStock1,
+          false,
+        );
+        return;
+      }
+    }
+
+    OrderHelper().showConfirmOrderDialog(
+      context: context,
+      onReceive: (p0) {
+        if (p0) {
+          bloc.placeOrder(
+            cart: CartParams(
+              pointsId: bloc.availablePoints?.id,
+              discountCode: bloc.couponCode,
+              note: note.text,
+              addressId: ApiConfig.address?.id,
+              items: bloc.cartList,
+            ),
+          );
+        }
+      },
+    );*/
+  }
+}
+
+
+// Place Order Button with animation
+class _PlaceOrderButton extends StatefulWidget {
+  final bool isLoading;
+  final VoidCallback onPressed;
+
+  const _PlaceOrderButton({
+    required this.isLoading,
+    required this.onPressed,
+  });
+
+  @override
+  State<_PlaceOrderButton> createState() => _PlaceOrderButtonState();
+}
+
+class _PlaceOrderButtonState extends State<_PlaceOrderButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _pulseController;
+  late Animation<double> _pulseAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..repeat(reverse: true);
+
+    _pulseAnimation = Tween<double>(begin: 1.0, end: 1.02).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _pulseAnimation,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: widget.isLoading ? 1.0 : _pulseAnimation.value,
+          child: Padding(
+            padding: screenPadding(),
+            child: CustomButton(
+              text: context.localizations.placeOrder,
+              isLoading: widget.isLoading,
+              press: widget.onPressed,
             ),
           ),
         );
