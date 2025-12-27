@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/features/settings/presentation/widgets/dialogs/language_dialog.dart';
+import 'package:bond/features/settings/presentation/widgets/dialogs/logout_dialog.dart';
+import 'package:bond/features/settings/presentation/widgets/dialogs/theme_mode_dialog.dart';
 import 'package:bond/features/settings/presentation/widgets/settings_item_design.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geocoding/geocoding.dart';
-
 import '../../../../core/extensions/color_extensions.dart';
 
 class SettingsListDesign extends StatelessWidget {
@@ -37,11 +38,6 @@ class SettingsListDesign extends StatelessWidget {
             image: Assets.images.orders.path,
           ),
           SettingsItemDesign(
-            text: context.localizations.myPoints,
-            press: () {},
-            image: Assets.images.coins01.path,
-          ),
-          SettingsItemDesign(
             text: context.localizations.address,
             press: () =>context.router.push(LocationsRoute()),
             image: Assets.images.map.path,
@@ -63,17 +59,22 @@ class SettingsListDesign extends StatelessWidget {
           ),
           SettingsItemDesign(
             text: context.localizations.mode,
-            press: () {},
+            press: () => ThemeModeDialog.show(context),
             image: Assets.images.mode.path,
           ),
           SettingsItemDesign(
             text: context.localizations.language,
-            press: () {},
+            press: () => LanguageDialog.show(context),
             image: Assets.images.languageCircle.path,
           ),
           SettingsItemDesign(
             text: context.localizations.logOut,
-            press: () {},
+            press: () => LogoutDialog.show(
+              context,
+              onConfirm: () {
+                // TODO: Add your logout logic here
+              },
+            ),
             image: Assets.images.logout.path,
           ),
         ],

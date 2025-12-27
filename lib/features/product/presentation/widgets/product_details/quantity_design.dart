@@ -39,69 +39,65 @@ class _QuantityDesignState extends State<QuantityDesign> {
   @override
   Widget build(BuildContext context) {
     if (widget.isCart) {
-      return IgnorePointer(
-        ignoring: !widget.isActive,
-        child: Container(
-          decoration: BoxDecoration(
-            color: context.colorScheme.onTertiaryFixed,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  if (count == 1) return;
-                  setState(() => count--);
-                  widget.callback({"isIncrease": false, "count": count});
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: context.colorScheme.outline),
-                  ),
-                  padding: const EdgeInsetsDirectional.all(10),
-                  child: SvgPicture.asset(
-                    count == 1 && widget.isCart
-                        ? Assets.icons.trash
-                        : Assets.icons.minus,
-                  ),
+      return Container(
+        decoration: BoxDecoration(
+          color: context.colorScheme.onTertiaryFixed,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() => count--);
+                widget.callback({"isIncrease": false, "count": count});
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(color: context.colorScheme.outline),
+                ),
+                padding: const EdgeInsetsDirectional.all(10),
+                child: SvgPicture.asset(
+                  count == 1 && widget.isCart
+                      ? Assets.icons.trash
+                      : Assets.icons.minus,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: AppText(
-                  text: "$count",
-                  textSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: AppText(
+                text: "$count",
+                textSize: 14,
+                fontWeight: FontWeight.w700,
               ),
-              GestureDetector(
-                onTap: () {
-                  if (widget.stock == null) {
+            ),
+            GestureDetector(
+              onTap: () {
+                if (widget.stock == null) {
+                  setState(() => count++);
+                  widget.callback({"isIncrease": true, "count": count});
+                } else {
+                  if (count < widget.stock!) {
                     setState(() => count++);
                     widget.callback({"isIncrease": true, "count": count});
-                  } else {
-                    if (count < widget.stock!) {
-                      setState(() => count++);
-                      widget.callback({"isIncrease": true, "count": count});
-                    }
                   }
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: widget.isActive
-                        ? context.colorScheme.primary
-                        : context.colorScheme.onPrimaryFixed,
-                    shape: BoxShape.circle,
-                  ),
-                  padding: const EdgeInsetsDirectional.all(10),
-                  child: SvgPicture.asset(Assets.icons.add),
+                }
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: widget.isActive
+                      ? context.colorScheme.primary
+                      : context.colorScheme.onPrimaryFixed,
+                  shape: BoxShape.circle,
                 ),
+                padding: const EdgeInsetsDirectional.all(10),
+                child: SvgPicture.asset(Assets.icons.add),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     } else {

@@ -52,44 +52,6 @@ class CartItemDesign extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                     SizedBox(height: SizeConfig.bodyHeight * 0.01),
-                    // TODO: Add size and color models when available
-                    // Row(
-                    //   children: [
-                    //     if (cartItem.sizeModel != null)
-                    //       AppText(
-                    //         text: cartItem.sizeModel?.title ?? "",
-                    //         color: context.colorScheme.shadow,
-                    //       ),
-                    //     const SizedBox(
-                    //       width: 5,
-                    //     ),
-                    //     if (cartItem.sizeModel != null &&
-                    //         cartItem.colorsModel != null)
-                    //       const AppText(text: "-"),
-                    //     const SizedBox(
-                    //       width: 5,
-                    //     ),
-                    //     if (cartItem.colorsModel != null)
-                    //       Row(
-                    //         children: [
-                    //           AppText(
-                    //             text: cartItem.colorsModel?.color ?? "",
-                    //             color: context.colorScheme.shadow,
-                    //           ),
-                    //           10.horizontalSpace,
-                    //           Container(
-                    //               width: 20,
-                    //               height: 20,
-                    //               decoration: BoxDecoration(
-                    //                   shape: BoxShape.circle,
-                    //                   color: Color(int.parse(cartItem
-                    //                       .colorsModel!.hexCode!
-                    //                       .replaceFirst("#", "0xFF"))))),
-                    //         ],
-                    //       ),
-                    //   ],
-                    // ),
-                    SizedBox(height: SizeConfig.bodyHeight * 0.01),
                     Row(
                       children: [
                         Expanded(
@@ -121,7 +83,7 @@ class CartItemDesign extends StatelessWidget {
                             count: cartItem.qty!.toInt(),
                             stock: cartItem.stock,
                             callback: (info) {
-                              if (info['count'] == 0) {
+                                       if (info['count'] == 0) {
                                 onDelete(cartItem);
                               } else {
                                 context.read<CartCubit>().setQuantity(

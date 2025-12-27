@@ -21,8 +21,6 @@ class SettingsBody extends StatelessWidget {
             SizedBox(height: SizeConfig.bodyHeight * .02),
             SettingsListDesign(),
             SizedBox(height: SizeConfig.bodyHeight * .02),
-        
-        
           ],
         ),
       ),

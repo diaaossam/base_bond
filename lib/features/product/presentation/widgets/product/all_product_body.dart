@@ -39,7 +39,6 @@ class _AllProductBodyState extends State<AllProductBody> {
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         CustomSliverAppBar(
-          showLeading: false,
           titleWidget: CustomTextFormField(
             hintText: context.localizations.searchHint,
             onChanged: _onQueryChanged,

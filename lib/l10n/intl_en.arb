@@ -94,8 +94,9 @@
   "privacyPolicy": "شروط الخصوصية",
   "termsAndCon": "سياسة الإستخدام",
   "language": "اللغة",
+  "languageHint": "اختر لغة التطبيق المفضلة",
   "darkMode": "الوضع الليلي",
-  "lightMode": "الوضعي النهارى",
+  "lightMode": "الوضع النهارى",
   "mode": "الوضع",
   "customerSupport": "الدعم الفني",
   "logOut": "تسجيل الخروج",
@@ -181,5 +182,6 @@
   "selectRegion": "Select Region",
   "enterAddressDetails": "Enter address details",
   "enterNotes": "Enter additional notes (optional)",
-  "activeSubstance": "المادة الفعالة"
+  "activeSubstance": "المادة الفعالة",
+  "logoutBody": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
 }

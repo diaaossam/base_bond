@@ -166,7 +166,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "iqd": MessageLookupByLibrary.simpleMessage("IQD"),
     "kg": MessageLookupByLibrary.simpleMessage("kg"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
-    "lightMode": MessageLookupByLibrary.simpleMessage("الوضعي النهارى"),
+    "languageHint": MessageLookupByLibrary.simpleMessage(
+      "اختر لغة التطبيق المفضلة",
+    ),
+    "lightMode": MessageLookupByLibrary.simpleMessage("الوضع النهارى"),
     "loading": MessageLookupByLibrary.simpleMessage("جارى التحميل"),
     "locationOnMap": MessageLookupByLibrary.simpleMessage(
       "العنوان علي الخريطة",
@@ -191,6 +194,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "loginViaGoogle": MessageLookupByLibrary.simpleMessage(
       "تسجيل الدخول عبر جوجل",
+    ),
+    "logoutBody": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     ),
     "makeDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
     "mode": MessageLookupByLibrary.simpleMessage("الوضع"),

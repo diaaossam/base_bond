@@ -779,19 +779,24 @@ class S {
     return Intl.message('اللغة', name: 'language', desc: '', args: []);
   }
 
+  /// `اختر لغة التطبيق المفضلة`
+  String get languageHint {
+    return Intl.message(
+      'اختر لغة التطبيق المفضلة',
+      name: 'languageHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `الوضع الليلي`
   String get darkMode {
     return Intl.message('الوضع الليلي', name: 'darkMode', desc: '', args: []);
   }
 
-  /// `الوضعي النهارى`
+  /// `الوضع النهارى`
   String get lightMode {
-    return Intl.message(
-      'الوضعي النهارى',
-      name: 'lightMode',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('الوضع النهارى', name: 'lightMode', desc: '', args: []);
   }
 
   /// `الوضع`
@@ -1474,6 +1479,16 @@ class S {
     return Intl.message(
       'المادة الفعالة',
       name: 'activeSubstance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `هل أنت متأكد أنك تريد تسجيل الخروج؟`
+  String get logoutBody {
+    return Intl.message(
+      'هل أنت متأكد أنك تريد تسجيل الخروج؟',
+      name: 'logoutBody',
       desc: '',
       args: [],
     );
