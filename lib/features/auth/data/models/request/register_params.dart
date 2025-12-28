@@ -80,7 +80,6 @@ class RegisterParams {
     if (image != null) {
       map['profile_image'] = await MultipartFile.fromFile(
         image!,
-        filename: "profile",
       );
     }
     map.removeWhere((key, value) => value == null);

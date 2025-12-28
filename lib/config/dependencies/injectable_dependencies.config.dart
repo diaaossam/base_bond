@@ -63,6 +63,8 @@ import '../../features/main/data/repositories/main_repository_impl.dart'
 import '../../features/main/presentation/cubit/banner/banners_cubit.dart'
     as _i933;
 import '../../features/main/presentation/cubit/main/main_cubit.dart' as _i1051;
+import '../../features/notifications/data/datasources/notifications_remote_data_source.dart'
+    as _i951;
 import '../../features/orders/data/datasources/order_locale_data_source.dart'
     as _i96;
 import '../../features/orders/data/datasources/order_remote_data_source.dart'
@@ -166,16 +168,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i384.DioConsumer>(
       () => _i384.DioConsumer(client: gh<_i763.DioClient>()),
     );
-    gh.factory<_i1011.OrderRemoteDataSource>(
-      () => _i1011.OrderRemoteDataSourceImpl(
+    gh.factory<_i951.LocationRemoteDataSource>(
+      () => _i951.LocationRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
     );
-    gh.factory<_i95.InitRemoteDataSource>(
-      () => _i95.RegisterRemoteDataSourceImpl(
+    gh.factory<_i1011.OrderRemoteDataSource>(
+      () => _i1011.OrderRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
-        sharedPreferences: gh<_i460.SharedPreferences>(),
-        tokenRepository: gh<_i734.TokenRepository>(),
       ),
     );
     gh.factory<_i584.MainRemoteDataSource>(
@@ -256,10 +256,6 @@ extension GetItInjectableX on _i174.GetIt {
         mainRemoteDataSource: gh<_i584.MainRemoteDataSource>(),
       ),
     );
-    gh.lazySingleton<_i941.InitRepo>(
-      () =>
-          _i941.InitRepo(initRemoteDataSource: gh<_i95.InitRemoteDataSource>()),
-    );
     gh.lazySingleton<_i91.SettingsRepositoryImpl>(
       () => _i91.SettingsRepositoryImpl(
         settingsRemoteDataSource: gh<_i188.SettingsRemoteDataSource>(),
@@ -270,6 +266,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i933.BannersCubit>(
       () => _i933.BannersCubit(gh<_i411.MainRepositoryImpl>()),
+    );
+    gh.factory<_i95.InitRemoteDataSource>(
+      () => _i95.RegisterRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+        sharedPreferences: gh<_i460.SharedPreferences>(),
+        tokenRepository: gh<_i734.TokenRepository>(),
+        remoteDataSource: gh<_i107.AuthRemoteDataSource>(),
+      ),
     );
     gh.factory<_i652.BrandCubit>(
       () => _i652.BrandCubit(gh<_i1040.ProductRepositoryImpl>()),
@@ -295,13 +299,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i396.SocialLoginBloc>(
       () => _i396.SocialLoginBloc(gh<_i662.AuthRepositoryImpl>()),
     );
-    gh.factory<_i33.StartCubit>(() => _i33.StartCubit(gh<_i941.InitRepo>()));
+    gh.lazySingleton<_i941.InitRepo>(
+      () =>
+          _i941.InitRepo(initRemoteDataSource: gh<_i95.InitRemoteDataSource>()),
+    );
     gh.factory<_i809.PagesCubit>(
       () => _i809.PagesCubit(gh<_i91.SettingsRepositoryImpl>()),
     );
     gh.factory<_i792.SettingsCubit>(
       () => _i792.SettingsCubit(gh<_i91.SettingsRepositoryImpl>()),
     );
+    gh.factory<_i33.StartCubit>(() => _i33.StartCubit(gh<_i941.InitRepo>()));
     return this;
   }
 }

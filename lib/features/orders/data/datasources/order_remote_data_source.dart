@@ -24,6 +24,13 @@ abstract class OrderRemoteDataSource {
   Future<Unit> deleteOrder({required num id});
 
   Future<PointsModel> getOrderPoints({required num orderPoints});
+
+  Future<Unit> rateOrderItem({
+    required int productId,
+    required int orderId,
+    required int rating,
+    String? comment,
+  });
 }
 
 @Injectable(as: OrderRemoteDataSource)
@@ -75,5 +82,24 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
         .body(placeOrderModel.toJson())
         .factory((json) => Orders.fromJson(json['data']))
         .execute();
+  }
+
+  @override
+  Future<Unit> rateOrderItem({
+    required int productId,
+    required int orderId,
+    required int rating,
+    String? comment,
+  }) async {
+    await dioConsumer
+        .post(EndPoints.rateOrder)
+        .body({
+          'product_id': productId,
+          'order_id': orderId,
+          'rating': rating,
+          if (comment != null) 'comment': comment,
+        })
+        .execute();
+    return unit;
   }
 }

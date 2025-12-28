@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/features/auth/data/models/response/user_model_helper.dart';
 import 'package:bond/features/main/data/models/nav_enum.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';

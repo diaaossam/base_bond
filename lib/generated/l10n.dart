@@ -1533,6 +1533,181 @@ class S {
   String get details {
     return Intl.message('التفاصيل', name: 'details', desc: '', args: []);
   }
+
+  /// `Order Details`
+  String get orderDetails {
+    return Intl.message(
+      'Order Details',
+      name: 'orderDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Products`
+  String get products {
+    return Intl.message('Products', name: 'products', desc: '', args: []);
+  }
+
+  /// `Rate Product`
+  String get rateProduct {
+    return Intl.message(
+      'Rate Product',
+      name: 'rateProduct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hide Rating`
+  String get hideRating {
+    return Intl.message('Hide Rating', name: 'hideRating', desc: '', args: []);
+  }
+
+  /// `Submit Rating`
+  String get submitRating {
+    return Intl.message(
+      'Submit Rating',
+      name: 'submitRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a comment (optional)`
+  String get addComment {
+    return Intl.message(
+      'Add a comment (optional)',
+      name: 'addComment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rated`
+  String get rated {
+    return Intl.message('Rated', name: 'rated', desc: '', args: []);
+  }
+
+  /// `Please select a rating`
+  String get pleaseSelectRating {
+    return Intl.message(
+      'Please select a rating',
+      name: 'pleaseSelectRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for rating!`
+  String get thankYouForRating {
+    return Intl.message(
+      'Thank you for rating!',
+      name: 'thankYouForRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error submitting rating`
+  String get ratingError {
+    return Intl.message(
+      'Error submitting rating',
+      name: 'ratingError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current`
+  String get currentStatus {
+    return Intl.message('Current', name: 'currentStatus', desc: '', args: []);
+  }
+
+  /// `Reviewing your order`
+  String get reviewingOrder {
+    return Intl.message(
+      'Reviewing your order',
+      name: 'reviewingOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order is confirmed and being prepared`
+  String get orderConfirmed {
+    return Intl.message(
+      'Your order is confirmed and being prepared',
+      name: 'orderConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preparing your order`
+  String get preparingOrder {
+    return Intl.message(
+      'Preparing your order',
+      name: 'preparingOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order is on the way`
+  String get orderOnTheWay {
+    return Intl.message(
+      'Your order is on the way',
+      name: 'orderOnTheWay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order has been delivered`
+  String get orderDelivered {
+    return Intl.message(
+      'Your order has been delivered',
+      name: 'orderDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order has been canceled`
+  String get orderCanceled {
+    return Intl.message(
+      'Order has been canceled',
+      name: 'orderCanceled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order has been returned`
+  String get orderReturned {
+    return Intl.message(
+      'Order has been returned',
+      name: 'orderReturned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to Home`
+  String get goToHome {
+    return Intl.message('Go to Home', name: 'goToHome', desc: '', args: []);
+  }
+
+  /// `إلغاء الطلب`
+  String get cancelOrder {
+    return Intl.message('إلغاء الطلب', name: 'cancelOrder', desc: '', args: []);
+  }
+
+  /// `مرحباً بك`
+  String get welcome {
+    return Intl.message('مرحباً بك', name: 'welcome', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

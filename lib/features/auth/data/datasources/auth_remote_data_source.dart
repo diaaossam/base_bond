@@ -1,7 +1,9 @@
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:bond/features/auth/data/models/response/user_model.dart';
+import 'package:bond/features/auth/data/models/response/user_model_helper.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../config/helper/device_helper.dart';
 import '../../../../core/enum/social_enum.dart';
@@ -19,7 +21,7 @@ abstract class AuthRemoteDataSource {
 
   Future<bool> logOut();
 
-  Future<bool> getUserData();
+  Future<UserModel> getUserData();
 
   Future<bool> loginUser(String phone);
 
@@ -59,13 +61,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .factory(UserModel.fromJson)
         .cacheToken()
         .execute();
+    UserModel userModel = response as UserModel;
+    UserDataService().setUserData(userModel);
     sharedPreferences.setBool(AppStrings.isGuest, false);
     return response;
   }
 
   @override
-  Future<bool> getUserData() async {
-    return true;
+  Future<UserModel> getUserData() async {
+    return await dioConsumer
+        .get(EndPoints.profile)
+        .factory((json) => UserModel.fromJson(json['data']))
+        .execute();
   }
 
   @override

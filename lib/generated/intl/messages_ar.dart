@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addAddressDeleivery": MessageLookupByLibrary.simpleMessage(
       "إضافة عنوان التوصيل",
     ),
+    "addComment": MessageLookupByLibrary.simpleMessage("أضف تعليقاً (اختياري)"),
     "addNote": MessageLookupByLibrary.simpleMessage("إضافة ملاحظة"),
     "addNoteHint": MessageLookupByLibrary.simpleMessage("أضف ملاحظة للطلب"),
     "additionalNotes": MessageLookupByLibrary.simpleMessage("ملاحظات إضافية"),
@@ -74,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل أنت متأكد من تقديم هذا الطلب؟",
     ),
     "confirmOrderTitle": MessageLookupByLibrary.simpleMessage("تأكيد الطلب"),
+    "currentStatus": MessageLookupByLibrary.simpleMessage("الحالية"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("العنوان الافتراضي"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
     "deleteAddress": MessageLookupByLibrary.simpleMessage("حذف العنوان"),
@@ -121,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "filter": MessageLookupByLibrary.simpleMessage("الفلترة"),
     "freeDeleivery": MessageLookupByLibrary.simpleMessage("توصيل مجاني"),
     "from": MessageLookupByLibrary.simpleMessage("من"),
+    "goToHome": MessageLookupByLibrary.simpleMessage("الذهاب للرئيسية"),
+    "hideRating": MessageLookupByLibrary.simpleMessage("إخفاء التقييم"),
     "invoice": MessageLookupByLibrary.simpleMessage("الفاتورة"),
     "iqd": MessageLookupByLibrary.simpleMessage("د.ع"),
     "kg": MessageLookupByLibrary.simpleMessage("كجم"),
@@ -136,12 +140,24 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noOrdersFound": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
     "notAvailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
+    "orderCanceled": MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب"),
+    "orderConfirmed": MessageLookupByLibrary.simpleMessage(
+      "تم تأكيد طلبك وجاري تجهيزه",
+    ),
+    "orderDelivered": MessageLookupByLibrary.simpleMessage(
+      "تم توصيل طلبك بنجاح",
+    ),
+    "orderDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الطلب"),
+    "orderOnTheWay": MessageLookupByLibrary.simpleMessage(
+      "طلبك في الطريق إليك",
+    ),
     "orderPlacedSuccess": MessageLookupByLibrary.simpleMessage(
       "تم تقديم الطلب بنجاح",
     ),
     "orderPlacedSuccess2": MessageLookupByLibrary.simpleMessage(
       "شكراً لك! تم استلام طلبك وسيتم معالجته قريباً",
     ),
+    "orderReturned": MessageLookupByLibrary.simpleMessage("تم استرجاع الطلب"),
     "otpBody": MessageLookupByLibrary.simpleMessage(
       "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
     ),
@@ -158,12 +174,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
     "placeOrder": MessageLookupByLibrary.simpleMessage("تقديم الطلب"),
+    "pleaseSelectRating": MessageLookupByLibrary.simpleMessage(
+      "الرجاء اختيار تقييم",
+    ),
+    "preparingOrder": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
     "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
     "productInfo": MessageLookupByLibrary.simpleMessage("معلومات المنتج"),
+    "products": MessageLookupByLibrary.simpleMessage("المنتجات"),
+    "rateProduct": MessageLookupByLibrary.simpleMessage("قيّم المنتج"),
+    "rated": MessageLookupByLibrary.simpleMessage("تم التقييم"),
+    "ratingError": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ في إرسال التقييم",
+    ),
     "recommendedProducts": MessageLookupByLibrary.simpleMessage(
       "منتجات نوصي بها",
     ),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
+    "reviewingOrder": MessageLookupByLibrary.simpleMessage("جاري مراجعة طلبك"),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
     "selectProvince": MessageLookupByLibrary.simpleMessage("اختر المحافظة"),
     "selectRegion": MessageLookupByLibrary.simpleMessage("اختر المنطقة"),
@@ -186,6 +213,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "specialOptions": MessageLookupByLibrary.simpleMessage("خيارات خاصة"),
     "startNow": MessageLookupByLibrary.simpleMessage("إبدء الأن"),
     "stock": MessageLookupByLibrary.simpleMessage("المخزون"),
+    "submitRating": MessageLookupByLibrary.simpleMessage("إرسال التقييم"),
+    "thankYouForRating": MessageLookupByLibrary.simpleMessage("شكراً لتقييمك!"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
     "to": MessageLookupByLibrary.simpleMessage("إلى"),
     "total": MessageLookupByLibrary.simpleMessage("المجموع"),

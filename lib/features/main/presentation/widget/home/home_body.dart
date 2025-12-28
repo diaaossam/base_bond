@@ -1,5 +1,6 @@
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
@@ -9,6 +10,7 @@ import '../../../../product/presentation/widgets/category/home_categories_sectio
 import 'banner/banners_design.dart';
 import '../../../../product/data/models/request/product_params.dart';
 import '../../../../product/presentation/widgets/product/product_section.dart';
+import 'home_info_card.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -18,6 +20,8 @@ class HomeBody extends StatelessWidget {
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         CustomSliverAppBar(
+          leadingWidth: SizeConfig.screenWidth*0.6,
+          leading: HomeInfoCard(),
           actions: [
             Container(
               padding: EdgeInsets.all(8.w),
@@ -51,19 +55,16 @@ class HomeBody extends StatelessWidget {
           HomeBannersImage(),
           const HomeCategoriesSection(),
           SliverToBoxAdapter(child: SizedBox(height: 12.h)),
-          // Best Sellers Section
           ProductSection(
             title: context.localizations.bestSellers,
             actionText: context.localizations.seeAll,
             initialParams: const ProductParams(isBestSeller: true),
           ),
-          // New Arrivals Section
           ProductSection(
             title: context.localizations.newArrivals,
             actionText: context.localizations.seeAll,
             initialParams: const ProductParams(isNewArrival: true),
           ),
-          // Recommended Products Section
           ProductSection(
             title: context.localizations.recommendedProducts,
             actionText: context.localizations.seeAll,

@@ -23,7 +23,7 @@ class AuthRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, bool>> getUserData() async {
+  Future<Either<Failure, UserModel>> getUserData() async {
     final response = await handleApi(() => authRemoteDataSource.getUserData());
     return response;
   }

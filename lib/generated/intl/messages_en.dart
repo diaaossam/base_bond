@@ -26,6 +26,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "addAddressDeleivery": MessageLookupByLibrary.simpleMessage(
       "Add Delivery Address",
     ),
+    "addComment": MessageLookupByLibrary.simpleMessage(
+      "Add a comment (optional)",
+    ),
     "addNewAddress": MessageLookupByLibrary.simpleMessage("إضافة عنوان جديد"),
     "addNote": MessageLookupByLibrary.simpleMessage("Add Note"),
     "addNoteHint": MessageLookupByLibrary.simpleMessage(
@@ -73,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "brand": MessageLookupByLibrary.simpleMessage("Brand"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "cancelOrder": MessageLookupByLibrary.simpleMessage("إلغاء الطلب"),
     "canceled": MessageLookupByLibrary.simpleMessage("ملغي"),
     "cart": MessageLookupByLibrary.simpleMessage("السلة"),
     "cash": MessageLookupByLibrary.simpleMessage("نقدي"),
@@ -95,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmed": MessageLookupByLibrary.simpleMessage("تم التأكيد"),
     "copy": MessageLookupByLibrary.simpleMessage("نسخ"),
     "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+    "currentStatus": MessageLookupByLibrary.simpleMessage("Current"),
     "customerSupport": MessageLookupByLibrary.simpleMessage("الدعم الفني"),
     "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("Default Address"),
@@ -161,7 +166,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "from": MessageLookupByLibrary.simpleMessage("From"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "goToCart": MessageLookupByLibrary.simpleMessage("الذهاب إلي السلة"),
+    "goToHome": MessageLookupByLibrary.simpleMessage("Go to Home"),
     "governorate": MessageLookupByLibrary.simpleMessage("المحافظة"),
+    "hideRating": MessageLookupByLibrary.simpleMessage("Hide Rating"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "inProgress": MessageLookupByLibrary.simpleMessage("تحت المعالجة"),
     "invoice": MessageLookupByLibrary.simpleMessage("Invoice"),
@@ -218,11 +225,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "notAvailable": MessageLookupByLibrary.simpleMessage("Not Available"),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
+    "orderCanceled": MessageLookupByLibrary.simpleMessage(
+      "Order has been canceled",
+    ),
+    "orderConfirmed": MessageLookupByLibrary.simpleMessage(
+      "Your order is confirmed and being prepared",
+    ),
+    "orderDelivered": MessageLookupByLibrary.simpleMessage(
+      "Your order has been delivered",
+    ),
+    "orderDetails": MessageLookupByLibrary.simpleMessage("Order Details"),
+    "orderOnTheWay": MessageLookupByLibrary.simpleMessage(
+      "Your order is on the way",
+    ),
     "orderPlacedSuccess": MessageLookupByLibrary.simpleMessage(
       "Order Placed Successfully",
     ),
     "orderPlacedSuccess2": MessageLookupByLibrary.simpleMessage(
       "Thank you! Your order has been received and will be processed soon",
+    ),
+    "orderReturned": MessageLookupByLibrary.simpleMessage(
+      "Order has been returned",
     ),
     "otpBody": MessageLookupByLibrary.simpleMessage(
       "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
@@ -241,14 +264,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
     "placeOrder": MessageLookupByLibrary.simpleMessage("Place Order"),
+    "pleaseSelectRating": MessageLookupByLibrary.simpleMessage(
+      "Please select a rating",
+    ),
     "point": MessageLookupByLibrary.simpleMessage("نقطة"),
     "pointHint": MessageLookupByLibrary.simpleMessage(
       "استخدم هذا الكود لإستخدام نقاطك",
+    ),
+    "preparingOrder": MessageLookupByLibrary.simpleMessage(
+      "Preparing your order",
     ),
     "priceRange": MessageLookupByLibrary.simpleMessage("Price Range"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("شروط الخصوصية"),
     "productDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
     "productInfo": MessageLookupByLibrary.simpleMessage("Product Information"),
+    "products": MessageLookupByLibrary.simpleMessage("Products"),
+    "rateProduct": MessageLookupByLibrary.simpleMessage("Rate Product"),
+    "rated": MessageLookupByLibrary.simpleMessage("Rated"),
+    "ratingError": MessageLookupByLibrary.simpleMessage(
+      "Error submitting rating",
+    ),
     "recommendedProducts": MessageLookupByLibrary.simpleMessage("موصي بها"),
     "region": MessageLookupByLibrary.simpleMessage("المنطقة"),
     "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
@@ -259,6 +294,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "resendCode": MessageLookupByLibrary.simpleMessage("إعاده الإرسال"),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "returns": MessageLookupByLibrary.simpleMessage("مسترجع"),
+    "reviewingOrder": MessageLookupByLibrary.simpleMessage(
+      "Reviewing your order",
+    ),
     "saveLocation": MessageLookupByLibrary.simpleMessage("حفظ العنوان"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
     "seeAll": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
@@ -282,7 +320,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "specialOptions": MessageLookupByLibrary.simpleMessage("Special Options"),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
     "stock": MessageLookupByLibrary.simpleMessage("Stock"),
+    "submitRating": MessageLookupByLibrary.simpleMessage("Submit Rating"),
     "termsAndCon": MessageLookupByLibrary.simpleMessage("سياسة الإستخدام"),
+    "thankYouForRating": MessageLookupByLibrary.simpleMessage(
+      "Thank you for rating!",
+    ),
     "thereIsError": MessageLookupByLibrary.simpleMessage("There is An Error"),
     "to": MessageLookupByLibrary.simpleMessage("To"),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
@@ -303,6 +345,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "visa": MessageLookupByLibrary.simpleMessage("بطاقة إلكترونية"),
     "weight": MessageLookupByLibrary.simpleMessage("Weight"),
+    "welcome": MessageLookupByLibrary.simpleMessage("مرحباً بك"),
     "youHave": MessageLookupByLibrary.simpleMessage("لديك"),
     "youWillWin": MessageLookupByLibrary.simpleMessage("You will get"),
     "youWillWin2": MessageLookupByLibrary.simpleMessage("points"),

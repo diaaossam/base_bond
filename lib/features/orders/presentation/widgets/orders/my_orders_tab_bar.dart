@@ -19,7 +19,7 @@ class TabBarDesign extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredTabBar(
-      color: const Color(0xffF5F5F5),
+      color: context.colorScheme.surfaceContainer,
       tabBar: TabBar(
         dividerColor: Colors.transparent,
         onTap: onTap,

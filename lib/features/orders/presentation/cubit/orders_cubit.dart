@@ -22,4 +22,22 @@ class OrdersCubit {
       (orders) => orders,
     );
   }
+
+  Future<void> rateOrderItem({
+    required int productId,
+    required int orderId,
+    required int rating,
+    String? comment,
+  }) async {
+    final result = await _orderRepository.rateOrderItem(
+      productId: productId,
+      orderId: orderId,
+      rating: rating,
+      comment: comment,
+    );
+    return result.fold(
+      (failure) => throw failure,
+      (_) => null,
+    );
+  }
 }

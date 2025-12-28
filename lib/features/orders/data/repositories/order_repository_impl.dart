@@ -119,4 +119,21 @@ class OrderRepositoryImpl with ApiHandlerMixin {
     );
     return response;
   }
+
+  Future<Either<Failure, Unit>> rateOrderItem({
+    required int productId,
+    required int orderId,
+    required int rating,
+    String? comment,
+  }) async {
+    final response = await handleApi(
+      () => orderRemoteDataSource.rateOrderItem(
+        productId: productId,
+        orderId: orderId,
+        rating: rating,
+        comment: comment,
+      ),
+    );
+    return response;
+  }
 }

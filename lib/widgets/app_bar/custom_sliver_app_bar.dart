@@ -16,6 +16,7 @@ class CustomSliverAppBar extends StatelessWidget {
   final Widget? flexibleSpace;
   final Widget? leading;
   final double? expandedHeight;
+  final double? leadingWidth;
 
   const CustomSliverAppBar({
     super.key,
@@ -29,6 +30,7 @@ class CustomSliverAppBar extends StatelessWidget {
     this.isCenterTitle = true,
     this.pinned = true,
     this.leading,
+    this.leadingWidth,
   });
 
   @override
@@ -37,7 +39,7 @@ class CustomSliverAppBar extends StatelessWidget {
       pinned: pinned ?? true,
       automaticallyImplyLeading: false,
       backgroundColor: context.colorScheme.surface,
-      leadingWidth: SizeConfig.screenWidth * .2,
+      leadingWidth: leadingWidth ??SizeConfig.screenWidth * .2,
       centerTitle: isCenterTitle,
       elevation: 1,
       forceElevated: true,

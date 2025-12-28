@@ -236,7 +236,10 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
     );
   }
 
-  void clearCartOptimistically() {
+  Future<void> clearCartOptimistically() async {
+    // Clear local storage cart
+    sharedPreferences.remove("cartList");
+    sharedPreferences.remove("coupon");
     emit(state.success(data: const CartStateData()));
   }
 

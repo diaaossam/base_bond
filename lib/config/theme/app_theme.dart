@@ -69,19 +69,19 @@ class ThemeManger {
 
   static ThemeData blackTheme({required Language language}) => ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: AppColorScheme.light.surface,
+    scaffoldBackgroundColor: AppColorScheme.dark.surface,
     textTheme: TextTheme(
-      bodyMedium: TextStyle(color: AppColorScheme.light.onSurface),
-      headlineMedium: TextStyle(color: AppColorScheme.light.shadow),
+      bodyMedium: TextStyle(color: AppColorScheme.dark.onSurface),
+      headlineMedium: TextStyle(color: AppColorScheme.dark.shadow),
     ),
     appBarTheme: AppBarTheme(
       elevation: 0,
-      backgroundColor: AppColorScheme.light.surface,
+      backgroundColor: AppColorScheme.dark.surface,
       centerTitle: true,
-      iconTheme: IconThemeData(color: AppColorScheme.light.shadow),
-      actionsIconTheme: IconThemeData(color: AppColorScheme.light.shadow),
+      iconTheme: IconThemeData(color: AppColorScheme.dark.shadow),
+      actionsIconTheme: IconThemeData(color: AppColorScheme.dark.shadow),
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.light,
         statusBarColor: AppColorScheme.dark.surface,
       ),
@@ -111,7 +111,7 @@ class ThemeManger {
       fillColor: WidgetStateColor.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
           return AppColorScheme
-              .light
+              .dark
               .primary; // the color when checkbox is selected;
         }
         return Colors.transparent;
