@@ -1,7 +1,7 @@
 import '../../generated/l10n.dart';
 
 enum OrderType {
-  underReview("under_review"),
+  pending("pending"),
   confirmed("confirmed"),
   inProgress("in_progress"),
   outForDeleivery("out_for_delivery"),
@@ -15,7 +15,7 @@ enum OrderType {
 }
 
 String handleOrderTypeToString({required OrderType code}) {
-  if (code == OrderType.underReview) {
+  if (code == OrderType.pending) {
     return S.current.underReview;
   } else if (code == OrderType.confirmed) {
     return S.current.confirmed;
@@ -23,6 +23,8 @@ String handleOrderTypeToString({required OrderType code}) {
     return S.current.inProgress;
   } else if (code == OrderType.outForDeleivery) {
     return S.current.outForDeleivery;
+  } else if (code == OrderType.delivered) {
+    return S.current.deleiverd;
   } else if (code == OrderType.returns) {
     return S.current.returns;
   } else {
@@ -30,9 +32,9 @@ String handleOrderTypeToString({required OrderType code}) {
   }
 }
 
-OrderType handleOrderTypeToOrderType({required String code}) {
-  if (code == OrderType.underReview.name) {
-    return OrderType.underReview;
+OrderType handleStringToOrderType({required String code}) {
+  if (code == OrderType.pending.name) {
+    return OrderType.pending;
   } else if (code == OrderType.confirmed.name) {
     return OrderType.confirmed;
   } else if (code == OrderType.inProgress.name) {

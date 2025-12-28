@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/features/orders/data/models/response/orders.dart';
 
-part 'orders_state.dart';
-
-class OrdersCubit extends Cubit<OrdersState> {
-  OrdersCubit() : super(OrdersInitial());
+class OrdersCubit extends Cubit<BaseState<List<Orders>>> {
+  OrdersCubit() : super(BaseState());
 }

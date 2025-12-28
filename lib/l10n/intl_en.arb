@@ -120,6 +120,7 @@
   "inProgress": "تحت المعالجة",
   "outForDeleivery": "خرج للتوصيل",
   "returns": "مسترجع",
+  "deleiverd": "تم التوصيل",
   "canceled": "ملغي",
   "addToCart": "إضافة إلي السلة",
   "goToCart": "الذهاب إلي السلة",

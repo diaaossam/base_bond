@@ -949,6 +949,11 @@ class S {
     return Intl.message('مسترجع', name: 'returns', desc: '', args: []);
   }
 
+  /// `تم التوصيل`
+  String get deleiverd {
+    return Intl.message('تم التوصيل', name: 'deleiverd', desc: '', args: []);
+  }
+
   /// `ملغي`
   String get canceled {
     return Intl.message('ملغي', name: 'canceled', desc: '', args: []);

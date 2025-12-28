@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "customerSupport": MessageLookupByLibrary.simpleMessage("الدعم الفني"),
     "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("Default Address"),
+    "deleiverd": MessageLookupByLibrary.simpleMessage("تم التوصيل"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteAddress": MessageLookupByLibrary.simpleMessage("Delete Address"),
     "deleteAddressConfirm": MessageLookupByLibrary.simpleMessage(

@@ -1,3 +1,4 @@
+import 'package:bond/core/enum/order_type.dart';
 import 'package:bond/features/location/data/models/response/my_address.dart';
 import 'package:bond/features/product/data/models/response/product_model.dart';
 
@@ -21,7 +22,7 @@ class Orders {
   Orders.fromJson(dynamic json) {
     id = json['id'];
     orderNumber = json['order_number'];
-    status = json['status'];
+    status = handleStringToOrderType(code: json['status']);
     address = json['address'];
     addressData = json['address_data'] != null
         ? MyAddress.fromJson(json['address_data'])
@@ -43,18 +44,24 @@ class Orders {
 
   num? id;
   String? orderNumber;
-  String? status;
+  OrderType? status;
   String? address;
   MyAddress? addressData;
-  String ? couponCode;
+  String? couponCode;
   num? subtotal;
   num? discountAmount;
   num? total;
-  String ? notes;
+  String? notes;
   List<Items>? items;
   String? createdAt;
   String? updatedAt;
 
+  static List<Orders> fromJsonList(Map<String, dynamic> response) {
+    final List<dynamic> dataList = response['data'] as List<dynamic>;
+    return dataList
+        .map((item) => Orders.fromJson(item as Map<String, dynamic>))
+        .toList();
+  }
 }
 
 class Items {
@@ -69,7 +76,7 @@ class Items {
   Items.fromJson(dynamic json) {
     id = json['id'];
     product = json['product'] != null
-        ? ProductModel.fromJson(json: json['product'],isRemote: true)
+        ? ProductModel.fromJson(json: json['product'], isRemote: true)
         : null;
     quantity = json['quantity'];
     unitPrice = json['unit_price'];
@@ -81,6 +88,4 @@ class Items {
   num? quantity;
   num? unitPrice;
   num? totalPrice;
-
 }
-

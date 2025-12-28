@@ -54,9 +54,12 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
   Future<List<Orders>> getOrderList({
     required int pageKey,
     required OrderType orderType,
-  }) {
-    // TODO: implement getOrderList
-    throw UnimplementedError();
+  }) async {
+    return await dioConsumer
+        .get(EndPoints.orders)
+        .params({"page": pageKey, "status": orderType.name})
+        .factory(Orders.fromJsonList)
+        .execute();
   }
 
   @override
