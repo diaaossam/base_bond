@@ -80,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteAddressConfirm": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد من حذف هذا العنوان؟",
     ),
+    "details": MessageLookupByLibrary.simpleMessage("التفاصيل"),
     "dimensions": MessageLookupByLibrary.simpleMessage("الأبعاد"),
     "discountApplied": MessageLookupByLibrary.simpleMessage(
       "تم تطبيق الخصم بنجاح",
@@ -133,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noData": MessageLookupByLibrary.simpleMessage(
       "لا توجد بيانات ، يرجى المحاولة مرة أخرى لاحقًا",
     ),
+    "noOrdersFound": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
     "notAvailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
     "orderPlacedSuccess": MessageLookupByLibrary.simpleMessage(
       "تم تقديم الطلب بنجاح",
@@ -170,6 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "shippingCost": MessageLookupByLibrary.simpleMessage("تكلفة التوصيل"),
     "sku": MessageLookupByLibrary.simpleMessage("SKU"),
+    "somethingWentWrong": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
     "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "sortNewest": MessageLookupByLibrary.simpleMessage("الأحدث"),
     "sortOldest": MessageLookupByLibrary.simpleMessage("الأقدم"),

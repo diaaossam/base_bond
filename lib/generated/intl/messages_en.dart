@@ -105,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Are you sure you want to delete this address?",
     ),
     "description": MessageLookupByLibrary.simpleMessage("الوصف"),
+    "details": MessageLookupByLibrary.simpleMessage("التفاصيل"),
     "dimensions": MessageLookupByLibrary.simpleMessage("Dimensions"),
     "discount": MessageLookupByLibrary.simpleMessage("خصم"),
     "discountApplied": MessageLookupByLibrary.simpleMessage(
@@ -212,6 +213,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noDescription": MessageLookupByLibrary.simpleMessage("لا يوجد وصف متاح"),
     "noLocation": MessageLookupByLibrary.simpleMessage("لا توجد عناوين محفوظة"),
+    "noOrdersFound": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
     "noWithList": MessageLookupByLibrary.simpleMessage("قائمة المفضلة فارغة"),
     "notAvailable": MessageLookupByLibrary.simpleMessage("Not Available"),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
@@ -270,6 +272,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showLess": MessageLookupByLibrary.simpleMessage("عرض أقل"),
     "showMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
     "sku": MessageLookupByLibrary.simpleMessage("SKU"),
+    "somethingWentWrong": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
     "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
     "sortNewest": MessageLookupByLibrary.simpleMessage("Newest"),
     "sortOldest": MessageLookupByLibrary.simpleMessage("Oldest"),

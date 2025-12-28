@@ -70,6 +70,7 @@ import '../../features/orders/data/datasources/order_remote_data_source.dart'
 import '../../features/orders/data/repositories/order_repository_impl.dart'
     as _i376;
 import '../../features/orders/presentation/cubit/cart/cart_cubit.dart' as _i12;
+import '../../features/orders/presentation/cubit/orders_cubit.dart' as _i1028;
 import '../../features/product/data/datasources/product_remote_data_source.dart'
     as _i1;
 import '../../features/product/data/repositories/product_repository_impl.dart'
@@ -234,6 +235,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i188.SettingsRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
+    );
+    gh.factory<_i1028.OrdersCubit>(
+      () => _i1028.OrdersCubit(gh<_i376.OrderRepositoryImpl>()),
     );
     gh.factory<_i820.AddNewAddressCubit>(
       () => _i820.AddNewAddressCubit(gh<_i115.LocationRepositoryImpl>()),

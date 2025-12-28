@@ -27,10 +27,11 @@ class TabBarDesign extends StatelessWidget implements PreferredSizeWidget {
           horizontal: SizeConfig.screenWidth * .08,
         ),
         indicatorSize: TabBarIndicatorSize.tab,
+        tabAlignment: TabAlignment.start,
         unselectedLabelColor: context.colorScheme.onBackground,
         labelColor: Colors.white,
         labelStyle: TextStyle(
-          fontSize: 12.sp,
+          fontSize: 11.sp,
           fontFamily: AppStrings.arabicFont,
           fontWeight: FontWeight.w500,
         ),

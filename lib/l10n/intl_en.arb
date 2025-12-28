@@ -185,5 +185,8 @@
   "enterNotes": "Enter additional notes (optional)",
   "activeSubstance": "المادة الفعالة",
   "logoutBody": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-  "loadingText": "جاري التحميل..."
+  "loadingText": "جاري التحميل...",
+  "noOrdersFound": "لا توجد طلبات",
+  "somethingWentWrong": "حدث خطأ ما",
+  "details": "التفاصيل"
 }

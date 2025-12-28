@@ -38,8 +38,8 @@ class Orders {
         items?.add(Items.fromJson(v));
       });
     }
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    createdAt = DateTime.parse(json['created_at']);
+    updatedAt = DateTime.parse(json['updated_at']);
   }
 
   num? id;
@@ -53,8 +53,8 @@ class Orders {
   num? total;
   String? notes;
   List<Items>? items;
-  String? createdAt;
-  String? updatedAt;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   static List<Orders> fromJsonList(Map<String, dynamic> response) {
     final List<dynamic> dataList = response['data'] as List<dynamic>;

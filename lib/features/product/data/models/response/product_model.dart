@@ -24,7 +24,7 @@ class ProductModel {
     this.status,
     this.oldPrice,
     this.isAddedToFavourite,
-    this.activeSubstance
+    this.activeSubstance,
   });
 
   ProductModel.fromJson({
@@ -55,7 +55,7 @@ class ProductModel {
     averageRating = json['average_rating'];
     totalReviews = json['total_reviews'];
     currentStock = json['current_stock'];
-    featureImage = json['feature_image'];
+    featureImage = json['feature_image'] ?? json['image'];
     images = json['images'] != null ? json['images'].cast<String>() : [];
     status = json['status'];
     isAddedToFavourite = json['is_added_to_wishlist'];

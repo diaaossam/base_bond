@@ -1,9 +1,9 @@
-import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:animate_do/animate_do.dart';
+import 'package:bond/core/enum/order_type.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
-import '../../cubit/orders_cubit.dart';
 import 'my_orders_tab_bar.dart';
+import 'order_tab_view.dart';
 
 class MyOrdersBody extends StatefulWidget {
   const MyOrdersBody({super.key});
@@ -14,40 +14,64 @@ class MyOrdersBody extends StatefulWidget {
 
 class _MyOrdersBodyState extends State<MyOrdersBody>
     with SingleTickerProviderStateMixin {
-  late TabController tabController;
+  late TabController _tabController;
+
+  final List<OrderType> _orderTypes = [
+    OrderType.pending,
+    OrderType.confirmed,
+    OrderType.inProgress,
+    OrderType.outForDeleivery,
+    OrderType.delivered,
+    OrderType.returns,
+    OrderType.canceled,
+  ];
 
   @override
   void initState() {
-    tabController = TabController(length: 7, vsync: this);
     super.initState();
+    _tabController = TabController(length: _orderTypes.length, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OrdersCubit, BaseState>(
-      builder: (context, state) {
-        final bloc = context.read<OrdersCubit>();
-        return Column(
-          children: [
-            TabBarDesign(
-              tabController: tabController,
-              onTap: (value) {},
-              tabs: [
-                Tab(text: context.localizations.underReview),
-                Tab(text: context.localizations.confirmed),
-                Tab(text: context.localizations.inProgress),
-                Tab(text: context.localizations.outForDeleivery),
-                Tab(text: context.localizations.deleiverd),
-                Tab(text: context.localizations.returns),
-                Tab(text: context.localizations.canceled),
-              ],
+    return Column(
+      children: [
+        FadeInDown(
+          duration: const Duration(milliseconds: 400),
+          child: TabBarDesign(
+            tabController: _tabController,
+            tabs: [
+              Tab(text: context.localizations.underReview),
+              Tab(text: context.localizations.confirmed),
+              Tab(text: context.localizations.inProgress),
+              Tab(text: context.localizations.outForDeleivery),
+              Tab(text: context.localizations.deleiverd),
+              Tab(text: context.localizations.returns),
+              Tab(text: context.localizations.canceled),
+            ],
+          ),
+        ),
+        Expanded(
+          child: FadeInUp(
+            duration: const Duration(milliseconds: 500),
+            child: TabBarView(
+              controller: _tabController,
+              children: _orderTypes
+                  .map((type) => OrderTabView(
+                        key: ValueKey(type),
+                        orderType: type,
+                      ))
+                  .toList(),
             ),
-            Expanded(
-              child: TabBarView(controller: tabController, children: []),
-            ),
-          ],
-        );
-      },
+          ),
+        ),
+      ],
     );
   }
 }

@@ -34,7 +34,7 @@ class SettingsListDesign extends StatelessWidget {
         children: [
           SettingsItemDesign(
             text: context.localizations.myOrders,
-            press: () {},
+            press: () =>context.router.push(OrdersRoute()),
             image: Assets.images.orders.path,
           ),
           SettingsItemDesign(

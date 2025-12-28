@@ -119,6 +119,8 @@
   "selectProvince": "اختر المحافظة",
   "selectRegion": "اختر المنطقة",
   "enterAddressDetails": "أدخل تفاصيل العنوان",
-  "enterNotes": "أدخل ملاحظات إضافية (اختياري)"
-
+  "enterNotes": "أدخل ملاحظات إضافية (اختياري)",
+  "noOrdersFound": "لا توجد طلبات",
+  "somethingWentWrong": "حدث خطأ ما",
+  "details": "التفاصيل"
 }

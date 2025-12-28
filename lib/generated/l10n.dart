@@ -1508,6 +1508,31 @@ class S {
       args: [],
     );
   }
+
+  /// `لا توجد طلبات`
+  String get noOrdersFound {
+    return Intl.message(
+      'لا توجد طلبات',
+      name: 'noOrdersFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `حدث خطأ ما`
+  String get somethingWentWrong {
+    return Intl.message(
+      'حدث خطأ ما',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `التفاصيل`
+  String get details {
+    return Intl.message('التفاصيل', name: 'details', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

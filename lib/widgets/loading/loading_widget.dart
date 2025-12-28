@@ -9,7 +9,7 @@ import '../../gen/assets.gen.dart';
 class LoadingWidget extends StatefulWidget {
   const LoadingWidget({
     super.key,
-    this.size = LoadingSize.medium,
+    this.size = LoadingSize.small,
     this.showText = true,
     this.backgroundColor,
   });
