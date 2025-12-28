@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../data/models/response/orders.dart';
 import 'cart_state_data.dart';
 
 @Injectable()
@@ -225,12 +226,12 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
   /* ======================== Order ======================== */
 
   Future<void> placeOrder({required CartParams cart}) async {
-    await handleAsync<num>(
+    await handleAsync<Orders>(
       identifier: 'placeOrder',
       call: () => orderRepository.placeOrder(placeOrderModel: cart),
-      onSuccess: (orderId) {
+      onSuccess: (order) {
         sharedPreferences.remove("coupon");
-        return state.data!.copyWith(orderId: orderId);
+        return state.data!.copyWith(orders:order );
       },
     );
   }

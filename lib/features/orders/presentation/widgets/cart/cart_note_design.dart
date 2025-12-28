@@ -33,7 +33,6 @@ class CartNoteDesign extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header
             Row(
               children: [
                 Container(
@@ -61,17 +60,13 @@ class CartNoteDesign extends StatelessWidget {
                 ),
               ],
             ),
-
             SizedBox(height: 8.h),
-
-            // Note input field with subtle styling
             CustomTextFormField(
               controller: note,
               prefixIcon: AppImage.asset(Assets.icons.edit2),
               hintText: context.localizations.addNoteHint,
               filled: true,
               maxLines: 2,
-              fillColor: colorScheme.background,
             ),
           ],
         ),

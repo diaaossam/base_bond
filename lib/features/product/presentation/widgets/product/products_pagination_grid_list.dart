@@ -1,4 +1,5 @@
 import 'package:bond/features/product/presentation/widgets/product/product_item_widget.dart';
+import 'package:bond/widgets/loading/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -26,6 +27,7 @@ class ProductsPaginationGridList extends StatelessWidget {
           state: state,
           fetchNextPage: fetchNextPage,
           builderDelegate: PagedChildBuilderDelegate<ProductModel>(
+            firstPageProgressIndicatorBuilder: (context) => LoadingWidget(size: LoadingSize.small,),
             itemBuilder: (context, item, index) => ProductItemWidget(
               onFavTapped: (data) {
                 onFavTapped(data, item);

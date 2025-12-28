@@ -32,8 +32,7 @@ class CartParams {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['address_id'] = addressId;
-    map['point_id'] = pointsId;
-    map['discount_code'] = discountCode;
+    map['coupon_code'] = discountCode;
     map['note'] = note;
     if (items != null) {
       map['items'] = items?.map((v) => v.toJson()).toList();
@@ -54,7 +53,7 @@ class CartItem {
 
   CartItem.fromJson(dynamic json) {
     productId = json['product_id'];
-    qty = json['qty'];
+    qty = json['quantity'];
     stock = json['stock'];
     price = json['price'];
     currentItemPrice = json['currentItemPrice'];
@@ -89,7 +88,7 @@ class CartItem {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['product_id'] = productId;
-    map['qty'] = qty;
+    map['quantity'] = qty;
     map['stock'] = stock;
     map['price'] = price;
     map['currentItemPrice'] = currentItemPrice;

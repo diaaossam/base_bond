@@ -1493,6 +1493,16 @@ class S {
       args: [],
     );
   }
+
+  /// `جاري التحميل...`
+  String get loadingText {
+    return Intl.message(
+      'جاري التحميل...',
+      name: 'loadingText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

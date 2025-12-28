@@ -1,77 +1,66 @@
 import 'dart:math' as math;
+import 'dart:ui';
 
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../gen/assets.gen.dart';
 
-class LoadingWidget extends StatefulWidget {
-  const LoadingWidget({
-    super.key,
-    this.size = LoadingSize.medium,
-    this.showText = true,
-    this.backgroundColor,
-  });
+/// A stunning modern loading overlay with beautiful animations
+/// Uses the app logo with pulsing, rotating glow, and orbiting particles
+class OverlayLoading {
+  static OverlayEntry? _overlayEntry;
+  static bool _isShowing = false;
 
-  /// Size of the loading widget
-  final LoadingSize size;
+  /// Shows the loading overlay with amazing animations
+  static void show(BuildContext context) {
+    if (_isShowing) return;
+    _isShowing = true;
+    _overlayEntry = OverlayEntry(
+      builder: (context) => const _LoadingOverlayWidget(),
+    );
 
-  /// Whether to show loading text
-  final bool showText;
+    Overlay.of(context).insert(_overlayEntry!);
+  }
 
-  /// Optional background color (transparent by default)
-  final Color? backgroundColor;
+  /// Hides the loading overlay with a smooth fade out
+  static void hide() {
+    if (!_isShowing) return;
+    _isShowing = false;
+
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  /// Check if loading is currently showing
+  static bool get isShowing => _isShowing;
+}
+
+class _LoadingOverlayWidget extends StatefulWidget {
+  const _LoadingOverlayWidget();
 
   @override
-  State<LoadingWidget> createState() => _LoadingWidgetState();
+  State<_LoadingOverlayWidget> createState() => _LoadingOverlayWidgetState();
 }
 
-enum LoadingSize {
-  small(
-    logoSize: 60,
-    containerSize: 120,
-    particleRadius: 45,
-    glowRingSize: 100,
-  ),
-  medium(
-    logoSize: 100,
-    containerSize: 200,
-    particleRadius: 75,
-    glowRingSize: 180,
-  ),
-  large(
-    logoSize: 140,
-    containerSize: 280,
-    particleRadius: 105,
-    glowRingSize: 250,
-  );
-
-  const LoadingSize({
-    required this.logoSize,
-    required this.containerSize,
-    required this.particleRadius,
-    required this.glowRingSize,
-  });
-
-  final double logoSize;
-  final double containerSize;
-  final double particleRadius;
-  final double glowRingSize;
-}
-
-class _LoadingWidgetState extends State<LoadingWidget>
+class _LoadingOverlayWidgetState extends State<_LoadingOverlayWidget>
     with TickerProviderStateMixin {
+  // Animation controllers
   late AnimationController _pulseController;
   late AnimationController _rotationController;
   late AnimationController _particleController;
   late AnimationController _glowController;
   late AnimationController _fadeController;
 
+  // Animations
   late Animation<double> _pulseAnimation;
   late Animation<double> _glowAnimation;
   late Animation<double> _fadeAnimation;
 
+  // Brand colors from logo
   static const Color _primaryPurple = Color(0xFF7b4ce0);
   static const Color _darkNavy = Color(0xFF322d78);
   static const Color _coralPink = Color(0xFFf15f6d);
@@ -84,6 +73,7 @@ class _LoadingWidgetState extends State<LoadingWidget>
   }
 
   void _initAnimations() {
+    // Fade in animation
     _fadeController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -94,6 +84,7 @@ class _LoadingWidgetState extends State<LoadingWidget>
     );
     _fadeController.forward();
 
+    // Pulse animation for logo breathing effect
     _pulseController = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -103,16 +94,19 @@ class _LoadingWidgetState extends State<LoadingWidget>
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
+    // Rotation for particles
     _rotationController = AnimationController(
       duration: const Duration(seconds: 4),
       vsync: this,
     )..repeat();
 
+    // Particle orbit animation
     _particleController = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
     )..repeat();
 
+    // Glow intensity animation
     _glowController = AnimationController(
       duration: const Duration(milliseconds: 2000),
       vsync: this,
@@ -137,18 +131,44 @@ class _LoadingWidgetState extends State<LoadingWidget>
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: _fadeAnimation,
+      child: Material(
+        color: Colors.transparent,
+        child: Stack(
+          children: [
+            _buildGlassBackground(),
+            // Main content
+            Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _buildAnimatedLogo(),
+                  const SizedBox(height: 32),
+                  _buildLoadingIndicator(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGlassBackground() {
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
       child: Container(
-        color: widget.backgroundColor,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _buildAnimatedLogo(),
-              if (widget.showText) ...[
-                SizedBox(height: widget.size == LoadingSize.small ? 16 : 32),
-                _buildLoadingIndicator(),
-              ],
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              _darkNavy.withValues(alpha: 0.2),
+              _primaryPurple.withValues(alpha: 0.75),
+              _darkNavy.withValues(alpha: 0.9),
             ],
+            stops: const [0.0, 0.5, 1.0],
           ),
         ),
       ),
@@ -156,10 +176,9 @@ class _LoadingWidgetState extends State<LoadingWidget>
   }
 
   Widget _buildAnimatedLogo() {
-    final size = widget.size;
     return SizedBox(
-      width: size.containerSize.h,
-      height: size.containerSize.h,
+      width: 200.h,
+      height: 200.h,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -173,7 +192,6 @@ class _LoadingWidgetState extends State<LoadingWidget>
   }
 
   Widget _buildGlowRing() {
-    final size = widget.size;
     return AnimatedBuilder(
       animation: _rotationController,
       builder: (context, child) {
@@ -183,8 +201,8 @@ class _LoadingWidgetState extends State<LoadingWidget>
             animation: _glowAnimation,
             builder: (context, child) {
               return Container(
-                width: size.glowRingSize,
-                height: size.glowRingSize,
+                width: 180,
+                height: 180,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: SweepGradient(
@@ -209,7 +227,6 @@ class _LoadingWidgetState extends State<LoadingWidget>
   }
 
   Widget _buildOrbitingParticles() {
-    final size = widget.size;
     return AnimatedBuilder(
       animation: _particleController,
       builder: (context, child) {
@@ -219,17 +236,18 @@ class _LoadingWidgetState extends State<LoadingWidget>
             final angle =
                 (index * math.pi / 4) +
                 (_particleController.value * 2 * math.pi);
-            final radius = size.particleRadius;
+            final radius = 75.0;
             final x = math.cos(angle) * radius;
             final y = math.sin(angle) * radius;
 
+            // Alternate colors
             final colors = [_cyan, _coralPink, _primaryPurple, _darkNavy];
             final color = colors[index % colors.length];
 
-            final particleSize =
-                (size == LoadingSize.small ? 4.0 : 6.0) +
-                (math.sin(angle + _particleController.value * math.pi) *
-                    (size == LoadingSize.small ? 2 : 3));
+            // Size variation based on position
+            final size =
+                6.0 +
+                (math.sin(angle + _particleController.value * math.pi) * 3);
 
             return Transform.translate(
               offset: Offset(x, y),
@@ -237,16 +255,16 @@ class _LoadingWidgetState extends State<LoadingWidget>
                 animation: _glowAnimation,
                 builder: (context, child) {
                   return Container(
-                    width: particleSize,
-                    height: particleSize,
+                    width: size,
+                    height: size,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: color,
                       boxShadow: [
                         BoxShadow(
                           color: color.withValues(alpha: _glowAnimation.value),
-                          blurRadius: size == LoadingSize.small ? 8 : 12,
-                          spreadRadius: size == LoadingSize.small ? 1 : 2,
+                          blurRadius: 12,
+                          spreadRadius: 2,
                         ),
                       ],
                     ),
@@ -261,9 +279,6 @@ class _LoadingWidgetState extends State<LoadingWidget>
   }
 
   Widget _buildPulsingGlow() {
-    final size = widget.size;
-    final glowSize = size.logoSize * 1.2;
-
     return AnimatedBuilder(
       animation: Listenable.merge([_pulseAnimation, _glowAnimation]),
       builder: (context, child) {
@@ -273,20 +288,20 @@ class _LoadingWidgetState extends State<LoadingWidget>
         return Transform.scale(
           scale: scale,
           child: Container(
-            width: glowSize,
-            height: glowSize,
+            width: 120,
+            height: 120,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
                   color: _primaryPurple.withValues(alpha: glowIntensity * 0.5),
-                  blurRadius: size == LoadingSize.small ? 25 : 40,
-                  spreadRadius: size == LoadingSize.small ? 5 : 10,
+                  blurRadius: 40,
+                  spreadRadius: 10,
                 ),
                 BoxShadow(
                   color: _cyan.withValues(alpha: glowIntensity * 0.3),
-                  blurRadius: size == LoadingSize.small ? 40 : 60,
-                  spreadRadius: size == LoadingSize.small ? 10 : 20,
+                  blurRadius: 60,
+                  spreadRadius: 20,
                 ),
               ],
             ),
@@ -297,24 +312,23 @@ class _LoadingWidgetState extends State<LoadingWidget>
   }
 
   Widget _buildLogo() {
-    final size = widget.size;
     return AnimatedBuilder(
       animation: _pulseAnimation,
       builder: (context, child) {
         return Transform.scale(
           scale: _pulseAnimation.value,
           child: Container(
-            width: size.logoSize.h,
-            height: size.logoSize.h,
-            padding: EdgeInsets.all(size == LoadingSize.small ? 8 : 12),
+            width: 100.h,
+            height: 100.h,
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
                   color: _darkNavy.withValues(alpha: 0.3),
-                  blurRadius: size == LoadingSize.small ? 12 : 20,
-                  spreadRadius: size == LoadingSize.small ? 1 : 2,
+                  blurRadius: 20,
+                  spreadRadius: 2,
                 ),
               ],
             ),
@@ -326,8 +340,6 @@ class _LoadingWidgetState extends State<LoadingWidget>
   }
 
   Widget _buildLoadingIndicator() {
-    final isSmall = widget.size == LoadingSize.small;
-
     return AnimatedBuilder(
       animation: _glowAnimation,
       builder: (context, child) {
@@ -344,21 +356,20 @@ class _LoadingWidgetState extends State<LoadingWidget>
                     return AnimatedBuilder(
                       animation: _pulseController,
                       builder: (context, child) {
+                        // Stagger the animation for each dot
                         final offset =
                             math.sin(
                               (_pulseController.value * math.pi * 2) +
                                   (index * math.pi / 3),
                             ) *
-                            (isSmall ? 5 : 8);
+                            8;
 
                         return Transform.translate(
                           offset: Offset(0, offset),
                           child: Container(
-                            margin: EdgeInsets.symmetric(
-                              horizontal: isSmall ? 4 : 6,
-                            ),
-                            width: isSmall ? 8 : 12,
-                            height: isSmall ? 8 : 12,
+                            margin: const EdgeInsets.symmetric(horizontal: 6),
+                            width: 12,
+                            height: 12,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: [_cyan, _coralPink, _primaryPurple][index],
@@ -372,7 +383,7 @@ class _LoadingWidgetState extends State<LoadingWidget>
                                       ][index].withValues(
                                         alpha: _glowAnimation.value * 0.6,
                                       ),
-                                  blurRadius: isSmall ? 5 : 8,
+                                  blurRadius: 8,
                                   spreadRadius: 1,
                                 ),
                               ],
@@ -385,14 +396,14 @@ class _LoadingWidgetState extends State<LoadingWidget>
                 );
               }),
             ),
-            SizedBox(height: isSmall ? 12 : 24),
+            const SizedBox(height: 24),
             ShaderMask(
               shaderCallback: (bounds) {
                 return LinearGradient(
                   colors: [
-                    _darkNavy.withValues(alpha: 0.6),
-                    _darkNavy,
-                    _darkNavy.withValues(alpha: 0.6),
+                    Colors.white.withValues(alpha: 0.6),
+                    Colors.white,
+                    Colors.white.withValues(alpha: 0.6),
                   ],
                   stops: [
                     (_glowAnimation.value - 0.3).clamp(0.0, 1.0),
@@ -405,7 +416,7 @@ class _LoadingWidgetState extends State<LoadingWidget>
                 context.localizations.loadingText,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: isSmall ? 14 : 18,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 1.2,
                 ),

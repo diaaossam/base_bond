@@ -1,5 +1,6 @@
 import 'package:bond/core/enum/order_type.dart';
 import 'package:bond/core/services/api/dio_consumer.dart';
+import 'package:bond/core/services/api/end_points.dart';
 import 'package:bond/features/orders/data/models/request/cart_params.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -9,7 +10,7 @@ import '../models/response/orders.dart';
 import '../models/response/points_model.dart';
 
 abstract class OrderRemoteDataSource {
-  Future<num> placeOrder({required CartParams placeOrderModel});
+  Future<Orders> placeOrder({required CartParams placeOrderModel});
 
   Future<CouponModel> applyPromoCode({required String code});
 
@@ -65,8 +66,11 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
   }
 
   @override
-  Future<num> placeOrder({required CartParams placeOrderModel}) {
-    // TODO: implement placeOrder
-    throw UnimplementedError();
+  Future<Orders> placeOrder({required CartParams placeOrderModel}) async {
+    return await dioConsumer
+        .post(EndPoints.orders)
+        .body(placeOrderModel.toJson())
+        .factory((json) => Orders.fromJson(json['data']))
+        .execute();
   }
 }

@@ -172,7 +172,7 @@ class _PaymentOptionState extends State<_PaymentOption> {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(4.w),
+            padding: EdgeInsets.all(8.w),
             decoration: BoxDecoration(
               color: colorScheme.surface,
               borderRadius: BorderRadius.circular(10),
@@ -184,7 +184,7 @@ class _PaymentOptionState extends State<_PaymentOption> {
                 ),
               ],
             ),
-            child: AppImage.asset(widget.image, height: 28, width: 28),
+            child: AppImage.asset(widget.image, height: 20, width: 20),
           ),
           12.horizontalSpace,
           Expanded(

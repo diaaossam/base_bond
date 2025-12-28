@@ -183,5 +183,6 @@
   "enterAddressDetails": "Enter address details",
   "enterNotes": "Enter additional notes (optional)",
   "activeSubstance": "المادة الفعالة",
-  "logoutBody": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
+  "logoutBody": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+  "loadingText": "جاري التحميل..."
 }

@@ -16,7 +16,6 @@ class EndPoints {
   static const String login = "auth/login";
   static const String update = "profile/update";
   static const String socialLogin = "auth/social";
-  static const String sendOtp = "auth/send-phone-otp";
   static const String verifyUser = "auth/verify-phone";
   static String logOut = "profile/logout";
   static String getUserData = "user/profile";
@@ -26,18 +25,10 @@ class EndPoints {
   ///////////////// Settings////////////////
   static const String appSettings = "app-settings";
 
-  ///////// Public ////////////////////////
-
-  static const String introOnBoarding = "intro-images";
-  static const String uploadImage = "temp-media";
-  static deleteImage(String uid) => "profile/delete-image$uid";
-  static const String skinProblem = "skin-problems";
-
   //////////////////////////// Notification //////////////////
   static const String notfications = "notification";
   static const String updateNotfications = "profile/update-notification";
   static const String markAllAsRead = "mark-all-notifications-as-read";
-  static const String deletionReasons = "deletion-reasons";
 
   //////////////////// Settings /////////////////////////////
   static const String language = "profile/language";

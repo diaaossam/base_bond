@@ -171,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "lightMode": MessageLookupByLibrary.simpleMessage("الوضع النهارى"),
     "loading": MessageLookupByLibrary.simpleMessage("جارى التحميل"),
+    "loadingText": MessageLookupByLibrary.simpleMessage("جاري التحميل..."),
     "locationOnMap": MessageLookupByLibrary.simpleMessage(
       "العنوان علي الخريطة",
     ),

@@ -1,5 +1,6 @@
 import 'package:bond/features/orders/data/models/request/cart_params.dart';
 import 'package:bond/features/orders/data/models/response/coupon_model.dart';
+import 'package:bond/features/orders/data/models/response/orders.dart';
 import 'package:bond/features/orders/data/models/response/points_model.dart';
 import 'package:equatable/equatable.dart';
 
@@ -7,7 +8,7 @@ class CartStateData extends Equatable {
   final List<CartItem> cartList;
   final CouponModel? couponModel;
   final PointsModel? pointsModel;
-  final num? orderId;
+  final Orders? orders;
   final String? couponCode;
   final double amount;
   final num totalCount;
@@ -20,7 +21,7 @@ class CartStateData extends Equatable {
     this.cartList = const [],
     this.couponModel,
     this.pointsModel,
-    this.orderId,
+    this.orders,
     this.couponCode,
     this.amount = 0.0,
     this.totalCount = 0,
@@ -34,7 +35,7 @@ class CartStateData extends Equatable {
     List<CartItem>? cartList,
     CouponModel? couponModel,
     PointsModel? pointsModel,
-    num? orderId,
+    Orders? orders,
     String? couponCode,
     double? amount,
     num? totalCount,
@@ -47,7 +48,7 @@ class CartStateData extends Equatable {
       cartList: cartList ?? this.cartList,
       couponModel: couponModel ?? this.couponModel,
       pointsModel: pointsModel ?? this.pointsModel,
-      orderId: orderId ?? this.orderId,
+      orders: orders ?? this.orders,
       couponCode: couponCode ?? this.couponCode,
       amount: amount ?? this.amount,
       totalCount: totalCount ?? this.totalCount,
@@ -60,16 +61,16 @@ class CartStateData extends Equatable {
 
   @override
   List<Object?> get props => [
-        cartList,
-        couponModel,
-        pointsModel,
-        orderId,
-        couponCode,
-        amount,
-        totalCount,
-        couponDiscount,
-        pointDiscount,
-        isFreeDelivery,
-        availablePoints,
-      ];
+    cartList,
+    couponModel,
+    pointsModel,
+    orders,
+    couponCode,
+    amount,
+    totalCount,
+    couponDiscount,
+    pointDiscount,
+    isFreeDelivery,
+    availablePoints,
+  ];
 }

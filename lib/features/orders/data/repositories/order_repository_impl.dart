@@ -64,7 +64,7 @@ class OrderRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, num>> placeOrder({
+  Future<Either<Failure, Orders>> placeOrder({
     required CartParams placeOrderModel,
   }) async {
     final response = await handleApi(
