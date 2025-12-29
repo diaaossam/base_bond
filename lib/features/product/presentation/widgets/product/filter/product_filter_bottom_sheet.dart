@@ -2,6 +2,7 @@ import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/product/data/models/request/product_params.dart';
+import 'package:bond/features/product/presentation/widgets/product/filter/active_substances_filter_section.dart';
 import 'package:bond/features/product/presentation/widgets/product/filter/brand_filter_section.dart';
 import 'package:bond/features/product/presentation/widgets/product/filter/category_filter_section.dart';
 import 'package:bond/features/product/presentation/widgets/product/filter/filter_header.dart';
@@ -141,6 +142,17 @@ class _ProductFilterBottomSheetState extends State<ProductFilterBottomSheet> {
                       setState(() {
                         _filterParams = _filterParams.copyWith(
                           brandId: brandId,
+                        );
+                      });
+                    },
+                  ),
+                  24.verticalSpace,
+                  ActiveSubstancesFilterSection(
+                    selectedActiveSubstanceId: _filterParams.activeSubstanceId,
+                    onActiveSubstanceSelected: (activeSubstanceId) {
+                      setState(() {
+                        _filterParams = _filterParams.copyWith(
+                          activeSubstanceId: activeSubstanceId,
                         );
                       });
                     },

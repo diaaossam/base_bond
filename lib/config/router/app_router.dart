@@ -21,6 +21,7 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(page: AllProductsRoute.page),
+    AutoRoute(page: AllActiveSubstancesRoute.page),
     AutoRoute(page: ProductDetailsRoute.page),
     AutoRoute(page: PickLocationRoute.page),
     AutoRoute(page: AddAddressRoute.page),

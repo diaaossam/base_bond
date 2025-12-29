@@ -83,6 +83,8 @@ import '../../features/product/data/datasources/product_remote_data_source.dart'
     as _i1;
 import '../../features/product/data/repositories/product_repository_impl.dart'
     as _i1040;
+import '../../features/product/presentation/cubit/active_substances/active_substances_cubit.dart'
+    as _i862;
 import '../../features/product/presentation/cubit/brand/brand_cubit.dart'
     as _i652;
 import '../../features/product/presentation/cubit/category/category_cubit.dart'
@@ -291,6 +293,9 @@ extension GetItInjectableX on _i174.GetIt {
         tokenRepository: gh<_i734.TokenRepository>(),
         remoteDataSource: gh<_i107.AuthRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i862.ActiveSubstancesCubit>(
+      () => _i862.ActiveSubstancesCubit(gh<_i1040.ProductRepositoryImpl>()),
     );
     gh.factory<_i652.BrandCubit>(
       () => _i652.BrandCubit(gh<_i1040.ProductRepositoryImpl>()),

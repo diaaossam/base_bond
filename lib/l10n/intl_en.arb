@@ -184,6 +184,8 @@
   "enterAddressDetails": "Enter address details",
   "enterNotes": "Enter additional notes (optional)",
   "activeSubstance": "المادة الفعالة",
+  "activeSubstances": "Active Substances",
+  "allActiveSubstances": "All Active Substances",
   "logoutBody": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
   "loadingText": "جاري التحميل...",
   "noOrdersFound": "لا توجد طلبات",

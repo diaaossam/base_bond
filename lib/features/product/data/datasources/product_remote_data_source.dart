@@ -2,6 +2,7 @@ import 'package:bond/features/product/data/models/request/product_params.dart';
 import 'package:bond/features/product/data/models/response/product_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 import '../../../../core/global_models/generic_model.dart';
 import '../../../../core/services/api/dio_consumer.dart';
 import '../../../../core/services/api/end_points.dart';
@@ -15,6 +16,8 @@ abstract class ProductRemoteDataSource {
   Future<List<CategoryModel>> getCategories();
 
   Future<List<GenericModel>> getBrands();
+
+  Future<List<GenericModel>> getActiveSubstances();
 
   Future<Unit> toggleWishList(num productId);
 
@@ -70,9 +73,19 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
   @override
   Future<List<ProductModel>> getWishList() async {
-    final data =await dioConsumer
+    final data = await dioConsumer
         .get<List<ProductModel>>(EndPoints.favourites)
         .factory(ProductModel.fromJsonList)
+        .execute();
+
+    return data;
+  }
+
+  @override
+  Future<List<GenericModel>> getActiveSubstances() async {
+    final data = await dioConsumer
+        .get<List<GenericModel>>(EndPoints.activeSubstances)
+        .factory(GenericModel.fromJsonList)
         .execute();
 
     return data;

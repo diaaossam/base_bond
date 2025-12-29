@@ -7,6 +7,7 @@ class ProductParams extends Equatable {
     this.sortBy,
     this.categoryId,
     this.brandId,
+    this.activeSubstanceId,
     this.priceFrom,
     this.priceTo,
     this.isFeatured,
@@ -20,6 +21,7 @@ class ProductParams extends Equatable {
 
   final int? categoryId;
   final int? brandId;
+  final int? activeSubstanceId;
 
   final int? priceFrom;
   final int? priceTo;
@@ -34,6 +36,7 @@ class ProductParams extends Equatable {
     String? sortBy,
     int? categoryId,
     int? brandId,
+    int? activeSubstanceId,
     int? priceFrom,
     int? priceTo,
     bool? isFeatured,
@@ -46,6 +49,7 @@ class ProductParams extends Equatable {
       sortBy: sortBy ?? this.sortBy,
       categoryId: categoryId ?? this.categoryId,
       brandId: brandId ?? this.brandId,
+      activeSubstanceId: activeSubstanceId ?? this.activeSubstanceId,
       priceFrom: priceFrom ?? this.priceFrom,
       priceTo: priceTo ?? this.priceTo,
       isFeatured: isFeatured ?? this.isFeatured,
@@ -61,6 +65,7 @@ class ProductParams extends Equatable {
       if (sortBy != null) 'sort_by': sortBy,
       if (categoryId != null) 'category_id': categoryId,
       if (brandId != null) 'brand_id': brandId,
+      if (activeSubstanceId != null) 'active_substance_id': activeSubstanceId,
       if (priceFrom != null) 'price_from': priceFrom,
       if (priceTo != null) 'price_to': priceTo,
       if (isFeatured != null) 'is_featured': isFeatured! ? 1 : 0,
@@ -76,6 +81,7 @@ class ProductParams extends Equatable {
     sortBy,
     categoryId,
     brandId,
+    activeSubstanceId,
     priceFrom,
     priceTo,
     isFeatured,

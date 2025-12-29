@@ -1489,6 +1489,26 @@ class S {
     );
   }
 
+  /// `Active Substances`
+  String get activeSubstances {
+    return Intl.message(
+      'Active Substances',
+      name: 'activeSubstances',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Active Substances`
+  String get allActiveSubstances {
+    return Intl.message(
+      'All Active Substances',
+      name: 'allActiveSubstances',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `هل أنت متأكد أنك تريد تسجيل الخروج؟`
   String get logoutBody {
     return Intl.message(

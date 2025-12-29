@@ -13,7 +13,7 @@ class GenericModel extends Equatable {
 
   factory GenericModel.fromJson(Map<String, dynamic> map) => GenericModel(
     id: map['id'],
-    title: map['title'],
+    title: map['title'] ?? map['name'],
     shippingPrice: map['shipping_price'],
   );
 

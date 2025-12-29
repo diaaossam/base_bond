@@ -148,5 +148,8 @@
   "outForDelivery_desc": "طلبك في الطريق إليك",
   "delivered_desc": "تم توصيل طلبك بنجاح",
   "returns_desc": "تم إرجاع الطلب",
-  "canceled_desc": "تم إلغاء الطلب"
+  "canceled_desc": "تم إلغاء الطلب",
+  "activeSubstance": "المادة الفعالة",
+  "activeSubstances": "المواد الفعالة",
+  "allActiveSubstances": "جميع المواد الفعالة"
 }

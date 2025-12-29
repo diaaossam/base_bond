@@ -23,6 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "activeSubstance": MessageLookupByLibrary.simpleMessage("المادة الفعالة"),
+    "activeSubstances": MessageLookupByLibrary.simpleMessage(
+      "Active Substances",
+    ),
     "addAddressDeleivery": MessageLookupByLibrary.simpleMessage(
       "Add Delivery Address",
     ),
@@ -49,6 +52,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Address updated successfully",
     ),
     "all": MessageLookupByLibrary.simpleMessage("All"),
+    "allActiveSubstances": MessageLookupByLibrary.simpleMessage(
+      "All Active Substances",
+    ),
     "allCategories": MessageLookupByLibrary.simpleMessage("جميع الأقسام"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage("لديك حساب !"),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),

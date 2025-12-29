@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/features/product/data/models/request/product_params.dart';
+import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/extensions/color_extensions.dart';
@@ -147,17 +148,7 @@ class CategoryItemDesignState extends State<CategoryItemDesign>
                         ),
                       ),
                       alignment: Alignment.center,
-                      child: Text(
-                        widget.category.title ?? '',
-                        style: TextStyle(
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w600,
-                          color: context.colorScheme.onSurface,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                      ),
+                      child:AppText(text: widget.category.title ?? '',textSize: 10,fontWeight: FontWeight.w500,),
                     ),
                   ),
                 ],

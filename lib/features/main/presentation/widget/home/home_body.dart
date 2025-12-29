@@ -8,6 +8,7 @@ import 'package:bond/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../product/presentation/widgets/active_substance/home_active_substances_section.dart';
 import '../../../../product/presentation/widgets/category/home_categories_section.dart';
 import 'banner/banners_design.dart';
 import '../../../../product/data/models/request/product_params.dart';
@@ -59,6 +60,8 @@ class HomeBody extends StatelessWidget {
         slivers: [
           HomeBannersImage(),
           const HomeCategoriesSection(),
+          SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+          const HomeActiveSubstancesSection(),
           SliverToBoxAdapter(child: SizedBox(height: 12.h)),
           ProductSection(
             title: context.localizations.bestSellers,

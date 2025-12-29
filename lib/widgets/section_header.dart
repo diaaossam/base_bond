@@ -31,7 +31,7 @@ class SectionHeader extends StatelessWidget {
             children: [
               AppText(
                 text: title,
-                textSize: 13,
+                textSize: 11,
                 fontWeight: FontWeight.w700,
               ),
               SizedBox(height: 4.h),
@@ -72,7 +72,7 @@ class SectionHeader extends StatelessWidget {
                     children: [
                       AppText(
                         text: actionText!,
-                        textSize: 10,
+                        textSize: 8,
                         fontWeight: FontWeight.w500,
                         color: context.colorScheme.primary,
                       ),

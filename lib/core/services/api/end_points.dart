@@ -2,6 +2,7 @@ class EndPoints {
   ////////////////////// Public ///////////////////
   static const String sliders = "banners";
   static const String categories = "categories";
+  static const String activeSubstances = "active-substances";
   static const String brands = "brands";
 
   /////////////////////// Location //////////////////

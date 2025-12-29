@@ -37,6 +37,13 @@ class ProductRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
+  Future<Either<Failure, List<GenericModel>>> getActiveSubstances() async {
+    final response = await handleApi(
+      () => productRemoteDataSource.getActiveSubstances(),
+    );
+    return response;
+  }
+
   Future<Either<Failure, List<GenericModel>>> getBrands() async {
     final response = await handleApi(() => productRemoteDataSource.getBrands());
     return response;
