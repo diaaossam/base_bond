@@ -41,6 +41,8 @@ import '../../features/auth/data/datasources/auth_remote_data_source.dart'
 import '../../features/auth/data/repositories/auth_repo_impl.dart' as _i662;
 import '../../features/auth/presentation/cubit/login_cubit/login_cubit.dart'
     as _i153;
+import '../../features/auth/presentation/cubit/logout/logout_cubit.dart'
+    as _i401;
 import '../../features/auth/presentation/cubit/otp/otp_cubit.dart' as _i90;
 import '../../features/auth/presentation/cubit/register_cubit/register_cubit.dart'
     as _i1006;
@@ -202,15 +204,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i162.AppDataSource>(
       () => _i162.AppRemoteDataSourceImpl(dioConsumer: gh<_i384.DioConsumer>()),
     );
-    gh.factory<_i107.AuthRemoteDataSource>(
-      () => _i107.AuthRemoteDataSourceImpl(
-        dioConsumer: gh<_i384.DioConsumer>(),
-        googleAccountLoginService: gh<_i845.GoogleAccountLoginService>(),
-        sharedPreferences: gh<_i460.SharedPreferences>(),
-        deviceHelper: gh<_i620.DeviceHelper>(),
-        appleAccountLoginService: gh<_i946.AppleAccountLoginService>(),
-      ),
-    );
     gh.lazySingleton<_i1040.ProductRepositoryImpl>(
       () => _i1040.ProductRepositoryImpl(
         productRemoteDataSource: gh<_i1.ProductRemoteDataSource>(),
@@ -230,6 +223,16 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i915.WishlistCubit>(
       () => _i915.WishlistCubit(gh<_i1040.ProductRepositoryImpl>()),
+    );
+    gh.factory<_i107.AuthRemoteDataSource>(
+      () => _i107.AuthRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+        googleAccountLoginService: gh<_i845.GoogleAccountLoginService>(),
+        sharedPreferences: gh<_i460.SharedPreferences>(),
+        deviceHelper: gh<_i620.DeviceHelper>(),
+        appleAccountLoginService: gh<_i946.AppleAccountLoginService>(),
+        tokenRepository: gh<_i734.TokenRepository>(),
+      ),
     );
     gh.lazySingleton<_i662.AuthRepositoryImpl>(
       () => _i662.AuthRepositoryImpl(
@@ -311,6 +314,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i153.LoginCubit>(
       () => _i153.LoginCubit(gh<_i662.AuthRepositoryImpl>()),
+    );
+    gh.factory<_i401.LogoutCubit>(
+      () => _i401.LogoutCubit(gh<_i662.AuthRepositoryImpl>()),
     );
     gh.factory<_i90.OtpCubit>(
       () => _i90.OtpCubit(gh<_i662.AuthRepositoryImpl>()),

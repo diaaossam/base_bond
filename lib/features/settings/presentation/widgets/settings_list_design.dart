@@ -71,9 +71,6 @@ class SettingsListDesign extends StatelessWidget {
             text: context.localizations.logOut,
             press: () => LogoutDialog.show(
               context,
-              onConfirm: () {
-                // TODO: Add your logout logic here
-              },
             ),
             image: Assets.images.logout.path,
           ),

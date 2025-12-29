@@ -271,7 +271,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Order has been returned",
     ),
     "otpBody": MessageLookupByLibrary.simpleMessage(
-      "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
+      "قمنا بإرسال رمز مُكوّن من 6 أرقام إلى رقم هاتفك",
     ),
     "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
     "outForDeleivery": MessageLookupByLibrary.simpleMessage("خرج للتوصيل"),

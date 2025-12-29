@@ -12,11 +12,13 @@ import '../../../../config/dependencies/injectable_dependencies.dart';
 class AllProductsScreen extends StatelessWidget {
   final String title;
   final ProductParams initialParams;
+  final bool fromHome;
 
   const AllProductsScreen({
     super.key,
     required this.title,
     required this.initialParams,
+    this.fromHome = false,
   });
 
   @override
@@ -28,7 +30,7 @@ class AllProductsScreen extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: CustomAppBar(title: title),
-        body: AllProductBody(initialParams: initialParams),
+        body: AllProductBody(initialParams: initialParams, fromHome: fromHome),
       ),
     );
   }

@@ -26,15 +26,26 @@ class HomeBody extends StatelessWidget {
           leadingWidth: SizeConfig.screenWidth * 0.6,
           leading: HomeInfoCard(),
           actions: [
-            Container(
-              padding: EdgeInsets.all(8.w),
-              decoration: BoxDecoration(
-                color: context.colorScheme.surfaceContainer,
-                shape: BoxShape.circle,
-              ),
-              child: AppImage.asset(
-                Assets.icons.searchNormal,
-                color: context.colorScheme.shadow,
+            GestureDetector(
+              onTap: () {
+                context.router.push(
+                  AllProductsRoute(
+                    title: context.localizations.products,
+                    initialParams: ProductParams(page: 1),
+                    fromHome: true
+                  ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.all(8.w),
+                decoration: BoxDecoration(
+                  color: context.colorScheme.surfaceContainer,
+                  shape: BoxShape.circle,
+                ),
+                child: AppImage.asset(
+                  Assets.icons.searchNormal,
+                  color: context.colorScheme.shadow,
+                ),
               ),
             ),
             10.horizontalSpace,

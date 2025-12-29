@@ -129,6 +129,7 @@ class AllProductsRoute extends _i22.PageRouteInfo<AllProductsRouteArgs> {
     _i23.Key? key,
     required String title,
     required _i25.ProductParams initialParams,
+    bool fromHome = false,
     List<_i22.PageRouteInfo>? children,
   }) : super(
          AllProductsRoute.name,
@@ -136,6 +137,7 @@ class AllProductsRoute extends _i22.PageRouteInfo<AllProductsRouteArgs> {
            key: key,
            title: title,
            initialParams: initialParams,
+           fromHome: fromHome,
          ),
          initialChildren: children,
        );
@@ -150,6 +152,7 @@ class AllProductsRoute extends _i22.PageRouteInfo<AllProductsRouteArgs> {
         key: args.key,
         title: args.title,
         initialParams: args.initialParams,
+        fromHome: args.fromHome,
       );
     },
   );
@@ -160,6 +163,7 @@ class AllProductsRouteArgs {
     this.key,
     required this.title,
     required this.initialParams,
+    this.fromHome = false,
   });
 
   final _i23.Key? key;
@@ -168,9 +172,11 @@ class AllProductsRouteArgs {
 
   final _i25.ProductParams initialParams;
 
+  final bool fromHome;
+
   @override
   String toString() {
-    return 'AllProductsRouteArgs{key: $key, title: $title, initialParams: $initialParams}';
+    return 'AllProductsRouteArgs{key: $key, title: $title, initialParams: $initialParams, fromHome: $fromHome}';
   }
 
   @override
@@ -179,11 +185,16 @@ class AllProductsRouteArgs {
     if (other is! AllProductsRouteArgs) return false;
     return key == other.key &&
         title == other.title &&
-        initialParams == other.initialParams;
+        initialParams == other.initialParams &&
+        fromHome == other.fromHome;
   }
 
   @override
-  int get hashCode => key.hashCode ^ title.hashCode ^ initialParams.hashCode;
+  int get hashCode =>
+      key.hashCode ^
+      title.hashCode ^
+      initialParams.hashCode ^
+      fromHome.hashCode;
 }
 
 /// generated route for

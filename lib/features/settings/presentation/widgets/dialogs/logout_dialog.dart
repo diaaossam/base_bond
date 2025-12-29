@@ -1,21 +1,23 @@
 import 'dart:math' as math;
 
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/features/auth/presentation/cubit/logout/logout_cubit.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../config/dependencies/injectable_dependencies.dart';
+
 class LogoutDialog extends StatefulWidget {
-  final VoidCallback onConfirm;
+  const LogoutDialog({super.key});
 
-  const LogoutDialog({super.key, required this.onConfirm});
-
-  static Future<bool?> show(
-    BuildContext context, {
-    required VoidCallback onConfirm,
-  }) {
+  static Future<bool?> show(BuildContext context) {
     return showGeneralDialog<bool>(
       context: context,
       barrierDismissible: true,
@@ -23,7 +25,7 @@ class LogoutDialog extends StatefulWidget {
       barrierColor: Colors.black.withValues(alpha: 0.6),
       transitionDuration: const Duration(milliseconds: 350),
       pageBuilder: (context, animation, secondaryAnimation) {
-        return LogoutDialog(onConfirm: onConfirm);
+        return LogoutDialog();
       },
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         final curvedAnimation = CurvedAnimation(
@@ -70,71 +72,85 @@ class _LogoutDialogState extends State<LogoutDialog>
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 24.w),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24.r),
-          color: context.colorScheme.surfaceContainer,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.15),
-              blurRadius: 30,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(24.r),
-          child: Material(
-            color: Colors.transparent,
-            child: Padding(
-              padding: EdgeInsets.all(24.w),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildAnimatedIcon(),
-                  20.verticalSpace,
-                  AppText.title(
-                    text: context.localizations.logOut,
-                    fontWeight: FontWeight.w700,
-                    textSize: 13,
-                  ),
-                  12.verticalSpace,
-                  AppText(
-                    text: context.localizations.logoutBody,
-                    textSize: 11,
-                    align: TextAlign.center,
-                    color: context.colorScheme.shadow,
-                  ),
-                  28.verticalSpace,
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CustomButton.outline(
-                          borderColor: context.colorScheme.error,
-                          textColor: context.colorScheme.error,
-                          text: context.localizations.cancel,
-                          press: () =>Navigator.pop(context),
-                        ),
-                      ),
-                      12.horizontalSpace,
-                      Expanded(
-                        child: SizedBox(
-                          height: 50.h,
-                          child: CustomButton(
-                            backgroundColor: context.colorScheme.error,
-                            text: context.localizations.logOut,
-                            press: () {
-                              widget.onConfirm();
-                              Navigator.pop(context, true);
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+    return BlocProvider(
+      create: (context) => sl<LogoutCubit>(),
+      child: Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 24.w),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24.r),
+            color: context.colorScheme.surfaceContainer,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.15),
+                blurRadius: 30,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(24.r),
+            child: Material(
+              color: Colors.transparent,
+              child: Padding(
+                padding: EdgeInsets.all(24.w),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildAnimatedIcon(),
+                    20.verticalSpace,
+                    AppText.title(
+                      text: context.localizations.logOut,
+                      fontWeight: FontWeight.w700,
+                      textSize: 13,
+                    ),
+                    12.verticalSpace,
+                    AppText(
+                      text: context.localizations.logoutBody,
+                      textSize: 11,
+                      align: TextAlign.center,
+                      color: context.colorScheme.shadow,
+                    ),
+                    28.verticalSpace,
+                    BlocConsumer<LogoutCubit, BaseState<void>>(
+                      listener: (context, state) {
+                        if (state.isSuccess) {
+                          context.router.pushAndPopUntil(
+                            LoginRoute(),
+                            predicate: (route) => false,
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        return Row(
+                          children: [
+                            Expanded(
+                              child: CustomButton.outline(
+                                borderColor: context.colorScheme.error,
+                                textColor: context.colorScheme.error,
+                                text: context.localizations.cancel,
+                                press: () => Navigator.pop(context),
+                              ),
+                            ),
+                            12.horizontalSpace,
+                            Expanded(
+                              child: SizedBox(
+                                height: 50.h,
+                                child: CustomButton(
+                                  backgroundColor: context.colorScheme.error,
+                                  isLoading: state.isLoading,
+                                  text: context.localizations.logOut,
+                                  press: () =>
+                                      context.read<LogoutCubit>().logout(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,10 +1,11 @@
+import 'package:bond/config/helper/token_repository.dart';
 import 'package:bond/core/services/caching/common_caching.dart';
+import 'package:bond/core/utils/api_config.dart';
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:bond/features/auth/data/models/response/user_model.dart';
 import 'package:bond/features/auth/data/models/response/user_model_helper.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../config/helper/device_helper.dart';
 import '../../../../core/enum/social_enum.dart';
@@ -39,6 +40,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final SharedPreferences sharedPreferences;
   final GoogleAccountLoginService googleAccountLoginService;
   final AppleAccountLoginService appleAccountLoginService;
+  final TokenRepository tokenRepository;
   final DeviceHelper deviceHelper;
 
   AuthRemoteDataSourceImpl({
@@ -47,6 +49,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required this.sharedPreferences,
     required this.deviceHelper,
     required this.appleAccountLoginService,
+    required this.tokenRepository,
   });
 
   @override
@@ -63,7 +66,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .cacheToken()
         .execute();
     UserDataService().setUserData(response);
-    CommonCaching.address=(response as UserModel).address;
+    CommonCaching.address = (response as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
     return response;
   }
@@ -78,7 +81,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<bool> logOut() async {
-    return true;
+    final response = await dioConsumer
+        .post(EndPoints.logOut)
+        .factory((json) => true)
+        .execute();
+    await sharedPreferences.clear();
+    await tokenRepository.deleteToken();
+    await ApiConfig().init();
+    return response;
   }
 
   @override

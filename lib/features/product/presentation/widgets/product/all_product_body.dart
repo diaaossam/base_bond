@@ -21,8 +21,8 @@ import '../../../data/models/response/product_model.dart';
 
 class AllProductBody extends StatefulWidget {
   final ProductParams initialParams;
-
-  const AllProductBody({super.key, required this.initialParams});
+  final bool fromHome;
+  const AllProductBody({super.key, required this.initialParams, required this.fromHome});
 
   @override
   State<AllProductBody> createState() => _AllProductBodyState();
@@ -39,6 +39,7 @@ class _AllProductBodyState extends State<AllProductBody> {
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         CustomSliverAppBar(
+          showLeading: false,
           titleWidget: CustomTextFormField(
             hintText: context.localizations.searchHint,
             onChanged: _onQueryChanged,
@@ -66,6 +67,7 @@ class _AllProductBodyState extends State<AllProductBody> {
       ],
       body: CustomScrollView(
         slivers: [
+          SliverToBoxAdapter(child: SizedBox(height: 20.h,),),
           BlocBuilder<WishlistCubit, BaseState>(
             builder: (context, state) {
               return ProductsPaginationGridList(

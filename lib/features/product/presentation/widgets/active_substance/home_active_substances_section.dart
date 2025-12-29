@@ -6,6 +6,7 @@ import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/global_models/generic_model.dart';
 import 'package:bond/features/product/presentation/cubit/active_substances/active_substances_cubit.dart';
 import 'package:bond/features/product/presentation/widgets/active_substance/active_substance_chip_design.dart';
+import 'package:bond/features/product/presentation/widgets/active_substance/substance_loading_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,7 @@ class HomeActiveSubstancesSection extends StatelessWidget {
       child: BlocBuilder<ActiveSubstancesCubit, BaseState<List<GenericModel>>>(
         builder: (context, state) {
           if (state.isLoading) {
-            return SliverToBoxAdapter(child: _buildShimmer());
+            return SubstanceLoadingShimmer();
           }
 
           final activeSubstances = state.data ?? [];
@@ -35,7 +36,8 @@ class HomeActiveSubstancesSection extends StatelessWidget {
           return SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(borderRadius: BorderRadiusGeometry.circular(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadiusGeometry.circular(20),
                 color: context.colorScheme.surfaceContainer,
                 boxShadow: [
                   BoxShadow(
@@ -55,77 +57,39 @@ class HomeActiveSubstancesSection extends StatelessWidget {
                       context.router.push(const AllActiveSubstancesRoute());
                     },
                   ),
-                  _buildAnimatedChips(displaySubstances),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Wrap(
+                      spacing: 6.w,
+                      runSpacing: 8.h,
+                      children: List.generate(displaySubstances.length, (
+                        index,
+                      ) {
+                        final substance = displaySubstances[index];
+                        return TweenAnimationBuilder<double>(
+                          duration: Duration(milliseconds: 400 + (index * 50)),
+                          tween: Tween(begin: 0.0, end: 1.0),
+                          curve: Curves.easeOutBack,
+                          builder: (context, value, child) {
+                            return Transform.scale(
+                              scale: value,
+                              child: ActiveSubstanceChipDesign(
+                                title: substance.title ?? '',
+                                id: substance.id ?? 0,
+                                index: index,
+                              ),
+                            );
+                          },
+                        );
+                      }),
+                    ),
+                  ),
                   10.verticalSpace,
                 ],
               ),
             ),
           );
         },
-      ),
-    );
-  }
-
-  Widget _buildAnimatedChips(List<GenericModel> substances) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: Wrap(
-        spacing: 6.w,
-        runSpacing: 8.h,
-        children: List.generate(substances.length, (index) {
-          final substance = substances[index];
-          return TweenAnimationBuilder<double>(
-            duration: Duration(milliseconds: 400 + (index * 50)),
-            tween: Tween(begin: 0.0, end: 1.0),
-            curve: Curves.easeOutBack,
-            builder: (context, value, child) {
-              return Transform.scale(
-                scale: value,
-                child: ActiveSubstanceChipDesign(
-                  title: substance.title ?? '',
-                  id: substance.id ?? 0,
-                  index: index,
-                ),
-              );
-            },
-          );
-        }),
-      ),
-    );
-  }
-
-  Widget _buildShimmer() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Title shimmer
-          Container(
-            width: 150.w,
-            height: 20.h,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          SizedBox(height: 16.h),
-          // Chips shimmer
-          Wrap(
-            spacing: 8.w,
-            runSpacing: 10.h,
-            children: List.generate(6, (index) {
-              return Container(
-                width: 100.w + (index * 10),
-                height: 36.h,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              );
-            }),
-          ),
-        ],
       ),
     );
   }

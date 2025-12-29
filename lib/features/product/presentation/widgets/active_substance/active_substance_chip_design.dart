@@ -4,7 +4,6 @@ import 'package:bond/features/product/data/models/request/product_params.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/extensions/color_extensions.dart';
 
 class ActiveSubstanceChipDesign extends StatefulWidget {
   final String title;
