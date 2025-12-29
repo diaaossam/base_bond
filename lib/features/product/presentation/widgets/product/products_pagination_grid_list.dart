@@ -37,12 +37,14 @@ class ProductsPaginationGridList extends StatelessWidget {
               index: index,
               isLiked: item.isAddedToFavourite ?? false,
             ),
+            newPageProgressIndicatorBuilder: (context) => LoadingWidget(size: LoadingSize.small,),
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: .98,
             mainAxisSpacing: 10.h,
             crossAxisSpacing: 10.h,
+
           ),
         ),
       ),

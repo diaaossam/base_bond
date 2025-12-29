@@ -8,8 +8,8 @@ import '../../../../../gen/assets.gen.dart';
 import '../../../../../widgets/image_picker/app_image.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 
-class EmptyCartDesign extends StatelessWidget {
-  const EmptyCartDesign({super.key});
+class EmptyAddressDesign extends StatelessWidget {
+  const EmptyAddressDesign({super.key});
 
   @override
   Widget build(BuildContext context) {

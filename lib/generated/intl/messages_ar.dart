@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "brand": MessageLookupByLibrary.simpleMessage("العلامة التجارية"),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+    "canceled_desc": MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب"),
     "category": MessageLookupByLibrary.simpleMessage("التصنيف"),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage("اختر من المعرض"),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("اختر صورة"),
@@ -75,12 +76,18 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل أنت متأكد من تقديم هذا الطلب؟",
     ),
     "confirmOrderTitle": MessageLookupByLibrary.simpleMessage("تأكيد الطلب"),
+    "confirmed_desc": MessageLookupByLibrary.simpleMessage(
+      "تم تأكيد طلبك وجاري تجهيزه",
+    ),
     "currentStatus": MessageLookupByLibrary.simpleMessage("الحالية"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("العنوان الافتراضي"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
     "deleteAddress": MessageLookupByLibrary.simpleMessage("حذف العنوان"),
     "deleteAddressConfirm": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد من حذف هذا العنوان؟",
+    ),
+    "delivered_desc": MessageLookupByLibrary.simpleMessage(
+      "تم توصيل طلبك بنجاح",
     ),
     "details": MessageLookupByLibrary.simpleMessage("التفاصيل"),
     "dimensions": MessageLookupByLibrary.simpleMessage("الأبعاد"),
@@ -125,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "from": MessageLookupByLibrary.simpleMessage("من"),
     "goToHome": MessageLookupByLibrary.simpleMessage("الذهاب للرئيسية"),
     "hideRating": MessageLookupByLibrary.simpleMessage("إخفاء التقييم"),
+    "inProgress_desc": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
     "invoice": MessageLookupByLibrary.simpleMessage("الفاتورة"),
     "iqd": MessageLookupByLibrary.simpleMessage("د.ع"),
     "kg": MessageLookupByLibrary.simpleMessage("كجم"),
@@ -162,6 +170,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "قمنا بإرسال رمز مُكوّن من 4 أرقام إلى رقم هاتفك",
     ),
     "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
+    "outForDelivery_desc": MessageLookupByLibrary.simpleMessage(
+      "طلبك في الطريق إليك",
+    ),
     "outOfStock": MessageLookupByLibrary.simpleMessage("غير متوفر"),
     "outOfStock1": MessageLookupByLibrary.simpleMessage(
       "أحد المنتجات غير متوفر",
@@ -190,6 +201,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "منتجات نوصي بها",
     ),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
+    "returns_desc": MessageLookupByLibrary.simpleMessage("تم إرجاع الطلب"),
     "reviewingOrder": MessageLookupByLibrary.simpleMessage("جاري مراجعة طلبك"),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
     "selectProvince": MessageLookupByLibrary.simpleMessage("اختر المحافظة"),
@@ -220,6 +232,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "total": MessageLookupByLibrary.simpleMessage("المجموع"),
     "totalPrice": MessageLookupByLibrary.simpleMessage("السعر الإجمالي"),
     "trackOrder": MessageLookupByLibrary.simpleMessage("تتبع الطلب"),
+    "underReview_desc": MessageLookupByLibrary.simpleMessage(
+      "جاري مراجعة طلبك",
+    ),
     "updateBody": MessageLookupByLibrary.simpleMessage(
       "تم إصدار نسخة جديدة من التطبيق تحتوي على تحسينات وإصلاحات مهمة.",
     ),

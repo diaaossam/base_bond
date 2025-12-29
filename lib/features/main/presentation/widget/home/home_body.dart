@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/utils/app_size.dart';
@@ -20,7 +22,7 @@ class HomeBody extends StatelessWidget {
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         CustomSliverAppBar(
-          leadingWidth: SizeConfig.screenWidth*0.6,
+          leadingWidth: SizeConfig.screenWidth * 0.6,
           leading: HomeInfoCard(),
           actions: [
             Container(
@@ -35,15 +37,18 @@ class HomeBody extends StatelessWidget {
               ),
             ),
             10.horizontalSpace,
-            Container(
-              padding: EdgeInsets.all(8.w),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: context.colorScheme.surfaceContainer,
-              ),
-              child: AppImage.asset(
-                Assets.icons.notification,
-                color: context.colorScheme.shadow,
+            GestureDetector(
+              onTap: () => context.router.push(NotificationsRoute()),
+              child: Container(
+                padding: EdgeInsets.all(8.w),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colorScheme.surfaceContainer,
+                ),
+                child: AppImage.asset(
+                  Assets.icons.notification,
+                  color: context.colorScheme.shadow,
+                ),
               ),
             ),
             10.horizontalSpace,

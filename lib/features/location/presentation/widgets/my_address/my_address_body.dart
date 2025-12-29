@@ -3,9 +3,9 @@ import 'package:bond/features/location/location_helper.dart';
 import 'package:bond/features/location/presentation/widgets/my_address/add_new_address_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 import '../../../../../config/router/app_router.gr.dart';
 import '../../../../../core/bloc/helper/base_state.dart';
-import '../../../../../core/utils/api_config.dart';
 import '../../../data/models/response/my_address.dart';
 import '../../cubit/my_address/my_address_cubit.dart';
 import 'address_list_design.dart';
@@ -38,7 +38,6 @@ class MyAddressBody extends StatelessWidget {
                   }
                 },
                 showActions: !isSelectionMode,
-                selectedAddressId: 0,
                 onRefresh: () => context.read<MyAddressCubit>().getMyAddress(),
                 onEdit: (address) => context.router
                       .push(AddAddressRoute(address: address))

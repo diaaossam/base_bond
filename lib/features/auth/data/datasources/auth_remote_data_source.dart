@@ -1,3 +1,4 @@
+import 'package:bond/core/services/caching/common_caching.dart';
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:bond/features/auth/data/models/response/user_model.dart';
 import 'package:bond/features/auth/data/models/response/user_model_helper.dart';
@@ -58,11 +59,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final response = await dioConsumer
         .post(EndPoints.verifyUser, data: data)
-        .factory(UserModel.fromJson)
+        .factory((json) => UserModel.fromJson(json['data']['user']))
         .cacheToken()
         .execute();
-    UserModel userModel = response as UserModel;
-    UserDataService().setUserData(userModel);
+    UserDataService().setUserData(response);
+    CommonCaching.address=(response as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
     return response;
   }

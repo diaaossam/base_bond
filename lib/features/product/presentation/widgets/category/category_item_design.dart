@@ -1,3 +1,6 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
+import 'package:bond/features/product/data/models/request/product_params.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/extensions/color_extensions.dart';
@@ -22,7 +25,6 @@ class CategoryItemDesignState extends State<CategoryItemDesign>
     with SingleTickerProviderStateMixin {
   late AnimationController _hoverController;
   late Animation<double> _scaleAnimation;
-  bool _isPressed = false;
 
   @override
   void initState() {
@@ -50,20 +52,13 @@ class CategoryItemDesignState extends State<CategoryItemDesign>
         return Transform.scale(
           scale: _scaleAnimation.value,
           child: GestureDetector(
-            onTapDown: (_) {
-              setState(() => _isPressed = true);
-              _hoverController.forward();
-            },
-            onTapUp: (_) {
-              setState(() => _isPressed = false);
-              _hoverController.reverse();
-            },
-            onTapCancel: () {
-              setState(() => _isPressed = false);
-              _hoverController.reverse();
-            },
             onTap: () {
-              // TODO: Navigate to category products
+              context.router.push(
+                AllProductsRoute(
+                  title: widget.category.title ?? "",
+                  initialParams: ProductParams(categoryId: widget.category.id?.toInt()),
+                ),
+              );
             },
             child: Container(
               decoration: BoxDecoration(
@@ -71,12 +66,10 @@ class CategoryItemDesignState extends State<CategoryItemDesign>
                 borderRadius: BorderRadius.circular(16.r),
                 boxShadow: [
                   BoxShadow(
-                    color: _isPressed
-                        ? context.colorScheme.primary.withOpacity(0.2)
-                        : Colors.black.withOpacity(0.06),
-                    blurRadius: _isPressed ? 15 : 10,
-                    spreadRadius: _isPressed ? 1 : 0,
-                    offset: Offset(0, _isPressed ? 6 : 4),
+                    color: context.colorScheme.primary.withValues(alpha: 0.2),
+                    blurRadius: 10,
+                    spreadRadius: 0,
+                    offset: Offset(0, 4),
                   ),
                 ],
               ),
@@ -94,8 +87,12 @@ class CategoryItemDesignState extends State<CategoryItemDesign>
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            _getCategoryColor(widget.index).withOpacity(0.15),
-                            _getCategoryColor(widget.index).withOpacity(0.05),
+                            _getCategoryColor(
+                              widget.index,
+                            ).withValues(alpha: 0.15),
+                            _getCategoryColor(
+                              widget.index,
+                            ).withValues(alpha: 0.05),
                           ],
                         ),
                       ),
@@ -126,7 +123,7 @@ class CategoryItemDesignState extends State<CategoryItemDesign>
                                   shape: BoxShape.circle,
                                   gradient: RadialGradient(
                                     colors: [
-                                      Colors.white.withOpacity(0.3),
+                                      Colors.white.withValues(alpha: 0.3),
                                       Colors.transparent,
                                     ],
                                   ),

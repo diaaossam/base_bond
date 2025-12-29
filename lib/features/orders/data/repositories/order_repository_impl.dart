@@ -77,9 +77,10 @@ class OrderRepositoryImpl with ApiHandlerMixin {
 
   Future<Either<Failure, CouponModel>> applyPromoCode({
     required String code,
+    required num amount,
   }) async {
     final response = await handleApi(
-      () => orderRemoteDataSource.applyPromoCode(code: code),
+      () => orderRemoteDataSource.applyPromoCode(code: code, amount: amount),
     );
     return response;
   }
@@ -113,7 +114,7 @@ class OrderRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, Unit>> deleteOrder({required num id}) async {
+  Future<Either<Failure, String>> deleteOrder({required num id}) async {
     final response = await handleApi(
       () => orderRemoteDataSource.deleteOrder(id: id),
     );

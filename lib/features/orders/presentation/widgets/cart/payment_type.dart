@@ -21,26 +21,8 @@ class PaymentTypeDesign extends StatefulWidget {
 class _PaymentTypeDesignState extends State<PaymentTypeDesign>
     with SingleTickerProviderStateMixin {
   PaymentType _selectedPayment = PaymentType.cash;
-  late AnimationController _selectionController;
-  late Animation<double> _selectionAnimation;
 
-  @override
-  void initState() {
-    super.initState();
-    _selectionController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
-    _selectionAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _selectionController, curve: Curves.easeOutBack),
-    );
-  }
 
-  @override
-  void dispose() {
-    _selectionController.dispose();
-    super.dispose();
-  }
 
   void _selectPayment(PaymentType payment) {
     if (ApiConfig.isGuest == true) {
@@ -49,8 +31,6 @@ class _PaymentTypeDesignState extends State<PaymentTypeDesign>
     }
     widget.payment(payment);
     setState(() => _selectedPayment = payment);
-    _selectionController.reset();
-    _selectionController.forward();
   }
 
   @override
@@ -64,7 +44,7 @@ class _PaymentTypeDesignState extends State<PaymentTypeDesign>
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: colorScheme.primary.withOpacity(0.06),
+              color: colorScheme.primary.withValues(alpha: 0.06),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -80,7 +60,7 @@ class _PaymentTypeDesignState extends State<PaymentTypeDesign>
                 Container(
                   padding: EdgeInsets.all(10.w),
                   decoration: BoxDecoration(
-                    color: colorScheme.primary.withOpacity(0.1),
+                    color: colorScheme.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
@@ -103,7 +83,13 @@ class _PaymentTypeDesignState extends State<PaymentTypeDesign>
               payment: PaymentType.cash,
               image: Assets.images.coins01.path,
               onTap: () => _selectPayment(PaymentType.cash),
-              animation: _selectionAnimation,
+            ),
+            SizedBox(height: 5.h),
+            _PaymentOption(
+              isSelected: _selectedPayment == PaymentType.visa,
+              payment: PaymentType.visa,
+              image: Assets.images.visamaster.path,
+              onTap: () => _selectPayment(PaymentType.visa),
             ),
           ],
         ),
@@ -117,14 +103,12 @@ class _PaymentOption extends StatefulWidget {
   final PaymentType payment;
   final String image;
   final VoidCallback onTap;
-  final Animation<double> animation;
 
   const _PaymentOption({
     required this.isSelected,
     required this.payment,
     required this.image,
     required this.onTap,
-    required this.animation,
   });
 
   @override
@@ -135,84 +119,88 @@ class _PaymentOptionState extends State<_PaymentOption> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
-
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeOut,
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-      decoration: BoxDecoration(
-        gradient: widget.isSelected
-            ? LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  colorScheme.primary.withOpacity(0.12),
-                  colorScheme.primary.withOpacity(0.04),
-                ],
-              )
-            : null,
-        color: widget.isSelected ? null : colorScheme.background,
-        border: Border.all(
-          width: widget.isSelected ? 2 : 1.5,
-          color: widget.isSelected
-              ? colorScheme.primary
-              : colorScheme.outline.withOpacity(0.5),
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeOut,
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+        decoration: BoxDecoration(
+          gradient: widget.isSelected
+              ? LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    colorScheme.primary.withValues(alpha: 0.12),
+                    colorScheme.primary.withValues(alpha: 0.04),
+                  ],
+                )
+              : null,
+          color: widget.isSelected ? null : colorScheme.background,
+          border: Border.all(
+            width: widget.isSelected ? 2 : 1.5,
+            color: widget.isSelected
+                ? colorScheme.primary
+                : colorScheme.outline.withValues(alpha: 0.5),
+          ),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: widget.isSelected
+              ? [
+                  BoxShadow(
+                    color: colorScheme.primary.withValues(alpha: 0.15),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              : null,
         ),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: widget.isSelected
-            ? [
-                BoxShadow(
-                  color: colorScheme.primary.withOpacity(0.15),
-                  blurRadius: 12,
-                  offset: const Offset(0, 4),
-                ),
-              ]
-            : null,
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: EdgeInsets.all(8.w),
-            decoration: BoxDecoration(
-              color: colorScheme.surface,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: AppImage.asset(widget.image, height: 20, width: 20),
-          ),
-          12.horizontalSpace,
-          Expanded(
-            child: AppText(
-              text: handlePaymentTypeToString(payment: widget.payment),
-              fontWeight: widget.isSelected ? FontWeight.w600 : FontWeight.w500,
-              textSize: 12,
-              color: widget.isSelected
-                  ? colorScheme.primary
-                  : colorScheme.onSurface,
-            ),
-          ),
-
-          if (widget.isSelected)
+        child: Row(
+          children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+              padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
-                color: colorScheme.primary,
-                borderRadius: BorderRadius.circular(20),
+                color: colorScheme.surface,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
+              child: AppImage.asset(widget.image, height: 20, width: 20),
+            ),
+            12.horizontalSpace,
+            Expanded(
               child: AppText(
-                text: "✓",
+                text: handlePaymentTypeToString(payment: widget.payment),
+                fontWeight: widget.isSelected
+                    ? FontWeight.w600
+                    : FontWeight.w500,
                 textSize: 12,
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
+                color: widget.isSelected
+                    ? colorScheme.primary
+                    : colorScheme.onSurface,
               ),
             ),
-        ],
+
+            if (widget.isSelected)
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                decoration: BoxDecoration(
+                  color: colorScheme.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: AppText(
+                  text: "✓",
+                  textSize: 12,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

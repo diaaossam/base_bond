@@ -12,7 +12,10 @@ import '../models/response/points_model.dart';
 abstract class OrderRemoteDataSource {
   Future<Orders> placeOrder({required CartParams placeOrderModel});
 
-  Future<CouponModel> applyPromoCode({required String code});
+  Future<CouponModel> applyPromoCode({
+    required String code,
+    required num amount,
+  });
 
   Future<List<Orders>> getOrderList({
     required int pageKey,
@@ -21,7 +24,7 @@ abstract class OrderRemoteDataSource {
 
   Future<Orders> getOrderDetails({required int id});
 
-  Future<Unit> deleteOrder({required num id});
+  Future<String> deleteOrder({required num id});
 
   Future<PointsModel> getOrderPoints({required num orderPoints});
 
@@ -40,15 +43,23 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
   OrderRemoteDataSourceImpl({required this.dioConsumer});
 
   @override
-  Future<CouponModel> applyPromoCode({required String code}) {
-    // TODO: implement applyPromoCode
-    throw UnimplementedError();
+  Future<CouponModel> applyPromoCode({
+    required String code,
+    required num amount,
+  }) async {
+    return await dioConsumer
+        .post(EndPoints.validateCoupon)
+        .body({"code": code, "order_amount": amount})
+        .factory(Orders.fromJsonList)
+        .execute();
   }
 
   @override
-  Future<Unit> deleteOrder({required num id}) {
-    // TODO: implement deleteOrder
-    throw UnimplementedError();
+  Future<String> deleteOrder({required num id}) async {
+    return await dioConsumer
+        .post("${EndPoints.orders}/$id/cancel")
+        .factory((json) => json['message'])
+        .execute();
   }
 
   @override
@@ -91,15 +102,12 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
     required int rating,
     String? comment,
   }) async {
-    await dioConsumer
-        .post(EndPoints.rateOrder)
-        .body({
-          'product_id': productId,
-          'order_id': orderId,
-          'rating': rating,
-          if (comment != null) 'comment': comment,
-        })
-        .execute();
+    await dioConsumer.post(EndPoints.rateOrder).body({
+      'product_id': productId,
+      'order_id': orderId,
+      'rating': rating,
+      if (comment != null) 'comment': comment,
+    }).execute();
     return unit;
   }
 }

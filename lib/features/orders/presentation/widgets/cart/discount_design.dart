@@ -56,7 +56,7 @@ class _DiscountDesignState extends State<DiscountDesign>
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: colorScheme.primary.withOpacity(0.06),
+              color: colorScheme.primary.withValues(alpha: 0.06),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -73,8 +73,8 @@ class _DiscountDesignState extends State<DiscountDesign>
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        colorScheme.secondary.withOpacity(0.15),
-                        colorScheme.secondary.withOpacity(0.08),
+                        colorScheme.secondary.withValues(alpha: 0.15),
+                        colorScheme.secondary.withValues(alpha: 0.08),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(12),
@@ -126,7 +126,7 @@ class _DiscountDesignState extends State<DiscountDesign>
                         borderRadius: BorderRadius.circular(14),
                         border: hasDiscount
                             ? Border.all(
-                                color: colorScheme.tertiary.withOpacity(0.5),
+                                color: colorScheme.tertiary.withValues(alpha: 0.5),
                                 width: 2,
                               )
                             : null,
@@ -138,7 +138,7 @@ class _DiscountDesignState extends State<DiscountDesign>
                         filled: true,
                         readOnly: hasDiscount,
                         fillColor: hasDiscount
-                            ? colorScheme.tertiary.withOpacity(0.05)
+                            ? colorScheme.tertiary.withValues(alpha: 0.05)
                             : colorScheme.background,
                         suffixIcon: Padding(
                           padding: const EdgeInsetsDirectional.only(
@@ -170,13 +170,13 @@ class _DiscountDesignState extends State<DiscountDesign>
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    colorScheme.tertiary.withOpacity(0.15),
-                                    colorScheme.tertiary.withOpacity(0.05),
+                                    colorScheme.tertiary.withValues(alpha: 0.15),
+                                    colorScheme.tertiary.withValues(alpha: 0.05),
                                   ],
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: colorScheme.tertiary.withOpacity(0.3),
+                                  color: colorScheme.tertiary.withValues(alpha: 0.3),
                                 ),
                               ),
                               child: Row(
@@ -225,7 +225,7 @@ class _DiscountDesignState extends State<DiscountDesign>
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
           decoration: BoxDecoration(
-            color: colorScheme.error.withOpacity(0.1),
+            color: colorScheme.error.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
@@ -259,7 +259,7 @@ class _DiscountDesignState extends State<DiscountDesign>
           return;
         }
         if (bloc.discount.text.isNotEmpty) {
-          bloc.applyCoupon(code: bloc.discount.text);
+          bloc.applyCoupon(code: bloc.discount.text,amount: state.data!.amount);
         }
       },
       width: SizeConfig.screenWidth * .22,

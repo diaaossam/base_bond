@@ -30,12 +30,20 @@ class MyAddress {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
-
-  static List<MyAddress> fromJsonList(Map<String, dynamic> response) {
-    final List<dynamic> dataList = response['data'] as List<dynamic>;
-    return dataList
-        .map((item) => MyAddress.fromJson(item as Map<String, dynamic>))
-        .toList();
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'city': city?.toMap(),
+      'governorate': governorate?.toMap(),
+      'address': address,
+      'street_address': streetAddress,
+      'latitude': latitude,
+      'longitude': longitude,
+      'additional_notes': additionalNotes,
+      'is_default': isDefault,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+    };
   }
 
   num? id;

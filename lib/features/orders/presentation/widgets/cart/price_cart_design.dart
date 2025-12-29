@@ -1,7 +1,7 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/core/utils/api_config.dart';
+import 'package:bond/features/location/data/models/response/my_address.dart';
 import 'package:bond/features/orders/presentation/cubit/cart/cart_cubit.dart';
 import 'package:bond/features/orders/presentation/cubit/cart/cart_state_data.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
@@ -11,17 +11,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class PriceCartDesign extends StatelessWidget {
-  const PriceCartDesign({super.key});
+  final MyAddress? myAddress;
+
+  const PriceCartDesign({super.key, this.myAddress});
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(child: Center());
-    /*return BlocBuilder<CartCubit, BaseState<CartStateData>>(
+    return BlocBuilder<CartCubit, BaseState<CartStateData>>(
       builder: (context, state) {
         final bloc = context.read<CartCubit>();
         final formatter = NumberFormat.decimalPatternDigits();
         final colorScheme = context.colorScheme;
-
         return SliverToBoxAdapter(
           child: Container(
             decoration: BoxDecoration(
@@ -29,7 +29,7 @@ class PriceCartDesign extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: colorScheme.primary.withOpacity(0.06),
+                  color: colorScheme.primary.withValues(alpha: 0.06),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),
@@ -50,8 +50,8 @@ class PriceCartDesign extends StatelessWidget {
                         shape: BoxShape.circle,
                         gradient: RadialGradient(
                           colors: [
-                            colorScheme.tertiary.withOpacity(0.15),
-                            colorScheme.tertiary.withOpacity(0),
+                            colorScheme.tertiary.withValues(alpha: 0.15),
+                            colorScheme.tertiary.withValues(alpha: 0),
                           ],
                         ),
                       ),
@@ -69,7 +69,9 @@ class PriceCartDesign extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.all(10.w),
                               decoration: BoxDecoration(
-                                color: colorScheme.tertiary.withOpacity(0.1),
+                                color: colorScheme.tertiary.withValues(
+                                  alpha: 0.1,
+                                ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Icon(
@@ -82,7 +84,7 @@ class PriceCartDesign extends StatelessWidget {
                             AppText(
                               text: context.localizations.invoice,
                               fontWeight: FontWeight.w700,
-                              textSize: 16,
+                              textSize: 12,
                             ),
                           ],
                         ),
@@ -95,9 +97,9 @@ class PriceCartDesign extends StatelessWidget {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                colorScheme.outline.withOpacity(0),
+                                colorScheme.outline.withValues(alpha: 0),
                                 colorScheme.outline,
-                                colorScheme.outline.withOpacity(0),
+                                colorScheme.outline.withValues(alpha: 0),
                               ],
                             ),
                           ),
@@ -112,12 +114,12 @@ class PriceCartDesign extends StatelessWidget {
                               "${formatter.format(bloc.amount.toInt())} ${context.localizations.iqd}",
                         ),
 
-                        if (ApiConfig.address != null) ...[
+                        if (myAddress != null) ...[
                           SizedBox(height: 12.h),
                           _PriceRow(
                             label: context.localizations.shippingCost,
                             value:
-                                "${formatter.format(ApiConfig.address?.governorate?.deliveryPrice ?? 0)} ${context.localizations.iqd}",
+                                "${formatter.format(myAddress?.city?.shippingPrice ?? 0)} ${context.localizations.iqd}",
                             icon: Icons.local_shipping_outlined,
                           ),
                         ],
@@ -144,12 +146,13 @@ class PriceCartDesign extends StatelessWidget {
                           ),
                         ],
 
-                        if (bloc.isFreeDeleivery && ApiConfig.address?.governorate?.deliveryPrice != null) ...[
+                        if (bloc.isFreeDeleivery &&
+                            myAddress?.governorate?.shippingPrice != null) ...[
                           SizedBox(height: 12.h),
                           _PriceRow(
                             label: context.localizations.freeDeleivery,
                             value:
-                                "- ${formatter.format(ApiConfig.address?.governorate?.deliveryPrice ?? 0)} ${context.localizations.iqd}",
+                                "- ${formatter.format(myAddress?.governorate?.shippingPrice ?? 0)} ${context.localizations.iqd}",
                             isDiscount: true,
                             icon: Icons.celebration_outlined,
                           ),
@@ -185,9 +188,8 @@ class PriceCartDesign extends StatelessWidget {
                             isFreeDeleivery: bloc.isFreeDeleivery,
                             couponDiscount: bloc.couponDiscount,
                             pointDiscount: bloc.pointDiscount,
-                            deleivery: (ApiConfig
-                                    .address?.governorate?.deliveryPrice ??
-                                0),
+                            deleivery:
+                                (myAddress?.governorate?.shippingPrice ?? 0),
                           ),
                         ),
                       ],
@@ -199,7 +201,7 @@ class PriceCartDesign extends StatelessWidget {
           ),
         );
       },
-    );*/
+    );
   }
 
   String _setUpPrice({
@@ -212,12 +214,13 @@ class PriceCartDesign extends StatelessWidget {
   }) {
     final formatter = NumberFormat.decimalPatternDigits();
 
-    final total = (amount +
-            deleivery -
-            couponDiscount -
-            pointDiscount -
-            (isFreeDeleivery ? deleivery : 0))
-        .toStringAsFixed(2);
+    final total =
+        (amount +
+                deleivery -
+                couponDiscount -
+                pointDiscount -
+                (isFreeDeleivery ? deleivery : 0))
+            .toStringAsFixed(2);
 
     return "${formatter.format(num.parse(total))} ${context.localizations.iqd}";
   }
@@ -253,14 +256,14 @@ class _PriceRow extends StatelessWidget {
         Expanded(
           child: AppText(
             text: label,
-            textSize: 13,
+            textSize: 11,
             color: isDiscount ? colorScheme.error : colorScheme.shadow,
           ),
         ),
         AppText(
           text: value,
           fontWeight: FontWeight.w600,
-          textSize: 13,
+          textSize: 12,
           color: isDiscount ? colorScheme.error : colorScheme.onSurface,
         ),
       ],
@@ -272,10 +275,7 @@ class _TotalPriceWidget extends StatefulWidget {
   final String label;
   final String value;
 
-  const _TotalPriceWidget({
-    required this.label,
-    required this.value,
-  });
+  const _TotalPriceWidget({required this.label, required this.value});
 
   @override
   State<_TotalPriceWidget> createState() => _TotalPriceWidgetState();
@@ -293,9 +293,10 @@ class _TotalPriceWidgetState extends State<_TotalPriceWidget>
       vsync: this,
       duration: const Duration(milliseconds: 600),
     );
-    _scaleAnimation = Tween<double>(begin: 0.95, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 0.95,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticOut));
     _controller.forward();
   }
 
@@ -330,13 +331,13 @@ class _TotalPriceWidgetState extends State<_TotalPriceWidget>
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  colorScheme.tertiary.withOpacity(0.15),
-                  colorScheme.tertiary.withOpacity(0.05),
+                  colorScheme.tertiary.withValues(alpha: 0.15),
+                  colorScheme.tertiary.withValues(alpha: 0.05),
                 ],
               ),
               borderRadius: BorderRadius.circular(14),
               border: Border.all(
-                color: colorScheme.tertiary.withOpacity(0.3),
+                color: colorScheme.tertiary.withValues(alpha: 0.3),
                 width: 1.5,
               ),
             ),
@@ -345,21 +346,21 @@ class _TotalPriceWidgetState extends State<_TotalPriceWidget>
                 Icon(
                   Icons.shopping_bag_rounded,
                   color: colorScheme.tertiary,
-                  size: 24,
+                  size: 18,
                 ),
                 12.horizontalSpace,
                 Expanded(
                   child: AppText(
                     text: widget.label,
                     fontWeight: FontWeight.w700,
-                    textSize: 15,
+                    textSize: 12,
                     color: colorScheme.tertiary,
                   ),
                 ),
                 AppText(
                   text: widget.value,
                   fontWeight: FontWeight.w800,
-                  textSize: 16,
+                  textSize: 13,
                   color: colorScheme.tertiary,
                 ),
               ],

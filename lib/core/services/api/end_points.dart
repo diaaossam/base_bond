@@ -37,7 +37,7 @@ class EndPoints {
   //////////////////// Chats ///////////////////////
 
   static const String products = "products";
-  static const String validateCoupon = "validate-coupon";
+  static const String validateCoupon = "coupons/validate";
   static const String orders = "orders";
   static const String favourites = "wishlist";
   static const String rateOrder = "rate-order";

@@ -3,7 +3,7 @@ import '../../generated/l10n.dart';
 enum OrderType {
   pending("pending"),
   confirmed("confirmed"),
-  inProgress("in_progress"),
+  inProgress("preparing"),
   outForDeleivery("out_for_delivery"),
   delivered("delivered"),
   returns("returned"),

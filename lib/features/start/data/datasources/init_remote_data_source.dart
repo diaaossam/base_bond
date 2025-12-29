@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/helper/token_helper.dart';
 import 'package:bond/config/helper/token_repository.dart';
 import 'package:bond/config/router/app_router.gr.dart';
+import 'package:bond/core/services/caching/common_caching.dart';
 import 'package:bond/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:bond/features/auth/data/models/response/user_model_helper.dart';
 import 'package:injectable/injectable.dart';
@@ -41,6 +42,7 @@ class RegisterRemoteDataSourceImpl implements InitRemoteDataSource {
         TokenDataService().setTokenData(userToken);
         final response = await remoteDataSource.getUserData();
         UserDataService().setUserData(response);
+        CommonCaching.address = response.address;
         return MainLayoutRoute();
       }
     }

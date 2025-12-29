@@ -2,9 +2,9 @@ import 'package:bond/widgets/loading/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/extensions/color_extensions.dart';
-import '../../../../orders/presentation/widgets/cart/empty_cart_design.dart';
 import '../../../data/models/response/my_address.dart';
 import 'address_item_design.dart';
+import 'empty_address_design.dart';
 
 class AddressListDesign extends StatefulWidget {
   final List<MyAddress> addressList;
@@ -14,7 +14,6 @@ class AddressListDesign extends StatefulWidget {
   final Function(MyAddress)? onEdit;
   final Function(MyAddress)? onDelete;
   final Function(MyAddress)? onSetDefault;
-  final num? selectedAddressId;
   final bool isLoading;
 
   const AddressListDesign({
@@ -26,7 +25,6 @@ class AddressListDesign extends StatefulWidget {
     this.onEdit,
     this.onDelete,
     this.onSetDefault,
-    this.selectedAddressId,
     required this.isLoading,
   });
 
@@ -38,25 +36,12 @@ class _AddressListDesignState extends State<AddressListDesign> {
   num? _selectedAddress;
 
   @override
-  void initState() {
-    _selectedAddress = widget.selectedAddressId;
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(covariant AddressListDesign oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.selectedAddressId != oldWidget.selectedAddressId) {
-      setState(() => _selectedAddress = widget.selectedAddressId);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (widget.addressList.isEmpty) {
-      return EmptyCartDesign();
-    } else if (widget.isLoading) {
+    if (widget.isLoading) {
       return LoadingWidget();
+    }
+    if (widget.addressList.isEmpty) {
+      return EmptyAddressDesign();
     }
     return RefreshIndicator(
       onRefresh: widget.onRefresh ?? () async {},

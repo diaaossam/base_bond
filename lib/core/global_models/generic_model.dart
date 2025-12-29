@@ -3,22 +3,22 @@ import 'package:equatable/equatable.dart';
 class GenericModel extends Equatable {
   final int? id;
   final String? title;
-  final num? deliveryPrice;
+  final num? shippingPrice;
 
   const GenericModel({
     required this.id,
     required this.title,
-    this.deliveryPrice,
+    this.shippingPrice,
   });
 
   factory GenericModel.fromJson(Map<String, dynamic> map) => GenericModel(
     id: map['id'],
     title: map['title'],
-    deliveryPrice: map['delivery_price'],
+    shippingPrice: map['shipping_price'],
   );
 
   static List<GenericModel> fromJsonList(Map<String, dynamic> response) {
-      final List<dynamic> dataList = response['data'] as List<dynamic>;
+    final List<dynamic> dataList = response['data'] as List<dynamic>;
     return dataList
         .map((item) => GenericModel.fromJson(item as Map<String, dynamic>))
         .toList();
@@ -34,9 +34,9 @@ class GenericModel extends Equatable {
   Map<String, dynamic> toMap() => {
     "id": id,
     "title": title,
-    if (deliveryPrice != null) "delivery_price": deliveryPrice,
+    if (shippingPrice != null) "shipping_price": shippingPrice,
   };
 
   @override
-  List<Object?> get props => [id, title, deliveryPrice];
+  List<Object?> get props => [id, title, shippingPrice];
 }

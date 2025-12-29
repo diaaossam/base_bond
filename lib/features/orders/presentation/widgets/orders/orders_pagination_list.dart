@@ -60,7 +60,7 @@ class OrdersPaginationList extends StatelessWidget {
   Widget _buildEmptyState(BuildContext context) {
     return EmptyWidgetDesign(
       msg: context.localizations.noOrdersFound,
-      image: Assets.images.orders.path,
+      image: Assets.images.order.path,
     );
   }
 

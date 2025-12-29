@@ -18,7 +18,7 @@ class LocationsScreen extends StatelessWidget {
       create: (context) => sl<MyAddressCubit>(),
       child: Scaffold(
         appBar: CustomAppBar(title: context.localizations.address),
-        body: const MyAddressBody(),
+        body: MyAddressBody(),
       ),
     );
   }

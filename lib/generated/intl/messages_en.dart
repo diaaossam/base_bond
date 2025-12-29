@@ -77,7 +77,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "brand": MessageLookupByLibrary.simpleMessage("Brand"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancelOrder": MessageLookupByLibrary.simpleMessage("إلغاء الطلب"),
+    "cancelOrderConfirm": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد من إلغاء الطلب ؟",
+    ),
     "canceled": MessageLookupByLibrary.simpleMessage("ملغي"),
+    "canceled_desc": MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب"),
     "cart": MessageLookupByLibrary.simpleMessage("السلة"),
     "cash": MessageLookupByLibrary.simpleMessage("نقدي"),
     "categories": MessageLookupByLibrary.simpleMessage("التصنيفات"),
@@ -97,6 +101,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "confirmOrderTitle": MessageLookupByLibrary.simpleMessage("Confirm Order"),
     "confirmed": MessageLookupByLibrary.simpleMessage("تم التأكيد"),
+    "confirmed_desc": MessageLookupByLibrary.simpleMessage(
+      "تم تأكيد طلبك وجاري تجهيزه",
+    ),
     "copy": MessageLookupByLibrary.simpleMessage("نسخ"),
     "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
     "currentStatus": MessageLookupByLibrary.simpleMessage("Current"),
@@ -108,6 +115,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteAddress": MessageLookupByLibrary.simpleMessage("Delete Address"),
     "deleteAddressConfirm": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this address?",
+    ),
+    "delivered_desc": MessageLookupByLibrary.simpleMessage(
+      "تم توصيل طلبك بنجاح",
     ),
     "description": MessageLookupByLibrary.simpleMessage("الوصف"),
     "details": MessageLookupByLibrary.simpleMessage("التفاصيل"),
@@ -171,6 +181,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hideRating": MessageLookupByLibrary.simpleMessage("Hide Rating"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "inProgress": MessageLookupByLibrary.simpleMessage("تحت المعالجة"),
+    "inProgress_desc": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
     "invoice": MessageLookupByLibrary.simpleMessage("Invoice"),
     "iqd": MessageLookupByLibrary.simpleMessage("IQD"),
     "kg": MessageLookupByLibrary.simpleMessage("kg"),
@@ -220,6 +231,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noDescription": MessageLookupByLibrary.simpleMessage("لا يوجد وصف متاح"),
     "noLocation": MessageLookupByLibrary.simpleMessage("لا توجد عناوين محفوظة"),
+    "noNotificationBody": MessageLookupByLibrary.simpleMessage(
+      "ستظهر إشعاراتك هنا عندما تصلك",
+    ),
+    "noNotificationTitle": MessageLookupByLibrary.simpleMessage(
+      "لا توجد إشعارات",
+    ),
     "noOrdersFound": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
     "noWithList": MessageLookupByLibrary.simpleMessage("قائمة المفضلة فارغة"),
     "notAvailable": MessageLookupByLibrary.simpleMessage("Not Available"),
@@ -252,6 +269,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
     "outForDeleivery": MessageLookupByLibrary.simpleMessage("خرج للتوصيل"),
+    "outForDelivery_desc": MessageLookupByLibrary.simpleMessage(
+      "طلبك في الطريق إليك",
+    ),
     "outOfStock": MessageLookupByLibrary.simpleMessage("Out of Stock"),
     "outOfStock1": MessageLookupByLibrary.simpleMessage(
       "One of the products is out of stock",
@@ -294,6 +314,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "resendCode": MessageLookupByLibrary.simpleMessage("إعاده الإرسال"),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "returns": MessageLookupByLibrary.simpleMessage("مسترجع"),
+    "returns_desc": MessageLookupByLibrary.simpleMessage("تم إرجاع الطلب"),
     "reviewingOrder": MessageLookupByLibrary.simpleMessage(
       "Reviewing your order",
     ),
@@ -331,6 +352,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "totalPrice": MessageLookupByLibrary.simpleMessage("Total Price"),
     "trackOrder": MessageLookupByLibrary.simpleMessage("Track Order"),
     "underReview": MessageLookupByLibrary.simpleMessage("تحت المراجعة"),
+    "underReview_desc": MessageLookupByLibrary.simpleMessage(
+      "جاري مراجعة طلبك",
+    ),
     "updateBody": MessageLookupByLibrary.simpleMessage(
       "A new version of the app has been released with important improvements and fixes.",
     ),

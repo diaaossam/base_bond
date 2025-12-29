@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/core/services/caching/common_caching.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/bloc/helper/either_extensions.dart';
@@ -17,15 +18,17 @@ class MyAddressCubit extends Cubit<BaseState<List<MyAddress>>>
     getMyAddress();
   }
 
-  MyAddress ? defaultAddress;
+  MyAddress? defaultAddress;
+
   Future<void> getMyAddress() async {
     await handleAsync(
       identifier: 'getMyAddress',
       call: () => locationRepositoryImpl.getMyAddress(),
       onSuccess: (response) {
         for (var element in response) {
-          if(element.isDefault == true){
+          if (element.isDefault == true) {
             defaultAddress = element;
+            CommonCaching.address = defaultAddress;
           }
         }
         return response;

@@ -141,5 +141,12 @@
   "orderDelivered": "تم توصيل طلبك بنجاح",
   "orderCanceled": "تم إلغاء الطلب",
   "orderReturned": "تم استرجاع الطلب",
-  "goToHome": "الذهاب للرئيسية"
+  "goToHome": "الذهاب للرئيسية",
+  "underReview_desc": "جاري مراجعة طلبك",
+  "confirmed_desc": "تم تأكيد طلبك وجاري تجهيزه",
+  "inProgress_desc": "جاري تجهيز طلبك",
+  "outForDelivery_desc": "طلبك في الطريق إليك",
+  "delivered_desc": "تم توصيل طلبك بنجاح",
+  "returns_desc": "تم إرجاع الطلب",
+  "canceled_desc": "تم إلغاء الطلب"
 }

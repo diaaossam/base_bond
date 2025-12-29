@@ -209,5 +209,16 @@
   "orderReturned": "Order has been returned",
   "goToHome": "Go to Home",
   "cancelOrder": "إلغاء الطلب",
-  "welcome": "مرحباً بك"
+  "cancelOrderConfirm": "هل أنت متأكد من إلغاء الطلب ؟",
+  "welcome": "مرحباً بك",
+  "noNotificationTitle": "لا توجد إشعارات",
+  "noNotificationBody": "ستظهر إشعاراتك هنا عندما تصلك",
+  "underReview_desc": "جاري مراجعة طلبك",
+  "confirmed_desc": "تم تأكيد طلبك وجاري تجهيزه",
+  "inProgress_desc": "جاري تجهيز طلبك",
+  "outForDelivery_desc": "طلبك في الطريق إليك",
+  "delivered_desc": "تم توصيل طلبك بنجاح",
+  "returns_desc": "تم إرجاع الطلب",
+  "canceled_desc": "تم إلغاء الطلب"
+
 }

@@ -2,15 +2,17 @@ import 'dart:math' as math;
 
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/gen/assets.gen.dart';
+import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LogoutDialog extends StatefulWidget {
+class ConfirmCancelOrderDialog extends StatefulWidget {
   final VoidCallback onConfirm;
 
-  const LogoutDialog({super.key, required this.onConfirm});
+  const ConfirmCancelOrderDialog({super.key, required this.onConfirm});
 
   static Future<bool?> show(
     BuildContext context, {
@@ -19,11 +21,11 @@ class LogoutDialog extends StatefulWidget {
     return showGeneralDialog<bool>(
       context: context,
       barrierDismissible: true,
-      barrierLabel: 'Logout Dialog',
+      barrierLabel: 'Confirm Cancel Order Dialog',
       barrierColor: Colors.black.withValues(alpha: 0.6),
       transitionDuration: const Duration(milliseconds: 350),
       pageBuilder: (context, animation, secondaryAnimation) {
-        return LogoutDialog(onConfirm: onConfirm);
+        return ConfirmCancelOrderDialog(onConfirm: onConfirm);
       },
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         final curvedAnimation = CurvedAnimation(
@@ -39,10 +41,11 @@ class LogoutDialog extends StatefulWidget {
   }
 
   @override
-  State<LogoutDialog> createState() => _LogoutDialogState();
+  State<ConfirmCancelOrderDialog> createState() =>
+      _ConfirmCancelOrderDialogState();
 }
 
-class _LogoutDialogState extends State<LogoutDialog>
+class _ConfirmCancelOrderDialogState extends State<ConfirmCancelOrderDialog>
     with TickerProviderStateMixin {
   late AnimationController _iconController;
   late AnimationController _rippleController;
@@ -96,14 +99,14 @@ class _LogoutDialogState extends State<LogoutDialog>
                   _buildAnimatedIcon(),
                   20.verticalSpace,
                   AppText.title(
-                    text: context.localizations.logOut,
+                    text: context.localizations.cancelOrder,
                     fontWeight: FontWeight.w700,
-                    textSize: 13,
+                    textSize: 15,
                   ),
                   12.verticalSpace,
                   AppText(
-                    text: context.localizations.logoutBody,
-                    textSize: 11,
+                    text: context.localizations.cancelOrderConfirm,
+                    textSize: 13,
                     align: TextAlign.center,
                     color: context.colorScheme.shadow,
                   ),
@@ -115,7 +118,7 @@ class _LogoutDialogState extends State<LogoutDialog>
                           borderColor: context.colorScheme.error,
                           textColor: context.colorScheme.error,
                           text: context.localizations.cancel,
-                          press: () =>Navigator.pop(context),
+                          press: () => Navigator.pop(context),
                         ),
                       ),
                       12.horizontalSpace,
@@ -124,10 +127,10 @@ class _LogoutDialogState extends State<LogoutDialog>
                           height: 50.h,
                           child: CustomButton(
                             backgroundColor: context.colorScheme.error,
-                            text: context.localizations.logOut,
+                            text: context.localizations.confirm,
                             press: () {
                               widget.onConfirm();
-                              Navigator.pop(context, true);
+                              Navigator.pop(context);
                             },
                           ),
                         ),
@@ -164,37 +167,17 @@ class _LogoutDialogState extends State<LogoutDialog>
             },
           ),
           // Main icon container
-          Container(
+          SizedBox(
             width: 70.w,
             height: 70.w,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Color(0xFFfee2e2), Color(0xFFfecaca)],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFef4444).withValues(alpha: 0.2),
-                  blurRadius: 15,
-                  offset: const Offset(0, 5),
-                ),
-              ],
-            ),
             child: AnimatedBuilder(
               animation: _iconController,
               builder: (context, child) {
                 // Subtle floating animation
-                final floatOffset =
-                    math.sin(_iconController.value * 2 * math.pi) * 2;
+                final floatOffset = math.sin(_iconController.value * 2 * math.pi) * 2;
                 return Transform.translate(
                   offset: Offset(0, floatOffset),
-                  child: Icon(
-                    Icons.logout_rounded,
-                    size: 32.sp,
-                    color: const Color(0xFFef4444),
-                  ),
+                  child: AppImage.asset(Assets.images.order.path),
                 );
               },
             ),

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/core/services/caching/common_caching.dart';
 import 'package:bond/core/utils/api_config.dart';
 import 'package:bond/features/settings/presentation/widgets/settings_helper.dart';
 import 'package:bond/gen/assets.gen.dart';
@@ -13,8 +14,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../location/data/models/response/my_address.dart';
 
 class CartLocationDesign extends StatefulWidget {
-  final MyAddress ? defaultAddress;
-  const CartLocationDesign({super.key, this.defaultAddress});
+  final MyAddress? defaultAddress;
+  final Function(MyAddress)? onAddressChanged;
+
+  const CartLocationDesign({
+    super.key,
+    this.defaultAddress,
+    this.onAddressChanged,
+  });
 
   @override
   State<CartLocationDesign> createState() => _CartLocationDesignState();
@@ -29,7 +36,7 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: context.colorScheme.primary.withOpacity(0.06),
+              color: context.colorScheme.primary.withValues(alpha: 0.06),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -80,10 +87,9 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
                   context.router.push(PickLocationRoute());
                 },
               )
+            else if (widget.defaultAddress == null)
+              SizedBox.shrink()
             else
-              if(widget.defaultAddress == null)
-                SizedBox.shrink()
-                else
               AnimatedContainer(
                 duration: const Duration(milliseconds: 150),
                 padding: EdgeInsets.all(14.w),
@@ -98,12 +104,12 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: context.colorScheme.outline.withOpacity(0.5),
+                    color: context.colorScheme.outline.withValues(alpha: 0.5),
                     width: 1.5,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: context.colorScheme.shadow.withOpacity(0.05),
+                      color: context.colorScheme.shadow.withValues(alpha: 0.05),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -131,15 +137,15 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
                           SizedBox(height: 6.h),
                           AppText(
                             text:
-                            "${widget.defaultAddress?.governorate?.title} - ${widget.defaultAddress?.city?.title}",
+                                "${widget.defaultAddress?.governorate?.title} - ${widget.defaultAddress?.city?.title}",
                             textSize: 11,
                             maxLines: 2,
                             color: context.colorScheme.shadow,
                           ),
                           if (widget
-                              .defaultAddress
-                              ?.additionalNotes
-                              ?.isNotEmpty ==
+                                  .defaultAddress
+                                  ?.additionalNotes
+                                  ?.isNotEmpty ==
                               true) ...[
                             SizedBox(height: 6.h),
                             Row(
@@ -153,9 +159,9 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
                                 Expanded(
                                   child: AppText(
                                     text:
-                                    widget
-                                        .defaultAddress
-                                        ?.additionalNotes ??
+                                        widget
+                                            .defaultAddress
+                                            ?.additionalNotes ??
                                         "",
                                     textSize: 11,
                                     maxLines: 2,
@@ -169,41 +175,58 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
                       ),
                     ),
                     12.horizontalSpace,
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 14.w,
-                        vertical: 8.h,
-                      ),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            context.colorScheme.primary.withOpacity(0.15),
-                            context.colorScheme.primary.withOpacity(0.08),
+                    InkWell(
+                      onTap: () async {
+                        await context.router.push(LocationsRoute()).then((
+                          value,
+                        ) {
+                          if (widget.onAddressChanged != null) {
+                            widget.onAddressChanged!(
+                              CommonCaching.defaultAddress??widget.defaultAddress!,
+                            );
+                          }
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 14.w,
+                          vertical: 8.h,
+                        ),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              context.colorScheme.primary.withValues(
+                                alpha: 0.15,
+                              ),
+                              context.colorScheme.primary.withValues(
+                                alpha: 0.08,
+                              ),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: context.colorScheme.primary.withValues(
+                              alpha: 0.3,
+                            ),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.edit_rounded,
+                              size: 16,
+                              color: context.colorScheme.primary,
+                            ),
+                            6.horizontalSpace,
+                            AppText(
+                              text: context.localizations.edit,
+                              textSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: context.colorScheme.primary,
+                            ),
                           ],
                         ),
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: context.colorScheme.primary.withOpacity(
-                            0.3,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.edit_rounded,
-                            size: 16,
-                            color: context.colorScheme.primary,
-                          ),
-                          6.horizontalSpace,
-                          AppText(
-                            text: context.localizations.edit,
-                            textSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: context.colorScheme.primary,
-                          ),
-                        ],
                       ),
                     ),
                   ],

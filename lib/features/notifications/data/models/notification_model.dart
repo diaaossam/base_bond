@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class NotificationModel {
   NotificationModel({
     this.id,
@@ -41,5 +39,12 @@ class NotificationModel {
     map['read_at_for_humans'] = readAtForHumans;
     map['created_at'] = createdAt;
     return map;
+  }
+
+  static List<NotificationModel> fromJsonList(Map<String, dynamic> response) {
+    final List<dynamic> dataList = response['data'] as List<dynamic>;
+    return dataList
+        .map((item) => NotificationModel.fromJson(item as Map<String, dynamic>))
+        .toList();
   }
 }

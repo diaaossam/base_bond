@@ -22,42 +22,56 @@ class OrderHelper {
   }
 
   ({Color color, IconData icon, String? label, String description})
-  getStatusInfo(BuildContext context, OrderType ?status) {
+  getStatusInfo(BuildContext context, OrderType? status) {
     switch (status) {
       case OrderType.pending:
         return (
           color: Colors.orange,
           icon: Icons.hourglass_top_rounded,
           label: context.localizations.underReview,
-          description: 'جاري مراجعة طلبك',
+          description: context.localizations.underReview_desc,
         );
       case OrderType.confirmed:
         return (
           color: Colors.blue,
           icon: Icons.check_circle_outline_rounded,
           label: context.localizations.confirmed,
-          description: 'تم تأكيد طلبك وجاري تجهيزه',
+          description: context.localizations.confirmed_desc,
         );
       case OrderType.inProgress:
         return (
           color: Colors.purple,
           icon: Icons.inventory_2_outlined,
           label: context.localizations.inProgress,
-          description: 'جاري تجهيز طلبك',
+          description: context.localizations.inProgress_desc,
         );
       case OrderType.outForDeleivery:
         return (
           color: Colors.teal,
           icon: Icons.local_shipping_outlined,
           label: context.localizations.outForDeleivery,
-          description: 'طلبك في الطريق إليك',
+          description: context.localizations.inProgress_desc,
         );
       case OrderType.delivered:
         return (
           color: Colors.green,
           icon: Icons.check_circle_rounded,
           label: context.localizations.deleiverd,
-          description: 'تم توصيل طلبك بنجاح',
+          description: context.localizations.delivered_desc,
+        );
+      case OrderType.returns:
+        return (
+          color: Colors.yellow,
+          icon: Icons.keyboard_return,
+          label: context.localizations.returns,
+          description: context.localizations.returns_desc,
+        );
+      case OrderType.canceled:
+        return (
+          color: Colors.red,
+          icon: Icons.cancel,
+          label: context.localizations.canceled,
+          description: context.localizations.canceled_desc,
         );
       default:
         return (

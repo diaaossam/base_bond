@@ -177,9 +177,9 @@ class _AddressItemDesignState extends State<AddressItemDesign>
                         children: [
                           Expanded(
                             child: AppText(
-                              text: widget.address.address??'',
+                              text: widget.address.address ?? '',
                               fontWeight: FontWeight.w600,
-                              textSize: 14,
+                              textSize: 12,
                               maxLines: 1,
                             ),
                           ),
@@ -204,7 +204,7 @@ class _AddressItemDesignState extends State<AddressItemDesign>
                                 widget.address.governorate?.title,
                                 widget.address.city?.title,
                               ].where((e) => e != null).join(' - '),
-                              textSize: 11,
+                              textSize: 10,
                               maxLines: 1,
                             ),
                           ),
@@ -221,7 +221,7 @@ class _AddressItemDesignState extends State<AddressItemDesign>
                           6.horizontalSpace,
                           Expanded(
                             child: AppText.hint(
-                              text: widget.address.additionalNotes??'',
+                              text: widget.address.additionalNotes ?? '',
                               textSize: 11,
                               maxLines: 1,
                             ),
@@ -254,7 +254,7 @@ class _AddressItemDesignState extends State<AddressItemDesign>
                     context: context,
                     icon: Icons.edit_outlined,
                     label: context.localizations.edit,
-                    onTap: () =>  widget.onEdit?.call(widget.address),
+                    onTap: () => widget.onEdit?.call(widget.address),
                     color: context.colorScheme.primary,
                   ),
                 ),
@@ -264,7 +264,7 @@ class _AddressItemDesignState extends State<AddressItemDesign>
                     context: context,
                     icon: Icons.delete_outline_rounded,
                     label: context.localizations.delete,
-                    onTap: () =>  widget.onDelete?.call(widget.address),
+                    onTap: () => widget.onDelete?.call(widget.address),
                     color: Colors.red,
                   ),
                 ),
@@ -323,7 +323,7 @@ class _AddressItemDesignState extends State<AddressItemDesign>
         context: context,
         icon: Icons.star_outline_rounded,
         label: context.localizations.makeDefault,
-        onTap:() => widget.onSetDefault?.call(widget.address),
+        onTap: () => widget.onSetDefault?.call(widget.address),
         color: Colors.amber,
       );
     }
@@ -354,14 +354,12 @@ class _AddressItemDesignState extends State<AddressItemDesign>
             children: [
               Icon(icon, size: 16.sp, color: color),
               6.horizontalSpace,
-              Flexible(
-                child: AppText(
-                  text: label,
-                  textSize: 11,
-                  color: color,
-                  fontWeight: FontWeight.w500,
-                  maxLines: 1,
-                ),
+              AppText(
+                text: label,
+                textSize: 11,
+                color: color,
+                fontWeight: FontWeight.w500,
+                maxLines: 1,
               ),
             ],
           ),

@@ -230,8 +230,8 @@ class $AssetsImagesGen {
   AssetGenImage get noNetwork =>
       const AssetGenImage('assets/images/no_network.png');
 
-  /// File path: assets/images/orders.jpg
-  AssetGenImage get orders => const AssetGenImage('assets/images/orders.jpg');
+  /// File path: assets/images/order.png
+  AssetGenImage get order => const AssetGenImage('assets/images/order.png');
 
   /// File path: assets/images/person.jpg
   AssetGenImage get person => const AssetGenImage('assets/images/person.jpg');
@@ -242,6 +242,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/shield-key.png
   AssetGenImage get shieldKey =>
       const AssetGenImage('assets/images/shield-key.png');
+
+  /// File path: assets/images/visamaster.png
+  AssetGenImage get visamaster =>
+      const AssetGenImage('assets/images/visamaster.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
@@ -259,10 +263,11 @@ class $AssetsImagesGen {
     mode,
     noLocation,
     noNetwork,
-    orders,
+    order,
     person,
     points,
     shieldKey,
+    visamaster,
   ];
 }
 

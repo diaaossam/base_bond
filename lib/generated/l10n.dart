@@ -1704,9 +1704,109 @@ class S {
     return Intl.message('إلغاء الطلب', name: 'cancelOrder', desc: '', args: []);
   }
 
+  /// `هل أنت متأكد من إلغاء الطلب ؟`
+  String get cancelOrderConfirm {
+    return Intl.message(
+      'هل أنت متأكد من إلغاء الطلب ؟',
+      name: 'cancelOrderConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `مرحباً بك`
   String get welcome {
     return Intl.message('مرحباً بك', name: 'welcome', desc: '', args: []);
+  }
+
+  /// `لا توجد إشعارات`
+  String get noNotificationTitle {
+    return Intl.message(
+      'لا توجد إشعارات',
+      name: 'noNotificationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ستظهر إشعاراتك هنا عندما تصلك`
+  String get noNotificationBody {
+    return Intl.message(
+      'ستظهر إشعاراتك هنا عندما تصلك',
+      name: 'noNotificationBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `جاري مراجعة طلبك`
+  String get underReview_desc {
+    return Intl.message(
+      'جاري مراجعة طلبك',
+      name: 'underReview_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم تأكيد طلبك وجاري تجهيزه`
+  String get confirmed_desc {
+    return Intl.message(
+      'تم تأكيد طلبك وجاري تجهيزه',
+      name: 'confirmed_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `جاري تجهيز طلبك`
+  String get inProgress_desc {
+    return Intl.message(
+      'جاري تجهيز طلبك',
+      name: 'inProgress_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `طلبك في الطريق إليك`
+  String get outForDelivery_desc {
+    return Intl.message(
+      'طلبك في الطريق إليك',
+      name: 'outForDelivery_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم توصيل طلبك بنجاح`
+  String get delivered_desc {
+    return Intl.message(
+      'تم توصيل طلبك بنجاح',
+      name: 'delivered_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم إرجاع الطلب`
+  String get returns_desc {
+    return Intl.message(
+      'تم إرجاع الطلب',
+      name: 'returns_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم إلغاء الطلب`
+  String get canceled_desc {
+    return Intl.message(
+      'تم إلغاء الطلب',
+      name: 'canceled_desc',
+      desc: '',
+      args: [],
+    );
   }
 }
 

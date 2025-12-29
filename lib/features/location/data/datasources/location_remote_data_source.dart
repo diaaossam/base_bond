@@ -1,3 +1,4 @@
+import 'package:bond/core/services/api/converters_helper.dart';
 import 'package:bond/features/location/data/models/response/my_address.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,8 +49,10 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
   @override
   Future<List<MyAddress>> getMyAddress() async {
     return await dioConsumer
-        .get(EndPoints.addresses)
-        .factory(MyAddress.fromJsonList)
+        .get<List<MyAddress>>(EndPoints.addresses)
+        .factory(
+          (json) => ConvertersHelper.fromJsonList(json, MyAddress.fromJson),
+        )
         .execute();
   }
 
@@ -57,8 +60,9 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
   Future<String> makeAddressDefault({required MyAddress myAddress}) async {
     final response = await dioConsumer
         .post("${EndPoints.addresses}/${myAddress.id}/set-default")
+        .factory((json) => json['message'])
         .execute();
-    return response['message'];
+    return response;
   }
 
   @override

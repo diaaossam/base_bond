@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/dependencies/injectable_dependencies.dart';
+import '../../../../config/router/app_router.gr.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../widgets/image_picker/app_image.dart';
 import '../../../orders/presentation/cubit/cart/cart_state_data.dart';
@@ -28,7 +29,8 @@ class ProductDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-      sl<ProductDetailsCubit>()..getProductDetails(id: product.id ?? 0, productModel: product),
+          sl<ProductDetailsCubit>()
+            ..getProductDetails(id: product.id ?? 0, productModel: product),
       child: Scaffold(
         backgroundColor: context.colorScheme.surface,
         appBar: CustomAppBar(
@@ -37,27 +39,37 @@ class ProductDetailsScreen extends StatelessWidget {
           actions: [
             BlocBuilder<CartCubit, BaseState<CartStateData>>(
               builder: (context, state) {
-                return ElasticIn(
-                  child: Container(
-                    padding: EdgeInsets.all(8.w),
-                    decoration: BoxDecoration(
-                      color: context.colorScheme.surfaceContainer,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Badge(
-                      backgroundColor: Colors.red,
-                      isLabelVisible:state.data!.cartList.length.toString()!="0" ,
-                      label: AppText(text: state.data!.cartList.length.toString(), color: Colors.white,),
-                      child: AppImage.asset(
-                        Assets.icons.shoppingCart,
-                        color: context.colorScheme.shadow,
+                return InkWell(
+                  onTap: () => context.router.pushAndPopUntil(
+                    MainLayoutRoute(initialIndex: 3),
+                    predicate: (route) => false,
+                  ),
+                  child: ElasticIn(
+                    child: Container(
+                      padding: EdgeInsets.all(8.w),
+                      decoration: BoxDecoration(
+                        color: context.colorScheme.surfaceContainer,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Badge(
+                        backgroundColor: Colors.red,
+                        isLabelVisible:
+                            state.data!.cartList.length.toString() != "0",
+                        label: AppText(
+                          text: state.data!.cartList.length.toString(),
+                          color: Colors.white,
+                        ),
+                        child: AppImage.asset(
+                          Assets.icons.shoppingCart,
+                          color: context.colorScheme.shadow,
+                        ),
                       ),
                     ),
                   ),
                 );
               },
             ),
-            15.horizontalSpaceDiagonal
+            15.horizontalSpaceDiagonal,
           ],
         ),
         body: ProductDetailsBody(productModel: product),

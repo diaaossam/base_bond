@@ -153,17 +153,16 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
     );
   }
 
-  Future<void> applyCoupon({required String code}) async {
+  Future<void> applyCoupon({required String code, required num amount}) async {
     await handleAsync<CouponModel>(
       identifier: 'coupon',
-      call: () => orderRepository.applyPromoCode(code: code),
+      call: () => orderRepository.applyPromoCode(code: code, amount: amount),
       onSuccess: (coupon) {
         double discountValue = 0;
 
         if (coupon.isValid == true) {
           if (coupon.coupon?.type == "percentage") {
-            discountValue =
-                state.data!.amount * ((coupon.coupon?.value ?? 0) / 100);
+            discountValue = state.data!.amount * ((coupon.coupon?.value ?? 0) / 100);
           } else {
             discountValue = coupon.coupon?.value?.toDouble() ?? 0;
           }
@@ -231,7 +230,7 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
       call: () => orderRepository.placeOrder(placeOrderModel: cart),
       onSuccess: (order) {
         sharedPreferences.remove("coupon");
-        return state.data!.copyWith(orders:order );
+        return state.data!.copyWith(orders: order);
       },
     );
   }

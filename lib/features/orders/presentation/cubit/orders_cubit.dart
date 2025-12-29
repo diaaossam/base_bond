@@ -1,13 +1,16 @@
+import 'package:bloc/bloc.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/enum/order_type.dart';
 import 'package:bond/features/orders/data/models/response/orders.dart';
 import 'package:bond/features/orders/data/repositories/order_repository_impl.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class OrdersCubit {
+class OrdersCubit extends Cubit<BaseState<List<Orders>>> {
   final OrderRepositoryImpl _orderRepository;
 
-  OrdersCubit(this._orderRepository);
+
+  OrdersCubit(this._orderRepository) : super(BaseState());
 
   Future<List<Orders>> getOrderList({
     required int pageKey,
@@ -17,27 +20,7 @@ class OrdersCubit {
       pageKey: pageKey,
       orderType: orderType,
     );
-    return result.fold(
-      (failure) => throw failure,
-      (orders) => orders,
-    );
+    return result.fold((failure) => [], (orders) => orders);
   }
 
-  Future<void> rateOrderItem({
-    required int productId,
-    required int orderId,
-    required int rating,
-    String? comment,
-  }) async {
-    final result = await _orderRepository.rateOrderItem(
-      productId: productId,
-      orderId: orderId,
-      rating: rating,
-      comment: comment,
-    );
-    return result.fold(
-      (failure) => throw failure,
-      (_) => null,
-    );
-  }
 }

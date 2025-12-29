@@ -65,6 +65,10 @@ import '../../features/main/presentation/cubit/banner/banners_cubit.dart'
 import '../../features/main/presentation/cubit/main/main_cubit.dart' as _i1051;
 import '../../features/notifications/data/datasources/notifications_remote_data_source.dart'
     as _i951;
+import '../../features/notifications/data/repositories/notification_repository.dart'
+    as _i203;
+import '../../features/notifications/presentation/cubit/notifications_cubit.dart'
+    as _i405;
 import '../../features/orders/data/datasources/order_locale_data_source.dart'
     as _i96;
 import '../../features/orders/data/datasources/order_remote_data_source.dart'
@@ -72,6 +76,8 @@ import '../../features/orders/data/datasources/order_remote_data_source.dart'
 import '../../features/orders/data/repositories/order_repository_impl.dart'
     as _i376;
 import '../../features/orders/presentation/cubit/cart/cart_cubit.dart' as _i12;
+import '../../features/orders/presentation/cubit/order_details_cubit.dart'
+    as _i739;
 import '../../features/orders/presentation/cubit/orders_cubit.dart' as _i1028;
 import '../../features/product/data/datasources/product_remote_data_source.dart'
     as _i1;
@@ -168,14 +174,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i384.DioConsumer>(
       () => _i384.DioConsumer(client: gh<_i763.DioClient>()),
     );
-    gh.factory<_i951.LocationRemoteDataSource>(
-      () => _i951.LocationRemoteDataSourceImpl(
+    gh.factory<_i951.NotificationRemoteDataSource>(
+      () => _i951.NotificationRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
     );
     gh.factory<_i1011.OrderRemoteDataSource>(
       () => _i1011.OrderRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
+    gh.lazySingleton<_i203.NotificationRepositoryImpl>(
+      () => _i203.NotificationRepositoryImpl(
+        notificationRemoteDataSource: gh<_i951.NotificationRemoteDataSource>(),
       ),
     );
     gh.factory<_i584.MainRemoteDataSource>(
@@ -209,6 +220,9 @@ extension GetItInjectableX on _i174.GetIt {
         sharedPreferences: gh<_i460.SharedPreferences>(),
       ),
     );
+    gh.factory<_i405.NotificationsCubit>(
+      () => _i405.NotificationsCubit(gh<_i203.NotificationRepositoryImpl>()),
+    );
     gh.factory<_i682.ProductDetailsCubit>(
       () => _i682.ProductDetailsCubit(gh<_i1040.ProductRepositoryImpl>()),
     );
@@ -235,6 +249,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i188.SettingsRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
+    );
+    gh.factory<_i739.OrderDetailsCubit>(
+      () => _i739.OrderDetailsCubit(gh<_i376.OrderRepositoryImpl>()),
     );
     gh.factory<_i1028.OrdersCubit>(
       () => _i1028.OrdersCubit(gh<_i376.OrderRepositoryImpl>()),
