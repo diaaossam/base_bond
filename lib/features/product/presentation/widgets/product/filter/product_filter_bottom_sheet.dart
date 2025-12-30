@@ -111,7 +111,7 @@ class _ProductFilterBottomSheetState extends State<ProductFilterBottomSheet> {
             width: 40.w,
             height: 4.h,
             decoration: BoxDecoration(
-              color: context.colorScheme.shadow.withOpacity(0.3),
+              color: context.colorScheme.shadow.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(2.r),
             ),
           ),
