@@ -129,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "delivered_desc": MessageLookupByLibrary.simpleMessage(
       "تم توصيل طلبك بنجاح",
     ),
+    "deliveryMethod": MessageLookupByLibrary.simpleMessage("Delivery Method"),
     "description": MessageLookupByLibrary.simpleMessage("الوصف"),
     "details": MessageLookupByLibrary.simpleMessage("التفاصيل"),
     "dimensions": MessageLookupByLibrary.simpleMessage("Dimensions"),
@@ -190,6 +191,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "governorate": MessageLookupByLibrary.simpleMessage("المحافظة"),
     "hideRating": MessageLookupByLibrary.simpleMessage("Hide Rating"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "homeDelivery": MessageLookupByLibrary.simpleMessage("Home Delivery"),
     "inProgress": MessageLookupByLibrary.simpleMessage("تحت المعالجة"),
     "inProgress_desc": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
     "invoice": MessageLookupByLibrary.simpleMessage("Invoice"),
@@ -295,6 +297,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "personalInfo": MessageLookupByLibrary.simpleMessage(
       "Personal Information",
     ),
+    "pharmacyPickup": MessageLookupByLibrary.simpleMessage("Pharmacy Pickup"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
@@ -308,6 +311,27 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "preparingOrder": MessageLookupByLibrary.simpleMessage(
       "Preparing your order",
+    ),
+    "prescriptionBody": MessageLookupByLibrary.simpleMessage(
+      "Upload your prescription and we\'ll prepare your order",
+    ),
+    "prescriptionNote": MessageLookupByLibrary.simpleMessage(
+      "Prescription Notes",
+    ),
+    "prescriptionNoteHint": MessageLookupByLibrary.simpleMessage(
+      "Add any additional notes for the pharmacist",
+    ),
+    "prescriptionOrder": MessageLookupByLibrary.simpleMessage(
+      "Prescription Order",
+    ),
+    "prescriptionRequired": MessageLookupByLibrary.simpleMessage(
+      "Please upload prescription image",
+    ),
+    "prescriptionSubmitted": MessageLookupByLibrary.simpleMessage(
+      "Your order has been submitted successfully",
+    ),
+    "prescriptionTitle": MessageLookupByLibrary.simpleMessage(
+      "Order your medicines easily",
     ),
     "priceRange": MessageLookupByLibrary.simpleMessage("Price Range"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("شروط الخصوصية"),
@@ -362,6 +386,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "specialOptions": MessageLookupByLibrary.simpleMessage("Special Options"),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
     "stock": MessageLookupByLibrary.simpleMessage("Stock"),
+    "submitPrescription": MessageLookupByLibrary.simpleMessage("Submit Order"),
     "submitRating": MessageLookupByLibrary.simpleMessage("Submit Rating"),
     "termsAndCon": MessageLookupByLibrary.simpleMessage("سياسة الإستخدام"),
     "thankYouForRating": MessageLookupByLibrary.simpleMessage(
@@ -386,6 +411,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "updateBody3": MessageLookupByLibrary.simpleMessage("Update Now"),
     "updateProfile": MessageLookupByLibrary.simpleMessage("Update Profile"),
     "updateTitle": MessageLookupByLibrary.simpleMessage("Update Available"),
+    "uploadPrescription": MessageLookupByLibrary.simpleMessage(
+      "Upload Prescription",
+    ),
+    "uploadPrescriptionHint": MessageLookupByLibrary.simpleMessage(
+      "Tap to capture or choose from gallery",
+    ),
     "validation": MessageLookupByLibrary.simpleMessage(
       "This field is required",
     ),

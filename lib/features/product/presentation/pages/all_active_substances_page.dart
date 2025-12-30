@@ -218,3 +218,5 @@ class AllActiveSubstancesPage extends StatelessWidget {
     );
   }
 }
+
+

@@ -65,9 +65,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 onDataReceived: (File file) {},
                 height: SizeConfig.bodyHeight * .12,
                 width: SizeConfig.bodyHeight * .12,
-                validator: FormBuilderValidators.required(
+              /*  validator: FormBuilderValidators.required(
                   errorText: context.localizations.validation,
-                ),
+                ),*/
               ),
               SizedBox(height: SizeConfig.bodyHeight * .04),
               CustomTextFormField(
@@ -188,7 +188,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         longitude: _location.value?.lon.toString(),
                         governorateId: fields['governorate']?.value as int?,
                         cityId: fields['region']?.value as int?,
-                        image: (fields['media']?.value as File).path
+                        //image: (fields['media']?.value as File).path
                       );
 
                       context.read<RegisterCubit>().register(params: params);

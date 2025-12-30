@@ -161,5 +161,18 @@
   "saveChanges": "حفظ التغييرات",
   "currentPrice": "السعر الحالي",
   "minPrice": "أقل سعر",
-  "maxPrice": "أعلى سعر"
+  "maxPrice": "أعلى سعر",
+  "prescriptionOrder": "طلب بالروشتة",
+  "prescriptionTitle": "اطلب أدويتك بسهولة",
+  "prescriptionBody": "قم برفع صورة الروشتة وسنتولى تجهيز طلبك",
+  "uploadPrescription": "رفع صورة الروشتة",
+  "uploadPrescriptionHint": "اضغط لالتقاط صورة أو اختيار من المعرض",
+  "deliveryMethod": "طريقة الاستلام",
+  "pharmacyPickup": "استلام من الصيدلية",
+  "homeDelivery": "توصيل للمنزل",
+  "prescriptionNote": "ملاحظات على الروشتة",
+  "prescriptionNoteHint": "أضف أي ملاحظات إضافية للصيدلي",
+  "submitPrescription": "إرسال الطلب",
+  "prescriptionRequired": "يرجى رفع صورة الروشتة",
+  "prescriptionSubmitted": "تم إرسال طلبك بنجاح"
 }

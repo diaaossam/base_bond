@@ -1913,6 +1913,136 @@ class S {
   String get maxPrice {
     return Intl.message('Max Price', name: 'maxPrice', desc: '', args: []);
   }
+
+  /// `Prescription Order`
+  String get prescriptionOrder {
+    return Intl.message(
+      'Prescription Order',
+      name: 'prescriptionOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order your medicines easily`
+  String get prescriptionTitle {
+    return Intl.message(
+      'Order your medicines easily',
+      name: 'prescriptionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload your prescription and we'll prepare your order`
+  String get prescriptionBody {
+    return Intl.message(
+      'Upload your prescription and we\'ll prepare your order',
+      name: 'prescriptionBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Prescription`
+  String get uploadPrescription {
+    return Intl.message(
+      'Upload Prescription',
+      name: 'uploadPrescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to capture or choose from gallery`
+  String get uploadPrescriptionHint {
+    return Intl.message(
+      'Tap to capture or choose from gallery',
+      name: 'uploadPrescriptionHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery Method`
+  String get deliveryMethod {
+    return Intl.message(
+      'Delivery Method',
+      name: 'deliveryMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pharmacy Pickup`
+  String get pharmacyPickup {
+    return Intl.message(
+      'Pharmacy Pickup',
+      name: 'pharmacyPickup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home Delivery`
+  String get homeDelivery {
+    return Intl.message(
+      'Home Delivery',
+      name: 'homeDelivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prescription Notes`
+  String get prescriptionNote {
+    return Intl.message(
+      'Prescription Notes',
+      name: 'prescriptionNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add any additional notes for the pharmacist`
+  String get prescriptionNoteHint {
+    return Intl.message(
+      'Add any additional notes for the pharmacist',
+      name: 'prescriptionNoteHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Order`
+  String get submitPrescription {
+    return Intl.message(
+      'Submit Order',
+      name: 'submitPrescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload prescription image`
+  String get prescriptionRequired {
+    return Intl.message(
+      'Please upload prescription image',
+      name: 'prescriptionRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order has been submitted successfully`
+  String get prescriptionSubmitted {
+    return Intl.message(
+      'Your order has been submitted successfully',
+      name: 'prescriptionSubmitted',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

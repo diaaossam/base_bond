@@ -231,5 +231,18 @@
   "saveChanges": "Save Changes",
   "currentPrice": "Current Price",
   "minPrice": "Min Price",
-  "maxPrice": "Max Price"
+  "maxPrice": "Max Price",
+  "prescriptionOrder": "Prescription Order",
+  "prescriptionTitle": "Order your medicines easily",
+  "prescriptionBody": "Upload your prescription and we'll prepare your order",
+  "uploadPrescription": "Upload Prescription",
+  "uploadPrescriptionHint": "Tap to capture or choose from gallery",
+  "deliveryMethod": "Delivery Method",
+  "pharmacyPickup": "Pharmacy Pickup",
+  "homeDelivery": "Home Delivery",
+  "prescriptionNote": "Prescription Notes",
+  "prescriptionNoteHint": "Add any additional notes for the pharmacist",
+  "submitPrescription": "Submit Order",
+  "prescriptionRequired": "Please upload prescription image",
+  "prescriptionSubmitted": "Your order has been submitted successfully"
 }

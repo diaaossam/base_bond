@@ -28,6 +28,10 @@ class HomeBody extends StatelessWidget {
           actions: [
             GestureDetector(
               onTap: () {
+
+            /*    context.router.push(
+                  PrescriptionRoute(),
+                );*/
                 context.router.push(
                   AllProductsRoute(
                     title: context.localizations.products,

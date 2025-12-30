@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "delivered_desc": MessageLookupByLibrary.simpleMessage(
       "تم توصيل طلبك بنجاح",
     ),
+    "deliveryMethod": MessageLookupByLibrary.simpleMessage("طريقة الاستلام"),
     "details": MessageLookupByLibrary.simpleMessage("التفاصيل"),
     "dimensions": MessageLookupByLibrary.simpleMessage("الأبعاد"),
     "discountApplied": MessageLookupByLibrary.simpleMessage(
@@ -141,6 +142,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "from": MessageLookupByLibrary.simpleMessage("من"),
     "goToHome": MessageLookupByLibrary.simpleMessage("الذهاب للرئيسية"),
     "hideRating": MessageLookupByLibrary.simpleMessage("إخفاء التقييم"),
+    "homeDelivery": MessageLookupByLibrary.simpleMessage("توصيل للمنزل"),
     "inProgress_desc": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
     "invoice": MessageLookupByLibrary.simpleMessage("الفاتورة"),
     "iqd": MessageLookupByLibrary.simpleMessage("د.ع"),
@@ -193,6 +195,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى اختيار طريقة الدفع",
     ),
     "personalInfo": MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
+    "pharmacyPickup": MessageLookupByLibrary.simpleMessage(
+      "استلام من الصيدلية",
+    ),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
@@ -201,6 +206,25 @@ class MessageLookup extends MessageLookupByLibrary {
       "الرجاء اختيار تقييم",
     ),
     "preparingOrder": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
+    "prescriptionBody": MessageLookupByLibrary.simpleMessage(
+      "قم برفع صورة الروشتة وسنتولى تجهيز طلبك",
+    ),
+    "prescriptionNote": MessageLookupByLibrary.simpleMessage(
+      "ملاحظات على الروشتة",
+    ),
+    "prescriptionNoteHint": MessageLookupByLibrary.simpleMessage(
+      "أضف أي ملاحظات إضافية للصيدلي",
+    ),
+    "prescriptionOrder": MessageLookupByLibrary.simpleMessage("طلب بالروشتة"),
+    "prescriptionRequired": MessageLookupByLibrary.simpleMessage(
+      "يرجى رفع صورة الروشتة",
+    ),
+    "prescriptionSubmitted": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال طلبك بنجاح",
+    ),
+    "prescriptionTitle": MessageLookupByLibrary.simpleMessage(
+      "اطلب أدويتك بسهولة",
+    ),
     "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
     "productInfo": MessageLookupByLibrary.simpleMessage("معلومات المنتج"),
     "products": MessageLookupByLibrary.simpleMessage("المنتجات"),
@@ -243,6 +267,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "specialOptions": MessageLookupByLibrary.simpleMessage("خيارات خاصة"),
     "startNow": MessageLookupByLibrary.simpleMessage("إبدء الأن"),
     "stock": MessageLookupByLibrary.simpleMessage("المخزون"),
+    "submitPrescription": MessageLookupByLibrary.simpleMessage("إرسال الطلب"),
     "submitRating": MessageLookupByLibrary.simpleMessage("إرسال التقييم"),
     "thankYouForRating": MessageLookupByLibrary.simpleMessage("شكراً لتقييمك!"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
@@ -265,6 +290,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "updateBody3": MessageLookupByLibrary.simpleMessage("تحديث الآن"),
     "updateProfile": MessageLookupByLibrary.simpleMessage("تحديث الملف الشخصي"),
     "updateTitle": MessageLookupByLibrary.simpleMessage("تحديث متاح"),
+    "uploadPrescription": MessageLookupByLibrary.simpleMessage(
+      "رفع صورة الروشتة",
+    ),
+    "uploadPrescriptionHint": MessageLookupByLibrary.simpleMessage(
+      "اضغط لالتقاط صورة أو اختيار من المعرض",
+    ),
     "validation": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
     "weight": MessageLookupByLibrary.simpleMessage("الوزن"),
     "youWillWin": MessageLookupByLibrary.simpleMessage("ستحصل على"),
