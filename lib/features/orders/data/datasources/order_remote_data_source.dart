@@ -50,7 +50,7 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
     return await dioConsumer
         .post(EndPoints.validateCoupon)
         .body({"code": code, "order_amount": amount})
-        .factory(Orders.fromJsonList)
+        .factory((json) => CouponModel.fromJson(json['data']))
         .execute();
   }
 

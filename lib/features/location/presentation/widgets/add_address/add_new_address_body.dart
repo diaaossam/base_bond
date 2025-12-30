@@ -68,7 +68,9 @@ class _AddNewAddressBodyState extends State<AddNewAddressBody>
       }
       _isDefault = address.isDefault == true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        context.read<AppCubit>().getRegion(id: widget.address!.governorate!.id!);
+        context.read<AppCubit>().getRegion(
+          id: widget.address!.governorate!.id!,
+        );
       });
     }
   }
@@ -119,7 +121,8 @@ class _AddNewAddressBodyState extends State<AddNewAddressBody>
                             : context.localizations.saveLocation,
                         isLoading: state.isLoading,
                         press: () {
-                          if (_formKey.currentState?.saveAndValidate() ?? false) {
+                          if (_formKey.currentState?.saveAndValidate() ??
+                              false) {
                             final formData = _formKey.currentState!.value;
 
                             final params = SavedLocationParams(
@@ -131,6 +134,7 @@ class _AddNewAddressBodyState extends State<AddNewAddressBody>
                               lat: locationEntity?.lat,
                               lng: locationEntity?.lon,
                               isDefault: _isDefault,
+                              streetAddress: locationEntity?.address,
                             );
 
                             context.read<AddNewAddressCubit>().addNewAddress(

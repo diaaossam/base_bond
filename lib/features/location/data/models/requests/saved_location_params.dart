@@ -6,6 +6,7 @@ class SavedLocationParams {
   final String? name;
   final String? address;
   final String? notes;
+  final String? streetAddress;
   final bool isDefault;
 
   SavedLocationParams({
@@ -16,6 +17,7 @@ class SavedLocationParams {
     this.name,
     this.address,
     this.notes,
+    this.streetAddress,
     this.isDefault = false,
   });
 
@@ -28,6 +30,7 @@ class SavedLocationParams {
     map['street_address'] = name;
     map['address'] = address;
     map['additional_notes'] = notes;
+    map['street_address'] = streetAddress;
     map['is_default'] = isDefault;
     return map;
   }

@@ -221,6 +221,15 @@
   "outForDelivery_desc": "طلبك في الطريق إليك",
   "delivered_desc": "تم توصيل طلبك بنجاح",
   "returns_desc": "تم إرجاع الطلب",
-  "canceled_desc": "تم إلغاء الطلب"
-
+  "canceled_desc": "تم إلغاء الطلب",
+  "profile": "Profile",
+  "updateProfile": "Update Profile",
+  "profileUpdated": "Profile updated successfully",
+  "profileImage": "Profile Picture",
+  "personalInfo": "Personal Information",
+  "changeProfilePicture": "Change Profile Picture",
+  "saveChanges": "Save Changes",
+  "currentPrice": "Current Price",
+  "minPrice": "Min Price",
+  "maxPrice": "Max Price"
 }

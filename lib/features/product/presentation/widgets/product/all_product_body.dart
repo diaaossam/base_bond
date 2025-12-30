@@ -126,9 +126,7 @@ class _AllProductBodyState extends State<AllProductBody> {
       context,
       initialParams: _currentParams,
       onApplyFilter: (ProductParams params) {
-        setState(() {
-          _currentParams = params;
-        });
+        setState(() => _currentParams = params);
         _pagingController.refresh();
       },
     );

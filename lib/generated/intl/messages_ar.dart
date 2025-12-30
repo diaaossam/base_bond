@@ -70,6 +70,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "canceled_desc": MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب"),
     "category": MessageLookupByLibrary.simpleMessage("التصنيف"),
+    "changeProfilePicture": MessageLookupByLibrary.simpleMessage(
+      "تغيير الصورة الشخصية",
+    ),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage("اختر من المعرض"),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("اختر صورة"),
     "chooseFromGallery2": MessageLookupByLibrary.simpleMessage("اختر فيديو"),
@@ -84,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmed_desc": MessageLookupByLibrary.simpleMessage(
       "تم تأكيد طلبك وجاري تجهيزه",
     ),
+    "currentPrice": MessageLookupByLibrary.simpleMessage("السعر الحالي"),
     "currentStatus": MessageLookupByLibrary.simpleMessage("الحالية"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("العنوان الافتراضي"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
@@ -145,6 +149,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى إضافة عنوان التوصيل",
     ),
     "makeDefault": MessageLookupByLibrary.simpleMessage("تعيين كافتراضي"),
+    "maxPrice": MessageLookupByLibrary.simpleMessage("أعلى سعر"),
+    "minPrice": MessageLookupByLibrary.simpleMessage("أقل سعر"),
     "myAddresses": MessageLookupByLibrary.simpleMessage("عناويني"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
     "noCart": MessageLookupByLibrary.simpleMessage("السلة فارغة"),
@@ -186,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "paymentValidation": MessageLookupByLibrary.simpleMessage(
       "يرجى اختيار طريقة الدفع",
     ),
+    "personalInfo": MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
@@ -197,6 +204,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
     "productInfo": MessageLookupByLibrary.simpleMessage("معلومات المنتج"),
     "products": MessageLookupByLibrary.simpleMessage("المنتجات"),
+    "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "profileImage": MessageLookupByLibrary.simpleMessage("الصورة الشخصية"),
+    "profileUpdated": MessageLookupByLibrary.simpleMessage(
+      "تم تحديث الملف الشخصي بنجاح",
+    ),
     "rateProduct": MessageLookupByLibrary.simpleMessage("قيّم المنتج"),
     "rated": MessageLookupByLibrary.simpleMessage("تم التقييم"),
     "ratingError": MessageLookupByLibrary.simpleMessage(
@@ -208,6 +220,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
     "returns_desc": MessageLookupByLibrary.simpleMessage("تم إرجاع الطلب"),
     "reviewingOrder": MessageLookupByLibrary.simpleMessage("جاري مراجعة طلبك"),
+    "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
     "selectProvince": MessageLookupByLibrary.simpleMessage("اختر المحافظة"),
     "selectRegion": MessageLookupByLibrary.simpleMessage("اختر المنطقة"),
@@ -250,6 +263,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "إصلاحات لأخطاء سابقة.",
     ),
     "updateBody3": MessageLookupByLibrary.simpleMessage("تحديث الآن"),
+    "updateProfile": MessageLookupByLibrary.simpleMessage("تحديث الملف الشخصي"),
     "updateTitle": MessageLookupByLibrary.simpleMessage("تحديث متاح"),
     "validation": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
     "weight": MessageLookupByLibrary.simpleMessage("الوزن"),

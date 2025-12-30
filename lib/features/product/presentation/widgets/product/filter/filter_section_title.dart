@@ -17,7 +17,7 @@ class FilterSectionTitle extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 12.h),
       child: AppText(
         text: title,
-        textSize: 13,
+        textSize: 12,
         fontWeight: FontWeight.bold,
         color: context.colorScheme.onSurface,
       ),

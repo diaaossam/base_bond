@@ -130,15 +130,7 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
 
     final model = CouponModel.fromJson(json.decode(jsonString));
 
-    double discountValue = 0;
-
-    if (model.isValid == true) {
-      if (model.coupon?.type == "percentage") {
-        discountValue = state.data!.amount * ((model.coupon?.value ?? 0) / 100);
-      } else {
-        discountValue = model.coupon?.value?.toDouble() ?? 0;
-      }
-    }
+    double discountValue = model.amount != null ? model.amount!.toDouble() : 0;
 
     discount.text = model.couponCode ?? "";
 
@@ -159,20 +151,13 @@ class CartCubit extends Cubit<BaseState<CartStateData>>
       call: () => orderRepository.applyPromoCode(code: code, amount: amount),
       onSuccess: (coupon) {
         double discountValue = 0;
-
         if (coupon.isValid == true) {
-          if (coupon.coupon?.type == "percentage") {
-            discountValue = state.data!.amount * ((coupon.coupon?.value ?? 0) / 100);
-          } else {
-            discountValue = coupon.coupon?.value?.toDouble() ?? 0;
-          }
-
+          discountValue = coupon.amount!.toDouble();
           sharedPreferences.setString(
             "coupon",
             json.encode(coupon.copyWith(couponCode: code).toJson()),
           );
         }
-
         return state.data!.copyWith(
           couponModel: coupon,
           couponCode: code,

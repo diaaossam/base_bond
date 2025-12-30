@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../config/dependencies/injectable_dependencies.dart';
+import '../../active_substance/substance_loading_shimmer.dart';
 
 class BrandFilterSection extends StatelessWidget {
   final int? selectedBrandId;
@@ -30,12 +31,7 @@ class BrandFilterSection extends StatelessWidget {
           child: BlocBuilder<BrandCubit, BaseState<List<GenericModel>>>(
             builder: (context, state) {
               if (state.isLoading) {
-                return SizedBox(
-                  height: 50.h,
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return SubstanceLoadingShimmer();
               }
               final brands = state.data ?? [];
               return Wrap(

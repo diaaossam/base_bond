@@ -118,7 +118,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<bool> updateUserData({required RegisterParams params}) async {
-    return true;
+    final response = await dioConsumer
+        .post(EndPoints.update)
+        .body(await params.toFormData())
+        .factory((json) => true)
+        .execute();
+    final updatedUser = await getUserData();
+    UserDataService().setUserData(updatedUser);
+    return response;
   }
 
   @override

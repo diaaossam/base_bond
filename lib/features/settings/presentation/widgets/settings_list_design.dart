@@ -33,6 +33,11 @@ class SettingsListDesign extends StatelessWidget {
       child: Column(
         children: [
           SettingsItemDesign(
+            text: context.localizations.profile,
+            press: () => context.router.push(UpdateProfileRoute()),
+            image: Assets.images.person.path,
+          ),
+          SettingsItemDesign(
             text: context.localizations.myOrders,
             press: () =>context.router.push(OrdersRoute()),
             image: Assets.images.order.path,

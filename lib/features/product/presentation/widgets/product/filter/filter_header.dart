@@ -26,7 +26,7 @@ class FilterHeader extends StatelessWidget {
         children: [
           AppText(
             text: context.localizations.filter,
-            textSize: 20,
+            textSize: 16,
             fontWeight: FontWeight.bold,
           ),
           const Spacer(),
@@ -34,7 +34,7 @@ class FilterHeader extends StatelessWidget {
             onPressed: onReset,
             child: AppText(
               text: context.localizations.reset,
-              textSize: 14,
+              textSize: 12,
               color: context.colorScheme.primary,
             ),
           ),

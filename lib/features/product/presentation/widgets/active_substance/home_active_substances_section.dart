@@ -23,7 +23,7 @@ class HomeActiveSubstancesSection extends StatelessWidget {
       child: BlocBuilder<ActiveSubstancesCubit, BaseState<List<GenericModel>>>(
         builder: (context, state) {
           if (state.isLoading) {
-            return SubstanceLoadingShimmer();
+            return SliverToBoxAdapter(child: SubstanceLoadingShimmer());
           }
 
           final activeSubstances = state.data ?? [];

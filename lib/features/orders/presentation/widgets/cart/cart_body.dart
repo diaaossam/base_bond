@@ -58,7 +58,8 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
             state.error.toString(),
             false,
           );
-        } else if (state.isSuccess && state.identifier == "placeOrder") {
+        }
+        else if (state.isSuccess && state.identifier == "placeOrder") {
           context.read<CartCubit>().clearCartOptimistically();
           OrderHelper().showSuccessOrderDialog(
             context: context,
@@ -68,7 +69,7 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
       },
       builder: (context, state) {
         final bloc = context.read<CartCubit>();
-        if (state.isLoading) {
+        if (state.isLoading && state.identifier != "coupon") {
           return const LoadingWidget();
         }
         if (bloc.cartList.isEmpty) {

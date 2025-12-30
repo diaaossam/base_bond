@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../config/dependencies/injectable_dependencies.dart';
+import '../../active_substance/substance_loading_shimmer.dart';
 
 class ActiveSubstancesFilterSection extends StatelessWidget {
   final int? selectedActiveSubstanceId;
@@ -30,12 +31,7 @@ class ActiveSubstancesFilterSection extends StatelessWidget {
           child: BlocBuilder<ActiveSubstancesCubit, BaseState<List<GenericModel>>>(
             builder: (context, state) {
               if (state.isLoading) {
-                return SizedBox(
-                  height: 50.h,
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return SubstanceLoadingShimmer();
               }
               final activeSubstances = state.data ?? [];
               return Wrap(

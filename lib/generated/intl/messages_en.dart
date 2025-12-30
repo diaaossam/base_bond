@@ -92,6 +92,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "cash": MessageLookupByLibrary.simpleMessage("نقدي"),
     "categories": MessageLookupByLibrary.simpleMessage("التصنيفات"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
+    "changeProfilePicture": MessageLookupByLibrary.simpleMessage(
+      "Change Profile Picture",
+    ),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage(
       "Choose From Gallery",
     ),
@@ -112,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "copy": MessageLookupByLibrary.simpleMessage("نسخ"),
     "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+    "currentPrice": MessageLookupByLibrary.simpleMessage("Current Price"),
     "currentStatus": MessageLookupByLibrary.simpleMessage("Current"),
     "customerSupport": MessageLookupByLibrary.simpleMessage("الدعم الفني"),
     "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
@@ -226,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     ),
     "makeDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
+    "maxPrice": MessageLookupByLibrary.simpleMessage("Max Price"),
+    "minPrice": MessageLookupByLibrary.simpleMessage("Min Price"),
     "mode": MessageLookupByLibrary.simpleMessage("الوضع"),
     "myAddresses": MessageLookupByLibrary.simpleMessage("My Addresses"),
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
@@ -286,6 +292,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "paymentValidation": MessageLookupByLibrary.simpleMessage(
       "Please select a payment method",
     ),
+    "personalInfo": MessageLookupByLibrary.simpleMessage(
+      "Personal Information",
+    ),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
@@ -305,6 +314,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "productDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
     "productInfo": MessageLookupByLibrary.simpleMessage("Product Information"),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "profileImage": MessageLookupByLibrary.simpleMessage("Profile Picture"),
+    "profileUpdated": MessageLookupByLibrary.simpleMessage(
+      "Profile updated successfully",
+    ),
     "rateProduct": MessageLookupByLibrary.simpleMessage("Rate Product"),
     "rated": MessageLookupByLibrary.simpleMessage("Rated"),
     "ratingError": MessageLookupByLibrary.simpleMessage(
@@ -324,6 +338,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reviewingOrder": MessageLookupByLibrary.simpleMessage(
       "Reviewing your order",
     ),
+    "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
     "saveLocation": MessageLookupByLibrary.simpleMessage("حفظ العنوان"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
     "seeAll": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
@@ -369,6 +384,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "updateBody2": MessageLookupByLibrary.simpleMessage("Bug fixes."),
     "updateBody3": MessageLookupByLibrary.simpleMessage("Update Now"),
+    "updateProfile": MessageLookupByLibrary.simpleMessage("Update Profile"),
     "updateTitle": MessageLookupByLibrary.simpleMessage("Update Available"),
     "validation": MessageLookupByLibrary.simpleMessage(
       "This field is required",

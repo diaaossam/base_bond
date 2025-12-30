@@ -16,6 +16,7 @@ class AppConstant {
       Flushbar(
         message: msg,
         messageSize: 13,
+        duration: Duration(seconds: 2),
         icon: isSuccess
             ? const Icon(Icons.check, size: 28.0, color: Colors.green)
             : Container(

@@ -15,6 +15,7 @@ import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logger/logger.dart';
 
 class DiscountDesign extends StatefulWidget {
   const DiscountDesign({super.key});
@@ -96,24 +97,7 @@ class _DiscountDesignState extends State<DiscountDesign>
 
             SizedBox(height: 12.h),
 
-            // Coupon Input
-            BlocConsumer<CartCubit, BaseState<CartStateData>>(
-              listener: (context, state) {
-                if (state.isFailure && state.identifier == 'coupon') {
-                  AppConstant.showCustomSnakeBar(
-                    context,
-                    state.error?.toString() ?? '',
-                    false,
-                  );
-                } else if (state.isSuccess && state.identifier == 'coupon') {
-                  _successController.forward(from: 0);
-                  AppConstant.showCustomSnakeBar(
-                    context,
-                    context.localizations.discountApplied,
-                    true,
-                  );
-                }
-              },
+            BlocBuilder<CartCubit, BaseState<CartStateData>>(
               builder: (context, state) {
                 final bloc = context.read<CartCubit>();
                 final hasDiscount = bloc.couponDiscount != 0;
@@ -126,7 +110,9 @@ class _DiscountDesignState extends State<DiscountDesign>
                         borderRadius: BorderRadius.circular(14),
                         border: hasDiscount
                             ? Border.all(
-                                color: colorScheme.tertiary.withValues(alpha: 0.5),
+                                color: colorScheme.tertiary.withValues(
+                                  alpha: 0.5,
+                                ),
                                 width: 2,
                               )
                             : null,
@@ -170,13 +156,19 @@ class _DiscountDesignState extends State<DiscountDesign>
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    colorScheme.tertiary.withValues(alpha: 0.15),
-                                    colorScheme.tertiary.withValues(alpha: 0.05),
+                                    colorScheme.tertiary.withValues(
+                                      alpha: 0.15,
+                                    ),
+                                    colorScheme.tertiary.withValues(
+                                      alpha: 0.05,
+                                    ),
                                   ],
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: colorScheme.tertiary.withValues(alpha: 0.3),
+                                  color: colorScheme.tertiary.withValues(
+                                    alpha: 0.3,
+                                  ),
                                 ),
                               ),
                               child: Row(
@@ -189,7 +181,8 @@ class _DiscountDesignState extends State<DiscountDesign>
                                   10.horizontalSpace,
                                   Expanded(
                                     child: AppText(
-                                      text: context.localizations.discountApplied,
+                                      text:
+                                          context.localizations.discountApplied,
                                       textSize: 13,
                                       fontWeight: FontWeight.w500,
                                       color: colorScheme.tertiary,
@@ -231,11 +224,7 @@ class _DiscountDesignState extends State<DiscountDesign>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.close_rounded,
-                size: 16,
-                color: colorScheme.error,
-              ),
+              Icon(Icons.close_rounded, size: 16, color: colorScheme.error),
               6.horizontalSpace,
               AppText(
                 text: context.localizations.cancel,
@@ -259,7 +248,10 @@ class _DiscountDesignState extends State<DiscountDesign>
           return;
         }
         if (bloc.discount.text.isNotEmpty) {
-          bloc.applyCoupon(code: bloc.discount.text,amount: state.data!.amount);
+          bloc.applyCoupon(
+            code: bloc.discount.text,
+            amount: state.data!.amount,
+          );
         }
       },
       width: SizeConfig.screenWidth * .22,

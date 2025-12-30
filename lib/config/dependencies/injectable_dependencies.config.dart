@@ -48,6 +48,8 @@ import '../../features/auth/presentation/cubit/register_cubit/register_cubit.dar
     as _i1006;
 import '../../features/auth/presentation/cubit/social_login/social_login_bloc.dart'
     as _i396;
+import '../../features/auth/presentation/cubit/update_profile/update_profile_cubit.dart'
+    as _i704;
 import '../../features/location/data/datasources/location_remote_data_source.dart'
     as _i823;
 import '../../features/location/data/repositories/location_repository_impl.dart'
@@ -296,6 +298,9 @@ extension GetItInjectableX on _i174.GetIt {
         tokenRepository: gh<_i734.TokenRepository>(),
         remoteDataSource: gh<_i107.AuthRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i704.UpdateProfileCubit>(
+      () => _i704.UpdateProfileCubit(gh<_i662.AuthRepositoryImpl>()),
     );
     gh.factory<_i862.ActiveSubstancesCubit>(
       () => _i862.ActiveSubstancesCubit(gh<_i1040.ProductRepositoryImpl>()),

@@ -151,5 +151,15 @@
   "canceled_desc": "تم إلغاء الطلب",
   "activeSubstance": "المادة الفعالة",
   "activeSubstances": "المواد الفعالة",
-  "allActiveSubstances": "جميع المواد الفعالة"
+  "allActiveSubstances": "جميع المواد الفعالة",
+  "profile": "الملف الشخصي",
+  "updateProfile": "تحديث الملف الشخصي",
+  "profileUpdated": "تم تحديث الملف الشخصي بنجاح",
+  "profileImage": "الصورة الشخصية",
+  "personalInfo": "المعلومات الشخصية",
+  "changeProfilePicture": "تغيير الصورة الشخصية",
+  "saveChanges": "حفظ التغييرات",
+  "currentPrice": "السعر الحالي",
+  "minPrice": "أقل سعر",
+  "maxPrice": "أعلى سعر"
 }
