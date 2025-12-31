@@ -122,6 +122,7 @@ flutter:
     - assets/icons/
     - assets/fonts/
     - .env.development
+    - .env.production
 
   fonts:
     - family: SomarSans
