@@ -2043,6 +2043,26 @@ class S {
       args: [],
     );
   }
+
+  /// `لا توجد منتجات`
+  String get noProductsTitle {
+    return Intl.message(
+      'لا توجد منتجات',
+      name: 'noProductsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لا يوجد منتجات مطابقة هنا`
+  String get noProductsBody {
+    return Intl.message(
+      'لا يوجد منتجات مطابقة هنا',
+      name: 'noProductsBody',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

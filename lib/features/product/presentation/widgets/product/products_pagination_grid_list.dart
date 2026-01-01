@@ -6,6 +6,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../core/utils/app_size.dart';
 import '../../../data/models/response/product_model.dart';
+import 'empty_product_widget.dart';
 
 class ProductsPaginationGridList extends StatelessWidget {
   final PagingController<int, ProductModel> pagingController;
@@ -37,6 +38,7 @@ class ProductsPaginationGridList extends StatelessWidget {
               index: index,
               isLiked: item.isAddedToFavourite ?? false,
             ),
+            noItemsFoundIndicatorBuilder: (context) => EmptyProductsWidget(),
             newPageProgressIndicatorBuilder: (context) => LoadingWidget(size: LoadingSize.small,),
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

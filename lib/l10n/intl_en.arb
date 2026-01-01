@@ -244,5 +244,7 @@
   "prescriptionNoteHint": "Add any additional notes for the pharmacist",
   "submitPrescription": "Submit Order",
   "prescriptionRequired": "Please upload prescription image",
-  "prescriptionSubmitted": "Your order has been submitted successfully"
+  "prescriptionSubmitted": "Your order has been submitted successfully",
+  "noProductsTitle": "لا توجد منتجات",
+  "noProductsBody": "لا يوجد منتجات مطابقة هنا"
 }

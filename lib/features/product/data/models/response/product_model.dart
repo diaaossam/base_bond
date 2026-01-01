@@ -51,10 +51,10 @@ class ProductModel {
     isFeatured = json['is_featured'];
     isNewArrival = json['is_new_arrival'];
     isBestSeller = json['is_best_seller'];
-    totalViews = json['total_views'];
+    totalViews = json['total_views'].toString();
     averageRating = json['average_rating'];
-    totalReviews = json['total_reviews'];
-    currentStock = json['current_stock'];
+    totalReviews = json['total_reviews'].toString();
+    currentStock = json['current_stock'].toString();
     featureImage = json['feature_image'] ?? json['image'];
     images = json['images'] != null ? json['images'].cast<String>() : [];
     status = json['status'];

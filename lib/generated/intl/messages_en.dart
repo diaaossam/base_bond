@@ -252,6 +252,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا توجد إشعارات",
     ),
     "noOrdersFound": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
+    "noProductsBody": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد منتجات مطابقة هنا",
+    ),
+    "noProductsTitle": MessageLookupByLibrary.simpleMessage("لا توجد منتجات"),
     "noWithList": MessageLookupByLibrary.simpleMessage("قائمة المفضلة فارغة"),
     "notAvailable": MessageLookupByLibrary.simpleMessage("Not Available"),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),

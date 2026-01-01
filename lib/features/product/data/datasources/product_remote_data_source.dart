@@ -32,11 +32,12 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
   @override
   Future<List<ProductModel>> getProducts(ProductParams params) async {
-    return await dioConsumer
+    final data = await dioConsumer
         .get<List<ProductModel>>(EndPoints.products)
         .params(params.toJson())
         .factory(ProductModel.fromJsonList)
         .execute();
+    return data;
   }
 
   @override

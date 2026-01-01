@@ -27,12 +27,15 @@ class DioClient {
       client.badCertificateCallback = (cert, host, port) => true;
       return client;
     };
+
+
     client.options
       ..baseUrl = env.Environment.apiUrl
       ..responseType = ResponseType.plain
       ..connectTimeout = timeOut
       ..sendTimeout = timeOut
       ..receiveTimeout = timeOut
+      ..receiveDataWhenStatusError = true
       ..followRedirects = false
       ..validateStatus = (status) {
         return status! < StatusCode.internalServerError;
@@ -114,6 +117,7 @@ class DioClient {
         data: body,
         options: Options(headers: headers),
       );
+
       if (response.statusCode == StatusCode.ok) {
         return json.decode(response.data);
       } else {
