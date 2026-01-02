@@ -282,10 +282,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "orderReturned": MessageLookupByLibrary.simpleMessage(
       "Order has been returned",
     ),
+    "orderWithYourInsurance": MessageLookupByLibrary.simpleMessage(
+      "اطلب بالتأمين الخاص بك",
+    ),
     "otpBody": MessageLookupByLibrary.simpleMessage(
       "قمنا بإرسال رمز مُكوّن من 6 أرقام إلى رقم هاتفك",
     ),
     "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
+    "ourServices": MessageLookupByLibrary.simpleMessage("خدماتنا"),
     "outForDeleivery": MessageLookupByLibrary.simpleMessage("خرج للتوصيل"),
     "outForDelivery_desc": MessageLookupByLibrary.simpleMessage(
       "طلبك في الطريق إليك",

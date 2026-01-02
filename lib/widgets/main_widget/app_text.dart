@@ -113,10 +113,10 @@ class AppText extends StatelessWidget {
     }
     switch (type) {
       case TextType.title:
-        return 18.sp;
+        return 15.sp;
       case TextType.regular:
       case TextType.body:
-        return 12.sp;
+        return 11.sp;
       case TextType.hint:
         return 11.sp;
     }

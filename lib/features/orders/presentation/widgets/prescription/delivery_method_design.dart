@@ -21,6 +21,7 @@ class DeliveryMethodDesign extends StatefulWidget {
 }
 
 class _DeliveryMethodDesignState extends State<DeliveryMethodDesign> {
+
   void _selectMethod(DeliveryMethod method) {
     widget.onMethodChanged(method);
   }
@@ -28,7 +29,6 @@ class _DeliveryMethodDesignState extends State<DeliveryMethodDesign> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
-
     return Container(
       decoration: BoxDecoration(
         color: colorScheme.surface,
@@ -45,7 +45,6 @@ class _DeliveryMethodDesignState extends State<DeliveryMethodDesign> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header
           Row(
             children: [
               Container(
@@ -74,26 +73,20 @@ class _DeliveryMethodDesignState extends State<DeliveryMethodDesign> {
             ],
           ),
           SizedBox(height: 16.h),
-
-          // Options
           Row(
             children: [
-              Expanded(
-                child: _DeliveryOption(
-                  icon: Icons.store_rounded,
-                  label: context.localizations.pharmacyPickup,
-                  isSelected: widget.selectedMethod == DeliveryMethod.pharmacy,
-                  onTap: () => _selectMethod(DeliveryMethod.pharmacy),
-                ),
+              _DeliveryOption(
+                icon: Icons.store_rounded,
+                label: context.localizations.pharmacyPickup,
+                isSelected: widget.selectedMethod == DeliveryMethod.pharmacy,
+                onTap: () => _selectMethod(DeliveryMethod.pharmacy),
               ),
               12.horizontalSpace,
-              Expanded(
-                child: _DeliveryOption(
-                  icon: Icons.home_rounded,
-                  label: context.localizations.homeDelivery,
-                  isSelected: widget.selectedMethod == DeliveryMethod.delivery,
-                  onTap: () => _selectMethod(DeliveryMethod.delivery),
-                ),
+              _DeliveryOption(
+                icon: Icons.home_rounded,
+                label: context.localizations.homeDelivery,
+                isSelected: widget.selectedMethod == DeliveryMethod.delivery,
+                onTap: () => _selectMethod(DeliveryMethod.delivery),
               ),
             ],
           ),
@@ -102,6 +95,9 @@ class _DeliveryMethodDesignState extends State<DeliveryMethodDesign> {
     );
   }
 }
+
+
+
 
 class _DeliveryOption extends StatefulWidget {
   final IconData icon;
@@ -147,139 +143,141 @@ class _DeliveryOptionState extends State<_DeliveryOption>
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
 
-    return GestureDetector(
-      onTapDown: (_) => _bounceController.forward(),
-      onTapUp: (_) {
-        _bounceController.reverse();
-        widget.onTap();
-      },
-      onTapCancel: () => _bounceController.reverse(),
-      child: AnimatedBuilder(
-        animation: _scaleAnimation,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: _scaleAnimation.value,
-            child: child,
-          );
+    return Expanded(
+      child: GestureDetector(
+        onTapDown: (_) => _bounceController.forward(),
+        onTapUp: (_) {
+          _bounceController.reverse();
+          widget.onTap();
         },
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
-          curve: Curves.easeOutCubic,
-          padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
-          decoration: BoxDecoration(
-            gradient: widget.isSelected
-                ? LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      colorScheme.primary.withValues(alpha: 0.15),
-                      colorScheme.primary.withValues(alpha: 0.05),
-                    ],
-                  )
-                : null,
-            color: widget.isSelected ? null : colorScheme.surface,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              width: widget.isSelected ? 2 : 1.5,
-              color: widget.isSelected
-                  ? colorScheme.primary
-                  : colorScheme.outline.withValues(alpha: 0.3),
-            ),
-            boxShadow: widget.isSelected
-                ? [
-                    BoxShadow(
-                      color: colorScheme.primary.withValues(alpha: 0.2),
-                      blurRadius: 12,
-                      offset: const Offset(0, 4),
-                    ),
-                  ]
-                : null,
-          ),
-          child: Column(
-            children: [
-              // Icon with animated background
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 250),
-                padding: EdgeInsets.all(12.w),
-                decoration: BoxDecoration(
-                  gradient: widget.isSelected
-                      ? LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            colorScheme.primary,
-                            colorScheme.primary.withValues(alpha: 0.7),
-                          ],
-                        )
-                      : null,
-                  color: widget.isSelected
-                      ? null
-                      : colorScheme.shadow.withValues(alpha: 0.1),
-                  shape: BoxShape.circle,
-                  boxShadow: widget.isSelected
-                      ? [
-                          BoxShadow(
-                            color: colorScheme.primary.withValues(alpha: 0.3),
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
-                          ),
-                        ]
-                      : null,
-                ),
-                child: Icon(
-                  widget.icon,
-                  size: 24,
-                  color: widget.isSelected ? Colors.white : colorScheme.shadow,
-                ),
-              ),
-              SizedBox(height: 10.h),
-
-              // Label
-              AppText(
-                text: widget.label,
-                textSize: 11,
-                fontWeight: widget.isSelected ? FontWeight.w700 : FontWeight.w500,
-                color:
-                    widget.isSelected ? colorScheme.primary : colorScheme.shadow,
-                align: TextAlign.center,
-                maxLines: 2,
-              ),
-
-              // Selection indicator
-              if (widget.isSelected) ...[
-                SizedBox(height: 8.h),
-                ZoomIn(
-                  duration: const Duration(milliseconds: 300),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10.w,
-                      vertical: 4.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: colorScheme.primary,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.check_rounded,
-                          color: Colors.white,
-                          size: 12,
-                        ),
-                        4.horizontalSpace,
-                        AppText(
-                          text: '✓',
-                          textSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
+        onTapCancel: () => _bounceController.reverse(),
+        child: AnimatedBuilder(
+          animation: _scaleAnimation,
+          builder: (context, child) {
+            return Transform.scale(
+              scale: _scaleAnimation.value,
+              child: child,
+            );
+          },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeOutCubic,
+            padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
+            decoration: BoxDecoration(
+              gradient: widget.isSelected
+                  ? LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        colorScheme.primary.withValues(alpha: 0.15),
+                        colorScheme.primary.withValues(alpha: 0.05),
                       ],
-                    ),
+                    )
+                  : null,
+              color: widget.isSelected ? null : colorScheme.surface,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                width: widget.isSelected ? 2 : 1.5,
+                color: widget.isSelected
+                    ? colorScheme.primary
+                    : colorScheme.outline.withValues(alpha: 0.3),
+              ),
+              boxShadow: widget.isSelected
+                  ? [
+                      BoxShadow(
+                        color: colorScheme.primary.withValues(alpha: 0.2),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Column(
+              children: [
+                // Icon with animated background
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 250),
+                  padding: EdgeInsets.all(12.w),
+                  decoration: BoxDecoration(
+                    gradient: widget.isSelected
+                        ? LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              colorScheme.primary,
+                              colorScheme.primary.withValues(alpha: 0.7),
+                            ],
+                          )
+                        : null,
+                    color: widget.isSelected
+                        ? null
+                        : colorScheme.shadow.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                    boxShadow: widget.isSelected
+                        ? [
+                            BoxShadow(
+                              color: colorScheme.primary.withValues(alpha: 0.3),
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            ),
+                          ]
+                        : null,
+                  ),
+                  child: Icon(
+                    widget.icon,
+                    size: 24,
+                    color: widget.isSelected ? Colors.white : colorScheme.shadow,
                   ),
                 ),
+                SizedBox(height: 10.h),
+      
+                // Label
+                AppText(
+                  text: widget.label,
+                  textSize: 11,
+                  fontWeight: widget.isSelected ? FontWeight.w700 : FontWeight.w500,
+                  color:
+                      widget.isSelected ? colorScheme.primary : colorScheme.shadow,
+                  align: TextAlign.center,
+                  maxLines: 2,
+                ),
+      
+                // Selection indicator
+                if (widget.isSelected) ...[
+                  SizedBox(height: 8.h),
+                  ZoomIn(
+                    duration: const Duration(milliseconds: 300),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 4.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: colorScheme.primary,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.check_rounded,
+                            color: Colors.white,
+                            size: 12,
+                          ),
+                          4.horizontalSpace,
+                          AppText(
+                            text: '✓',
+                            textSize: 10,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),

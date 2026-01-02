@@ -46,7 +46,6 @@ class _PrescriptionImagePickerState extends State<PrescriptionImagePicker>
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
     final hasImage = widget.selectedImage != null;
-
     return Container(
       decoration: BoxDecoration(
         color: colorScheme.surface,
@@ -62,7 +61,6 @@ class _PrescriptionImagePickerState extends State<PrescriptionImagePicker>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header
           Padding(
             padding: EdgeInsets.all(16.w),
             child: Row(
@@ -231,7 +229,6 @@ class _PrescriptionImagePickerState extends State<PrescriptionImagePicker>
     final colorScheme = context.colorScheme;
     return Stack(
       children: [
-        // Gradient overlay
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
@@ -255,15 +252,7 @@ class _PrescriptionImagePickerState extends State<PrescriptionImagePicker>
           right: 12,
           child: Row(
             children: [
-              Expanded(
-                child: _ActionButton(
-                  icon: Icons.check_circle_rounded,
-                  label: context.localizations.confirm,
-                  color: colorScheme.tertiary,
-                  onTap: () {},
-                ),
-              ),
-              12.horizontalSpace,
+              Spacer(),
               Expanded(
                 child: _ActionButton(
                   icon: Icons.refresh_rounded,
@@ -392,5 +381,6 @@ class _DashedBorderPainter extends CustomPainter {
     return oldDelegate.color != color;
   }
 }
+
 
 

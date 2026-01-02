@@ -14,6 +14,7 @@ import 'banner/banners_design.dart';
 import '../../../../product/data/models/request/product_params.dart';
 import '../../../../product/presentation/widgets/product/product_section.dart';
 import 'home_info_card.dart';
+import 'our_services.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -28,10 +29,6 @@ class HomeBody extends StatelessWidget {
           actions: [
             GestureDetector(
               onTap: () {
-
-            /*    context.router.push(
-                  PrescriptionRoute(),
-                );*/
                 context.router.push(
                   AllProductsRoute(
                     title: context.localizations.products,
@@ -74,9 +71,12 @@ class HomeBody extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           HomeBannersImage(),
+          OurServicesDesign(),
           const HomeCategoriesSection(),
           SliverToBoxAdapter(child: SizedBox(height: 16.h)),
           const HomeActiveSubstancesSection(),
+          SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+
           SliverToBoxAdapter(child: SizedBox(height: 12.h)),
           ProductSection(
             title: context.localizations.bestSellers,

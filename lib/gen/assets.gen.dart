@@ -83,6 +83,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home_inactive.svg
   String get homeInactive => 'assets/icons/home_inactive.svg';
 
+  /// File path: assets/icons/insurance_company.svg
+  String get insuranceCompany => 'assets/icons/insurance_company.svg';
+
+  /// File path: assets/icons/insurance_profile.svg
+  String get insuranceProfile => 'assets/icons/insurance_profile.svg';
+
   /// File path: assets/icons/logo.svg
   String get logo => 'assets/icons/logo.svg';
 
@@ -156,6 +162,8 @@ class $AssetsIconsGen {
     governorate,
     homeActive,
     homeInactive,
+    insuranceCompany,
+    insuranceProfile,
     logo,
     male,
     mapsLocation01,
@@ -274,7 +282,7 @@ class $AssetsImagesGen {
 class Assets {
   const Assets._();
 
-  static const String aEnv = '.env.development';
+  static const String aEnv = '.env.production';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 

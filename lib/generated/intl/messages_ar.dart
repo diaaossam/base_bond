@@ -145,7 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "homeDelivery": MessageLookupByLibrary.simpleMessage("توصيل للمنزل"),
     "inProgress_desc": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
     "invoice": MessageLookupByLibrary.simpleMessage("الفاتورة"),
-    "iqd": MessageLookupByLibrary.simpleMessage("د.ع"),
+    "iqd": MessageLookupByLibrary.simpleMessage("ج.م"),
     "kg": MessageLookupByLibrary.simpleMessage("كجم"),
     "locationValidation": MessageLookupByLibrary.simpleMessage(
       "يرجى إضافة عنوان التوصيل",

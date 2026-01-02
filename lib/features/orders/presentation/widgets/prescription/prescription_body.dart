@@ -65,21 +65,17 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
       builder: (context, state) {
         final bloc = context.read<PrescriptionCubit>();
         final data = state.data ?? const PrescriptionStateData();
-
         return CustomScrollView(
           physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
           slivers: [
-            // Header Section
             SliverToBoxAdapter(
               child: FadeInDown(
                 duration: const Duration(milliseconds: 600),
                 child: _buildHeaderSection(context),
               ),
             ),
-
-            // Prescription Image Picker
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               sliver: SliverToBoxAdapter(
@@ -93,8 +89,6 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                 ),
               ),
             ),
-
-            // Delivery Method Section
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               sliver: SliverToBoxAdapter(
@@ -103,26 +97,21 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                   delay: const Duration(milliseconds: 200),
                   child: DeliveryMethodDesign(
                     selectedMethod: data.deliveryMethod,
-                    onMethodChanged: (method) =>
-                        bloc.setDeliveryMethod(method),
+                    onMethodChanged: (method) => bloc.setDeliveryMethod(method),
                   ),
                 ),
               ),
             ),
 
-            // Address Section (only show when delivery is selected)
             if (data.deliveryMethod == DeliveryMethod.delivery)
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                sliver: FadeInUp(
-                  duration: const Duration(milliseconds: 500),
-                  child: CartLocationDesign(
-                    defaultAddress: defaultAddress,
-                    onAddressChanged: (address) {
-                      setState(() => defaultAddress = address);
-                      bloc.setSelectedAddress(address);
-                    },
-                  ),
+                sliver:  CartLocationDesign(
+                  defaultAddress: defaultAddress,
+                  onAddressChanged: (address) {
+                    setState(() => defaultAddress = address);
+                    bloc.setSelectedAddress(address);
+                  },
                 ),
               ),
 
@@ -137,7 +126,8 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                     controller: bloc.discountController,
                     hasDiscount: data.couponDiscount != 0,
                     isLoading: state.isLoading && state.identifier == 'coupon',
-                    onApply: () => bloc.applyCoupon(bloc.discountController.text),
+                    onApply: () =>
+                        bloc.applyCoupon(bloc.discountController.text),
                     onRemove: () => bloc.removeCoupon(),
                   ),
                 ),
@@ -177,7 +167,8 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                     delay: const Duration(milliseconds: 1200),
                     child: CustomButton(
                       text: context.localizations.submitPrescription,
-                      isLoading: state.isLoading && state.identifier == 'submit',
+                      isLoading:
+                          state.isLoading && state.identifier == 'submit',
                       press: () => bloc.submitPrescription(),
                     ),
                   ),
@@ -194,89 +185,32 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
 
   Widget _buildHeaderSection(BuildContext context) {
     final colorScheme = context.colorScheme;
-    return Container(
-      margin: EdgeInsets.all(16.w),
-      padding: EdgeInsets.all(20.w),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            colorScheme.primary.withValues(alpha: 0.15),
-            colorScheme.secondary.withValues(alpha: 0.08),
-          ],
+    return Column(
+      children: [
+        SizedBox(height: 16.h),
+        // Title
+        FadeInUp(
+          duration: const Duration(milliseconds: 600),
+          delay: const Duration(milliseconds: 200),
+          child: AppText.title(
+            text: context.localizations.prescriptionTitle,
+            align: TextAlign.center,
+            fontWeight: FontWeight.w700,
+          ),
         ),
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: colorScheme.primary.withValues(alpha: 0.2),
-          width: 1.5,
+        SizedBox(height: 4.h),
+
+        // Body
+        FadeInUp(
+          duration: const Duration(milliseconds: 600),
+          delay: const Duration(milliseconds: 300),
+          child: AppText.body(
+            text: context.localizations.prescriptionBody,
+            align: TextAlign.center,
+            color: colorScheme.shadow,
+          ),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.primary.withValues(alpha: 0.1),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          // Animated Icon
-          ZoomIn(
-            duration: const Duration(milliseconds: 800),
-            child: Container(
-              padding: EdgeInsets.all(16.w),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    colorScheme.primary,
-                    colorScheme.primary.withValues(alpha: 0.7),
-                  ],
-                ),
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: colorScheme.primary.withValues(alpha: 0.3),
-                    blurRadius: 16,
-                    offset: const Offset(0, 6),
-                  ),
-                ],
-              ),
-              child: Icon(
-                Icons.medical_services_rounded,
-                size: 40,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          SizedBox(height: 16.h),
-          
-          // Title
-          FadeInUp(
-            duration: const Duration(milliseconds: 600),
-            delay: const Duration(milliseconds: 200),
-            child: AppText.title(
-              text: context.localizations.prescriptionTitle,
-              align: TextAlign.center,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          SizedBox(height: 8.h),
-          
-          // Body
-          FadeInUp(
-            duration: const Duration(milliseconds: 600),
-            delay: const Duration(milliseconds: 300),
-            child: AppText.body(
-              text: context.localizations.prescriptionBody,
-              align: TextAlign.center,
-              color: colorScheme.shadow,
-            ),
-          ),
-        ],
-      ),
+      ],
     );
   }
 

@@ -2063,6 +2063,21 @@ class S {
       args: [],
     );
   }
+
+  /// `خدماتنا`
+  String get ourServices {
+    return Intl.message('خدماتنا', name: 'ourServices', desc: '', args: []);
+  }
+
+  /// `اطلب بالتأمين الخاص بك`
+  String get orderWithYourInsurance {
+    return Intl.message(
+      'اطلب بالتأمين الخاص بك',
+      name: 'orderWithYourInsurance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
