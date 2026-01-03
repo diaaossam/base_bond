@@ -2078,6 +2078,176 @@ class S {
       args: [],
     );
   }
+
+  /// `Support Tickets`
+  String get supportTickets {
+    return Intl.message(
+      'Support Tickets',
+      name: 'supportTickets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Support Tickets`
+  String get noTicketsTitle {
+    return Intl.message(
+      'No Support Tickets',
+      name: 'noTicketsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You haven't created any support tickets yet. Tap the button below to contact our support team`
+  String get noTicketsBody {
+    return Intl.message(
+      'You haven\'t created any support tickets yet. Tap the button below to contact our support team',
+      name: 'noTicketsBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap + to create a new support ticket and contact our customer service team`
+  String get createTicketHint {
+    return Intl.message(
+      'Tap + to create a new support ticket and contact our customer service team',
+      name: 'createTicketHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create New Ticket`
+  String get createNewTicket {
+    return Intl.message(
+      'Create New Ticket',
+      name: 'createNewTicket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Ticket`
+  String get createTicket {
+    return Intl.message(
+      'Create Ticket',
+      name: 'createTicket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ticket Title`
+  String get ticketTitle {
+    return Intl.message(
+      'Ticket Title',
+      name: 'ticketTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write a brief title for the issue`
+  String get ticketTitleHint {
+    return Intl.message(
+      'Write a brief title for the issue',
+      name: 'ticketTitleHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issue Details`
+  String get ticketMessage {
+    return Intl.message(
+      'Issue Details',
+      name: 'ticketMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Describe the issue in detail...`
+  String get ticketMessageHint {
+    return Intl.message(
+      'Describe the issue in detail...',
+      name: 'ticketMessageHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open`
+  String get ticketOpen {
+    return Intl.message('Open', name: 'ticketOpen', desc: '', args: []);
+  }
+
+  /// `Pending`
+  String get ticketPending {
+    return Intl.message('Pending', name: 'ticketPending', desc: '', args: []);
+  }
+
+  /// `Closed`
+  String get ticketClosed {
+    return Intl.message('Closed', name: 'ticketClosed', desc: '', args: []);
+  }
+
+  /// `In Progress`
+  String get ticketInProgress {
+    return Intl.message(
+      'In Progress',
+      name: 'ticketInProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Conversation`
+  String get viewConversation {
+    return Intl.message(
+      'View Conversation',
+      name: 'viewConversation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Conversation`
+  String get startConversation {
+    return Intl.message(
+      'Start Conversation',
+      name: 'startConversation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write your message to contact support team`
+  String get startConversationHint {
+    return Intl.message(
+      'Write your message to contact support team',
+      name: 'startConversationHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type your message...`
+  String get typeMessage {
+    return Intl.message(
+      'Type your message...',
+      name: 'typeMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `فريق الدعم`
+  String get supportTeam {
+    return Intl.message('فريق الدعم', name: 'supportTeam', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

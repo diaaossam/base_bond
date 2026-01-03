@@ -50,6 +50,14 @@ import '../../features/auth/presentation/cubit/social_login/social_login_bloc.da
     as _i396;
 import '../../features/auth/presentation/cubit/update_profile/update_profile_cubit.dart'
     as _i704;
+import '../../features/chat/data/datasources/chat_remote_data_source.dart'
+    as _i980;
+import '../../features/chat/data/repositories/chat_repository_impl.dart'
+    as _i504;
+import '../../features/chat/presentation/cubit/message/message_cubit.dart'
+    as _i143;
+import '../../features/chat/presentation/cubit/tickets/ticket_cubit.dart'
+    as _i546;
 import '../../features/location/data/datasources/location_remote_data_source.dart'
     as _i823;
 import '../../features/location/data/repositories/location_repository_impl.dart'
@@ -188,6 +196,10 @@ extension GetItInjectableX on _i174.GetIt {
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
     );
+    gh.factory<_i980.ChatRemoteDataSource>(
+      () =>
+          _i980.ChatRemoteDataSourceImpl(dioConsumer: gh<_i384.DioConsumer>()),
+    );
     gh.factory<_i1011.OrderRemoteDataSource>(
       () => _i1011.OrderRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
@@ -228,6 +240,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i915.WishlistCubit>(
       () => _i915.WishlistCubit(gh<_i1040.ProductRepositoryImpl>()),
+    );
+    gh.lazySingleton<_i504.ChatRepositoryImpl>(
+      () => _i504.ChatRepositoryImpl(
+        chatRemoteDataSource: gh<_i980.ChatRemoteDataSource>(),
+      ),
     );
     gh.factory<_i107.AuthRemoteDataSource>(
       () => _i107.AuthRemoteDataSourceImpl(
@@ -316,6 +333,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i388.ProductCubit>(
       () => _i388.ProductCubit(gh<_i1040.ProductRepositoryImpl>()),
+    );
+    gh.factory<_i143.MessageCubit>(
+      () => _i143.MessageCubit(gh<_i504.ChatRepositoryImpl>()),
+    );
+    gh.factory<_i546.TicketCubit>(
+      () => _i546.TicketCubit(gh<_i504.ChatRepositoryImpl>()),
     );
     gh.factory<_i222.AppCubit>(
       () => _i222.AppCubit(gh<_i344.AppRepositoryImpl>()),

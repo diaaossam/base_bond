@@ -35,7 +35,10 @@ class EndPoints {
   static const String language = "profile/language";
   static String pages(String id) => "pages/$id";
 
-  //////////////////// Chats ///////////////////////
+  //////////////////// Chats & Support Tickets ///////////////////////
+  static const String tickets = "tickets";
+  static String ticketMessages(int ticketId) => "tickets/$ticketId/messages";
+  static String ticketDetails(int ticketId) => "tickets/$ticketId";
 
   static const String products = "products";
   static const String validateCoupon = "coupons/validate";

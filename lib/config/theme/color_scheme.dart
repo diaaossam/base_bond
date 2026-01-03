@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class AppColorScheme {
   static const light = ColorScheme.light(
-    primary: Color(0xFF7b4ce0),
+    primary: Color(0xFF202b6d),
     onPrimary: Color(0xffe6dcff),
-    secondary: Color(0xff322d78),
+    secondary: Color(0xff202b6d),
     surface: Color(0xFFf7f8fa),
     onSurface: Color(0xFF000000),
     shadow: Color(0xFF6B7280),

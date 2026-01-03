@@ -115,6 +115,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "copy": MessageLookupByLibrary.simpleMessage("نسخ"),
     "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+    "createNewTicket": MessageLookupByLibrary.simpleMessage(
+      "Create New Ticket",
+    ),
+    "createTicket": MessageLookupByLibrary.simpleMessage("Create Ticket"),
+    "createTicketHint": MessageLookupByLibrary.simpleMessage(
+      "Tap + to create a new support ticket and contact our customer service team",
+    ),
     "currentPrice": MessageLookupByLibrary.simpleMessage("Current Price"),
     "currentStatus": MessageLookupByLibrary.simpleMessage("Current"),
     "customerSupport": MessageLookupByLibrary.simpleMessage("الدعم الفني"),
@@ -256,6 +263,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا يوجد منتجات مطابقة هنا",
     ),
     "noProductsTitle": MessageLookupByLibrary.simpleMessage("لا توجد منتجات"),
+    "noTicketsBody": MessageLookupByLibrary.simpleMessage(
+      "You haven\'t created any support tickets yet. Tap the button below to contact our support team",
+    ),
+    "noTicketsTitle": MessageLookupByLibrary.simpleMessage(
+      "No Support Tickets",
+    ),
     "noWithList": MessageLookupByLibrary.simpleMessage("قائمة المفضلة فارغة"),
     "notAvailable": MessageLookupByLibrary.simpleMessage("Not Available"),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
@@ -392,19 +405,40 @@ class MessageLookup extends MessageLookupByLibrary {
     "sortPriceAsc": MessageLookupByLibrary.simpleMessage("Price: Low to High"),
     "sortPriceDesc": MessageLookupByLibrary.simpleMessage("Price: High to Low"),
     "specialOptions": MessageLookupByLibrary.simpleMessage("Special Options"),
+    "startConversation": MessageLookupByLibrary.simpleMessage(
+      "Start Conversation",
+    ),
+    "startConversationHint": MessageLookupByLibrary.simpleMessage(
+      "Write your message to contact support team",
+    ),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
     "stock": MessageLookupByLibrary.simpleMessage("Stock"),
     "submitPrescription": MessageLookupByLibrary.simpleMessage("Submit Order"),
     "submitRating": MessageLookupByLibrary.simpleMessage("Submit Rating"),
+    "supportTeam": MessageLookupByLibrary.simpleMessage("فريق الدعم"),
+    "supportTickets": MessageLookupByLibrary.simpleMessage("Support Tickets"),
     "termsAndCon": MessageLookupByLibrary.simpleMessage("سياسة الإستخدام"),
     "thankYouForRating": MessageLookupByLibrary.simpleMessage(
       "Thank you for rating!",
     ),
     "thereIsError": MessageLookupByLibrary.simpleMessage("There is An Error"),
+    "ticketClosed": MessageLookupByLibrary.simpleMessage("Closed"),
+    "ticketInProgress": MessageLookupByLibrary.simpleMessage("In Progress"),
+    "ticketMessage": MessageLookupByLibrary.simpleMessage("Issue Details"),
+    "ticketMessageHint": MessageLookupByLibrary.simpleMessage(
+      "Describe the issue in detail...",
+    ),
+    "ticketOpen": MessageLookupByLibrary.simpleMessage("Open"),
+    "ticketPending": MessageLookupByLibrary.simpleMessage("Pending"),
+    "ticketTitle": MessageLookupByLibrary.simpleMessage("Ticket Title"),
+    "ticketTitleHint": MessageLookupByLibrary.simpleMessage(
+      "Write a brief title for the issue",
+    ),
     "to": MessageLookupByLibrary.simpleMessage("To"),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "totalPrice": MessageLookupByLibrary.simpleMessage("Total Price"),
     "trackOrder": MessageLookupByLibrary.simpleMessage("Track Order"),
+    "typeMessage": MessageLookupByLibrary.simpleMessage("Type your message..."),
     "underReview": MessageLookupByLibrary.simpleMessage("تحت المراجعة"),
     "underReview_desc": MessageLookupByLibrary.simpleMessage(
       "جاري مراجعة طلبك",
@@ -427,6 +461,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "validation": MessageLookupByLibrary.simpleMessage(
       "This field is required",
+    ),
+    "viewConversation": MessageLookupByLibrary.simpleMessage(
+      "View Conversation",
     ),
     "visa": MessageLookupByLibrary.simpleMessage("بطاقة إلكترونية"),
     "weight": MessageLookupByLibrary.simpleMessage("Weight"),

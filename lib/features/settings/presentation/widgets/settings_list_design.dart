@@ -54,7 +54,7 @@ class SettingsListDesign extends StatelessWidget {
           ),
           SettingsItemDesign(
             text: context.localizations.customerSupport,
-            press: () {},
+            press: () => context.router.push(const SupportChatRoute()),
             image: Assets.images.chatting01.path,
           ),
           SettingsItemDesign(

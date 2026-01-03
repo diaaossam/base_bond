@@ -13,6 +13,7 @@ class ConvertersHelper {
     Map<String, dynamic> response,
     T Function(Map<String, dynamic> json) fromJson,
   ) {
+
     final Map<String, dynamic> data = response['data'] as Map<String, dynamic>;
     return fromJson(data);
   }

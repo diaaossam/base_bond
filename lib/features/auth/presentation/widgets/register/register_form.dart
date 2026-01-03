@@ -23,8 +23,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:logger/logger.dart';
-
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../widgets/image_picker/media_form_field.dart';
 import '../../../../app/presentation/cubit/app_state_data.dart';

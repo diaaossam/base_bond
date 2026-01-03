@@ -17,9 +17,9 @@ class SettingsBody extends StatelessWidget {
           children: [
             InfoCardDesign(),
             SizedBox(height: SizeConfig.bodyHeight * .02),
-           /* PointsDesign(),
+            PointsDesign(),
             SizedBox(height: SizeConfig.bodyHeight * .02),
-           */ SettingsListDesign(),
+            SettingsListDesign(),
             SizedBox(height: SizeConfig.bodyHeight * .02),
           ],
         ),

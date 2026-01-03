@@ -87,6 +87,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmed_desc": MessageLookupByLibrary.simpleMessage(
       "تم تأكيد طلبك وجاري تجهيزه",
     ),
+    "createNewTicket": MessageLookupByLibrary.simpleMessage(
+      "إنشاء تذكرة جديدة",
+    ),
+    "createTicket": MessageLookupByLibrary.simpleMessage("إنشاء تذكرة"),
+    "createTicketHint": MessageLookupByLibrary.simpleMessage(
+      "اضغط على + لإنشاء تذكرة دعم جديدة والتواصل مع فريق خدمة العملاء",
+    ),
     "currentPrice": MessageLookupByLibrary.simpleMessage("السعر الحالي"),
     "currentStatus": MessageLookupByLibrary.simpleMessage("الحالية"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("العنوان الافتراضي"),
@@ -160,6 +167,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا توجد بيانات ، يرجى المحاولة مرة أخرى لاحقًا",
     ),
     "noOrdersFound": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
+    "noTicketsBody": MessageLookupByLibrary.simpleMessage(
+      "لم تقم بإنشاء أي تذكرة دعم بعد. اضغط على الزر أدناه للتواصل مع فريق الدعم",
+    ),
+    "noTicketsTitle": MessageLookupByLibrary.simpleMessage("لا توجد تذاكر دعم"),
     "notAvailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
     "orderCanceled": MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب"),
     "orderConfirmed": MessageLookupByLibrary.simpleMessage(
@@ -265,16 +276,34 @@ class MessageLookup extends MessageLookupByLibrary {
       "السعر: من الأعلى للأقل",
     ),
     "specialOptions": MessageLookupByLibrary.simpleMessage("خيارات خاصة"),
+    "startConversation": MessageLookupByLibrary.simpleMessage("ابدأ المحادثة"),
+    "startConversationHint": MessageLookupByLibrary.simpleMessage(
+      "اكتب رسالتك للتواصل مع فريق الدعم",
+    ),
     "startNow": MessageLookupByLibrary.simpleMessage("إبدء الأن"),
     "stock": MessageLookupByLibrary.simpleMessage("المخزون"),
     "submitPrescription": MessageLookupByLibrary.simpleMessage("إرسال الطلب"),
     "submitRating": MessageLookupByLibrary.simpleMessage("إرسال التقييم"),
+    "supportTickets": MessageLookupByLibrary.simpleMessage("تذكرة دعم"),
     "thankYouForRating": MessageLookupByLibrary.simpleMessage("شكراً لتقييمك!"),
     "thereIsError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
+    "ticketClosed": MessageLookupByLibrary.simpleMessage("مغلقة"),
+    "ticketInProgress": MessageLookupByLibrary.simpleMessage("قيد المعالجة"),
+    "ticketMessage": MessageLookupByLibrary.simpleMessage("تفاصيل المشكلة"),
+    "ticketMessageHint": MessageLookupByLibrary.simpleMessage(
+      "اشرح المشكلة بالتفصيل...",
+    ),
+    "ticketOpen": MessageLookupByLibrary.simpleMessage("مفتوحة"),
+    "ticketPending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
+    "ticketTitle": MessageLookupByLibrary.simpleMessage("عنوان التذكرة"),
+    "ticketTitleHint": MessageLookupByLibrary.simpleMessage(
+      "اكتب عنوان مختصر للمشكلة",
+    ),
     "to": MessageLookupByLibrary.simpleMessage("إلى"),
     "total": MessageLookupByLibrary.simpleMessage("المجموع"),
     "totalPrice": MessageLookupByLibrary.simpleMessage("السعر الإجمالي"),
     "trackOrder": MessageLookupByLibrary.simpleMessage("تتبع الطلب"),
+    "typeMessage": MessageLookupByLibrary.simpleMessage("اكتب رسالتك..."),
     "underReview_desc": MessageLookupByLibrary.simpleMessage(
       "جاري مراجعة طلبك",
     ),
@@ -297,6 +326,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "اضغط لالتقاط صورة أو اختيار من المعرض",
     ),
     "validation": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
+    "viewConversation": MessageLookupByLibrary.simpleMessage("عرض المحادثة"),
     "weight": MessageLookupByLibrary.simpleMessage("الوزن"),
     "youWillWin": MessageLookupByLibrary.simpleMessage("ستحصل على"),
     "youWillWin2": MessageLookupByLibrary.simpleMessage("نقطة"),
