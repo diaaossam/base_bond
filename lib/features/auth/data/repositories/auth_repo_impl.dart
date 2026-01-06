@@ -5,6 +5,8 @@ import '../../../../core/enum/social_enum.dart';
 import '../../../../core/services/api/api_handler_mixin.dart';
 import '../../../../core/services/network/error/failures.dart';
 import '../datasources/auth_remote_data_source.dart';
+import '../models/request/forgot_password_params.dart';
+import '../models/request/login_params.dart';
 import '../models/request/otp_params.dart';
 import '../models/request/register_params.dart';
 
@@ -38,9 +40,11 @@ class AuthRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, bool>> loginUser(String phone) async {
+  Future<Either<Failure, UserModel>> loginUser({
+    required LoginParams loginParams,
+  }) async {
     final response = await handleApi(
-      () => authRemoteDataSource.loginUser(phone),
+      () => authRemoteDataSource.loginUser(loginParams: loginParams),
     );
     return response;
   }
@@ -68,6 +72,24 @@ class AuthRepositoryImpl with ApiHandlerMixin {
   }) async {
     final response = await handleApi(
       () => authRemoteDataSource.register(params: params),
+    );
+    return response;
+  }
+
+  Future<Either<Failure, Unit>> forgotPassword({
+    required ForgotPasswordParams params,
+  }) async {
+    final response = await handleApi(
+      () => authRemoteDataSource.forgotPassword(params: params),
+    );
+    return response;
+  }
+
+  Future<Either<Failure, UserModel>> verifyForgotPassword({
+    required ResetPasswordParams params,
+  }) async {
+    final response = await handleApi(
+      () => authRemoteDataSource.verifyForgotPassword(params: params),
     );
     return response;
   }

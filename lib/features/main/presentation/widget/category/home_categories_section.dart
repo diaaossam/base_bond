@@ -1,13 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/features/main/data/models/category_model.dart';
-import 'package:bond/features/product/presentation/widgets/category/shimmer_category.dart';
+import 'package:bond/features/main/presentation/widget/category/shimmer_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../../config/dependencies/injectable_dependencies.dart';
-import '../../../../../../widgets/section_header.dart';
-import '../../cubit/category/category_cubit.dart';
+import '../../../../../../../config/dependencies/injectable_dependencies.dart';
+import '../../../../../../../widgets/section_header.dart';
+import '../../../../product/presentation/cubit/category/category_cubit.dart';
 import 'category_grid_design.dart';
 
 class HomeCategoriesSection extends StatelessWidget {
@@ -34,11 +35,9 @@ class HomeCategoriesSection extends StatelessWidget {
                 SectionHeader(
                   title: context.localizations.categories,
                   actionText: context.localizations.seeAll,
-                  onActionTap: () {
-                    context.tabsRouter.setActiveIndex(1);
-                  },
+                  onActionTap: () => context.router.push(CategoriesRoute()),
                 ),
-                CategoriesGrid(categories: displayCategories,shrinkWrap: true,),
+                CategoriesGrid(categories: displayCategories, shrinkWrap: true),
               ],
             ),
           );

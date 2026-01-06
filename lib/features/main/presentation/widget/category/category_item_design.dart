@@ -1,12 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
-import 'package:bond/features/product/data/models/request/product_params.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../core/extensions/color_extensions.dart';
-import '../../../../../../widgets/image_picker/app_image.dart';
-import '../../../../main/data/models/category_model.dart';
+import '../../../../../../../core/extensions/color_extensions.dart';
+import '../../../../../../../widgets/image_picker/app_image.dart';
+import '../../../data/models/category_model.dart';
 
 class CategoryItemDesign extends StatefulWidget {
   final CategoryModel category;
@@ -55,10 +54,7 @@ class CategoryItemDesignState extends State<CategoryItemDesign>
           child: GestureDetector(
             onTap: () {
               context.router.push(
-                AllProductsRoute(
-                  title: widget.category.title ?? "",
-                  initialParams: ProductParams(categoryId: widget.category.id?.toInt()),
-                ),
+                CategoriesDetailsRoute(category: widget.category),
               );
             },
             child: Container(
@@ -148,7 +144,11 @@ class CategoryItemDesignState extends State<CategoryItemDesign>
                         ),
                       ),
                       alignment: Alignment.center,
-                      child:AppText(text: widget.category.title ?? '',textSize: 10,fontWeight: FontWeight.w500,),
+                      child: AppText(
+                        text: widget.category.title ?? '',
+                        textSize: 10,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],

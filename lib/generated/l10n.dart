@@ -464,10 +464,10 @@ class S {
     );
   }
 
-  /// `قمنا بإرسال رمز مُكوّن من 6 أرقام إلى رقم هاتفك`
+  /// `قمنا بإرسال رمز مُكوّن من 6 أرقام إلى بريدك الإلكترونى`
   String get otpBody {
     return Intl.message(
-      'قمنا بإرسال رمز مُكوّن من 6 أرقام إلى رقم هاتفك',
+      'قمنا بإرسال رمز مُكوّن من 6 أرقام إلى بريدك الإلكترونى',
       name: 'otpBody',
       desc: '',
       args: [],
@@ -2247,6 +2247,396 @@ class S {
   /// `فريق الدعم`
   String get supportTeam {
     return Intl.message('فريق الدعم', name: 'supportTeam', desc: '', args: []);
+  }
+
+  /// `كلمة المرور`
+  String get password {
+    return Intl.message('كلمة المرور', name: 'password', desc: '', args: []);
+  }
+
+  /// `تأكيد كلمة المرور`
+  String get passwordConfirmation {
+    return Intl.message(
+      'تأكيد كلمة المرور',
+      name: 'passwordConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كلمة المرور وتأكيد كلمة المرور غير متطابقتين`
+  String get passwordValidation {
+    return Intl.message(
+      'كلمة المرور وتأكيد كلمة المرور غير متطابقتين',
+      name: 'passwordValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `نسيت كلمة المرور ؟`
+  String get forgetPassword {
+    return Intl.message(
+      'نسيت كلمة المرور ؟',
+      name: 'forgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور`
+  String get forgotPasswordBody {
+    return Intl.message(
+      'أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور',
+      name: 'forgotPasswordBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدخل بريدك الإلكتروني المسجل وسنرسل لك رمز التحقق`
+  String get enterEmailToReset {
+    return Intl.message(
+      'أدخل بريدك الإلكتروني المسجل وسنرسل لك رمز التحقق',
+      name: 'enterEmailToReset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إرسال الرمز`
+  String get sendCode {
+    return Intl.message('إرسال الرمز', name: 'sendCode', desc: '', args: []);
+  }
+
+  /// `العودة لتسجيل الدخول`
+  String get backToLogin {
+    return Intl.message(
+      'العودة لتسجيل الدخول',
+      name: 'backToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `البريد الإلكتروني غير صالح`
+  String get emailValidation {
+    return Intl.message(
+      'البريد الإلكتروني غير صالح',
+      name: 'emailValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إعادة تعيين كلمة المرور`
+  String get resetPassword {
+    return Intl.message(
+      'إعادة تعيين كلمة المرور',
+      name: 'resetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدخل رمز التحقق وكلمة المرور الجديدة`
+  String get resetPasswordBody {
+    return Intl.message(
+      'أدخل رمز التحقق وكلمة المرور الجديدة',
+      name: 'resetPasswordBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدخل رمز التحقق`
+  String get enterOtpCode {
+    return Intl.message(
+      'أدخل رمز التحقق',
+      name: 'enterOtpCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كلمة المرور الجديدة`
+  String get newPassword {
+    return Intl.message(
+      'كلمة المرور الجديدة',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كلمة المرور يجب أن تكون 6 أحرف على الأقل`
+  String get passwordLengthValidation {
+    return Intl.message(
+      'كلمة المرور يجب أن تكون 6 أحرف على الأقل',
+      name: 'passwordLengthValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Profile`
+  String get insuranceProfile {
+    return Intl.message(
+      'Insurance Profile',
+      name: 'insuranceProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Insurance Profile`
+  String get createInsuranceProfile {
+    return Intl.message(
+      'Create Insurance Profile',
+      name: 'createInsuranceProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Insurance Profile`
+  String get editInsuranceProfile {
+    return Intl.message(
+      'Edit Insurance Profile',
+      name: 'editInsuranceProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Company`
+  String get insuranceCompany {
+    return Intl.message(
+      'Insurance Company',
+      name: 'insuranceCompany',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Insurance Company`
+  String get selectInsuranceCompany {
+    return Intl.message(
+      'Select Insurance Company',
+      name: 'selectInsuranceCompany',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get otherCompany {
+    return Intl.message('Other', name: 'otherCompany', desc: '', args: []);
+  }
+
+  /// `Company Name`
+  String get customCompanyName {
+    return Intl.message(
+      'Company Name',
+      name: 'customCompanyName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter company name`
+  String get enterCustomCompanyName {
+    return Intl.message(
+      'Enter company name',
+      name: 'enterCustomCompanyName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Number`
+  String get insuranceNumber {
+    return Intl.message(
+      'Insurance Number',
+      name: 'insuranceNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter insurance number`
+  String get enterInsuranceNumber {
+    return Intl.message(
+      'Enter insurance number',
+      name: 'enterInsuranceNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID Card`
+  String get idCard {
+    return Intl.message('ID Card', name: 'idCard', desc: '', args: []);
+  }
+
+  /// `ID Card Front`
+  String get idCardFront {
+    return Intl.message(
+      'ID Card Front',
+      name: 'idCardFront',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID Card Back`
+  String get idCardBack {
+    return Intl.message('ID Card Back', name: 'idCardBack', desc: '', args: []);
+  }
+
+  /// `Insurance Card`
+  String get insuranceCard {
+    return Intl.message(
+      'Insurance Card',
+      name: 'insuranceCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Card Front`
+  String get insuranceCardFront {
+    return Intl.message(
+      'Insurance Card Front',
+      name: 'insuranceCardFront',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Card Back`
+  String get insuranceCardBack {
+    return Intl.message(
+      'Insurance Card Back',
+      name: 'insuranceCardBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to capture`
+  String get tapToCapture {
+    return Intl.message(
+      'Tap to capture',
+      name: 'tapToCapture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selected`
+  String get imageSelected {
+    return Intl.message('Selected', name: 'imageSelected', desc: '', args: []);
+  }
+
+  /// `No Insurance Profile`
+  String get noInsuranceProfile {
+    return Intl.message(
+      'No Insurance Profile',
+      name: 'noInsuranceProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create your insurance profile now to benefit from health insurance services and get exclusive discounts`
+  String get noInsuranceProfileHint {
+    return Intl.message(
+      'Create your insurance profile now to benefit from health insurance services and get exclusive discounts',
+      name: 'noInsuranceProfileHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance profile created successfully`
+  String get insuranceProfileCreated {
+    return Intl.message(
+      'Insurance profile created successfully',
+      name: 'insuranceProfileCreated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance profile updated successfully`
+  String get insuranceProfileUpdated {
+    return Intl.message(
+      'Insurance profile updated successfully',
+      name: 'insuranceProfileUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لا يوجد ملف تأميني`
+  String get no_insurance_profile_title {
+    return Intl.message(
+      'لا يوجد ملف تأميني',
+      name: 'no_insurance_profile_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أنشئ ملفك التأميني الآن للاستفادة من خدمات التأمين الصحي والحصول على خصومات حصرية`
+  String get no_insurance_profile_description {
+    return Intl.message(
+      'أنشئ ملفك التأميني الآن للاستفادة من خدمات التأمين الصحي والحصول على خصومات حصرية',
+      name: 'no_insurance_profile_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إنشاء ملف تأميني`
+  String get create_insurance_profile_button {
+    return Intl.message(
+      'إنشاء ملف تأميني',
+      name: 'create_insurance_profile_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خصومات على الأدوية`
+  String get insurance_feature_discount {
+    return Intl.message(
+      'خصومات على الأدوية',
+      name: 'insurance_feature_discount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `متابعة طلباتك بسهولة`
+  String get insurance_feature_tracking {
+    return Intl.message(
+      'متابعة طلباتك بسهولة',
+      name: 'insurance_feature_tracking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تغطية تأمينية شاملة`
+  String get insurance_feature_coverage {
+    return Intl.message(
+      'تغطية تأمينية شاملة',
+      name: 'insurance_feature_coverage',
+      desc: '',
+      args: [],
+    );
   }
 }
 

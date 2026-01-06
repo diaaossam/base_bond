@@ -129,22 +129,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.1.0"
-  bond_cache:
-    dependency: "direct main"
-    description:
-      name: bond_cache
-      sha256: "88207ceb2e255324f95a16933693be9c1673f88b8a2a9ff04535c7641043f273"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.4+4"
-  bond_core:
-    dependency: transitive
-    description:
-      name: bond_core
-      sha256: dfca71a97c29be674f73463acd75d9e228aec8e82cfae5a4a596dde37b152b78
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -1789,6 +1773,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  sidebarx:
+    dependency: "direct main"
+    description:
+      name: sidebarx
+      sha256: "970cba4be128f217b0f714322203e6933fb3a12602fef0c39248f5800184068e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.2"
   sign_in_with_apple:
     dependency: "direct main"
     description:

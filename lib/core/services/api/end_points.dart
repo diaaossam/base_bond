@@ -17,7 +17,9 @@ class EndPoints {
   static const String login = "auth/login";
   static const String update = "profile/update";
   static const String socialLogin = "auth/social";
-  static const String verifyUser = "auth/verify-phone";
+  static const String verifyUser = "auth/verify-email";
+  static const String forgotPassword = "auth/forgot-password";
+  static const String verifyForgotPassword = "auth/verify-forgot-password";
   static String logOut = "profile/logout";
   static String getUserData = "user/profile";
   static String deleteUser = "profile/delete-account";

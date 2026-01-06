@@ -12,6 +12,8 @@ class RegisterParams {
     this.deviceToken,
     this.deviceType,
     this.image,
+    this.password,
+    this.email,
   });
 
   String? name;
@@ -24,6 +26,29 @@ class RegisterParams {
   String? deviceToken;
   String? deviceType;
   String? image;
+  String? email;
+  String? password;
+
+  Future<FormData> toFormData() async {
+    final map = <String, dynamic>{};
+    map['name'] = name;
+    map['phone'] = "+20$phone";
+    map['governorate_id'] = governorateId;
+    map['city_id'] = cityId;
+    map['address'] = address;
+    map['latitude'] = latitude;
+    map['longitude'] = longitude;
+    map['device_token'] = deviceToken;
+    map['device_type'] = deviceType;
+    map['email'] = email;
+    map['password'] = password;
+    map['password_confirmation'] = password;
+    if (image != null) {
+      map['profile_image'] = await MultipartFile.fromFile(image!);
+    }
+    map.removeWhere((key, value) => value == null);
+    return FormData.fromMap(map);
+  }
 
   RegisterParams copyWith({
     String? name,
@@ -38,6 +63,7 @@ class RegisterParams {
     String? deviceToken,
     String? deviceType,
     String? image,
+    String? email,
   }) => RegisterParams(
     name: name ?? this.name,
     phone: phone ?? this.phone,
@@ -49,40 +75,7 @@ class RegisterParams {
     deviceToken: deviceToken ?? this.deviceToken,
     deviceType: deviceType ?? this.deviceType,
     image: image ?? this.image,
+    email: email ?? this.email,
+    password: password ?? this.password,
   );
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['name'] = name;
-    map['phone'] = "+20$phone";
-    map['governorate_id'] = governorateId;
-    map['city_id'] = cityId;
-    map['address'] = address;
-    map['latitude'] = latitude;
-    map['longitude'] = longitude;
-    map['device_token'] = deviceToken;
-    map['device_type'] = deviceType;
-    map.removeWhere((key, value) => value == null);
-    return map;
-  }
-
-  Future<FormData> toFormData() async {
-    final map = <String, dynamic>{};
-    map['name'] = name;
-    map['phone'] = "+20$phone";
-    map['governorate_id'] = governorateId;
-    map['city_id'] = cityId;
-    map['address'] = address;
-    map['latitude'] = latitude;
-    map['longitude'] = longitude;
-    map['device_token'] = deviceToken;
-    map['device_type'] = deviceType;
-    if (image != null) {
-      map['profile_image'] = await MultipartFile.fromFile(
-        image!,
-      );
-    }
-    map.removeWhere((key, value) => value == null);
-    return FormData.fromMap(map);
-  }
 }

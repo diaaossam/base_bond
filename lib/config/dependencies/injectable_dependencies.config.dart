@@ -26,6 +26,7 @@ import '../../core/bloc/network/network_cubit.dart' as _i730;
 import '../../core/services/api/app_interceptors.dart' as _i50;
 import '../../core/services/api/dio_client.dart' as _i763;
 import '../../core/services/api/dio_consumer.dart' as _i384;
+import '../../core/services/location/global_location_service.dart' as _i815;
 import '../../core/services/network/error/api_error_handler.dart' as _i665;
 import '../../core/services/network/internet_checker/netwok_info.dart'
     as _i1035;
@@ -39,6 +40,8 @@ import '../../features/app/presentation/cubit/app_cubit.dart' as _i222;
 import '../../features/auth/data/datasources/auth_remote_data_source.dart'
     as _i107;
 import '../../features/auth/data/repositories/auth_repo_impl.dart' as _i662;
+import '../../features/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart'
+    as _i344;
 import '../../features/auth/presentation/cubit/login_cubit/login_cubit.dart'
     as _i153;
 import '../../features/auth/presentation/cubit/logout/logout_cubit.dart'
@@ -58,6 +61,14 @@ import '../../features/chat/presentation/cubit/message/message_cubit.dart'
     as _i143;
 import '../../features/chat/presentation/cubit/tickets/ticket_cubit.dart'
     as _i546;
+import '../../features/insurance_profile/data/datasources/insurance_profile_data_source.dart'
+    as _i443;
+import '../../features/insurance_profile/data/repositories/insurance_profile_repository.dart'
+    as _i550;
+import '../../features/insurance_profile/presentation/cubit/branches/branches_cubit.dart'
+    as _i1035;
+import '../../features/insurance_profile/presentation/cubit/insurance_profile_cubit.dart'
+    as _i43;
 import '../../features/location/data/datasources/location_remote_data_source.dart'
     as _i823;
 import '../../features/location/data/repositories/location_repository_impl.dart'
@@ -74,6 +85,8 @@ import '../../features/main/data/repositories/main_repository_impl.dart'
     as _i411;
 import '../../features/main/presentation/cubit/banner/banners_cubit.dart'
     as _i933;
+import '../../features/main/presentation/cubit/category_details/category_details_cubit.dart'
+    as _i571;
 import '../../features/main/presentation/cubit/main/main_cubit.dart' as _i1051;
 import '../../features/notifications/data/datasources/notifications_remote_data_source.dart'
     as _i951;
@@ -150,6 +163,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i798.LocationPickerCubit>(() => _i798.LocationPickerCubit());
     gh.factory<_i1051.MainCubit>(() => _i1051.MainCubit());
     gh.factory<_i729.PrescriptionCubit>(() => _i729.PrescriptionCubit());
+    gh.lazySingleton<_i815.GlobalLocationService>(
+      () => _i815.GlobalLocationService(),
+    );
     gh.factory<_i1035.NetworkInfo>(() => _i1035.NetworkInfoImpl());
     gh.lazySingleton<_i1059.OnBoardingCubit>(
       () => _i1059.OnBoardingCubit(gh<_i460.SharedPreferences>()),
@@ -168,6 +184,9 @@ extension GetItInjectableX on _i174.GetIt {
         firebaseAuth: gh<_i59.FirebaseAuth>(),
       ),
     );
+    gh.lazySingleton<_i443.InsuranceProfileDataSource>(
+      () => _i443.InsuranceProfileDummyDataSource(),
+    );
     gh.factory<_i734.TokenRepository>(
       () => _i734.TokenRepositoryImp(
         secureStorage: gh<_i558.FlutterSecureStorage>(),
@@ -177,6 +196,14 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i96.OrderLocaleDataSourceImpl(
         sharedPreferences: gh<_i460.SharedPreferences>(),
       ),
+    );
+    gh.lazySingleton<_i550.InsuranceProfileRepository>(
+      () => _i550.InsuranceProfileRepository(
+        gh<_i443.InsuranceProfileDataSource>(),
+      ),
+    );
+    gh.factory<_i43.InsuranceProfileCubit>(
+      () => _i43.InsuranceProfileCubit(gh<_i550.InsuranceProfileRepository>()),
     );
     gh.factory<_i50.AppInterceptors>(
       () => _i50.AppInterceptors(gh<_i734.TokenRepository>()),
@@ -234,6 +261,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i405.NotificationsCubit>(
       () => _i405.NotificationsCubit(gh<_i203.NotificationRepositoryImpl>()),
+    );
+    gh.factory<_i571.CategoryDetailsCubit>(
+      () => _i571.CategoryDetailsCubit(gh<_i1040.ProductRepositoryImpl>()),
     );
     gh.factory<_i682.ProductDetailsCubit>(
       () => _i682.ProductDetailsCubit(gh<_i1040.ProductRepositoryImpl>()),
@@ -343,6 +373,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i222.AppCubit>(
       () => _i222.AppCubit(gh<_i344.AppRepositoryImpl>()),
     );
+    gh.factory<_i344.ForgotPasswordCubit>(
+      () => _i344.ForgotPasswordCubit(gh<_i662.AuthRepositoryImpl>()),
+    );
+    gh.factory<_i344.ResetPasswordCubit>(
+      () => _i344.ResetPasswordCubit(gh<_i662.AuthRepositoryImpl>()),
+    );
     gh.factory<_i153.LoginCubit>(
       () => _i153.LoginCubit(gh<_i662.AuthRepositoryImpl>()),
     );
@@ -357,6 +393,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i396.SocialLoginBloc>(
       () => _i396.SocialLoginBloc(gh<_i662.AuthRepositoryImpl>()),
+    );
+    gh.factory<_i1035.BranchesCubit>(
+      () => _i1035.BranchesCubit(
+        gh<_i344.AppRepositoryImpl>(),
+        gh<_i815.GlobalLocationService>(),
+      ),
     );
     gh.lazySingleton<_i941.InitRepo>(
       () =>

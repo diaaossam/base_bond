@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/features/main/data/models/category_model.dart';
 import 'app_router.gr.dart';
 
 @AutoRouterConfig()
@@ -9,13 +10,15 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: LoginRoute.page),
     AutoRoute(page: RegisterRoute.page),
     AutoRoute(page: OtpRoute.page),
+    AutoRoute(page: ForgotPasswordRoute.page),
+    AutoRoute(page: ResetPasswordRoute.page),
     AutoRoute(page: OnBoardingRoute.page),
     AutoRoute(
       page: MainLayoutRoute.page,
       children: [
         AutoRoute(page: HomeRoute.page),
-        AutoRoute(page: CategoriesRoute.page),
         AutoRoute(page: FavouriteProductsRoute.page),
+        AutoRoute(page: OrdersRoute.page),
         AutoRoute(page: CartRoute.page, maintainState: false),
         AutoRoute(page: SettingsRoute.page),
       ],
@@ -26,6 +29,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: PickLocationRoute.page),
     AutoRoute(page: AddAddressRoute.page),
     AutoRoute(page: PrivacyRoute.page),
+    AutoRoute(page: CategoriesRoute.page),
+    AutoRoute(page: CategoriesDetailsRoute.page),
     AutoRoute(page: LocationsRoute.page),
     AutoRoute(page: OrdersRoute.page),
     AutoRoute(page: OrderDetailsRoute.page),
@@ -34,5 +39,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: PrescriptionRoute.page),
     AutoRoute(page: SupportChatRoute.page),
     AutoRoute(page: ChatMessagesRoute.page),
+    AutoRoute(page: InsuranceProfileRoute.page),
+    AutoRoute(page: CreateInsuranceProfileRoute.page),
   ];
 }

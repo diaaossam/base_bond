@@ -65,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "الكمية المتاحة فقط ",
     ),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
+    "backToLogin": MessageLookupByLibrary.simpleMessage("العودة لتسجيل الدخول"),
     "bestSellers": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
     "boardingDescription1": MessageLookupByLibrary.simpleMessage(
       "Discover thousands of products and choose what suits you quickly and easily from anywhere.",
@@ -114,6 +115,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم تأكيد طلبك وجاري تجهيزه",
     ),
     "copy": MessageLookupByLibrary.simpleMessage("نسخ"),
+    "createInsuranceProfile": MessageLookupByLibrary.simpleMessage(
+      "Create Insurance Profile",
+    ),
     "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
     "createNewTicket": MessageLookupByLibrary.simpleMessage(
       "Create New Ticket",
@@ -122,8 +126,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "createTicketHint": MessageLookupByLibrary.simpleMessage(
       "Tap + to create a new support ticket and contact our customer service team",
     ),
+    "create_insurance_profile_button": MessageLookupByLibrary.simpleMessage(
+      "إنشاء ملف تأميني",
+    ),
     "currentPrice": MessageLookupByLibrary.simpleMessage("Current Price"),
     "currentStatus": MessageLookupByLibrary.simpleMessage("Current"),
+    "customCompanyName": MessageLookupByLibrary.simpleMessage("Company Name"),
     "customerSupport": MessageLookupByLibrary.simpleMessage("الدعم الفني"),
     "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("Default Address"),
@@ -154,8 +162,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontReceiveCode": MessageLookupByLibrary.simpleMessage("لم يصلك الرمز ؟"),
     "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
     "editAddress": MessageLookupByLibrary.simpleMessage("Edit Address"),
+    "editInsuranceProfile": MessageLookupByLibrary.simpleMessage(
+      "Edit Insurance Profile",
+    ),
     "egp": MessageLookupByLibrary.simpleMessage("ج.م"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكترونى"),
+    "emailValidation": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني غير صالح",
+    ),
     "emptyCartHint": MessageLookupByLibrary.simpleMessage(
       "سلة المشتريات الخاصه بك فارغه قم بإضافة منتجات اولاً",
     ),
@@ -166,9 +180,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterAddressDetails": MessageLookupByLibrary.simpleMessage(
       "Enter address details",
     ),
+    "enterCustomCompanyName": MessageLookupByLibrary.simpleMessage(
+      "Enter company name",
+    ),
+    "enterEmailToReset": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريدك الإلكتروني المسجل وسنرسل لك رمز التحقق",
+    ),
+    "enterInsuranceNumber": MessageLookupByLibrary.simpleMessage(
+      "Enter insurance number",
+    ),
     "enterNotes": MessageLookupByLibrary.simpleMessage(
       "Enter additional notes (optional)",
     ),
+    "enterOtpCode": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق"),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("Bad Request"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
       "Bad response from server",
@@ -190,6 +214,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
     "featured": MessageLookupByLibrary.simpleMessage("Featured"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage(
+      "نسيت كلمة المرور ؟",
+    ),
+    "forgotPasswordBody": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور",
+    ),
     "freeDeleivery": MessageLookupByLibrary.simpleMessage("Free Delivery"),
     "from": MessageLookupByLibrary.simpleMessage("From"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
@@ -199,8 +229,41 @@ class MessageLookup extends MessageLookupByLibrary {
     "hideRating": MessageLookupByLibrary.simpleMessage("Hide Rating"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "homeDelivery": MessageLookupByLibrary.simpleMessage("Home Delivery"),
+    "idCard": MessageLookupByLibrary.simpleMessage("ID Card"),
+    "idCardBack": MessageLookupByLibrary.simpleMessage("ID Card Back"),
+    "idCardFront": MessageLookupByLibrary.simpleMessage("ID Card Front"),
+    "imageSelected": MessageLookupByLibrary.simpleMessage("Selected"),
     "inProgress": MessageLookupByLibrary.simpleMessage("تحت المعالجة"),
     "inProgress_desc": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
+    "insuranceCard": MessageLookupByLibrary.simpleMessage("Insurance Card"),
+    "insuranceCardBack": MessageLookupByLibrary.simpleMessage(
+      "Insurance Card Back",
+    ),
+    "insuranceCardFront": MessageLookupByLibrary.simpleMessage(
+      "Insurance Card Front",
+    ),
+    "insuranceCompany": MessageLookupByLibrary.simpleMessage(
+      "Insurance Company",
+    ),
+    "insuranceNumber": MessageLookupByLibrary.simpleMessage("Insurance Number"),
+    "insuranceProfile": MessageLookupByLibrary.simpleMessage(
+      "Insurance Profile",
+    ),
+    "insuranceProfileCreated": MessageLookupByLibrary.simpleMessage(
+      "Insurance profile created successfully",
+    ),
+    "insuranceProfileUpdated": MessageLookupByLibrary.simpleMessage(
+      "Insurance profile updated successfully",
+    ),
+    "insurance_feature_coverage": MessageLookupByLibrary.simpleMessage(
+      "تغطية تأمينية شاملة",
+    ),
+    "insurance_feature_discount": MessageLookupByLibrary.simpleMessage(
+      "خصومات على الأدوية",
+    ),
+    "insurance_feature_tracking": MessageLookupByLibrary.simpleMessage(
+      "متابعة طلباتك بسهولة",
+    ),
     "invoice": MessageLookupByLibrary.simpleMessage("Invoice"),
     "iqd": MessageLookupByLibrary.simpleMessage("IQD"),
     "kg": MessageLookupByLibrary.simpleMessage("kg"),
@@ -246,11 +309,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
     "myPoints": MessageLookupByLibrary.simpleMessage("نقاطي"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
+    "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
     "noCart": MessageLookupByLibrary.simpleMessage("Cart is empty"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "No Data Found , please try again later",
     ),
     "noDescription": MessageLookupByLibrary.simpleMessage("لا يوجد وصف متاح"),
+    "noInsuranceProfile": MessageLookupByLibrary.simpleMessage(
+      "No Insurance Profile",
+    ),
+    "noInsuranceProfileHint": MessageLookupByLibrary.simpleMessage(
+      "Create your insurance profile now to benefit from health insurance services and get exclusive discounts",
+    ),
     "noLocation": MessageLookupByLibrary.simpleMessage("لا توجد عناوين محفوظة"),
     "noNotificationBody": MessageLookupByLibrary.simpleMessage(
       "ستظهر إشعاراتك هنا عندما تصلك",
@@ -270,6 +340,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "No Support Tickets",
     ),
     "noWithList": MessageLookupByLibrary.simpleMessage("قائمة المفضلة فارغة"),
+    "no_insurance_profile_description": MessageLookupByLibrary.simpleMessage(
+      "أنشئ ملفك التأميني الآن للاستفادة من خدمات التأمين الصحي والحصول على خصومات حصرية",
+    ),
+    "no_insurance_profile_title": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد ملف تأميني",
+    ),
     "notAvailable": MessageLookupByLibrary.simpleMessage("Not Available"),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
@@ -298,8 +374,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "orderWithYourInsurance": MessageLookupByLibrary.simpleMessage(
       "اطلب بالتأمين الخاص بك",
     ),
+    "otherCompany": MessageLookupByLibrary.simpleMessage("Other"),
     "otpBody": MessageLookupByLibrary.simpleMessage(
-      "قمنا بإرسال رمز مُكوّن من 6 أرقام إلى رقم هاتفك",
+      "قمنا بإرسال رمز مُكوّن من 6 أرقام إلى بريدك الإلكترونى",
     ),
     "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
     "ourServices": MessageLookupByLibrary.simpleMessage("خدماتنا"),
@@ -310,6 +387,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "outOfStock": MessageLookupByLibrary.simpleMessage("Out of Stock"),
     "outOfStock1": MessageLookupByLibrary.simpleMessage(
       "One of the products is out of stock",
+    ),
+    "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "passwordConfirmation": MessageLookupByLibrary.simpleMessage(
+      "تأكيد كلمة المرور",
+    ),
+    "passwordLengthValidation": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+    ),
+    "passwordValidation": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور وتأكيد كلمة المرور غير متطابقتين",
     ),
     "paymentType": MessageLookupByLibrary.simpleMessage("Payment Method"),
     "paymentValidation": MessageLookupByLibrary.simpleMessage(
@@ -378,6 +465,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "registerTitle": MessageLookupByLibrary.simpleMessage("سعداء بانضمامك!"),
     "resendCode": MessageLookupByLibrary.simpleMessage("إعاده الإرسال"),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
+    "resetPassword": MessageLookupByLibrary.simpleMessage(
+      "إعادة تعيين كلمة المرور",
+    ),
+    "resetPasswordBody": MessageLookupByLibrary.simpleMessage(
+      "أدخل رمز التحقق وكلمة المرور الجديدة",
+    ),
     "returns": MessageLookupByLibrary.simpleMessage("مسترجع"),
     "returns_desc": MessageLookupByLibrary.simpleMessage("تم إرجاع الطلب"),
     "reviewingOrder": MessageLookupByLibrary.simpleMessage(
@@ -387,11 +480,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "saveLocation": MessageLookupByLibrary.simpleMessage("حفظ العنوان"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
     "seeAll": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
+    "selectInsuranceCompany": MessageLookupByLibrary.simpleMessage(
+      "Select Insurance Company",
+    ),
     "selectProvince": MessageLookupByLibrary.simpleMessage("Select Province"),
     "selectRegion": MessageLookupByLibrary.simpleMessage("Select Region"),
     "selectSortMethod": MessageLookupByLibrary.simpleMessage(
       "Select Sort Method",
     ),
+    "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "shippingCost": MessageLookupByLibrary.simpleMessage("Shipping Cost"),
     "showLess": MessageLookupByLibrary.simpleMessage("عرض أقل"),
@@ -417,6 +514,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "submitRating": MessageLookupByLibrary.simpleMessage("Submit Rating"),
     "supportTeam": MessageLookupByLibrary.simpleMessage("فريق الدعم"),
     "supportTickets": MessageLookupByLibrary.simpleMessage("Support Tickets"),
+    "tapToCapture": MessageLookupByLibrary.simpleMessage("Tap to capture"),
     "termsAndCon": MessageLookupByLibrary.simpleMessage("سياسة الإستخدام"),
     "thankYouForRating": MessageLookupByLibrary.simpleMessage(
       "Thank you for rating!",

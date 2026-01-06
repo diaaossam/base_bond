@@ -101,11 +101,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/minus.svg
   String get minus => 'assets/icons/minus.svg';
 
+  /// File path: assets/icons/my_orders.svg
+  String get myOrders => 'assets/icons/my_orders.svg';
+
   /// File path: assets/icons/notification.svg
   String get notification => 'assets/icons/notification.svg';
 
   /// File path: assets/icons/orders.svg
   String get orders => 'assets/icons/orders.svg';
+
+  /// File path: assets/icons/password.svg
+  String get password => 'assets/icons/password.svg';
 
   /// File path: assets/icons/phone.svg
   String get phone => 'assets/icons/phone.svg';
@@ -168,8 +174,10 @@ class $AssetsIconsGen {
     male,
     mapsLocation01,
     minus,
+    myOrders,
     notification,
     orders,
+    password,
     phone,
     pinLocation02,
     region,

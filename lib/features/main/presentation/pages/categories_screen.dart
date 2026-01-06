@@ -5,12 +5,11 @@ import 'package:bond/features/main/data/models/category_model.dart';
 import 'package:bond/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/dependencies/injectable_dependencies.dart';
-import '../cubit/category/category_cubit.dart';
-import '../widgets/category/category_grid_design.dart';
-import '../widgets/category/empty_category_design.dart';
-import '../widgets/category/shimmer_category.dart';
+import '../../../product/presentation/cubit/category/category_cubit.dart';
+import '../widget/category/category_grid_design.dart';
+import '../widget/category/empty_category_design.dart';
+import '../widget/category/shimmer_category.dart';
 
 @RoutePage()
 class CategoriesScreen extends StatelessWidget {
@@ -21,7 +20,10 @@ class CategoriesScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<CategoryCubit>()..getCategories(),
       child: Scaffold(
-        appBar: CustomAppBar(title: context.localizations.allCategories, showBackButton: false),
+        appBar: CustomAppBar(
+          title: context.localizations.allCategories,
+          showBackButton: false,
+        ),
         body: BlocBuilder<CategoryCubit, BaseState<List<CategoryModel>>>(
           builder: (context, state) {
             if (state.isLoading) {
@@ -32,7 +34,7 @@ class CategoriesScreen extends StatelessWidget {
             if (categories.isEmpty) {
               return EmptyCategories();
             }
-            return CategoriesGrid(categories: categories,shrinkWrap: false,);
+            return CategoriesGrid(categories: categories, shrinkWrap: false);
           },
         ),
       ),

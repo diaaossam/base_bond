@@ -13,6 +13,8 @@ import '../../../../core/services/api/dio_consumer.dart';
 import '../../../../core/services/api/end_points.dart';
 import '../../../../core/services/social_login_service/apple_account_login.dart';
 import '../../../../core/services/social_login_service/google_account_login_service.dart';
+import '../models/request/forgot_password_params.dart';
+import '../models/request/login_params.dart';
 import '../models/request/otp_params.dart';
 import '../models/request/register_params.dart';
 
@@ -25,13 +27,17 @@ abstract class AuthRemoteDataSource {
 
   Future<UserModel> getUserData();
 
-  Future<bool> loginUser(String phone);
+  Future<UserModel> loginUser({required LoginParams loginParams});
 
   Future<bool> socialLogin({required SocialEnum socialEnum});
 
   Future<bool> updateUserData({required RegisterParams params});
 
   Future<Unit> register({required RegisterParams params});
+
+  Future<Unit> forgotPassword({required ForgotPasswordParams params});
+
+  Future<UserModel> verifyForgotPassword({required ResetPasswordParams params});
 }
 
 @Injectable(as: AuthRemoteDataSource)
@@ -63,7 +69,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final response = await dioConsumer
         .post(EndPoints.verifyUser, data: data)
         .factory((json) => UserModel.fromJson(json['data']['user']))
-        .cacheToken()
         .execute();
     UserDataService().setUserData(response);
     CommonCaching.address = (response as UserModel).address;
@@ -92,12 +97,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<bool> loginUser(String phone) async {
-    return await dioConsumer
+  Future<UserModel> loginUser({required LoginParams loginParams}) async {
+    final data = await dioConsumer
         .post(EndPoints.login)
-        .body({"phone": "+2$phone"})
-        .factory((json) => true)
+        .body(loginParams.toJson())
+        .factory((json) => UserModel.fromJson(json['data']['user']))
+        .cacheToken()
         .execute();
+    UserDataService().setUserData(data);
+    CommonCaching.address = (data as UserModel).address;
+    sharedPreferences.setBool(AppStrings.isGuest, false);
+
+    return data;
   }
 
   @override
@@ -134,10 +145,49 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       deviceToken: await deviceHelper.deviceToken,
       deviceType: deviceHelper.devicePlatform,
     );
-    return await dioConsumer
+
+    final response = await dioConsumer
         .post(EndPoints.register)
         .body(await params.toFormData())
-        .factory((json) => unit)
+        .factory((json) => UserModel.fromJson(json['data']['user']))
+        .cacheToken()
         .execute();
+
+    UserDataService().setUserData(response);
+    CommonCaching.address = (response as UserModel).address;
+    sharedPreferences.setBool(AppStrings.isGuest, false);
+    return unit;
+  }
+
+  @override
+  Future<Unit> forgotPassword({required ForgotPasswordParams params}) async {
+    await dioConsumer
+        .post(EndPoints.forgotPassword)
+        .body(params.toJson())
+        .factory((json) => true)
+        .execute();
+    return unit;
+  }
+
+  @override
+  Future<UserModel> verifyForgotPassword({
+    required ResetPasswordParams params,
+  }) async {
+    params = params.copyWith(
+      deviceToken: await deviceHelper.deviceToken,
+      deviceType: deviceHelper.devicePlatform,
+    );
+
+    final response = await dioConsumer
+        .post(EndPoints.verifyForgotPassword)
+        .body(params.toJson())
+        .factory((json) => UserModel.fromJson(json['data']['user']))
+        .cacheToken()
+        .execute();
+
+    UserDataService().setUserData(response);
+    CommonCaching.address = (response as UserModel).address;
+    sharedPreferences.setBool(AppStrings.isGuest, false);
+    return response;
   }
 }

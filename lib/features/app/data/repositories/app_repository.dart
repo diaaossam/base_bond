@@ -1,4 +1,5 @@
 import 'package:bond/core/global_models/generic_model.dart';
+import 'package:bond/features/app/data/models/branches_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
@@ -21,6 +22,11 @@ class AppRepositoryImpl with ApiHandlerMixin {
     final response = await handleApi(
       () => appDataSource.getRegion(governorate: id),
     );
+    return response;
+  }
+
+  Future<Either<Failure, List<BranchesModel>>> getBranches() async {
+    final response = await handleApi(() => appDataSource.getBranches());
     return response;
   }
 }

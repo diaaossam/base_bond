@@ -14,13 +14,13 @@ class MyBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    if (kDebugMode) {
+/*    if (kDebugMode) {
       debugPrint(
         '🔄 BLOC CHANGE: ${bloc.runtimeType}\n'
         '   Current: ${change.currentState}\n'
         '   Next: ${change.nextState}',
       );
-    }
+    }*/
   }
 
   @override
@@ -51,14 +51,14 @@ class MyBlocObserver extends BlocObserver {
     // onTransition is only called for Bloc, not Cubit
     if (bloc is Bloc) {
       super.onTransition(bloc, transition);
-      if (kDebugMode) {
+/*      if (kDebugMode) {
         debugPrint(
           '🔄 BLOC TRANSITION: ${bloc.runtimeType}\n'
           '   Event: ${transition.event}\n'
           '   Current: ${transition.currentState}\n'
           '   Next: ${transition.nextState}',
         );
-      }
+      }*/
     }
   }
 

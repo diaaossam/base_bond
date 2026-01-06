@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../main/data/models/category_model.dart';
+import '../../../data/models/category_model.dart';
 import 'category_item_design.dart';
 
 class CategoriesGrid extends StatefulWidget {

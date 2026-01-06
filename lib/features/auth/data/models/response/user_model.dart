@@ -9,7 +9,7 @@ class UserModel {
     this.status,
     this.deviceType,
     this.defaultLang,
-    this.isPhoneVerified,
+    this.isEmailVerified,
     this.profileImage,
     this.createdAt,
     this.updatedAt,
@@ -24,11 +24,11 @@ class UserModel {
     status = json['status'];
     deviceType = json['device_type'];
     defaultLang = json['default_lang'];
-    isPhoneVerified = json['is_phone_verified'];
+    isEmailVerified = json['is_email_verified'];
     profileImage = json['profile_image'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    if(json['default_address'] != null){
+    if (json['default_address'] != null) {
       address = MyAddress.fromJson(json['default_address']);
     }
   }
@@ -40,7 +40,7 @@ class UserModel {
   String? status;
   String? deviceType;
   String? defaultLang;
-  bool? isPhoneVerified;
+  bool? isEmailVerified;
   String? profileImage;
   String? createdAt;
   String? updatedAt;

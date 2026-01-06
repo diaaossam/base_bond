@@ -2,7 +2,6 @@ import 'package:bond/features/product/data/models/request/product_params.dart';
 import 'package:bond/features/product/data/models/response/product_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import '../../../../core/global_models/generic_model.dart';
 import '../../../../core/services/api/dio_consumer.dart';
 import '../../../../core/services/api/end_points.dart';
@@ -14,6 +13,10 @@ abstract class ProductRemoteDataSource {
   Future<ProductModel> getProductDetails(num id);
 
   Future<List<CategoryModel>> getCategories();
+
+  Future<List<GenericModel>> getSubCategories({required num id});
+
+  Future<List<GenericModel>> getSubDivision({required num id});
 
   Future<List<GenericModel>> getBrands();
 
@@ -84,6 +87,26 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
   @override
   Future<List<GenericModel>> getActiveSubstances() async {
+    final data = await dioConsumer
+        .get<List<GenericModel>>(EndPoints.activeSubstances)
+        .factory(GenericModel.fromJsonList)
+        .execute();
+
+    return data;
+  }
+
+  @override
+  Future<List<GenericModel>> getSubCategories({required num id}) async {
+    final data = await dioConsumer
+        .get<List<GenericModel>>(EndPoints.activeSubstances)
+        .factory(GenericModel.fromJsonList)
+        .execute();
+
+    return data;
+  }
+
+  @override
+  Future<List<GenericModel>> getSubDivision({required num id}) async {
     final data = await dioConsumer
         .get<List<GenericModel>>(EndPoints.activeSubstances)
         .factory(GenericModel.fromJsonList)

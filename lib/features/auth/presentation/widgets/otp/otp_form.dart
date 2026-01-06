@@ -15,9 +15,9 @@ import '../../../../../widgets/main_widget/app_text.dart';
 import 'otp_counter.dart';
 
 class OtpFormWidget extends StatefulWidget {
-  final String phone;
+  final String email;
 
-  const OtpFormWidget({super.key, required this.phone});
+  const OtpFormWidget({super.key, required this.email});
 
   @override
   State<OtpFormWidget> createState() => _OtpFormWidgetState();
@@ -94,7 +94,7 @@ class _OtpFormWidgetState extends State<OtpFormWidget> {
                   text: context.localizations.confirm,
                   press: () {
                     context.read<OtpCubit>().verifyOtp(
-                      params: OtpParams(phone: widget.phone, otpCode: otpCode),
+                      params: OtpParams(email: widget.email, otpCode: otpCode),
                     );
                   },
                 );

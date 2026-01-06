@@ -17,8 +17,8 @@ class MainLayoutScreen extends StatelessWidget {
     return AutoTabsScaffold(
       routes: [
         HomeRoute(),
-        CategoriesRoute(),
         FavouriteProductsRoute(),
+        OrdersRoute(),
         CartRoute(),
         SettingsRoute(),
       ],

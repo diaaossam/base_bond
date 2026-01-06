@@ -6,9 +6,9 @@ import '../../../../../core/utils/app_size.dart';
 import 'otp_form.dart';
 
 class OtpBodyWidget extends StatelessWidget {
-  final String phone;
+  final String email;
 
-  const OtpBodyWidget({super.key, required this.phone});
+  const OtpBodyWidget({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +19,20 @@ class OtpBodyWidget extends StatelessWidget {
           color: context.colorScheme.primary,
           height: SizeConfig.bodyHeight * .5,
         ),
-        OtpFormWidget(phone: phone),
+        OtpFormWidget(email: email),
         Positioned(
           left: 0,
           right: 0,
           top: SizeConfig.bodyHeight * 0.05,
-          child: AppImage.asset(
-            Assets.images.logo.path,
-            height: SizeConfig.bodyHeight * .22,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+            child: AppImage.asset(
+              Assets.images.logo.path,
+              height: SizeConfig.bodyHeight * .22,
+            ),
           ),
         ),
       ],

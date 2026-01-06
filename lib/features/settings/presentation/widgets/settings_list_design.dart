@@ -43,6 +43,11 @@ class SettingsListDesign extends StatelessWidget {
             image: Assets.images.map.path,
           ),
           SettingsItemDesign(
+            text: context.localizations.insuranceProfile,
+            press: () => context.router.push(const InsuranceProfileRoute()),
+            image: Assets.icons.insuranceProfile,
+          ),
+          SettingsItemDesign(
             text: context.localizations.privacyPolicy,
             press: () =>context.router.push(PrivacyRoute(title: context.localizations.privacyPolicy, id: 3)),
             image: Assets.images.shieldKey.path,
