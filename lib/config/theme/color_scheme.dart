@@ -4,7 +4,7 @@ class AppColorScheme {
   static const light = ColorScheme.light(
     primary: Color(0xFF202b6d),
     onPrimary: Color(0xffe6dcff),
-    secondary: Color(0xff202b6d),
+    secondary: Color(0xffaed465),
     surface: Color(0xFFf7f8fa),
     onSurface: Color(0xFF000000),
     shadow: Color(0xFF6B7280),

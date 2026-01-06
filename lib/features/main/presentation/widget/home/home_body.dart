@@ -74,10 +74,9 @@ class HomeBody extends StatelessWidget {
           OurServicesDesign(),
           const HomeCategoriesSection(),
           SliverToBoxAdapter(child: SizedBox(height: 16.h)),
-          const HomeActiveSubstancesSection(),
+          /*const HomeActiveSubstancesSection(),
           SliverToBoxAdapter(child: SizedBox(height: 16.h)),
-
-          SliverToBoxAdapter(child: SizedBox(height: 12.h)),
+          SliverToBoxAdapter(child: SizedBox(height: 12.h)),*/
           ProductSection(
             title: context.localizations.bestSellers,
             actionText: context.localizations.seeAll,

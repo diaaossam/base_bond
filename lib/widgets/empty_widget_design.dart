@@ -22,9 +22,9 @@ class EmptyWidgetDesign extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AppImage.asset(image, height: SizeConfig.bodyHeight * .25),
+            AppImage.asset(image, height: SizeConfig.bodyHeight * .15),
             30.verticalSpace,
-            AppText(text: msg, textSize: 18),
+            AppText(text: msg, textSize: 15),
             80.verticalSpace,
           ],
         ),
