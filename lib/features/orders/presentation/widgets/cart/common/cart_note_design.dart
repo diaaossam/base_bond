@@ -33,6 +33,8 @@ class CartNoteDesign extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 12.h),
+
             Row(
               children: [
                 Container(

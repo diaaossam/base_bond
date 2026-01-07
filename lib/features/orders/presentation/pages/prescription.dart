@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:bond/features/insurance_profile/presentation/cubit/branches/branches_cubit.dart';
 import 'package:bond/features/location/presentation/cubit/my_address/my_address_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +20,7 @@ class PrescriptionScreen extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => sl<PrescriptionCubit>()),
         BlocProvider(create: (context) => sl<MyAddressCubit>()),
+        BlocProvider(create: (context) => sl<BranchesCubit>()),
       ],
       child: Scaffold(
         appBar: CustomAppBar(

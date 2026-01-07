@@ -87,8 +87,6 @@ class ServiceCard extends StatefulWidget {
 class _ServiceCardState extends State<ServiceCard> {
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.colorScheme;
-
     return InkWell(
       onTap: widget.onTap,
       borderRadius: BorderRadius.circular(16.r),

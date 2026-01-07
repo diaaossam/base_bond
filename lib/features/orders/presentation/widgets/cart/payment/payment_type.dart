@@ -54,6 +54,7 @@ class _PaymentTypeDesignState extends State<PaymentTypeDesign>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 12.h),
             // Header
             Row(
               children: [
@@ -77,7 +78,7 @@ class _PaymentTypeDesignState extends State<PaymentTypeDesign>
                 ),
               ],
             ),
-            SizedBox(height: 5.h),
+            SizedBox(height: 12.h),
             _PaymentOption(
               isSelected: _selectedPayment == PaymentType.cash,
               payment: PaymentType.cash,

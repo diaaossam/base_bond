@@ -69,7 +69,7 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
       },
       builder: (context, state) {
         final bloc = context.read<CartCubit>();
-        if (state.isLoading && state.identifier != "coupon") {
+        if (state.isLoading) {
           return const LoadingWidget();
         }
         if (bloc.cartList.isEmpty) {

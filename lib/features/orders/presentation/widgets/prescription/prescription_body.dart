@@ -38,6 +38,7 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
   }
 
   void _initializeAddress() {
+
     defaultAddress = CommonCaching.defaultAddress;
     if (defaultAddress != null && mounted) {
       context.read<PrescriptionCubit>().setSelectedAddress(defaultAddress!);
@@ -53,7 +54,8 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
               ? context.localizations.prescriptionRequired
               : state.error.toString();
           AppConstant.showCustomSnakeBar(context, error, false);
-        } else if (state.isSuccess && state.identifier == 'submit') {
+        }
+        else if (state.isSuccess && state.identifier == 'submit') {
           AppConstant.showCustomSnakeBar(
             context,
             context.localizations.prescriptionSubmitted,
@@ -89,23 +91,9 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                 ),
               ),
             ),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-              sliver: SliverToBoxAdapter(
-                child: FadeInUp(
-                  duration: const Duration(milliseconds: 700),
-                  delay: const Duration(milliseconds: 200),
-                  child: DeliveryMethodDesign(
-                    selectedMethod: data.deliveryMethod,
-                    onMethodChanged: (method) => bloc.setDeliveryMethod(method),
-                  ),
-                ),
-              ),
-            ),
 
-            if (data.deliveryMethod == DeliveryMethod.delivery)
-              SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w,),
                 sliver:  CartLocationDesign(
                   defaultAddress: defaultAddress,
                   onAddressChanged: (address) {
@@ -115,28 +103,9 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                 ),
               ),
 
-            // Discount Code Section
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-              sliver: SliverToBoxAdapter(
-                child: FadeInUp(
-                  duration: const Duration(milliseconds: 700),
-                  delay: const Duration(milliseconds: 300),
-                  child: PrescriptionDiscountDesign(
-                    controller: bloc.discountController,
-                    hasDiscount: data.couponDiscount != 0,
-                    isLoading: state.isLoading && state.identifier == 'coupon',
-                    onApply: () =>
-                        bloc.applyCoupon(bloc.discountController.text),
-                    onRemove: () => bloc.removeCoupon(),
-                  ),
-                ),
-              ),
-            ),
-
             // Payment Type Section
             SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w,),
               sliver: PaymentTypeDesign(
                 payment: (type) => bloc.setPaymentType(type),
               ),

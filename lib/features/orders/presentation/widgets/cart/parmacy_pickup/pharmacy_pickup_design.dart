@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
@@ -150,7 +149,42 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
                   onBranchSelected: widget.onBranchSelected ?? (_) {},
                 )
               else
-                _buildSelectBranchButton(context, branches, cubit),
+                InkWell(
+                  onTap: () => _showBranchSelectionDialog(context, cubit),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          context.colorScheme.primary.withValues(alpha: 0.1),
+                          context.colorScheme.primary.withValues(alpha: 0.05),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: context.colorScheme.primary.withValues(alpha: 0.3),
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.store_rounded,
+                          size: 20,
+                          color: context.colorScheme.primary,
+                        ),
+                        12.horizontalSpace,
+                        AppText(
+                          text: context.localizations.choosePharmacyBranch,
+                          textSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: context.colorScheme.primary,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
             ],
           ),
         );
@@ -170,48 +204,6 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
     );
   }
 
-  Widget _buildSelectBranchButton(
-    BuildContext context,
-    List<BranchesModel> branches,
-    BranchesCubit cubit,
-  ) {
-    return InkWell(
-      onTap: () => _showBranchSelectionDialog(context, cubit),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              context.colorScheme.primary.withValues(alpha: 0.1),
-              context.colorScheme.primary.withValues(alpha: 0.05),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: context.colorScheme.primary.withValues(alpha: 0.3),
-            width: 1.5,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.store_rounded,
-              size: 20,
-              color: context.colorScheme.primary,
-            ),
-            12.horizontalSpace,
-            AppText(
-              text: context.localizations.choosePharmacyBranch,
-              textSize: 13,
-              fontWeight: FontWeight.w600,
-              color: context.colorScheme.primary,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   Future<void> _openLocationInMaps({
     required double lat,
