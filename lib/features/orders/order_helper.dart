@@ -1,9 +1,12 @@
 import 'package:bond/core/enum/order_type.dart';
+import 'package:bond/features/app/data/models/branches_model.dart';
 import 'package:bond/features/orders/data/models/response/orders.dart';
+import 'package:bond/features/orders/presentation/widgets/cart/parmacy_pickup/branch_selection_dialog.dart';
 import 'package:bond/features/orders/presentation/widgets/order_success_dialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/extensions/app_localizations_extension.dart';
+import '../insurance_profile/presentation/cubit/branches/branches_cubit.dart';
 
 class OrderHelper {
   Future<void> showSuccessOrderDialog({
@@ -81,5 +84,33 @@ class OrderHelper {
           description: '',
         );
     }
+  }
+
+  void showBranchSelectionDialog({
+    required BuildContext context,
+    required BranchesCubit cubit,
+    required BranchesModel? selectedBranch,
+    required Function(BranchesModel)? onBranchSelected,
+  }) async {
+    final sortedBranches = await cubit.getBranchesSortedByDistance();
+
+    if (sortedBranches.isEmpty) {
+      return;
+    }
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => BranchSelectionSheet(
+        branches: sortedBranches,
+        selectedBranch: selectedBranch,
+        onBranchSelected: (branch) {
+          if (onBranchSelected != null) {
+            onBranchSelected(branch);
+          }
+          Navigator.pop(context);
+        },
+      ),
+    );
   }
 }

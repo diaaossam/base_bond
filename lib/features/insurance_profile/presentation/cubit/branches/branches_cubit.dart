@@ -15,14 +15,12 @@ class BranchesCubit extends Cubit<BaseState<BranchesDataState>>
   final GlobalLocationService locationService;
 
   BranchesCubit(this.appRepositoryImpl, this.locationService)
-      : super(BaseState.initial(
-          data: const BranchesDataState(),
-        ));
+    : super(BaseState.initial(data: const BranchesDataState()));
 
   BranchesDataState get _data => state.data ?? const BranchesDataState();
 
-  /// Load all branches
   Future<void> loadAllBranches() async {
+    if (isClosed) return;
     await handleAsync(
       identifier: 'branches',
       call: () => appRepositoryImpl.getBranches(),
@@ -30,15 +28,6 @@ class BranchesCubit extends Cubit<BaseState<BranchesDataState>>
     );
   }
 
-  /// Get the nearest branch to current location
-  /// 
-  /// This method will:
-  /// 1. Request location permission if needed
-  /// 2. Get current location
-  /// 3. Calculate distances to all branches
-  /// 4. Return the nearest branch
-  /// 
-  /// Returns the nearest branch or null if location/permission denied
   Future<BranchesModel?> getNearestBranch() async {
     try {
       if (_data.branches == null || _data.branches!.isEmpty) {
@@ -77,13 +66,9 @@ class BranchesCubit extends Cubit<BaseState<BranchesDataState>>
           nearestBranch = branch;
         }
       }
-
-      // Update state with nearest branch
       if (nearestBranch != null) {
         emit(
-          state.copyWith(
-            data: _data.copyWith(nearestBranch: nearestBranch),
-          ),
+          state.copyWith(data: _data.copyWith(nearestBranch: nearestBranch)),
         );
       }
 
@@ -93,34 +78,20 @@ class BranchesCubit extends Cubit<BaseState<BranchesDataState>>
     }
   }
 
-  /// Get nearest branch and update state
-  /// 
-  /// This is a convenience method that loads branches if needed,
-  /// gets the nearest one, and updates the state
   Future<void> findAndSetNearestBranch() async {
-    // Load branches if not loaded
+    if (isClosed) return;
     if (_data.branches == null || _data.branches!.isEmpty) {
       await loadAllBranches();
     }
-
-    // Get nearest branch
     final nearestBranch = await getNearestBranch();
-    
     if (nearestBranch != null) {
-      emit(
-        state.copyWith(
-          data: _data.copyWith(nearestBranch: nearestBranch),
-        ),
-      );
+      emit(state.copyWith(data: _data.copyWith(nearestBranch: nearestBranch)));
     }
   }
 
-  /// Get all branches sorted by distance from current location
-  /// 
-  /// Returns list of branches sorted from nearest to farthest
   Future<List<BranchesModel>> getBranchesSortedByDistance() async {
+    if (isClosed) return [];
     try {
-      // Ensure branches are loaded
       if (_data.branches == null || _data.branches!.isEmpty) {
         await loadAllBranches();
       }
@@ -139,17 +110,19 @@ class BranchesCubit extends Cubit<BaseState<BranchesDataState>>
 
       // Create list with distances
       final branchesWithDistance = branches
-          .where((branch) =>
-              branch.latitude != null && branch.longitude != null)
+          .where(
+            (branch) => branch.latitude != null && branch.longitude != null,
+          )
           .map((branch) {
-        final distance = locationService.calculateDistance(
-          currentLocation.latitude,
-          currentLocation.longitude,
-          branch.latitude!,
-          branch.longitude!,
-        );
-        return MapEntry(branch, distance);
-      }).toList();
+            final distance = locationService.calculateDistance(
+              currentLocation.latitude,
+              currentLocation.longitude,
+              branch.latitude!,
+              branch.longitude!,
+            );
+            return MapEntry(branch, distance);
+          })
+          .toList();
 
       // Sort by distance
       branchesWithDistance.sort((a, b) => a.value.compareTo(b.value));

@@ -309,5 +309,12 @@
   "create_insurance_profile_button": "إنشاء ملف تأميني",
   "insurance_feature_discount": "خصومات على الأدوية",
   "insurance_feature_tracking": "متابعة طلباتك بسهولة",
-  "insurance_feature_coverage": "تغطية تأمينية شاملة"
+  "insurance_feature_coverage": "تغطية تأمينية شاملة",
+  "deleiveryType": "طريقة التوصيل",
+  "emptyBranches": "لا توجد فروع متاحة",
+  "nearest": "الأقرب",
+  "choosePharmacyBranch": "اختر فرع الصيدلية",
+  "km": "كم",
+  "chooseAnotherBranch": "اختر فرع آخر",
+  "trackOnMap": "تتبع علي الخريطة"
 }

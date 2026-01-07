@@ -2638,6 +2638,66 @@ class S {
       args: [],
     );
   }
+
+  /// `طريقة التوصيل`
+  String get deleiveryType {
+    return Intl.message(
+      'طريقة التوصيل',
+      name: 'deleiveryType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لا توجد فروع متاحة`
+  String get emptyBranches {
+    return Intl.message(
+      'لا توجد فروع متاحة',
+      name: 'emptyBranches',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الأقرب`
+  String get nearest {
+    return Intl.message('الأقرب', name: 'nearest', desc: '', args: []);
+  }
+
+  /// `اختر فرع الصيدلية`
+  String get choosePharmacyBranch {
+    return Intl.message(
+      'اختر فرع الصيدلية',
+      name: 'choosePharmacyBranch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كم`
+  String get km {
+    return Intl.message('كم', name: 'km', desc: '', args: []);
+  }
+
+  /// `اختر فرع آخر`
+  String get chooseAnotherBranch {
+    return Intl.message(
+      'اختر فرع آخر',
+      name: 'chooseAnotherBranch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تتبع علي الخريطة`
+  String get trackOnMap {
+    return Intl.message(
+      'تتبع علي الخريطة',
+      name: 'trackOnMap',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

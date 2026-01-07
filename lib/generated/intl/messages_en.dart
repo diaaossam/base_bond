@@ -96,11 +96,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "changeProfilePicture": MessageLookupByLibrary.simpleMessage(
       "Change Profile Picture",
     ),
+    "chooseAnotherBranch": MessageLookupByLibrary.simpleMessage("اختر فرع آخر"),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage(
       "Choose From Gallery",
     ),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("Choose Image"),
     "chooseFromGallery2": MessageLookupByLibrary.simpleMessage("Choose video"),
+    "choosePharmacyBranch": MessageLookupByLibrary.simpleMessage(
+      "اختر فرع الصيدلية",
+    ),
     "clickToReplacePoints": MessageLookupByLibrary.simpleMessage(
       "Click to replace points",
     ),
@@ -136,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("Default Address"),
     "deleiverd": MessageLookupByLibrary.simpleMessage("تم التوصيل"),
+    "deleiveryType": MessageLookupByLibrary.simpleMessage("طريقة التوصيل"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteAddress": MessageLookupByLibrary.simpleMessage("Delete Address"),
     "deleteAddressConfirm": MessageLookupByLibrary.simpleMessage(
@@ -170,6 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailValidation": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني غير صالح",
     ),
+    "emptyBranches": MessageLookupByLibrary.simpleMessage("لا توجد فروع متاحة"),
     "emptyCartHint": MessageLookupByLibrary.simpleMessage(
       "سلة المشتريات الخاصه بك فارغه قم بإضافة منتجات اولاً",
     ),
@@ -267,6 +273,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "invoice": MessageLookupByLibrary.simpleMessage("Invoice"),
     "iqd": MessageLookupByLibrary.simpleMessage("IQD"),
     "kg": MessageLookupByLibrary.simpleMessage("kg"),
+    "km": MessageLookupByLibrary.simpleMessage("كم"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "languageHint": MessageLookupByLibrary.simpleMessage(
       "اختر لغة التطبيق المفضلة",
@@ -308,6 +315,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "myAddresses": MessageLookupByLibrary.simpleMessage("My Addresses"),
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
     "myPoints": MessageLookupByLibrary.simpleMessage("نقاطي"),
+    "nearest": MessageLookupByLibrary.simpleMessage("الأقرب"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
     "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
     "noCart": MessageLookupByLibrary.simpleMessage("Cart is empty"),
@@ -535,6 +543,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "to": MessageLookupByLibrary.simpleMessage("To"),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "totalPrice": MessageLookupByLibrary.simpleMessage("Total Price"),
+    "trackOnMap": MessageLookupByLibrary.simpleMessage("تتبع علي الخريطة"),
     "trackOrder": MessageLookupByLibrary.simpleMessage("Track Order"),
     "typeMessage": MessageLookupByLibrary.simpleMessage("Type your message..."),
     "underReview": MessageLookupByLibrary.simpleMessage("تحت المراجعة"),

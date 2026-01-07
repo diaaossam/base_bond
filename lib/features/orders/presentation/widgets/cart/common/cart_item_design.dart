@@ -39,10 +39,10 @@ class _CartItemDesignState extends State<CartItemDesign> with SingleTickerProvid
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: context.colorScheme.primary.withValues(alpha: 0.2),
-                blurRadius: 4,
+                color: context.colorScheme.primary.withValues(alpha: 0.1),
+                blurRadius: 2,
                 offset: Offset(0, 2 + 1),
-                spreadRadius: 2,
+                spreadRadius: 0,
               ),
             ],
           ),
@@ -72,8 +72,8 @@ class _CartItemDesignState extends State<CartItemDesign> with SingleTickerProvid
                       children: [
                         AppText(
                           text: widget.cartItem.productModel?.title ?? "",
-                          textSize: 12,
-                          fontWeight: FontWeight.w600,
+                          textSize: 11,
+                          fontWeight: FontWeight.w500,
                           maxLines: 2,
                           color: context.colorScheme.onSurface,
                         ),
@@ -99,8 +99,8 @@ class _CartItemDesignState extends State<CartItemDesign> with SingleTickerProvid
                           child: AppText(
                             text:
                             "${widget.cartItem.price?.toStringAsFixed(0)} ${context.localizations.egp}",
-                            fontWeight: FontWeight.w700,
-                            textSize: 12,
+                            fontWeight: FontWeight.w500,
+                            textSize: 11,
                             color: context.colorScheme.tertiary,
                           ),
                         ),

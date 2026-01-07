@@ -14,8 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../cart/cart_location_design.dart';
-import '../cart/payment_type.dart';
+import '../cart/delivery/cart_location_design.dart';
+import '../cart/payment/payment_type.dart';
 import 'delivery_method_design.dart';
 import 'prescription_discount_design.dart';
 import 'prescription_image_picker.dart';

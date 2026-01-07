@@ -57,13 +57,14 @@ class _DiscountDesignState extends State<DiscountDesign>
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: colorScheme.primary.withValues(alpha: 0.06),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
+              color: context.colorScheme.primary.withValues(alpha: 0.1),
+              blurRadius: 2,
+              offset: Offset(0, 2 + 1),
+              spreadRadius: 0,
             ),
           ],
         ),
-        padding: EdgeInsets.all(18.w),
+        padding: EdgeInsets.all(8.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -83,20 +84,18 @@ class _DiscountDesignState extends State<DiscountDesign>
                   child: Icon(
                     Icons.local_offer_rounded,
                     color: colorScheme.secondary,
-                    size: 22,
+                    size: 18,
                   ),
                 ),
                 12.horizontalSpace,
                 AppText(
                   text: context.localizations.doYouHaveDiscount,
                   fontWeight: FontWeight.w600,
-                  textSize: 12,
+                  textSize: 11,
                 ),
               ],
             ),
-
-            SizedBox(height: 12.h),
-
+            SizedBox(height: 5.h),
             BlocBuilder<CartCubit, BaseState<CartStateData>>(
               builder: (context, state) {
                 final bloc = context.read<CartCubit>();

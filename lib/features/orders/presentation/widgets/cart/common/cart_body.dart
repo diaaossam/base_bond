@@ -3,7 +3,7 @@ import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/services/caching/common_caching.dart';
 import 'package:bond/core/utils/app_constant.dart';
 import 'package:bond/core/utils/app_size.dart';
-import 'package:bond/features/location/presentation/cubit/my_address/my_address_cubit.dart';
+import 'package:bond/features/app/data/models/branches_model.dart';
 import 'package:bond/features/orders/order_helper.dart';
 import 'package:bond/features/orders/presentation/cubit/cart/cart_cubit.dart';
 import 'package:bond/features/orders/presentation/cubit/cart/cart_state_data.dart';
@@ -12,19 +12,19 @@ import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/enum/payment_type.dart';
-import '../../../../../core/utils/api_config.dart';
-import '../../../../location/data/models/response/my_address.dart';
-import '../../../../settings/presentation/widgets/settings_helper.dart';
-import '../../../data/models/request/cart_params.dart';
-import '../../../data/models/response/orders.dart';
+import '../../../../../../core/enum/payment_type.dart';
+import '../../../../../../core/utils/api_config.dart';
+import '../../../../../location/data/models/response/my_address.dart';
+import '../../../../../settings/presentation/widgets/settings_helper.dart';
+import '../../../../data/models/request/cart_params.dart';
+import '../../../../data/models/response/orders.dart';
 import 'cart_item_design.dart';
-import 'cart_location_design.dart';
+import '../delivery/cart_location_design.dart';
 import 'cart_note_design.dart';
-import 'discount_design.dart';
+import '../payment/discount_design.dart';
 import 'empty_cart_design.dart';
-import 'payment_type.dart';
-import 'price_cart_design.dart';
+import '../payment/payment_type.dart';
+import '../payment/price_cart_design.dart';
 
 class CartBody extends StatefulWidget {
   const CartBody({super.key});
@@ -38,6 +38,7 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
   TextEditingController note = .new();
 
   MyAddress? defaultAddress;
+  BranchesModel? selectedBranch;
 
   @override
   void initState() {
@@ -58,8 +59,7 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
             state.error.toString(),
             false,
           );
-        }
-        else if (state.isSuccess && state.identifier == "placeOrder") {
+        } else if (state.isSuccess && state.identifier == "placeOrder") {
           context.read<CartCubit>().clearCartOptimistically();
           OrderHelper().showSuccessOrderDialog(
             context: context,
@@ -98,15 +98,18 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
                   ),
                 ),
                 const DiscountDesign(),
-                CartLocationDesign(defaultAddress: defaultAddress,onAddressChanged: (data) =>setState(() {
-                  defaultAddress = data;
-                }),),
+                CartLocationDesign(
+                  defaultAddress: defaultAddress,
+                  onAddressChanged: (data) => setState(() => defaultAddress = data),
+                  selectedBranch: selectedBranch,
+                  onBranchChanged: (branch) => setState(() => selectedBranch = branch),
+                ),
                 PaymentTypeDesign(
                   payment: (p0) => setState(() => paymentType = p0),
                 ),
                 CartNoteDesign(note: note),
                 SliverToBoxAdapter(child: SizedBox(height: 12.h)),
-                PriceCartDesign(myAddress: defaultAddress,),
+                PriceCartDesign(myAddress: defaultAddress),
                 SliverPadding(
                   padding: screenPadding(),
                   sliver: SliverToBoxAdapter(
