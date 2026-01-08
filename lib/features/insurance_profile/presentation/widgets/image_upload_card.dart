@@ -16,7 +16,6 @@ class ImageUploadCard extends StatelessWidget {
   final String hint;
   final File? selectedFile;
   final String? existingImageUrl;
-  final Function(File) onImageSelected;
   final IconData icon;
 
   const ImageUploadCard({
@@ -26,7 +25,6 @@ class ImageUploadCard extends StatelessWidget {
     required this.hint,
     this.selectedFile,
     this.existingImageUrl,
-    required this.onImageSelected,
     this.icon = Icons.add_photo_alternate_outlined,
   });
 
@@ -168,8 +166,6 @@ class ImageUploadCard extends StatelessWidget {
       builder: (context) => PickMediaFileSheet(
         onPickFile: (file, thumbnail) {
           field.didChange(file);
-          onImageSelected(file);
-
         },
       ),
     );

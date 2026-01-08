@@ -52,39 +52,6 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
     await loadInsuranceProfile();
   }
 
-  /// Select insurance company
-  void selectCompany(GenericModel company) {
-    emit(
-      state.copyWith(
-        data: _data.copyWith(
-          selectedCompany: company,
-          clearCustomCompanyName: company.id != -1,
-        ),
-      ),
-    );
-  }
-
-
-  /// Set ID card front image
-  void setIdCardFront(File file) {
-    emit(state.copyWith(data: _data.copyWith(idCardFront: file)));
-  }
-
-  /// Set ID card back image
-  void setIdCardBack(File file) {
-    emit(state.copyWith(data: _data.copyWith(idCardBack: file)));
-  }
-
-  /// Set insurance card front image
-  void setInsuranceCardFront(File file) {
-    emit(state.copyWith(data: _data.copyWith(insuranceCardFront: file)));
-  }
-
-  /// Set insurance card back image
-  void setInsuranceCardBack(File file) {
-    emit(state.copyWith(data: _data.copyWith(insuranceCardBack: file)));
-  }
-
   /// Create insurance profile
   Future<bool> createProfile({required InsuranceProfileRequest params}) async {
     final result = await handleAsync(

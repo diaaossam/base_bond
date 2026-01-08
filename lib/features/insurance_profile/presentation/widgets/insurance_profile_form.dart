@@ -185,9 +185,7 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
           selectedFile: data.idCardFront,
           existingImageUrl: data.profile?.idCardFront,
           icon: Icons.credit_card,
-          onImageSelected: (file) {
-            context.read<InsuranceProfileCubit>().setIdCardFront(file);
-          },
+
         ),
         12.verticalSpace,
         ImageUploadCard(
@@ -197,9 +195,6 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
           selectedFile: data.idCardBack,
           existingImageUrl: data.profile?.idCardBack,
           icon: Icons.credit_card,
-          onImageSelected: (file) {
-            context.read<InsuranceProfileCubit>().setIdCardBack(file);
-          },
         ),
       ],
     );
@@ -224,9 +219,6 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
           selectedFile: data.insuranceCardFront,
           existingImageUrl: data.profile?.insuranceCardFront,
           icon: Icons.health_and_safety,
-          onImageSelected: (file) {
-            context.read<InsuranceProfileCubit>().setInsuranceCardFront(file);
-          },
         ),
         12.verticalSpace,
         ImageUploadCard(
@@ -236,9 +228,7 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
           selectedFile: data.insuranceCardBack,
           existingImageUrl: data.profile?.insuranceCardBack,
           icon: Icons.health_and_safety,
-          onImageSelected: (file) {
-            context.read<InsuranceProfileCubit>().setInsuranceCardBack(file);
-          },
+
         ),
       ],
     );
