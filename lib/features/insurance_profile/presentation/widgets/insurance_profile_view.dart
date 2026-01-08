@@ -1,3 +1,4 @@
+import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/color_extensions.dart';
@@ -24,43 +25,44 @@ class InsuranceProfileView extends StatelessWidget {
         children: [
           // Header Card
           _buildHeaderCard(context),
-          24.verticalSpace,
+          5.verticalSpace,
 
           _buildInfoCard(
             context,
             icon: Icons.business_outlined,
-            title: 'شركة التأمين',
-            value: profile.companyDisplayName,
+            title: context.localizations.insuranceCompany,
+            value: profile.insuranceCompany?.title ?? "",
           ),
-          16.verticalSpace,
-
-          // Insurance Number
           _buildInfoCard(
             context,
             icon: Icons.numbers_outlined,
-            title: 'الرقم التأميني',
-            value: profile.insuranceNumber ?? 'غير محدد',
+            title: context.localizations.insuranceNumber,
+            value: profile.notes ?? '',
           ),
-          24.verticalSpace,
+          5.verticalSpace,
 
           // ID Card Section
-          _buildSectionTitle(context, 'البطاقة الشخصية', Icons.credit_card_outlined),
+          _buildSectionTitle(
+            context,
+            context.localizations.nationalId,
+            Icons.credit_card_outlined,
+          ),
           16.verticalSpace,
           Row(
             children: [
               Expanded(
                 child: _buildImageCard(
                   context,
-                  title: 'وجه البطاقة',
-                  imageUrl: profile.idCardFrontUrl,
+                  title: context.localizations.id_card_front_title,
+                  imageUrl: profile.idCardFront,
                 ),
               ),
               12.horizontalSpace,
               Expanded(
                 child: _buildImageCard(
                   context,
-                  title: 'ظهر البطاقة',
-                  imageUrl: profile.idCardBackUrl,
+                  title: context.localizations.id_card_back_title,
+                  imageUrl: profile.idCardBack,
                 ),
               ),
             ],
@@ -68,23 +70,27 @@ class InsuranceProfileView extends StatelessWidget {
           24.verticalSpace,
 
           // Insurance Card Section
-          _buildSectionTitle(context, 'بطاقة التأمين', Icons.health_and_safety_outlined),
+          _buildSectionTitle(
+            context,
+            context.localizations.insuranceCard,
+            Icons.health_and_safety_outlined,
+          ),
           16.verticalSpace,
           Row(
             children: [
               Expanded(
                 child: _buildImageCard(
                   context,
-                  title: 'وجه البطاقة',
-                  imageUrl: profile.insuranceCardFrontUrl,
+                  title: context.localizations.insurance_card_front_title,
+                  imageUrl: profile.insuranceCardFront,
                 ),
               ),
               12.horizontalSpace,
               Expanded(
                 child: _buildImageCard(
                   context,
-                  title: 'ظهر البطاقة',
-                  imageUrl: profile.insuranceCardBackUrl,
+                  title: context.localizations.insurance_card_back_title,
+                  imageUrl: profile.insuranceCardBack,
                 ),
               ),
             ],
@@ -98,7 +104,7 @@ class InsuranceProfileView extends StatelessWidget {
   Widget _buildHeaderCard(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -128,21 +134,21 @@ class InsuranceProfileView extends StatelessWidget {
             child: Icon(
               Icons.health_and_safety,
               color: Colors.white,
-              size: 40.sp,
+              size: 30.sp,
             ),
           ),
           16.verticalSpace,
           AppText(
-            text: 'الملف التأميني',
+            text: context.localizations.insuranceProfile,
             color: Colors.white,
-            fontWeight: FontWeight.bold,
-            textSize: 20,
+            fontWeight: FontWeight.w600,
+            textSize: 13,
           ),
           8.verticalSpace,
           AppText(
-            text: profile.companyDisplayName,
+            text: profile.insuranceCompany?.title ?? "",
             color: Colors.white.withValues(alpha: 0.9),
-            textSize: 14,
+            textSize: 10,
           ),
           16.verticalSpace,
           InkWell(
@@ -163,10 +169,10 @@ class InsuranceProfileView extends StatelessWidget {
                   ),
                   8.horizontalSpace,
                   AppText(
-                    text: 'تعديل الملف',
+                    text: context.localizations.editFile,
                     color: context.colorScheme.primary,
                     fontWeight: FontWeight.w600,
-                    textSize: 14,
+                    textSize: 11,
                   ),
                 ],
               ),
@@ -199,16 +205,12 @@ class InsuranceProfileView extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(12.w),
+            padding: EdgeInsets.all(6.w),
             decoration: BoxDecoration(
               color: context.colorScheme.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Icon(
-              icon,
-              color: context.colorScheme.primary,
-              size: 24.sp,
-            ),
+            child: Icon(icon, color: context.colorScheme.primary, size: 24.sp),
           ),
           16.horizontalSpace,
           Expanded(
@@ -217,15 +219,11 @@ class InsuranceProfileView extends StatelessWidget {
               children: [
                 AppText(
                   text: title,
-                  textSize: 12,
+                  textSize: 10,
                   color: context.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
                 4.verticalSpace,
-                AppText(
-                  text: value,
-                  fontWeight: FontWeight.w600,
-                  textSize: 16,
-                ),
+                AppText(text: value, fontWeight: FontWeight.w600, textSize: 12),
               ],
             ),
           ),
@@ -234,8 +232,7 @@ class InsuranceProfileView extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionTitle(
-      BuildContext context, String title, IconData icon) {
+  Widget _buildSectionTitle(BuildContext context, String title, IconData icon) {
     return Row(
       children: [
         Container(
@@ -247,17 +244,9 @@ class InsuranceProfileView extends StatelessWidget {
           ),
         ),
         10.horizontalSpace,
-        Icon(
-          icon,
-          color: context.colorScheme.primary,
-          size: 20.sp,
-        ),
+        Icon(icon, color: context.colorScheme.primary, size: 20.sp),
         8.horizontalSpace,
-        AppText.title(
-          text: title,
-          textSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
+        AppText.title(text: title, textSize: 12, fontWeight: FontWeight.w600),
       ],
     );
   }
@@ -284,8 +273,9 @@ class InsuranceProfileView extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
             child: imageUrl != null
-                ? Image.asset(
-                    'assets/images/person.jpg', // Placeholder since we're using dummy data
+                ? Image.network(
+                    imageUrl,
+                    // Placeholder since we're using dummy data
                     height: 100.h,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -321,4 +311,3 @@ class InsuranceProfileView extends StatelessWidget {
     );
   }
 }
-

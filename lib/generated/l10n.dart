@@ -2698,6 +2698,136 @@ class S {
       args: [],
     );
   }
+
+  /// `البطاقة الشخصية`
+  String get nationalId {
+    return Intl.message(
+      'البطاقة الشخصية',
+      name: 'nationalId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `وجه البطاقة`
+  String get id_card_front_title {
+    return Intl.message(
+      'وجه البطاقة',
+      name: 'id_card_front_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اضغط لتصوير وجه البطاقة الشخصية`
+  String get id_card_front_hint {
+    return Intl.message(
+      'اضغط لتصوير وجه البطاقة الشخصية',
+      name: 'id_card_front_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ظهر البطاقة`
+  String get id_card_back_title {
+    return Intl.message(
+      'ظهر البطاقة',
+      name: 'id_card_back_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اضغط لتصوير ظهر البطاقة الشخصية`
+  String get id_card_back_hint {
+    return Intl.message(
+      'اضغط لتصوير ظهر البطاقة الشخصية',
+      name: 'id_card_back_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `بطاقة التأمين`
+  String get insurance_card_section_title {
+    return Intl.message(
+      'بطاقة التأمين',
+      name: 'insurance_card_section_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `وجه بطاقة التأمين`
+  String get insurance_card_front_title {
+    return Intl.message(
+      'وجه بطاقة التأمين',
+      name: 'insurance_card_front_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اضغط لتصوير وجه بطاقة التأمين`
+  String get insurance_card_front_hint {
+    return Intl.message(
+      'اضغط لتصوير وجه بطاقة التأمين',
+      name: 'insurance_card_front_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ظهر بطاقة التأمين`
+  String get insurance_card_back_title {
+    return Intl.message(
+      'ظهر بطاقة التأمين',
+      name: 'insurance_card_back_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اضغط لتصوير ظهر بطاقة التأمين`
+  String get insurance_card_back_hint {
+    return Intl.message(
+      'اضغط لتصوير ظهر بطاقة التأمين',
+      name: 'insurance_card_back_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم الاختيار ✓`
+  String get doneSelected {
+    return Intl.message(
+      'تم الاختيار ✓',
+      name: 'doneSelected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إنشاء ملف تأمينى`
+  String get createFile {
+    return Intl.message(
+      'إنشاء ملف تأمينى',
+      name: 'createFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تعديل الملف التأميني`
+  String get editFile {
+    return Intl.message(
+      'تعديل الملف التأميني',
+      name: 'editFile',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

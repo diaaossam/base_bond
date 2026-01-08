@@ -21,7 +21,8 @@ import 'prescription_discount_design.dart';
 import 'prescription_image_picker.dart';
 
 class PrescriptionBody extends StatefulWidget {
-  const PrescriptionBody({super.key});
+  final bool isInsurance;
+  const PrescriptionBody({super.key, required this.isInsurance});
 
   @override
   State<PrescriptionBody> createState() => _PrescriptionBodyState();
@@ -91,7 +92,6 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                 ),
               ),
             ),
-
             SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w,),
                 sliver:  CartLocationDesign(
@@ -102,16 +102,12 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                   },
                 ),
               ),
-
-            // Payment Type Section
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: 16.w,),
               sliver: PaymentTypeDesign(
                 payment: (type) => bloc.setPaymentType(type),
               ),
             ),
-
-            // Note Section
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               sliver: SliverToBoxAdapter(
@@ -122,8 +118,6 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                 ),
               ),
             ),
-
-            // Submit Button
             SliverPadding(
               padding: EdgeInsets.all(16.w),
               sliver: SliverToBoxAdapter(
@@ -144,7 +138,6 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                 ),
               ),
             ),
-
             SliverToBoxAdapter(child: SizedBox(height: 24.h)),
           ],
         );

@@ -62,7 +62,7 @@ class _PrescriptionImagePickerState extends State<PrescriptionImagePicker>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.all(16.w),
+            padding: EdgeInsets.all(5.w),
             child: Row(
               children: [
                 Container(
@@ -79,7 +79,7 @@ class _PrescriptionImagePickerState extends State<PrescriptionImagePicker>
                   child: Icon(
                     Icons.document_scanner_rounded,
                     color: colorScheme.primary,
-                    size: 22,
+                    size: 16,
                   ),
                 ),
                 12.horizontalSpace,
@@ -91,14 +91,12 @@ class _PrescriptionImagePickerState extends State<PrescriptionImagePicker>
               ],
             ),
           ),
-
-          // Image Picker Area
           GestureDetector(
             onTap: () => _showImagePicker(context),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.w),
-              height: hasImage ? 250.h : 180.h,
+              height:170.h,
               decoration: BoxDecoration(
                 gradient: hasImage
                     ? null
@@ -189,7 +187,7 @@ class _PrescriptionImagePickerState extends State<PrescriptionImagePicker>
               SizedBox(height: 16.h),
               AppText(
                 text: context.localizations.uploadPrescriptionHint,
-                textSize: 12,
+                textSize: 10,
                 color: colorScheme.shadow,
                 align: TextAlign.center,
               ),

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/features/insurance_profile/data/models/insurance_profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/dependencies/injectable_dependencies.dart';
@@ -9,7 +10,9 @@ import '../widgets/insurance_profile_form.dart';
 
 @RoutePage()
 class CreateInsuranceProfileScreen extends StatelessWidget {
-  const CreateInsuranceProfileScreen({super.key});
+  final InsuranceProfileModel? model;
+
+  const CreateInsuranceProfileScreen({super.key, this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,8 @@ class CreateInsuranceProfileScreen extends StatelessWidget {
         appBar: CustomAppBar(
           title: context.localizations.createInsuranceProfile,
         ),
-        body: InsuranceProfileForm(isEditing: false, onSuccess: () {}),
+        body: InsuranceProfileForm(insuranceProfileModel: model,),
       ),
     );
   }
 }
-
-
-
-

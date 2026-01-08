@@ -316,5 +316,21 @@
   "choosePharmacyBranch": "اختر فرع الصيدلية",
   "km": "كم",
   "chooseAnotherBranch": "اختر فرع آخر",
-  "trackOnMap": "تتبع علي الخريطة"
+  "trackOnMap": "تتبع علي الخريطة",
+  "nationalId": "البطاقة الشخصية",
+  "id_card_front_title": "وجه البطاقة",
+  "id_card_front_hint": "اضغط لتصوير وجه البطاقة الشخصية",
+  "id_card_back_title": "ظهر البطاقة",
+  "id_card_back_hint": "اضغط لتصوير ظهر البطاقة الشخصية",
+
+  "insurance_card_section_title": "بطاقة التأمين",
+  "insurance_card_front_title": "وجه بطاقة التأمين",
+  "insurance_card_front_hint": "اضغط لتصوير وجه بطاقة التأمين",
+  "insurance_card_back_title": "ظهر بطاقة التأمين",
+  "insurance_card_back_hint": "اضغط لتصوير ظهر بطاقة التأمين",
+  "doneSelected": "تم الاختيار ✓",
+  "createFile": "إنشاء ملف تأمينى",
+  "editFile": "تعديل الملف التأميني"
+
+
 }

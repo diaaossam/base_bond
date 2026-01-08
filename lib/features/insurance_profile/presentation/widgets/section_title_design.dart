@@ -25,7 +25,7 @@ class SectionTitleDesign extends StatelessWidget {
         10.horizontalSpace,
         Icon(icon, color: context.colorScheme.primary, size: 20.sp),
         8.horizontalSpace,
-        AppText.title(text: title, textSize: 13, fontWeight: FontWeight.w600),
+        AppText.title(text: title, textSize: 11, fontWeight: FontWeight.w600),
       ],
     );
   }

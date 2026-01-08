@@ -4,12 +4,15 @@ class EndPoints {
   static const String categories = "categories";
   static const String activeSubstances = "active-substances";
   static const String brands = "brands";
+  static const String insuranceCompany = "insurance-companies";
+  static const String insuranceProfile = "insurance-profile";
 
   /////////////////////// Location //////////////////
 
   static const String governorates = "governorates";
   static const String addresses = "addresses";
   static const String makeAddressDefault = "make-default-address";
+  static const String pharmacyBranches = "pharmacy-branches";
 
 
   ///////// Auth ////////////////////////

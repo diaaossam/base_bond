@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/features/insurance_profile/data/models/insurance_profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/dependencies/injectable_dependencies.dart';
@@ -34,12 +35,13 @@ class InsuranceProfileScreen extends StatelessWidget {
             if (data.hasProfile) {
               return InsuranceProfileView(
                 profile: data.profile!,
-                onEdit: () => _navigateToEdit(context),
+                onEdit: () =>
+                    _navigateToEdit(context: context, model: data.profile!),
               );
             }
 
             return EmptyInsuranceProfile(
-              onCreatePressed: () => _navigateToEdit(context),
+              onCreatePressed: () => _navigateToEdit(context: context),
             );
           },
         ),
@@ -47,8 +49,11 @@ class InsuranceProfileScreen extends StatelessWidget {
     );
   }
 
-  void _navigateToEdit(BuildContext context) {
-    context.router.push(const CreateInsuranceProfileRoute()).then((result) {
+  void _navigateToEdit({
+    required BuildContext context,
+    InsuranceProfileModel? model,
+  }) {
+    context.router.push(CreateInsuranceProfileRoute(model: model)).then((result) {
       if (result == true) {
         context.read<InsuranceProfileCubit>().loadInsuranceProfile();
       }

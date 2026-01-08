@@ -2,8 +2,6 @@ import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/features/location/location_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import '../../../../../../core/extensions/color_extensions.dart';
 import '../../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../app/data/models/branches_model.dart';
@@ -164,7 +162,7 @@ class _BranchListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppText(
-                    text: branch.name ?? '',
+                    text: branch.title ?? '',
                     fontWeight: FontWeight.w600,
                     textSize: 11,
                     maxLines: 2,
@@ -183,7 +181,8 @@ class _BranchListItem extends StatelessWidget {
                             ),
                             4.horizontalSpace,
                             AppText(
-                              text: '${snapshot.data!.toStringAsFixed(1)} ${context.localizations.km}',
+                              text:
+                                  '${snapshot.data!.toStringAsFixed(1)} ${context.localizations.km}',
                               textSize: 11,
                               color: context.colorScheme.shadow,
                             ),

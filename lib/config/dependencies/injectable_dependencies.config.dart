@@ -184,9 +184,6 @@ extension GetItInjectableX on _i174.GetIt {
         firebaseAuth: gh<_i59.FirebaseAuth>(),
       ),
     );
-    gh.lazySingleton<_i443.InsuranceProfileDataSource>(
-      () => _i443.InsuranceProfileDummyDataSource(),
-    );
     gh.factory<_i734.TokenRepository>(
       () => _i734.TokenRepositoryImp(
         secureStorage: gh<_i558.FlutterSecureStorage>(),
@@ -196,14 +193,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i96.OrderLocaleDataSourceImpl(
         sharedPreferences: gh<_i460.SharedPreferences>(),
       ),
-    );
-    gh.lazySingleton<_i550.InsuranceProfileRepository>(
-      () => _i550.InsuranceProfileRepository(
-        gh<_i443.InsuranceProfileDataSource>(),
-      ),
-    );
-    gh.factory<_i43.InsuranceProfileCubit>(
-      () => _i43.InsuranceProfileCubit(gh<_i550.InsuranceProfileRepository>()),
     );
     gh.factory<_i50.AppInterceptors>(
       () => _i50.AppInterceptors(gh<_i734.TokenRepository>()),
@@ -319,6 +308,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i161.MyAddressCubit>(
       () => _i161.MyAddressCubit(gh<_i115.LocationRepositoryImpl>()),
     );
+    gh.lazySingleton<_i443.InsuranceProfileDataSource>(
+      () => _i443.InsuranceProfileDummyDataSource(
+        dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
     gh.factory<_i12.CartCubit>(
       () => _i12.CartCubit(
         gh<_i376.OrderRepositoryImpl>(),
@@ -369,6 +363,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i546.TicketCubit>(
       () => _i546.TicketCubit(gh<_i504.ChatRepositoryImpl>()),
+    );
+    gh.lazySingleton<_i550.InsuranceProfileRepository>(
+      () => _i550.InsuranceProfileRepository(
+        gh<_i443.InsuranceProfileDataSource>(),
+      ),
+    );
+    gh.factory<_i43.InsuranceProfileCubit>(
+      () => _i43.InsuranceProfileCubit(gh<_i550.InsuranceProfileRepository>()),
     );
     gh.factory<_i222.AppCubit>(
       () => _i222.AppCubit(gh<_i344.AppRepositoryImpl>()),

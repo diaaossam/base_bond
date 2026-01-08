@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/bloc/helper/base_state.dart';
 import '../../../../core/bloc/helper/either_extensions.dart';
 import '../../../../core/global_models/generic_model.dart';
-import '../../data/models/insurance_profile_model.dart';
+import '../../data/models/insurance_profile_params.dart';
 import '../../data/repositories/insurance_profile_repository.dart';
 import 'insurance_profile_state_data.dart';
 
@@ -16,9 +16,9 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
   InsuranceProfileCubit(this._repository)
     : super(BaseState.initial(data: const InsuranceProfileStateData()));
 
-  InsuranceProfileStateData get _data => state.data ?? const InsuranceProfileStateData();
+  InsuranceProfileStateData get _data =>
+      state.data ?? const InsuranceProfileStateData();
 
-  /// Load insurance companies list
   Future<void> loadInsuranceCompanies() async {
     await handleAsync(
       identifier: 'companies',
@@ -37,8 +37,8 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
           return _data.copyWith(
             profile: data,
             selectedCompany: data.insuranceCompany,
-            customCompanyName: data.customCompanyName,
-            insuranceNumber: data.insuranceNumber,
+            customCompanyName: data.insuranceCompany?.title,
+            insuranceNumber: data.notes,
           );
         }
         return _data;
@@ -95,22 +95,10 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
   }
 
   /// Create insurance profile
-  Future<bool> createProfile() async {
-    final request = InsuranceProfileRequest(
-      insuranceCompanyId: _data.selectedCompany?.id,
-      customCompanyName: _data.isOtherCompanySelected
-          ? _data.customCompanyName
-          : null,
-      insuranceNumber: _data.insuranceNumber ?? '',
-      idCardFront: _data.idCardFront,
-      idCardBack: _data.idCardBack,
-      insuranceCardFront: _data.insuranceCardFront,
-      insuranceCardBack: _data.insuranceCardBack,
-    );
-
+  Future<bool> createProfile({required InsuranceProfileRequest params}) async {
     final result = await handleAsync(
       identifier: 'create',
-      call: () => _repository.createInsuranceProfile(request),
+      call: () => _repository.createInsuranceProfile(params: params),
       onSuccess: (data) => _data.copyWith(profile: data),
     );
 
@@ -118,25 +106,14 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
   }
 
   /// Update existing insurance profile
-  Future<bool> updateProfile() async {
+  Future<bool> updateProfile({
+    required num id,
+    required InsuranceProfileRequest params,
+  }) async {
     if (_data.profile?.id == null) return false;
-
-    final request = InsuranceProfileRequest(
-      insuranceCompanyId: _data.selectedCompany?.id,
-      customCompanyName: _data.isOtherCompanySelected
-          ? _data.customCompanyName
-          : null,
-      insuranceNumber: _data.insuranceNumber ?? '',
-      idCardFront: _data.idCardFront,
-      idCardBack: _data.idCardBack,
-      insuranceCardFront: _data.insuranceCardFront,
-      insuranceCardBack: _data.insuranceCardBack,
-    );
-
     final result = await handleAsync(
       identifier: 'update',
-      call: () =>
-          _repository.updateInsuranceProfile(_data.profile!.id!, request),
+      call: () => _repository.updateInsuranceProfile(params: params, id: id),
       onSuccess: (data) => _data.copyWith(profile: data),
     );
 

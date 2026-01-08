@@ -37,6 +37,9 @@ class AppRemoteDataSourceImpl implements AppDataSource {
 
   @override
   Future<List<BranchesModel>> getBranches() async {
-    return branches;
+    return await dioConsumer
+        .get(EndPoints.pharmacyBranches)
+        .factory(BranchesModel.fromJsonList)
+        .execute();
   }
 }

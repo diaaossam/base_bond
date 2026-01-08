@@ -62,15 +62,15 @@ class BranchCardDesign extends StatelessWidget {
                     height: 20,
                   ),
                 ),
-                12.horizontalSpace,
+                5.horizontalSpace,
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        text: branch.name ?? '',
+                        text: branch.title ?? '',
                         fontWeight: FontWeight.w600,
-                        textSize: 12,
+                        textSize: 10,
                         maxLines: 2,
                       ),
                       SizedBox(height: 4.h),
@@ -103,13 +103,13 @@ class BranchCardDesign extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.social_distance_outlined,
-                              size: 17,
+                              size: 14,
                               color: Colors.white,
                             ),
                             4.horizontalSpace,
                             AppText(
                               text: '${distance.toStringAsFixed(1)} ${context.localizations.km}',
-                              textSize: 10,
+                              textSize: 9,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
@@ -155,7 +155,7 @@ class BranchCardDesign extends StatelessWidget {
                     8.horizontalSpace,
                     AppText(
                       text: context.localizations.chooseAnotherBranch,
-                      textSize: 11,
+                      textSize: 10,
                       fontWeight: FontWeight.w600,
                       color: context.colorScheme.primary,
                     ),

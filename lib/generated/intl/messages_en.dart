@@ -119,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم تأكيد طلبك وجاري تجهيزه",
     ),
     "copy": MessageLookupByLibrary.simpleMessage("نسخ"),
+    "createFile": MessageLookupByLibrary.simpleMessage("إنشاء ملف تأمينى"),
     "createInsuranceProfile": MessageLookupByLibrary.simpleMessage(
       "Create Insurance Profile",
     ),
@@ -163,10 +164,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "doYouHaveDiscountHint": MessageLookupByLibrary.simpleMessage(
       "Enter discount code",
     ),
+    "doneSelected": MessageLookupByLibrary.simpleMessage("تم الاختيار ✓"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب !"),
     "dontReceiveCode": MessageLookupByLibrary.simpleMessage("لم يصلك الرمز ؟"),
     "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
     "editAddress": MessageLookupByLibrary.simpleMessage("Edit Address"),
+    "editFile": MessageLookupByLibrary.simpleMessage("تعديل الملف التأميني"),
     "editInsuranceProfile": MessageLookupByLibrary.simpleMessage(
       "Edit Insurance Profile",
     ),
@@ -238,6 +241,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "idCard": MessageLookupByLibrary.simpleMessage("ID Card"),
     "idCardBack": MessageLookupByLibrary.simpleMessage("ID Card Back"),
     "idCardFront": MessageLookupByLibrary.simpleMessage("ID Card Front"),
+    "id_card_back_hint": MessageLookupByLibrary.simpleMessage(
+      "اضغط لتصوير ظهر البطاقة الشخصية",
+    ),
+    "id_card_back_title": MessageLookupByLibrary.simpleMessage("ظهر البطاقة"),
+    "id_card_front_hint": MessageLookupByLibrary.simpleMessage(
+      "اضغط لتصوير وجه البطاقة الشخصية",
+    ),
+    "id_card_front_title": MessageLookupByLibrary.simpleMessage("وجه البطاقة"),
     "imageSelected": MessageLookupByLibrary.simpleMessage("Selected"),
     "inProgress": MessageLookupByLibrary.simpleMessage("تحت المعالجة"),
     "inProgress_desc": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
@@ -260,6 +271,21 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "insuranceProfileUpdated": MessageLookupByLibrary.simpleMessage(
       "Insurance profile updated successfully",
+    ),
+    "insurance_card_back_hint": MessageLookupByLibrary.simpleMessage(
+      "اضغط لتصوير ظهر بطاقة التأمين",
+    ),
+    "insurance_card_back_title": MessageLookupByLibrary.simpleMessage(
+      "ظهر بطاقة التأمين",
+    ),
+    "insurance_card_front_hint": MessageLookupByLibrary.simpleMessage(
+      "اضغط لتصوير وجه بطاقة التأمين",
+    ),
+    "insurance_card_front_title": MessageLookupByLibrary.simpleMessage(
+      "وجه بطاقة التأمين",
+    ),
+    "insurance_card_section_title": MessageLookupByLibrary.simpleMessage(
+      "بطاقة التأمين",
     ),
     "insurance_feature_coverage": MessageLookupByLibrary.simpleMessage(
       "تغطية تأمينية شاملة",
@@ -315,6 +341,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "myAddresses": MessageLookupByLibrary.simpleMessage("My Addresses"),
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
     "myPoints": MessageLookupByLibrary.simpleMessage("نقاطي"),
+    "nationalId": MessageLookupByLibrary.simpleMessage("البطاقة الشخصية"),
     "nearest": MessageLookupByLibrary.simpleMessage("الأقرب"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
     "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),

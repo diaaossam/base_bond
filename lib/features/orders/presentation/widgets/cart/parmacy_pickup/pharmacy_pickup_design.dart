@@ -7,6 +7,7 @@ import 'package:bond/features/insurance_profile/presentation/cubit/branches/bran
 import 'package:bond/features/orders/order_helper.dart';
 import 'package:bond/features/orders/presentation/widgets/cart/parmacy_pickup/branch_card_design.dart';
 import 'package:bond/features/orders/presentation/widgets/cart/parmacy_pickup/empty_branches.dart';
+import 'package:bond/widgets/loading/loading_widget.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,6 +46,9 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
         final nearestBranch = state.data?.nearestBranch;
         final branches = state.data?.branches ?? [];
         final displayBranch = widget.selectedBranch ?? nearestBranch;
+        if(state.isLoading){
+          return LoadingWidget();
+        }
         if (branches.isEmpty) {
           return EmptyBranches();
         }

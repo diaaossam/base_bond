@@ -27,6 +27,8 @@ import 'package:bond/features/chat/presentation/pages/chat_messages_screen.dart'
     as _i7;
 import 'package:bond/features/chat/presentation/pages/support_chat_screen.dart'
     as _i29;
+import 'package:bond/features/insurance_profile/data/models/insurance_profile_model.dart'
+    as _i37;
 import 'package:bond/features/insurance_profile/presentation/pages/create_insurance_profile_screen.dart'
     as _i8;
 import 'package:bond/features/insurance_profile/presentation/pages/insurance_profile_screen.dart'
@@ -48,7 +50,7 @@ import 'package:bond/features/main/presentation/pages/home_screen.dart' as _i11;
 import 'package:bond/features/main/presentation/pages/main_layout.dart' as _i15;
 import 'package:bond/features/notifications/presentation/pages/notifications_screen.dart'
     as _i16;
-import 'package:bond/features/orders/data/models/response/orders.dart' as _i37;
+import 'package:bond/features/orders/data/models/response/orders.dart' as _i38;
 import 'package:bond/features/orders/presentation/pages/cart_screen.dart'
     as _i4;
 import 'package:bond/features/orders/presentation/pages/order_details_page.dart'
@@ -60,7 +62,7 @@ import 'package:bond/features/orders/presentation/pages/prescription.dart'
 import 'package:bond/features/product/data/models/request/product_params.dart'
     as _i34;
 import 'package:bond/features/product/data/models/response/product_model.dart'
-    as _i38;
+    as _i39;
 import 'package:bond/features/product/presentation/pages/all_active_substances_page.dart'
     as _i2;
 import 'package:bond/features/product/presentation/pages/all_products_screen.dart'
@@ -354,18 +356,52 @@ class ChatMessagesRouteArgs {
 
 /// generated route for
 /// [_i8.CreateInsuranceProfileScreen]
-class CreateInsuranceProfileRoute extends _i31.PageRouteInfo<void> {
-  const CreateInsuranceProfileRoute({List<_i31.PageRouteInfo>? children})
-    : super(CreateInsuranceProfileRoute.name, initialChildren: children);
+class CreateInsuranceProfileRoute
+    extends _i31.PageRouteInfo<CreateInsuranceProfileRouteArgs> {
+  CreateInsuranceProfileRoute({
+    _i32.Key? key,
+    _i37.InsuranceProfileModel? model,
+    List<_i31.PageRouteInfo>? children,
+  }) : super(
+         CreateInsuranceProfileRoute.name,
+         args: CreateInsuranceProfileRouteArgs(key: key, model: model),
+         initialChildren: children,
+       );
 
   static const String name = 'CreateInsuranceProfileRoute';
 
   static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i8.CreateInsuranceProfileScreen();
+      final args = data.argsAs<CreateInsuranceProfileRouteArgs>(
+        orElse: () => const CreateInsuranceProfileRouteArgs(),
+      );
+      return _i8.CreateInsuranceProfileScreen(key: args.key, model: args.model);
     },
   );
+}
+
+class CreateInsuranceProfileRouteArgs {
+  const CreateInsuranceProfileRouteArgs({this.key, this.model});
+
+  final _i32.Key? key;
+
+  final _i37.InsuranceProfileModel? model;
+
+  @override
+  String toString() {
+    return 'CreateInsuranceProfileRouteArgs{key: $key, model: $model}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CreateInsuranceProfileRouteArgs) return false;
+    return key == other.key && model == other.model;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ model.hashCode;
 }
 
 /// generated route for
@@ -553,7 +589,7 @@ class OnBoardingRoute extends _i31.PageRouteInfo<void> {
 class OrderDetailsRoute extends _i31.PageRouteInfo<OrderDetailsRouteArgs> {
   OrderDetailsRoute({
     _i32.Key? key,
-    required _i37.Orders order,
+    required _i38.Orders order,
     List<_i31.PageRouteInfo>? children,
   }) : super(
          OrderDetailsRoute.name,
@@ -577,7 +613,7 @@ class OrderDetailsRouteArgs {
 
   final _i32.Key? key;
 
-  final _i37.Orders order;
+  final _i38.Orders order;
 
   @override
   String toString() {
@@ -676,18 +712,52 @@ class PickLocationRoute extends _i31.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i22.PrescriptionScreen]
-class PrescriptionRoute extends _i31.PageRouteInfo<void> {
-  const PrescriptionRoute({List<_i31.PageRouteInfo>? children})
-    : super(PrescriptionRoute.name, initialChildren: children);
+class PrescriptionRoute extends _i31.PageRouteInfo<PrescriptionRouteArgs> {
+  PrescriptionRoute({
+    _i32.Key? key,
+    required bool isInsurance,
+    List<_i31.PageRouteInfo>? children,
+  }) : super(
+         PrescriptionRoute.name,
+         args: PrescriptionRouteArgs(key: key, isInsurance: isInsurance),
+         initialChildren: children,
+       );
 
   static const String name = 'PrescriptionRoute';
 
   static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i22.PrescriptionScreen();
+      final args = data.argsAs<PrescriptionRouteArgs>();
+      return _i22.PrescriptionScreen(
+        key: args.key,
+        isInsurance: args.isInsurance,
+      );
     },
   );
+}
+
+class PrescriptionRouteArgs {
+  const PrescriptionRouteArgs({this.key, required this.isInsurance});
+
+  final _i32.Key? key;
+
+  final bool isInsurance;
+
+  @override
+  String toString() {
+    return 'PrescriptionRouteArgs{key: $key, isInsurance: $isInsurance}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PrescriptionRouteArgs) return false;
+    return key == other.key && isInsurance == other.isInsurance;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ isInsurance.hashCode;
 }
 
 /// generated route for
@@ -745,7 +815,7 @@ class PrivacyRouteArgs {
 class ProductDetailsRoute extends _i31.PageRouteInfo<ProductDetailsRouteArgs> {
   ProductDetailsRoute({
     _i32.Key? key,
-    required _i38.ProductModel product,
+    required _i39.ProductModel product,
     List<_i31.PageRouteInfo>? children,
   }) : super(
          ProductDetailsRoute.name,
@@ -769,7 +839,7 @@ class ProductDetailsRouteArgs {
 
   final _i32.Key? key;
 
-  final _i38.ProductModel product;
+  final _i39.ProductModel product;
 
   @override
   String toString() {

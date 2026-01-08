@@ -38,14 +38,11 @@ class BranchesCubit extends Cubit<BaseState<BranchesDataState>>
       if (branches == null || branches.isEmpty) {
         return null;
       }
-
-      // Get current location
       final currentLocation = await locationService.getCurrentLocation();
       if (currentLocation == null) {
         return null;
       }
 
-      // Find nearest branch
       BranchesModel? nearestBranch;
       double minDistance = double.infinity;
 
@@ -85,7 +82,7 @@ class BranchesCubit extends Cubit<BaseState<BranchesDataState>>
     }
     final nearestBranch = await getNearestBranch();
     if (nearestBranch != null) {
-      emit(state.copyWith(data: _data.copyWith(nearestBranch: nearestBranch)));
+      emit(state.copyWith(data: _data.copyWith(nearestBranch: nearestBranch),status: BaseStatus.success));
     }
   }
 

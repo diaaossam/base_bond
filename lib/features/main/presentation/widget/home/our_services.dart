@@ -38,7 +38,7 @@ class _OurServicesDesignState extends State<OurServicesDesign> {
                     child: ServiceCard(
                       icon: Assets.icons.insuranceCompany,
                       label: context.localizations.orderWithYourInsurance,
-                      onTap: () => context.router.push(PrescriptionRoute()),
+                      onTap: () => context.router.push(PrescriptionRoute(isInsurance: true)),
                       color: const Color(0xFF3B82F6),
                     ),
                   ),
@@ -51,7 +51,7 @@ class _OurServicesDesignState extends State<OurServicesDesign> {
                     child: ServiceCard(
                       icon: Assets.icons.insuranceProfile,
                       label: context.localizations.prescriptionOrder,
-                      onTap: () => context.router.push(PrescriptionRoute()),
+                      onTap: () => context.router.push(PrescriptionRoute(isInsurance: false)),
                       color: context.colorScheme.secondary,
                     ),
                   ),

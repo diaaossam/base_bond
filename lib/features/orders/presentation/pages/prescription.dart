@@ -12,7 +12,9 @@ import '../widgets/prescription/prescription_body.dart';
 
 @RoutePage()
 class PrescriptionScreen extends StatelessWidget {
-  const PrescriptionScreen({super.key});
+  final bool isInsurance;
+
+  const PrescriptionScreen({super.key, required this.isInsurance});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +26,11 @@ class PrescriptionScreen extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: CustomAppBar(
-          title: context.localizations.prescriptionOrder,
+          title: isInsurance
+              ? context.localizations.orderWithYourInsurance
+              : context.localizations.prescriptionOrder,
         ),
-        body: const PrescriptionBody(),
+        body: PrescriptionBody(isInsurance: isInsurance),
       ),
     );
   }
