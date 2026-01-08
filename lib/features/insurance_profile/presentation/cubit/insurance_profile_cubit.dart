@@ -64,15 +64,6 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
     );
   }
 
-  /// Update custom company name (when "Other" is selected)
-  void updateCustomCompanyName(String name) {
-    emit(state.copyWith(data: _data.copyWith(customCompanyName: name)));
-  }
-
-  /// Update insurance number
-  void updateInsuranceNumber(String number) {
-    emit(state.copyWith(data: _data.copyWith(insuranceNumber: number)));
-  }
 
   /// Set ID card front image
   void setIdCardFront(File file) {
@@ -120,20 +111,4 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
     return result != null;
   }
 
-  /// Reset form state
-  void resetForm() {
-    emit(
-      state.copyWith(
-        data: _data.copyWith(
-          clearSelectedCompany: true,
-          clearCustomCompanyName: true,
-          insuranceNumber: '',
-          clearIdCardFront: true,
-          clearIdCardBack: true,
-          clearInsuranceCardFront: true,
-          clearInsuranceCardBack: true,
-        ),
-      ),
-    );
-  }
 }
