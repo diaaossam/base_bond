@@ -14,13 +14,11 @@ import '../../../../../app/data/models/branches_model.dart';
 
 class BranchCardDesign extends StatelessWidget {
   final BranchesModel branch;
-  final BranchesModel? selectedBranch;
   final Function(BranchesModel) onBranchSelected;
 
   const BranchCardDesign({
     super.key,
     required this.branch,
-    this.selectedBranch,
     required this.onBranchSelected,
   });
 
@@ -127,8 +125,8 @@ class BranchCardDesign extends StatelessWidget {
               onTap: () => OrderHelper().showBranchSelectionDialog(
                 context: context,
                 cubit: context.read<BranchesCubit>(),
-                selectedBranch: selectedBranch,
                 onBranchSelected: onBranchSelected,
+                selectedBranch: branch,
               ),
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),

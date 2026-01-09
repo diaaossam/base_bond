@@ -633,18 +633,56 @@ class OrderDetailsRouteArgs {
 
 /// generated route for
 /// [_i19.OrdersScreen]
-class OrdersRoute extends _i31.PageRouteInfo<void> {
-  const OrdersRoute({List<_i31.PageRouteInfo>? children})
-    : super(OrdersRoute.name, initialChildren: children);
+class OrdersRoute extends _i31.PageRouteInfo<OrdersRouteArgs> {
+  OrdersRoute({
+    _i32.Key? key,
+    required String type,
+    required String title,
+    List<_i31.PageRouteInfo>? children,
+  }) : super(
+         OrdersRoute.name,
+         args: OrdersRouteArgs(key: key, type: type, title: title),
+         initialChildren: children,
+       );
 
   static const String name = 'OrdersRoute';
 
   static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i19.OrdersScreen();
+      final args = data.argsAs<OrdersRouteArgs>();
+      return _i19.OrdersScreen(
+        key: args.key,
+        type: args.type,
+        title: args.title,
+      );
     },
   );
+}
+
+class OrdersRouteArgs {
+  const OrdersRouteArgs({this.key, required this.type, required this.title});
+
+  final _i32.Key? key;
+
+  final String type;
+
+  final String title;
+
+  @override
+  String toString() {
+    return 'OrdersRouteArgs{key: $key, type: $type, title: $title}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! OrdersRouteArgs) return false;
+    return key == other.key && type == other.type && title == other.title;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ type.hashCode ^ title.hashCode;
 }
 
 /// generated route for

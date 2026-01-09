@@ -1,10 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/features/orders/presentation/cubit/prescription/prescription_state_data.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/enum/deleivery_method.dart';
 
 class DeliveryMethodDesign extends StatefulWidget {
   final DeliveryMethod selectedMethod;
@@ -21,7 +22,6 @@ class DeliveryMethodDesign extends StatefulWidget {
 }
 
 class _DeliveryMethodDesignState extends State<DeliveryMethodDesign> {
-
   void _selectMethod(DeliveryMethod method) {
     widget.onMethodChanged(method);
   }
@@ -78,15 +78,17 @@ class _DeliveryMethodDesignState extends State<DeliveryMethodDesign> {
               _DeliveryOption(
                 icon: Icons.store_rounded,
                 label: context.localizations.pharmacyPickup,
-                isSelected: widget.selectedMethod == DeliveryMethod.pharmacy,
-                onTap: () => _selectMethod(DeliveryMethod.pharmacy),
+                isSelected:
+                    widget.selectedMethod == DeliveryMethod.pharmacy_pickup,
+                onTap: () => _selectMethod(DeliveryMethod.pharmacy_pickup),
               ),
               12.horizontalSpace,
               _DeliveryOption(
                 icon: Icons.home_rounded,
                 label: context.localizations.homeDelivery,
-                isSelected: widget.selectedMethod == DeliveryMethod.delivery,
-                onTap: () => _selectMethod(DeliveryMethod.delivery),
+                isSelected:
+                    widget.selectedMethod == DeliveryMethod.home_delivery,
+                onTap: () => _selectMethod(DeliveryMethod.home_delivery),
               ),
             ],
           ),
@@ -95,9 +97,6 @@ class _DeliveryMethodDesignState extends State<DeliveryMethodDesign> {
     );
   }
 }
-
-
-
 
 class _DeliveryOption extends StatefulWidget {
   final IconData icon;
@@ -154,10 +153,7 @@ class _DeliveryOptionState extends State<_DeliveryOption>
         child: AnimatedBuilder(
           animation: _scaleAnimation,
           builder: (context, child) {
-            return Transform.scale(
-              scale: _scaleAnimation.value,
-              child: child,
-            );
+            return Transform.scale(scale: _scaleAnimation.value, child: child);
           },
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 250),
@@ -226,22 +222,27 @@ class _DeliveryOptionState extends State<_DeliveryOption>
                   child: Icon(
                     widget.icon,
                     size: 24,
-                    color: widget.isSelected ? Colors.white : colorScheme.shadow,
+                    color: widget.isSelected
+                        ? Colors.white
+                        : colorScheme.shadow,
                   ),
                 ),
                 SizedBox(height: 10.h),
-      
+
                 // Label
                 AppText(
                   text: widget.label,
                   textSize: 11,
-                  fontWeight: widget.isSelected ? FontWeight.w700 : FontWeight.w500,
-                  color:
-                      widget.isSelected ? colorScheme.primary : colorScheme.shadow,
+                  fontWeight: widget.isSelected
+                      ? FontWeight.w700
+                      : FontWeight.w500,
+                  color: widget.isSelected
+                      ? colorScheme.primary
+                      : colorScheme.shadow,
                   align: TextAlign.center,
                   maxLines: 2,
                 ),
-      
+
                 // Selection indicator
                 if (widget.isSelected) ...[
                   SizedBox(height: 8.h),
@@ -284,4 +285,3 @@ class _DeliveryOptionState extends State<_DeliveryOption>
     );
   }
 }
-

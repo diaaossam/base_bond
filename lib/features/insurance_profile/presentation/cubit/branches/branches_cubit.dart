@@ -130,4 +130,8 @@ class BranchesCubit extends Cubit<BaseState<BranchesDataState>>
       return _data.branches ?? [];
     }
   }
+
+  Future<void> changeBranch({required BranchesModel model}) async {
+    emit(state.copyWith(data: _data.copyWith(nearestBranch: model),status: BaseStatus.success));
+  }
 }

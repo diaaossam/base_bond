@@ -6,7 +6,9 @@ import 'my_orders_tab_bar.dart';
 import 'order_tab_view.dart';
 
 class MyOrdersBody extends StatefulWidget {
-  const MyOrdersBody({super.key});
+  final String type;
+
+  const MyOrdersBody({super.key, required this.type});
 
   @override
   State<MyOrdersBody> createState() => _MyOrdersBodyState();
@@ -63,10 +65,13 @@ class _MyOrdersBodyState extends State<MyOrdersBody>
             child: TabBarView(
               controller: _tabController,
               children: _orderTypes
-                  .map((type) => OrderTabView(
-                        key: ValueKey(type),
-                        orderType: type,
-                      ))
+                  .map(
+                    (type) => OrderTabView(
+                      key: ValueKey(type),
+                      type: widget.type,
+                      orderType: type,
+                    ),
+                  )
                   .toList(),
             ),
           ),

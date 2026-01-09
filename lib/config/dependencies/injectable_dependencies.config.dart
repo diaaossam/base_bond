@@ -106,6 +106,8 @@ import '../../features/orders/presentation/cubit/order_details_cubit.dart'
 import '../../features/orders/presentation/cubit/orders_cubit.dart' as _i1028;
 import '../../features/orders/presentation/cubit/prescription/prescription_cubit.dart'
     as _i729;
+import '../../features/orders/presentation/cubit/prescrirption_cubit.dart'
+    as _i172;
 import '../../features/product/data/datasources/product_remote_data_source.dart'
     as _i1;
 import '../../features/product/data/repositories/product_repository_impl.dart'
@@ -162,7 +164,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i665.ApiErrorHandler>(() => _i665.ApiErrorHandler());
     gh.factory<_i798.LocationPickerCubit>(() => _i798.LocationPickerCubit());
     gh.factory<_i1051.MainCubit>(() => _i1051.MainCubit());
-    gh.factory<_i729.PrescriptionCubit>(() => _i729.PrescriptionCubit());
     gh.lazySingleton<_i815.GlobalLocationService>(
       () => _i815.GlobalLocationService(),
     );
@@ -302,6 +303,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1028.OrdersCubit>(
       () => _i1028.OrdersCubit(gh<_i376.OrderRepositoryImpl>()),
     );
+    gh.factory<_i172.PrescriptionOrdersCubit>(
+      () => _i172.PrescriptionOrdersCubit(gh<_i376.OrderRepositoryImpl>()),
+    );
     gh.factory<_i820.AddNewAddressCubit>(
       () => _i820.AddNewAddressCubit(gh<_i115.LocationRepositoryImpl>()),
     );
@@ -374,6 +378,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i222.AppCubit>(
       () => _i222.AppCubit(gh<_i344.AppRepositoryImpl>()),
+    );
+    gh.factory<_i729.PrescriptionCubit>(
+      () => _i729.PrescriptionCubit(gh<_i376.OrderRepositoryImpl>()),
     );
     gh.factory<_i344.ForgotPasswordCubit>(
       () => _i344.ForgotPasswordCubit(gh<_i662.AuthRepositoryImpl>()),

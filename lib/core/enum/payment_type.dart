@@ -2,7 +2,7 @@ import '../../generated/l10n.dart';
 
 enum PaymentType {
   cash('cash'),
-  visa('visa');
+  visa('online');
 
   final String name;
 

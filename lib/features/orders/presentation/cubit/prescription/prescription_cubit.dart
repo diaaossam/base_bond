@@ -1,124 +1,33 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/enum/payment_type.dart';
-import 'package:bond/features/location/data/models/response/my_address.dart';
-import 'package:flutter/material.dart';
+import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:injectable/injectable.dart';
 
-import 'prescription_state_data.dart';
+import '../../../data/models/request/prescription_params.dart';
+import '../../../data/repositories/order_repository_impl.dart';
 
 @injectable
-class PrescriptionCubit extends Cubit<BaseState<PrescriptionStateData>> {
-  PrescriptionCubit() : super(BaseState(data: const PrescriptionStateData()));
+class PrescriptionCubit extends Cubit<BaseState<PrescriptionParams>>
+    with AsyncHandler<PrescriptionParams> {
+  final OrderRepositoryImpl orderRepositoryImpl;
 
-  final TextEditingController noteController = TextEditingController();
-  final TextEditingController discountController = TextEditingController();
+  PrescriptionCubit(this.orderRepositoryImpl)
+    : super(BaseState(data: PrescriptionParams()));
 
-  void setPrescriptionImage(File image) {
-    emit(state.copyWith(
-      data: state.data?.copyWith(prescriptionImage: image),
-    ));
+  void setLocation({required num id , required bool isInsurance}) {
+    final updatedParams = state.data?.copyWith(addressId: id,isInsurance: isInsurance);
+    emit(state.copyWith(data: updatedParams));
   }
 
-  void setDeliveryMethod(DeliveryMethod method) {
-    emit(state.copyWith(
-      data: state.data?.copyWith(deliveryMethod: method),
-    ));
+  void updatePrescriptionParams({required PrescriptionParams params}) {
+    emit(state.copyWith(data: params));
   }
 
-  void setPaymentType(PaymentType type) {
-    emit(state.copyWith(
-      data: state.data?.copyWith(paymentType: type),
-    ));
-  }
-
-  void setSelectedAddress(MyAddress address) {
-    emit(state.copyWith(
-      data: state.data?.copyWith(selectedAddress: address),
-    ));
-  }
-
-  void setCouponCode(String code) {
-    emit(state.copyWith(
-      data: state.data?.copyWith(couponCode: code),
-    ));
-  }
-
-  void setCouponDiscount(num discount) {
-    emit(state.copyWith(
-      data: state.data?.copyWith(couponDiscount: discount),
-    ));
-  }
-
-  void removeCoupon() {
-    discountController.clear();
-    emit(state.copyWith(
-      data: state.data?.copyWith(
-        couponCode: null,
-        couponDiscount: 0,
-      ),
-    ));
-  }
-
-  Future<void> submitPrescription() async {
-    if (state.data?.prescriptionImage == null) {
-      emit(state.copyWith(
-        status: BaseStatus.failure,
-        error: 'prescriptionRequired',
-      ));
-      return;
-    }
-
-    emit(state.copyWith(status: BaseStatus.loading, identifier: 'submit'));
-
-    try {
-      // TODO: Implement API call to submit prescription
-      await Future.delayed(const Duration(seconds: 2));
-      
-      emit(state.copyWith(
-        status: BaseStatus.success,
-        identifier: 'submit',
-      ));
-    } catch (e) {
-      emit(state.copyWith(
-        status: BaseStatus.failure,
-        error: e.toString(),
-      ));
-    }
-  }
-
-  Future<void> applyCoupon(String code) async {
-    if (code.isEmpty) return;
-    
-    emit(state.copyWith(status: BaseStatus.loading, identifier: 'coupon'));
-
-    try {
-      // TODO: Implement API call to validate coupon
-      await Future.delayed(const Duration(seconds: 1));
-      
-      emit(state.copyWith(
-        status: BaseStatus.success,
-        identifier: 'coupon',
-        data: state.data?.copyWith(
-          couponCode: code,
-          couponDiscount: 50, // Example discount
-        ),
-      ));
-    } catch (e) {
-      emit(state.copyWith(
-        status: BaseStatus.failure,
-        error: e.toString(),
-        identifier: 'coupon',
-      ));
-    }
-  }
-
-  @override
-  Future<void> close() {
-    noteController.dispose();
-    discountController.dispose();
-    return super.close();
+  Future<void> submitPrescription({required PrescriptionParams params}) async {
+    handleAsync(
+      identifier: "submit",
+      call: () => orderRepositoryImpl.submitPrescription(params: params),
+      onSuccess: (data) => state.data ?? PrescriptionParams(),
+    );
   }
 }

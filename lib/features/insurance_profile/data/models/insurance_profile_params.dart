@@ -3,19 +3,19 @@ import 'package:dio/dio.dart';
 
 class InsuranceProfileRequest {
   final int insuranceCompanyId;
-  final File insuranceCardFront;
-  final File insuranceCardBack;
-  final File idCardFront;
-  final File idCardBack;
-  final String? notes;
+  final File? insuranceCardFront;
+  final File? insuranceCardBack;
+  final File? idCardFront;
+  final File? idCardBack;
+  final String? insuranceNumber;
 
   InsuranceProfileRequest({
     required this.insuranceCompanyId,
-    required this.insuranceCardFront,
-    required this.insuranceCardBack,
-    required this.idCardFront,
-    required this.idCardBack,
-    this.notes,
+    this.insuranceCardFront,
+    this.insuranceCardBack,
+    this.idCardFront,
+    this.idCardBack,
+    this.insuranceNumber,
   });
 
   FormData toFormData() {
@@ -25,41 +25,57 @@ class InsuranceProfileRequest {
       MapEntry('insurance_company_id', insuranceCompanyId.toString()),
     );
 
-    if (notes != null) {
-      formData.fields.add(MapEntry('notes', notes!));
+    if (insuranceNumber != null) {
+      formData.fields.add(MapEntry('insurance_number', insuranceNumber!));
     }
 
-    formData.files.addAll([
-      MapEntry(
-        'insurance_card_front',
-        MultipartFile.fromFileSync(
-          insuranceCardFront.path,
-          filename: insuranceCardFront.path.split('/').last,
+    if (insuranceCardFront != null) {
+      formData.files.add(
+        MapEntry(
+          'insurance_card_front',
+          MultipartFile.fromFileSync(
+            insuranceCardFront!.path,
+            filename: insuranceCardFront!.path.split('/').last,
+          ),
         ),
-      ),
-      MapEntry(
-        'insurance_card_back',
-        MultipartFile.fromFileSync(
-          idCardBack.path,
-          filename: idCardBack.path.split('/').last,
-        ),
-      ),
-      MapEntry(
-        'id_card_front',
-        MultipartFile.fromFileSync(
-          idCardFront.path,
-          filename: idCardFront.path.split('/').last,
-        ),
-      ),
-      MapEntry(
-        'id_card_back',
-        MultipartFile.fromFileSync(
-          idCardBack.path,
-          filename: idCardBack.path.split('/').last,
-        ),
-      ),
+      );
+    }
 
-    ]);
+    if (insuranceCardBack != null) {
+      formData.files.add(
+        MapEntry(
+          'insurance_card_back',
+          MultipartFile.fromFileSync(
+            insuranceCardBack!.path,
+            filename: insuranceCardBack!.path.split('/').last,
+          ),
+        ),
+      );
+    }
+
+    if (idCardFront != null) {
+      formData.files.add(
+        MapEntry(
+          'id_card_front',
+          MultipartFile.fromFileSync(
+            idCardFront!.path,
+            filename: idCardFront!.path.split('/').last,
+          ),
+        ),
+      );
+    }
+
+    if (idCardBack != null) {
+      formData.files.add(
+        MapEntry(
+          'id_card_back',
+          MultipartFile.fromFileSync(
+            idCardBack!.path,
+            filename: idCardBack!.path.split('/').last,
+          ),
+        ),
+      );
+    }
 
     return formData;
   }

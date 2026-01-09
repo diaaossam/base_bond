@@ -1,14 +1,12 @@
 const pageSize = 6;
 
 class AppStrings {
-
   ///App Core
   static const String appName = "Bond";
   static const String arabicFont = "SomarSans";
   static const String englishFont = "SomarSans";
   static const String englishCode = "en";
   static const String arabicCode = "ar";
-
 
   /// Keys
   static const String onBoarding = "onBoarding";
@@ -28,4 +26,8 @@ class AppStrings {
   static const String xApiKey = 'X-API-KEY';
   static const String version = 'version';
   static const String versionValue = 'v2';
+
+  static const String orders = "orders";
+  static const String prescription = "prescription";
+  static const String insurance = "insurance";
 }

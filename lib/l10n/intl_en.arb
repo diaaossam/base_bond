@@ -322,7 +322,7 @@
   "id_card_front_hint": "اضغط لتصوير وجه البطاقة الشخصية",
   "id_card_back_title": "ظهر البطاقة",
   "id_card_back_hint": "اضغط لتصوير ظهر البطاقة الشخصية",
-
+  "insuranceProfileValidation": "الملف التأمينى مطلوب",
   "insurance_card_section_title": "بطاقة التأمين",
   "insurance_card_front_title": "وجه بطاقة التأمين",
   "insurance_card_front_hint": "اضغط لتصوير وجه بطاقة التأمين",
@@ -330,7 +330,7 @@
   "insurance_card_back_hint": "اضغط لتصوير ظهر بطاقة التأمين",
   "doneSelected": "تم الاختيار ✓",
   "createFile": "إنشاء ملف تأمينى",
-  "editFile": "تعديل الملف التأميني"
-
-
+  "editFile": "تعديل الملف التأميني",
+  "insuranceOrders": "طلبات التأمين",
+  "prescriptionOrders": "طلبات الروشتات"
 }

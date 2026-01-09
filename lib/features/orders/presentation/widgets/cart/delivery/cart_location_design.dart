@@ -1,11 +1,10 @@
-
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/features/app/data/models/branches_model.dart';
-import 'package:bond/features/orders/presentation/cubit/prescription/prescription_state_data.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../../core/enum/deleivery_method.dart';
 import '../../../../../location/data/models/response/my_address.dart';
 import 'deleivery_option.dart';
 import 'home_deleivery_design.dart';
@@ -14,15 +13,17 @@ import '../parmacy_pickup/pharmacy_pickup_design.dart';
 class CartLocationDesign extends StatefulWidget {
   final MyAddress? defaultAddress;
   final Function(MyAddress)? onAddressChanged;
+  final Function(DeliveryMethod)? onDeleiveryMethod;
   final BranchesModel? selectedBranch;
-  final Function(BranchesModel)? onBranchChanged;
+  final Function(BranchesModel) onBranchChanged;
 
   const CartLocationDesign({
     super.key,
     this.defaultAddress,
     this.onAddressChanged,
     this.selectedBranch,
-    this.onBranchChanged,
+    required this.onBranchChanged,
+    this.onDeleiveryMethod,
   });
 
   @override
@@ -30,7 +31,7 @@ class CartLocationDesign extends StatefulWidget {
 }
 
 class _CartLocationDesignState extends State<CartLocationDesign> {
-  DeliveryMethod _selectedMethod = DeliveryMethod.delivery;
+  DeliveryMethod _selectedMethod = DeliveryMethod.home_delivery;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 5.h,),
+            SizedBox(height: 5.h),
             _buildDeliveryMethodSelection(context),
             SizedBox(height: 12.h),
             AnimatedSwitcher(
@@ -60,18 +61,18 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
                   ),
                 );
               },
-              child: _selectedMethod == DeliveryMethod.delivery
+              child: _selectedMethod == DeliveryMethod.home_delivery
                   ? HomeDeleiveryDesign(
                       defaultAddress: widget.defaultAddress,
                       onAddressChanged: widget.onAddressChanged,
                     )
                   : Container(
-                key: const ValueKey('pharmacy_pickup'),
-                child: PharmacyPickupDesign(
-                  selectedBranch: widget.selectedBranch,
-                  onBranchSelected: widget.onBranchChanged,
-                ),
-              ),
+                      key: const ValueKey('pharmacy_pickup'),
+                      child: PharmacyPickupDesign(
+                        selectedBranch: widget.selectedBranch,
+                        onBranchSelected: widget.onBranchChanged,
+                      ),
+                    ),
             ),
           ],
         ),
@@ -134,8 +135,15 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
                 child: DeliveryOption(
                   icon: Icons.home_rounded,
                   label: context.localizations.homeDelivery,
-                  isSelected: _selectedMethod == DeliveryMethod.delivery,
-                  onTap: () => setState(() => _selectedMethod = DeliveryMethod.delivery),
+                  isSelected: _selectedMethod == DeliveryMethod.home_delivery,
+                  onTap: () {
+                    widget.onDeleiveryMethod?.call(
+                      DeliveryMethod.home_delivery,
+                    );
+                    setState(
+                      () => _selectedMethod = DeliveryMethod.home_delivery,
+                    );
+                  },
                 ),
               ),
               12.horizontalSpace,
@@ -143,11 +151,14 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
                 child: DeliveryOption(
                   icon: Icons.store_rounded,
                   label: context.localizations.pharmacyPickup,
-                  isSelected: _selectedMethod == DeliveryMethod.pharmacy,
+                  isSelected: _selectedMethod == DeliveryMethod.pharmacy_pickup,
                   onTap: () {
-                    setState(() {
-                      _selectedMethod = DeliveryMethod.pharmacy;
-                    });
+                    widget.onDeleiveryMethod?.call(
+                      DeliveryMethod.pharmacy_pickup,
+                    );
+                    setState(
+                      () => _selectedMethod = DeliveryMethod.pharmacy_pickup,
+                    );
                   },
                 ),
               ),
@@ -157,6 +168,4 @@ class _CartLocationDesignState extends State<CartLocationDesign> {
       ),
     );
   }
-
 }
-

@@ -5,6 +5,7 @@ import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/router/app_router.gr.dart';
+import '../../../../core/extensions/app_localizations_extension.dart';
 
 @RoutePage()
 class MainLayoutScreen extends StatelessWidget {
@@ -18,7 +19,7 @@ class MainLayoutScreen extends StatelessWidget {
       routes: [
         HomeRoute(),
         FavouriteProductsRoute(),
-        OrdersRoute(),
+        OrdersRoute(type: "orders", title: context.localizations.myOrders),
         CartRoute(),
         SettingsRoute(),
       ],

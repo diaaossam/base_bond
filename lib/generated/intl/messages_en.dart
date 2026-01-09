@@ -263,6 +263,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Insurance Company",
     ),
     "insuranceNumber": MessageLookupByLibrary.simpleMessage("Insurance Number"),
+    "insuranceOrders": MessageLookupByLibrary.simpleMessage("طلبات التأمين"),
     "insuranceProfile": MessageLookupByLibrary.simpleMessage(
       "Insurance Profile",
     ),
@@ -271,6 +272,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "insuranceProfileUpdated": MessageLookupByLibrary.simpleMessage(
       "Insurance profile updated successfully",
+    ),
+    "insuranceProfileValidation": MessageLookupByLibrary.simpleMessage(
+      "الملف التأمينى مطلوب",
     ),
     "insurance_card_back_hint": MessageLookupByLibrary.simpleMessage(
       "اضغط لتصوير ظهر بطاقة التأمين",
@@ -466,6 +470,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "prescriptionOrder": MessageLookupByLibrary.simpleMessage(
       "Prescription Order",
+    ),
+    "prescriptionOrders": MessageLookupByLibrary.simpleMessage(
+      "طلبات الروشتات",
     ),
     "prescriptionRequired": MessageLookupByLibrary.simpleMessage(
       "Please upload prescription image",

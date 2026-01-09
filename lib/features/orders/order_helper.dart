@@ -3,6 +3,7 @@ import 'package:bond/features/app/data/models/branches_model.dart';
 import 'package:bond/features/orders/data/models/response/orders.dart';
 import 'package:bond/features/orders/presentation/widgets/cart/parmacy_pickup/branch_selection_dialog.dart';
 import 'package:bond/features/orders/presentation/widgets/order_success_dialog.dart';
+import 'package:bond/features/orders/presentation/widgets/request_success_dialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/extensions/app_localizations_extension.dart';
@@ -112,5 +113,11 @@ class OrderHelper {
         },
       ),
     );
+  }
+
+  Future<void> showSuccessPrescriptionOrderDialog({
+    required BuildContext context,
+  }) async {
+    await PrescriptionSuccessDialog.show(context: context);
   }
 }

@@ -16,12 +16,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 class PharmacyPickupDesign extends StatefulWidget {
   final BranchesModel? selectedBranch;
-  final Function(BranchesModel)? onBranchSelected;
+  final Function(BranchesModel) onBranchSelected;
 
   const PharmacyPickupDesign({
     super.key,
     this.selectedBranch,
-    this.onBranchSelected,
+    required this.onBranchSelected,
   });
 
   @override
@@ -40,13 +40,18 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BranchesCubit, BaseState<BranchesDataState>>(
+    return BlocConsumer<BranchesCubit, BaseState<BranchesDataState>>(
+      listener: (context, state) {
+        if(state.isSuccess&&state.data != null &&state.data!.nearestBranch != null){
+          widget.onBranchSelected(state.data!.nearestBranch!);
+        }
+      },
       builder: (context, state) {
         final cubit = context.read<BranchesCubit>();
         final nearestBranch = state.data?.nearestBranch;
         final branches = state.data?.branches ?? [];
         final displayBranch = widget.selectedBranch ?? nearestBranch;
-        if(state.isLoading){
+        if (state.isLoading) {
           return LoadingWidget();
         }
         if (branches.isEmpty) {
@@ -79,7 +84,6 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header with icon
               Row(
                 children: [
                   Container(
@@ -149,14 +153,16 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
               if (displayBranch != null)
                 BranchCardDesign(
                   branch: displayBranch,
-                  selectedBranch: widget.selectedBranch,
-                  onBranchSelected: widget.onBranchSelected ?? (_) {},
+                  onBranchSelected: (data) => cubit.changeBranch(model: data),
                 )
               else
                 InkWell(
                   onTap: () => _showBranchSelectionDialog(context, cubit),
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 14.h,
+                    ),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -166,7 +172,9 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
                       ),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: context.colorScheme.primary.withValues(alpha: 0.3),
+                        color: context.colorScheme.primary.withValues(
+                          alpha: 0.3,
+                        ),
                         width: 1.5,
                       ),
                     ),
@@ -207,7 +215,6 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
       onBranchSelected: widget.onBranchSelected,
     );
   }
-
 
   Future<void> _openLocationInMaps({
     required double lat,

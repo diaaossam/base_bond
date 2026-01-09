@@ -2749,6 +2749,16 @@ class S {
     );
   }
 
+  /// `الملف التأمينى مطلوب`
+  String get insuranceProfileValidation {
+    return Intl.message(
+      'الملف التأمينى مطلوب',
+      name: 'insuranceProfileValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `بطاقة التأمين`
   String get insurance_card_section_title {
     return Intl.message(
@@ -2824,6 +2834,26 @@ class S {
     return Intl.message(
       'تعديل الملف التأميني',
       name: 'editFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `طلبات التأمين`
+  String get insuranceOrders {
+    return Intl.message(
+      'طلبات التأمين',
+      name: 'insuranceOrders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `طلبات الروشتات`
+  String get prescriptionOrders {
+    return Intl.message(
+      'طلبات الروشتات',
+      name: 'prescriptionOrders',
       desc: '',
       args: [],
     );

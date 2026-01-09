@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/validitor_extention.dart';
 import 'package:bond/core/global_models/generic_model.dart';
+import 'package:bond/core/utils/app_constant.dart';
 import 'package:bond/features/insurance_profile/data/models/insurance_profile_model.dart';
 import 'package:bond/features/insurance_profile/presentation/widgets/section_title_design.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +34,10 @@ class InsuranceProfileForm extends StatefulWidget {
 class _InsuranceProfileFormState extends State<InsuranceProfileForm>
     with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormBuilderState>();
+  File? _idCardFrontFile,
+      _idCardBackFile,
+      _insuranceCardFrontFile,
+      _insuranceCardBackFile;
 
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -85,7 +91,8 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
                     companies: data.insuranceCompanies,
                     selectedCompany: data.selectedCompany,
                     customCompanyName: data.customCompanyName,
-                    isLoading: state.isLoading && state.identifier == 'companies',
+                    isLoading:
+                        state.isLoading && state.identifier == 'companies',
                   ),
                   24.verticalSpace,
                   SectionTitleDesign(
@@ -123,36 +130,77 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
                   _buildInsuranceCardSection(context, data),
                   32.verticalSpace,
                   // Submit Button
-                  CustomButton(
-                    text: widget.insuranceProfileModel == null
-                        ? context.localizations.createFile
-                        : context.localizations.editFile,
-                    isLoading: isSubmitting,
-                    press: () async {
-                      if (_formKey.currentState?.saveAndValidate() ?? false) {
-                        InsuranceProfileRequest params = InsuranceProfileRequest(
-                              insuranceCompanyId:
-                                  ((_formKey.fieldValue('insurance_company'))
-                                          as GenericModel)
-                                      .id ??
-                                  0,
-                              notes: _formKey.fieldValue('insurance_number'),
-                              insuranceCardFront:
-                                  (_formKey.fieldValue('insurance_card_front')
-                                      as File),
-                              insuranceCardBack:
-                                  (_formKey.fieldValue('insurance_card_back')
-                                      as File),
-                              idCardFront:
-                                  (_formKey.fieldValue('id_card_front')
-                                      as File),
-                              idCardBack:
-                                  (_formKey.fieldValue('id_card_back') as File),
-                            );
-                         context.read<InsuranceProfileCubit>().createProfile(
-                          params: params,
-                        );
+                  BlocConsumer<
+                    InsuranceProfileCubit,
+                    BaseState<InsuranceProfileStateData>
+                  >(
+                    listener: (context, state) {
+                      if (state.isSuccess &&
+                          (state.identifier == 'create' ||
+                              state.identifier == 'update')) {
+                        context.router.pop(true);
                       }
+                    },
+                    builder: (context, state) {
+                      return CustomButton(
+                        text: widget.insuranceProfileModel == null
+                            ? context.localizations.createFile
+                            : context.localizations.editFile,
+                        isLoading: isSubmitting,
+                        press: () async {
+                          if (_formKey.currentState?.saveAndValidate() ??
+                              false) {
+                            final insuranceCompany =
+                                _formKey.fieldValue('insurance_company')
+                                    as GenericModel?;
+                            final insuranceNumber =
+                                _formKey.fieldValue('insurance_number')
+                                    as String?;
+                            final insuranceCardFront =
+                                _formKey.fieldValue('insurance_card_front')
+                                    as File?;
+                            final insuranceCardBack =
+                                _formKey.fieldValue('insurance_card_back')
+                                    as File?;
+                            final idCardFront =
+                                _formKey.fieldValue('id_card_front') as File?;
+                            final idCardBack =
+                                _formKey.fieldValue('id_card_back') as File?;
+
+                            InsuranceProfileRequest params =
+                                InsuranceProfileRequest(
+                                  insuranceCompanyId: insuranceCompany?.id ?? 0,
+                                  insuranceNumber: insuranceNumber,
+                                  insuranceCardFront: insuranceCardFront,
+                                  insuranceCardBack: insuranceCardBack,
+                                  idCardFront: idCardFront,
+                                  idCardBack: idCardBack,
+                                );
+
+                            final cubit = context.read<InsuranceProfileCubit>();
+                            if (widget.insuranceProfileModel?.id != null) {
+                              // Update mode
+                              await cubit.updateProfile(
+                                id: widget.insuranceProfileModel!.id!,
+                                params: params,
+                              );
+                            } else {
+                              if (insuranceCardFront == null ||
+                                  insuranceCardBack == null ||
+                                  idCardFront == null ||
+                                  idCardBack == null) {
+                                AppConstant.showCustomSnakeBar(
+                                  context,
+                                  context.localizations.validation,
+                                  false,
+                                );
+                                return;
+                              }
+                              await cubit.createProfile(params: params);
+                            }
+                          }
+                        },
+                      );
                     },
                   ),
 
@@ -179,22 +227,27 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
         ),
         16.verticalSpace,
         ImageUploadCard(
+          key: ValueKey('id_card_front'),
           name: 'id_card_front',
           title: context.localizations.id_card_front_title,
           hint: context.localizations.id_card_front_hint,
-          selectedFile: data.idCardFront,
+          selectedFile: data.idCardFront??_idCardFrontFile,
           existingImageUrl: data.profile?.idCardFront,
           icon: Icons.credit_card,
-
+          isRequired: widget.insuranceProfileModel == null,
+          onSelectFile: (image) =>setState(() => _idCardFrontFile = image),
         ),
         12.verticalSpace,
         ImageUploadCard(
+          key: ValueKey('id_card_back'),
           name: 'id_card_back',
           title: context.localizations.id_card_back_title,
           hint: context.localizations.id_card_back_hint,
-          selectedFile: data.idCardBack,
+          selectedFile: data.idCardBack??_idCardBackFile,
           existingImageUrl: data.profile?.idCardBack,
           icon: Icons.credit_card,
+          isRequired: widget.insuranceProfileModel == null,
+          onSelectFile: (image) =>setState(() => _idCardBackFile = image),
         ),
       ],
     );
@@ -213,22 +266,27 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
         ),
         16.verticalSpace,
         ImageUploadCard(
+          key: ValueKey('insurance_card_front'),
           name: 'insurance_card_front',
           title: context.localizations.insurance_card_front_title,
           hint: context.localizations.insurance_card_front_hint,
-          selectedFile: data.insuranceCardFront,
+          selectedFile: data.insuranceCardFront??_insuranceCardFrontFile,
           existingImageUrl: data.profile?.insuranceCardFront,
           icon: Icons.health_and_safety,
+          isRequired: widget.insuranceProfileModel == null,
+          onSelectFile: (image) =>setState(() => _insuranceCardFrontFile = image),
         ),
         12.verticalSpace,
         ImageUploadCard(
+          key: ValueKey('insurance_card_back'),
           name: 'insurance_card_back',
           title: context.localizations.insurance_card_back_title,
           hint: context.localizations.insurance_card_back_hint,
-          selectedFile: data.insuranceCardBack,
+          selectedFile: data.insuranceCardBack??_insuranceCardBackFile,
           existingImageUrl: data.profile?.insuranceCardBack,
           icon: Icons.health_and_safety,
-
+          onSelectFile: (image) =>setState(() => _insuranceCardBackFile = image),
+          isRequired: widget.insuranceProfileModel == null,
         ),
       ],
     );

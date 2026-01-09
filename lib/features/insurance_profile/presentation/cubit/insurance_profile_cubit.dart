@@ -1,9 +1,8 @@
-import 'dart:io';
 import 'package:bloc/bloc.dart';
+import 'package:bond/features/insurance_profile/data/models/insurance_profile_model.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/bloc/helper/base_state.dart';
 import '../../../../core/bloc/helper/either_extensions.dart';
-import '../../../../core/global_models/generic_model.dart';
 import '../../data/models/insurance_profile_params.dart';
 import '../../data/repositories/insurance_profile_repository.dart';
 import 'insurance_profile_state_data.dart';
@@ -27,23 +26,31 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
     );
   }
 
-  /// Load existing insurance profile
-  Future<void> loadInsuranceProfile() async {
-    await handleAsync(
-      identifier: 'profile',
-      call: () => _repository.getInsuranceProfile(),
-      onSuccess: (data) {
-        if (data != null) {
-          return _data.copyWith(
-            profile: data,
-            selectedCompany: data.insuranceCompany,
-            customCompanyName: data.insuranceCompany?.title,
-            insuranceNumber: data.notes,
-          );
-        }
-        return _data;
-      },
-    );
+  Future<void> loadInsuranceProfile({InsuranceProfileModel? model}) async {
+    if (model != null) {
+      emit(state.copyWith(status: BaseStatus.success,data: _data.copyWith(
+        profile: model,
+        selectedCompany: model.insuranceCompany,
+        customCompanyName: model.insuranceCompany?.title,
+        insuranceNumber: model.notes,
+      )));
+    } else {
+      await handleAsync(
+        identifier: 'profile',
+        call: () => _repository.getInsuranceProfile(),
+        onSuccess: (data) {
+          if (data != null) {
+            return _data.copyWith(
+              profile: data,
+              selectedCompany: data.insuranceCompany,
+              customCompanyName: data.insuranceCompany?.title,
+              insuranceNumber: data.notes,
+            );
+          }
+          return _data;
+        },
+      );
+    }
   }
 
   /// Initialize - load both companies and profile
@@ -68,7 +75,6 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
     required num id,
     required InsuranceProfileRequest params,
   }) async {
-    if (_data.profile?.id == null) return false;
     final result = await handleAsync(
       identifier: 'update',
       call: () => _repository.updateInsuranceProfile(params: params, id: id),
@@ -77,5 +83,4 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
 
     return result != null;
   }
-
 }

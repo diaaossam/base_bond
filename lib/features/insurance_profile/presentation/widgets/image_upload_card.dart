@@ -15,26 +15,31 @@ class ImageUploadCard extends StatelessWidget {
   final String title;
   final String hint;
   final File? selectedFile;
+  final Function(File) onSelectFile;
   final String? existingImageUrl;
   final IconData icon;
+  final bool isRequired;
 
   const ImageUploadCard({
     super.key,
     required this.name,
+    required this.onSelectFile,
     required this.title,
     required this.hint,
     this.selectedFile,
     this.existingImageUrl,
     this.icon = Icons.add_photo_alternate_outlined,
+    this.isRequired = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderField<File>(
-      validator: FormBuilderValidators.required(
-        errorText: context.localizations.validation,
-      ),
-      
+      validator: isRequired
+          ? FormBuilderValidators.required(
+              errorText: context.localizations.validation,
+            )
+          : null,
       builder: (field) => InkWell(
         onTap: () => _showImagePicker(context,field),
         borderRadius: BorderRadius.circular(16.r),
@@ -165,6 +170,7 @@ class ImageUploadCard extends StatelessWidget {
       context: context,
       builder: (context) => PickMediaFileSheet(
         onPickFile: (file, thumbnail) {
+          onSelectFile(file);
           field.didChange(file);
         },
       ),

@@ -1,13 +1,16 @@
 import 'package:bond/core/enum/order_type.dart';
 import 'package:bond/core/services/api/dio_consumer.dart';
 import 'package:bond/core/services/api/end_points.dart';
+import 'package:bond/core/utils/app_strings.dart';
 import 'package:bond/features/orders/data/models/request/cart_params.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import '../models/request/prescription_params.dart';
 import '../models/response/coupon_model.dart';
 import '../models/response/orders.dart';
 import '../models/response/points_model.dart';
+import '../models/response/prescription_order_model.dart';
 
 abstract class OrderRemoteDataSource {
   Future<Orders> placeOrder({required CartParams placeOrderModel});
@@ -22,6 +25,12 @@ abstract class OrderRemoteDataSource {
     required OrderType orderType,
   });
 
+  Future<List<PrescriptionOrderModel>> getPrescriptionList({
+    required int pageKey,
+    required OrderType orderType,
+    required String type,
+  });
+
   Future<Orders> getOrderDetails({required int id});
 
   Future<String> deleteOrder({required num id});
@@ -34,6 +43,8 @@ abstract class OrderRemoteDataSource {
     required int rating,
     String? comment,
   });
+
+  Future<Unit> submitPrescription({required PrescriptionParams params});
 }
 
 @Injectable(as: OrderRemoteDataSource)
@@ -109,5 +120,35 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
       if (comment != null) 'comment': comment,
     }).execute();
     return unit;
+  }
+
+  @override
+  Future<Unit> submitPrescription({required PrescriptionParams params}) async {
+    return await dioConsumer
+        .post(
+          params.isInsurance == true
+              ? EndPoints.insuranceOrder
+              : EndPoints.prescriptionOrders,
+        )
+        .body(params.toFormData())
+        .factory((json) => unit)
+        .execute();
+  }
+
+  @override
+  Future<List<PrescriptionOrderModel>> getPrescriptionList({
+    required int pageKey,
+    required OrderType orderType,
+    required String type,
+  }) async {
+    return await dioConsumer
+        .get(
+          type == AppStrings.prescription
+              ? EndPoints.prescriptionOrders
+              : EndPoints.insuranceOrder,
+        )
+        .params({"page": pageKey, "status": orderType.name})
+        .factory(PrescriptionOrderModel.fromJsonList)
+        .execute();
   }
 }

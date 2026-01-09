@@ -200,6 +200,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "insuranceProfileUpdated": MessageLookupByLibrary.simpleMessage(
       "تم تحديث الملف التأميني بنجاح",
     ),
+    "insuranceProfileValidation": MessageLookupByLibrary.simpleMessage(
+      "الملف التأمينى مطلوب",
+    ),
     "invoice": MessageLookupByLibrary.simpleMessage("الفاتورة"),
     "iqd": MessageLookupByLibrary.simpleMessage("ج.م"),
     "kg": MessageLookupByLibrary.simpleMessage("كجم"),

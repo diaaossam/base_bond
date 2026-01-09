@@ -14,6 +14,9 @@ class EndPoints {
   static const String makeAddressDefault = "make-default-address";
   static const String pharmacyBranches = "pharmacy-branches";
 
+  static const String prescriptionOrders = "prescription-orders";
+  static const String insuranceOrder = "insurance-orders";
+
 
   ///////// Auth ////////////////////////
   static const String register = "auth/register";

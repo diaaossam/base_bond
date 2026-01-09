@@ -44,7 +44,7 @@ class AppConstant {
       toastLength: Toast.LENGTH_LONG,
       msg: msg,
       backgroundColor: color ?? AppColorScheme.light.primary,
-      gravity: gravity ?? ToastGravity.BOTTOM,
+      gravity: gravity ?? ToastGravity.TOP,
     );
   }
 

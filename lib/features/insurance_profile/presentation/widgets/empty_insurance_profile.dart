@@ -7,8 +7,9 @@ import '../../../../widgets/main_widget/custom_button.dart';
 
 class EmptyInsuranceProfile extends StatelessWidget {
   final VoidCallback onCreatePressed;
+  final bool showDescription;
 
-  const EmptyInsuranceProfile({super.key, required this.onCreatePressed});
+  const EmptyInsuranceProfile({super.key, required this.onCreatePressed,  this.showDescription = true});
 
   @override
   Widget build(BuildContext context) {
@@ -63,17 +64,19 @@ class EmptyInsuranceProfile extends StatelessWidget {
             ),
             16.verticalSpace,
 
-            // Description
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: AppText(
-                text: context.localizations.no_insurance_profile_description,
-                textSize: 12,
-                align: TextAlign.center,
-                color: context.colorScheme.onSurface.withValues(alpha: 0.6),
+              // Description
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: AppText(
+                  text: context.localizations.no_insurance_profile_description,
+                  textSize: 12,
+                  align: TextAlign.center,
+                  maxLines: 4,
+                  color: context.colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
               ),
-            ),
-            40.verticalSpace,
+              40.verticalSpace,
+
 
             // Create Button
             Padding(
@@ -83,9 +86,7 @@ class EmptyInsuranceProfile extends StatelessWidget {
                 press: onCreatePressed,
               ),
             ),
-            24.verticalSpace,
-
-            // Features List
+            if(showDescription)
             _buildFeaturesList(context),
           ],
         ),

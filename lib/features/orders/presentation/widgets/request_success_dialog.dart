@@ -3,49 +3,41 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/features/orders/data/models/response/orders.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class OrderSuccessDialog extends StatefulWidget {
-  final Orders order;
+import 'order_success_dialog.dart';
 
-  const OrderSuccessDialog({super.key, required this.order});
+class PrescriptionSuccessDialog extends StatefulWidget {
 
-  static Future<void> show({
-    required BuildContext context,
-    required Orders order,
-  }) {
+  const PrescriptionSuccessDialog({super.key,});
+
+  static Future<void> show({required BuildContext context}) {
     return showGeneralDialog(
       context: context,
       barrierDismissible: false,
-      barrierColor: Colors.black.withOpacity(0.7),
+      barrierColor: Colors.black.withValues(alpha: 0.7),
       transitionDuration: const Duration(milliseconds: 500),
       pageBuilder: (context, animation, secondaryAnimation) {
-        return OrderSuccessDialog(order: order);
+        return PrescriptionSuccessDialog();
       },
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         return ScaleTransition(
-          scale: CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeOutBack,
-          ),
-          child: FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
+          scale: CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
+          child: FadeTransition(opacity: animation, child: child),
         );
       },
     );
   }
 
   @override
-  State<OrderSuccessDialog> createState() => _OrderSuccessDialogState();
+  State<PrescriptionSuccessDialog> createState() =>
+      _PrescriptionSuccessDialogState();
 }
 
-class _OrderSuccessDialogState extends State<OrderSuccessDialog>
+class _PrescriptionSuccessDialogState extends State<PrescriptionSuccessDialog>
     with TickerProviderStateMixin {
   late AnimationController _checkController;
   late AnimationController _confettiController;
@@ -74,14 +66,13 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
       vsync: this,
     );
 
-    _checkScale = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.3), weight: 40),
-      TweenSequenceItem(tween: Tween(begin: 1.3, end: 0.9), weight: 20),
-      TweenSequenceItem(tween: Tween(begin: 0.9, end: 1.0), weight: 40),
-    ]).animate(CurvedAnimation(
-      parent: _checkController,
-      curve: Curves.easeOut,
-    ));
+    _checkScale = TweenSequence<double>(
+      [
+        TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.3), weight: 40),
+        TweenSequenceItem(tween: Tween(begin: 1.3, end: 0.9), weight: 20),
+        TweenSequenceItem(tween: Tween(begin: 0.9, end: 1.0), weight: 40),
+      ],
+    ).animate(CurvedAnimation(parent: _checkController, curve: Curves.easeOut));
 
     _checkRotation = Tween<double>(begin: -0.2, end: 0.0).animate(
       CurvedAnimation(
@@ -110,40 +101,36 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
     );
 
     _contentSlide = Tween<double>(begin: 50, end: 0).animate(
-      CurvedAnimation(
-        parent: _contentController,
-        curve: Curves.easeOutCubic,
-      ),
+      CurvedAnimation(parent: _contentController, curve: Curves.easeOutCubic),
     );
 
     _contentFade = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _contentController,
-        curve: Curves.easeOut,
-      ),
+      CurvedAnimation(parent: _contentController, curve: Curves.easeOut),
     );
   }
 
   void _generateConfetti() {
     for (int i = 0; i < 50; i++) {
-      _particles.add(ConfettiParticle(
-        x: _random.nextDouble(),
-        y: -0.1 - _random.nextDouble() * 0.3,
-        size: 8 + _random.nextDouble() * 8,
-        color: [
-          const Color(0xFF7b4ce0),
-          const Color(0xFFFF6B6B),
-          const Color(0xFF4ECDC4),
-          const Color(0xFFFFE66D),
-          const Color(0xFF95E1D3),
-          const Color(0xFFF38181),
-        ][_random.nextInt(6)],
-        speed: 0.3 + _random.nextDouble() * 0.4,
-        rotation: _random.nextDouble() * 2 * pi,
-        rotationSpeed: (_random.nextDouble() - 0.5) * 0.3,
-        swayAmplitude: 0.02 + _random.nextDouble() * 0.03,
-        swaySpeed: 2 + _random.nextDouble() * 3,
-      ));
+      _particles.add(
+        ConfettiParticle(
+          x: _random.nextDouble(),
+          y: -0.1 - _random.nextDouble() * 0.3,
+          size: 8 + _random.nextDouble() * 8,
+          color: [
+            const Color(0xFF7b4ce0),
+            const Color(0xFFFF6B6B),
+            const Color(0xFF4ECDC4),
+            const Color(0xFFFFE66D),
+            const Color(0xFF95E1D3),
+            const Color(0xFFF38181),
+          ][_random.nextInt(6)],
+          speed: 0.3 + _random.nextDouble() * 0.4,
+          rotation: _random.nextDouble() * 2 * pi,
+          rotationSpeed: (_random.nextDouble() - 0.5) * 0.3,
+          swayAmplitude: 0.02 + _random.nextDouble() * 0.03,
+          swaySpeed: 2 + _random.nextDouble() * 3,
+        ),
+      );
     }
   }
 
@@ -191,7 +178,7 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
                 borderRadius: BorderRadius.circular(28.r),
                 boxShadow: [
                   BoxShadow(
-                    color: context.colorScheme.primary.withOpacity(0.2),
+                    color: context.colorScheme.primary.withValues(alpha: 0.2),
                     blurRadius: 40,
                     spreadRadius: 0,
                     offset: const Offset(0, 20),
@@ -203,7 +190,6 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Success animation header
                     _buildSuccessHeader(context),
                     // Content
                     _buildContent(context),
@@ -227,7 +213,7 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
           end: Alignment.bottomRight,
           colors: [
             context.colorScheme.primary,
-            context.colorScheme.primary.withOpacity(0.8),
+            context.colorScheme.primary.withValues(alpha: 0.8),
             context.colorScheme.secondary,
           ],
         ),
@@ -247,7 +233,7 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha: 0.2),
                       width: 2,
                     ),
                   ),
@@ -262,7 +248,7 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.3),
+                      color: Colors.white.withValues(alpha: 0.3),
                       width: 2,
                     ),
                   ),
@@ -281,7 +267,7 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           blurRadius: 20,
                           spreadRadius: 0,
                         ),
@@ -311,10 +297,7 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
       final opacity = sin(_checkController.value * pi).clamp(0.0, 1.0);
 
       return Transform.translate(
-        offset: Offset(
-          cos(angle) * distance,
-          sin(angle) * distance,
-        ),
+        offset: Offset(cos(angle) * distance, sin(angle) * distance),
         child: Opacity(
           opacity: opacity,
           child: Container(
@@ -325,7 +308,7 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withValues(alpha: 0.5),
                   blurRadius: 4,
                   spreadRadius: 2,
                 ),
@@ -364,12 +347,18 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
                     color: context.colorScheme.shadow,
                     textSize: 10,
                   ),
-                  24.verticalSpace,
-                  // Order info card
-                  _buildOrderInfoCard(context),
                   32.verticalSpace,
                   // Buttons
-                  _buildButtons(context),
+                  CustomButton.outline(
+                    text: context.localizations.home,
+                    press: () {
+                      Navigator.of(context).pop();
+                      context.router.pushAndPopUntil(
+                        MainLayoutRoute(),
+                        predicate: (route) => false,
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -378,191 +367,4 @@ class _OrderSuccessDialogState extends State<OrderSuccessDialog>
       },
     );
   }
-
-  Widget _buildOrderInfoCard(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8.w),
-      decoration: BoxDecoration(
-        color: context.colorScheme.primary.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(
-          color: context.colorScheme.primary.withOpacity(0.1),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(8.w),
-                decoration: BoxDecoration(
-                  color: context.colorScheme.primary.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: Icon(
-                  Icons.receipt_long_rounded,
-                  color: context.colorScheme.primary,
-                  size: 16.sp,
-                ),
-              ),
-              5.horizontalSpace,
-              AppText(
-                text: '#${widget.order.orderNumber ?? ''}',
-                textSize: 11,
-                fontWeight: FontWeight.w600,
-                color: context.colorScheme.primary,
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              AppText.hint(
-                text: context.localizations.totalPrice,
-                textSize: 10,
-              ),
-              4.verticalSpace,
-              Row(
-                children: [
-                  AppText(
-                    text: widget.order.total?.toStringAsFixed(0) ?? '0',
-                    textSize: 16,
-                    fontWeight: FontWeight.w800,
-                    color: context.colorScheme.primary,
-                  ),
-                  4.horizontalSpace,
-                  AppText(
-                    text: context.localizations.egp,
-                    textSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: context.colorScheme.primary.withOpacity(0.7),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildButtons(BuildContext context) {
-    return Column(
-      children: [
-        // Track Order Button
-        CustomButton(
-          text: context.localizations.trackOrder,
-          press: () {
-            Navigator.of(context).pop();
-            context.router.pushAndPopUntil(
-              MainLayoutRoute(),
-              predicate: (route) => false,
-            );
-            context.router.push(OrderDetailsRoute(order: widget.order));
-          },
-        ),
-        12.verticalSpace,
-        // Go to Home Button
-        CustomButton.outline(
-          text: context.localizations.home,
-          press: () {
-            Navigator.of(context).pop();
-            context.router.pushAndPopUntil(
-              MainLayoutRoute(),
-              predicate: (route) => false,
-            );
-          },
-        ),
-      ],
-    );
-  }
 }
-
-class ConfettiParticle {
-  double x;
-  double y;
-  final double size;
-  final Color color;
-  final double speed;
-  double rotation;
-  final double rotationSpeed;
-  final double swayAmplitude;
-  final double swaySpeed;
-
-  ConfettiParticle({
-    required this.x,
-    required this.y,
-    required this.size,
-    required this.color,
-    required this.speed,
-    required this.rotation,
-    required this.rotationSpeed,
-    required this.swayAmplitude,
-    required this.swaySpeed,
-  });
-}
-
-class ConfettiPainter extends CustomPainter {
-  final List<ConfettiParticle> particles;
-  final double progress;
-
-  ConfettiPainter({
-    required this.particles,
-    required this.progress,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    for (final particle in particles) {
-      // Update position
-      final currentY = particle.y + progress * particle.speed * 2;
-      if (currentY > 1.2) continue;
-
-      final sway = sin(progress * particle.swaySpeed * 2 * pi) * particle.swayAmplitude;
-      final currentX = particle.x + sway;
-      final currentRotation = particle.rotation + progress * particle.rotationSpeed * 4 * pi;
-
-      // Draw particle
-      final paint = Paint()
-        ..color = particle.color.withOpacity((1 - currentY).clamp(0, 1))
-        ..style = PaintingStyle.fill;
-
-      canvas.save();
-      canvas.translate(currentX * size.width, currentY * size.height);
-      canvas.rotate(currentRotation);
-
-      // Draw rectangle confetti
-      final rect = RRect.fromRectAndRadius(
-        Rect.fromCenter(
-          center: Offset.zero,
-          width: particle.size,
-          height: particle.size * 0.6,
-        ),
-        Radius.circular(2),
-      );
-      canvas.drawRRect(rect, paint);
-
-      canvas.restore();
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant ConfettiPainter oldDelegate) => true;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

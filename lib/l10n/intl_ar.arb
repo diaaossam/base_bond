@@ -208,6 +208,7 @@
   "passwordConfirmation": "تأكيد كلمة المرور",
   "passwordValidation": "كلمة المرور وتأكيد كلمة المرور غير متطابقتين",
   "insuranceProfile": "الملف التأميني",
+  "insuranceProfileValidation": "الملف التأمينى مطلوب",
   "createInsuranceProfile": "إنشاء ملف تأميني",
   "editInsuranceProfile": "تعديل الملف التأميني",
   "insuranceCompany": "شركة التأمين",

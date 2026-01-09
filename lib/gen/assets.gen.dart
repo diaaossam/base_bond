@@ -222,6 +222,10 @@ class $AssetsImagesGen {
   AssetGenImage get coins01 =>
       const AssetGenImage('assets/images/coins-01.png');
 
+  /// File path: assets/images/insurance.png
+  AssetGenImage get insurance =>
+      const AssetGenImage('assets/images/insurance.png');
+
   /// File path: assets/images/language-circle.png
   AssetGenImage get languageCircle =>
       const AssetGenImage('assets/images/language-circle.png');
@@ -234,6 +238,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/map.png
   AssetGenImage get map => const AssetGenImage('assets/images/map.png');
+
+  /// File path: assets/images/medical.png
+  AssetGenImage get medical => const AssetGenImage('assets/images/medical.png');
 
   /// File path: assets/images/mode.png
   AssetGenImage get mode => const AssetGenImage('assets/images/mode.png');
@@ -272,10 +279,12 @@ class $AssetsImagesGen {
     boarding3,
     chatting01,
     coins01,
+    insurance,
     languageCircle,
     logo,
     logout,
     map,
+    medical,
     mode,
     noLocation,
     noNetwork,

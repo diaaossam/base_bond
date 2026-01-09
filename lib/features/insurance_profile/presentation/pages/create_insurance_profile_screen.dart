@@ -17,13 +17,21 @@ class CreateInsuranceProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          sl<InsuranceProfileCubit>()..loadInsuranceCompanies(),
+      create: (context) {
+        final cubit = sl<InsuranceProfileCubit>();
+        cubit.loadInsuranceCompanies();
+        if (model != null) {
+          cubit.loadInsuranceProfile(model: model);
+        }
+        return cubit;
+      },
       child: Scaffold(
         appBar: CustomAppBar(
-          title: context.localizations.createInsuranceProfile,
+          title: model == null
+              ? context.localizations.createInsuranceProfile
+              : context.localizations.editInsuranceProfile,
         ),
-        body: InsuranceProfileForm(insuranceProfileModel: model,),
+        body: InsuranceProfileForm(insuranceProfileModel: model),
       ),
     );
   }

@@ -7,8 +7,11 @@ import 'package:bond/features/orders/data/models/request/cart_params.dart';
 import 'package:bond/features/orders/data/models/response/coupon_model.dart';
 import 'package:bond/features/orders/data/models/response/orders.dart';
 import 'package:bond/features/orders/data/models/response/points_model.dart';
+import 'package:bond/features/orders/data/models/response/prescription_order_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+
+import '../models/request/prescription_params.dart';
 
 @LazySingleton()
 class OrderRepositoryImpl with ApiHandlerMixin {
@@ -107,6 +110,21 @@ class OrderRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
+  Future<Either<Failure, List<PrescriptionOrderModel>>> getPrescription({
+    required int pageKey,
+    required OrderType orderType,
+    required String type,
+  }) async {
+    final response = await handleApi(
+      () => orderRemoteDataSource.getPrescriptionList(
+        pageKey: pageKey,
+        orderType: orderType,
+        type: type,
+      ),
+    );
+    return response;
+  }
+
   Future<Either<Failure, Orders>> getOrderDetails({required int id}) async {
     final response = await handleApi(
       () => orderRemoteDataSource.getOrderDetails(id: id),
@@ -134,6 +152,15 @@ class OrderRepositoryImpl with ApiHandlerMixin {
         rating: rating,
         comment: comment,
       ),
+    );
+    return response;
+  }
+
+  Future<Either<Failure, Unit>> submitPrescription({
+    required PrescriptionParams params,
+  }) async {
+    final response = await handleApi(
+      () => orderRemoteDataSource.submitPrescription(params: params),
     );
     return response;
   }
