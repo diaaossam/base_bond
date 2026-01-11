@@ -177,6 +177,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "freeDeleivery": MessageLookupByLibrary.simpleMessage("توصيل مجاني"),
     "from": MessageLookupByLibrary.simpleMessage("من"),
     "goToHome": MessageLookupByLibrary.simpleMessage("الذهاب للرئيسية"),
+    "guest": MessageLookupByLibrary.simpleMessage("زائر"),
+    "guestLogin": MessageLookupByLibrary.simpleMessage(
+      "عذرًا، هذه الميزة تتطلب تسجيل الدخول. من فضلك قم بتسجيل الدخول لمتابعة الإستمتاع بكافة مميزات التطبيق .",
+    ),
     "hideRating": MessageLookupByLibrary.simpleMessage("إخفاء التقييم"),
     "homeDelivery": MessageLookupByLibrary.simpleMessage("توصيل للمنزل"),
     "idCard": MessageLookupByLibrary.simpleMessage("البطاقة الشخصية"),
@@ -276,6 +280,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى اختيار طريقة الدفع",
     ),
     "personalInfo": MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
+    "pharmacyAddress": MessageLookupByLibrary.simpleMessage("عنوان الصيدلية"),
     "pharmacyPickup": MessageLookupByLibrary.simpleMessage(
       "استلام من الصيدلية",
     ),
@@ -287,6 +292,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "الرجاء اختيار تقييم",
     ),
     "preparingOrder": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
+    "prescription": MessageLookupByLibrary.simpleMessage("الروشتة"),
     "prescriptionBody": MessageLookupByLibrary.simpleMessage(
       "قم برفع صورة الروشتة وسنتولى تجهيز طلبك",
     ),

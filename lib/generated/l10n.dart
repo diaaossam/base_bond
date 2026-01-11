@@ -2858,6 +2858,41 @@ class S {
       args: [],
     );
   }
+
+  /// `Prescription`
+  String get prescription {
+    return Intl.message(
+      'Prescription',
+      name: 'prescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pharmacy Address`
+  String get pharmacyAddress {
+    return Intl.message(
+      'Pharmacy Address',
+      name: 'pharmacyAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry, this feature requires login. Please log in to continue enjoying all the app's features.`
+  String get guestLogin {
+    return Intl.message(
+      'Sorry, this feature requires login. Please log in to continue enjoying all the app\'s features.',
+      name: 'guestLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guest`
+  String get guest {
+    return Intl.message('Guest', name: 'guest', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -235,6 +235,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "goToCart": MessageLookupByLibrary.simpleMessage("الذهاب إلي السلة"),
     "goToHome": MessageLookupByLibrary.simpleMessage("Go to Home"),
     "governorate": MessageLookupByLibrary.simpleMessage("المحافظة"),
+    "guest": MessageLookupByLibrary.simpleMessage("Guest"),
+    "guestLogin": MessageLookupByLibrary.simpleMessage(
+      "Sorry, this feature requires login. Please log in to continue enjoying all the app\'s features.",
+    ),
     "hideRating": MessageLookupByLibrary.simpleMessage("Hide Rating"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "homeDelivery": MessageLookupByLibrary.simpleMessage("Home Delivery"),
@@ -444,6 +448,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "personalInfo": MessageLookupByLibrary.simpleMessage(
       "Personal Information",
     ),
+    "pharmacyAddress": MessageLookupByLibrary.simpleMessage("Pharmacy Address"),
     "pharmacyPickup": MessageLookupByLibrary.simpleMessage("Pharmacy Pickup"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
@@ -459,6 +464,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "preparingOrder": MessageLookupByLibrary.simpleMessage(
       "Preparing your order",
     ),
+    "prescription": MessageLookupByLibrary.simpleMessage("Prescription"),
     "prescriptionBody": MessageLookupByLibrary.simpleMessage(
       "Upload your prescription and we\'ll prepare your order",
     ),

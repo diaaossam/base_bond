@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/features/main/data/models/nav_enum.dart';
+import 'package:bond/features/settings/presentation/widgets/settings_helper.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,13 @@ class MainLayoutScreen extends StatelessWidget {
       ],
       bottomNavigationBuilder: (context, tabsRouter) {
         return BottomNavigationBar(
-          onTap: (value) => tabsRouter.setActiveIndex(value),
+          onTap: (value) {
+            if(value==1 ||value==2){
+              SettingsHelper().showGuestDialog(context);
+              return;
+            }
+            tabsRouter.setActiveIndex(value);
+          },
           currentIndex: tabsRouter.activeIndex,
           elevation: 10,
           unselectedItemColor: context.colorScheme.shadow,

@@ -243,7 +243,7 @@ class _DiscountDesignState extends State<DiscountDesign>
       isLoading: state.isLoading && state.identifier == 'coupon',
       press: () {
         if (ApiConfig.isGuest == true) {
-          SettingsHelper().showGuestDialog(context, isFromCart: true);
+          SettingsHelper().showGuestDialog(context,);
           return;
         }
         if (bloc.discount.text.isNotEmpty) {

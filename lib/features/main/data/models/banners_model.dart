@@ -1,21 +1,24 @@
 class BannersModel {
   BannersModel({
-      this.id, 
-      this.title, 
-      this.description, 
-      this.image, 
-      this.imageUrl, 
-      this.videoUrl, 
-      this.targetUrl, 
-      this.type, 
-      this.position, 
-      this.displayOrder, 
-      this.startDate, 
-      this.endDate, 
-      this.isActive, 
-      this.status,});
+    this.id,
+    this.title,
+    this.description,
+    this.image,
+    this.imageUrl,
+    this.videoUrl,
+    this.targetUrl,
+    this.type,
+    this.position,
+    this.displayOrder,
+    this.startDate,
+    this.endDate,
+    this.isActive,
+    this.status,
+    this.ids,
+  });
 
   BannersModel.fromJson(dynamic json) {
+    List<num> idsFromJson = [];
     id = json['id'];
     title = json['title'];
     description = json['description'];
@@ -30,7 +33,14 @@ class BannersModel {
     endDate = json['end_date'];
     isActive = json['is_active'];
     status = json['status'];
+    if (json['products'] != null) {
+      json['products'].forEach((v) {
+        idsFromJson.add(v['id']);
+      });
+    }
+    ids = idsFromJson;
   }
+
   num? id;
   String? title;
   String? description;
@@ -45,6 +55,7 @@ class BannersModel {
   String? endDate;
   bool? isActive;
   String? status;
+  List<num>? ids;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -65,15 +76,10 @@ class BannersModel {
     return map;
   }
 
-
   static List<BannersModel> fromJsonList(Map<String, dynamic> response) {
     final List<dynamic> dataList = response['data'] as List<dynamic>;
     return dataList
         .map((item) => BannersModel.fromJson(item as Map<String, dynamic>))
         .toList();
   }
-
-
-
-
 }

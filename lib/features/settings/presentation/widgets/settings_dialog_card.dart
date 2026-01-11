@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../core/extensions/color_extensions.dart';
-import '../../../../widgets/section_header.dart';
 
 class SettingsDialogCard extends StatelessWidget {
   final String title;

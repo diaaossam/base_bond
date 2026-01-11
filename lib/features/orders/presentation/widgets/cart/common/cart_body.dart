@@ -119,7 +119,6 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
                         if (ApiConfig.isGuest == true) {
                           SettingsHelper().showGuestDialog(
                             context,
-                            isFromCart: true,
                           );
                           return;
                         }

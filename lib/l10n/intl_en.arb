@@ -332,5 +332,9 @@
   "createFile": "إنشاء ملف تأمينى",
   "editFile": "تعديل الملف التأميني",
   "insuranceOrders": "طلبات التأمين",
-  "prescriptionOrders": "طلبات الروشتات"
+  "prescriptionOrders": "طلبات الروشتات",
+  "prescription": "Prescription",
+  "pharmacyAddress": "Pharmacy Address",
+  "guestLogin": "Sorry, this feature requires login. Please log in to continue enjoying all the app's features.",
+  "guest": "Guest"
 }

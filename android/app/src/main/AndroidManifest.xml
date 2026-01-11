@@ -10,7 +10,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="bond"
+        android:label="Alqahira"
 
         android:usesCleartextTraffic="true"
         tools:targetApi="m">

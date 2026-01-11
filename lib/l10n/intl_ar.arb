@@ -229,5 +229,10 @@
   "noInsuranceProfile": "لا يوجد ملف تأميني",
   "noInsuranceProfileHint": "أنشئ ملفك التأميني الآن للاستفادة من خدمات التأمين الصحي والحصول على خصومات حصرية",
   "insuranceProfileCreated": "تم إنشاء الملف التأميني بنجاح",
-  "insuranceProfileUpdated": "تم تحديث الملف التأميني بنجاح"
+  "insuranceProfileUpdated": "تم تحديث الملف التأميني بنجاح",
+  "prescription": "الروشتة",
+  "pharmacyAddress": "عنوان الصيدلية",
+  "guestLogin": "عذرًا، هذه الميزة تتطلب تسجيل الدخول. من فضلك قم بتسجيل الدخول لمتابعة الإستمتاع بكافة مميزات التطبيق .",
+  "guest": "زائر"
+
 }

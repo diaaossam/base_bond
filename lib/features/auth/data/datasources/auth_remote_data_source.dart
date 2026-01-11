@@ -73,6 +73,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     UserDataService().setUserData(response);
     CommonCaching.address = (response as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
+    ApiConfig().init();
     return response;
   }
 
@@ -107,7 +108,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     UserDataService().setUserData(data);
     CommonCaching.address = (data as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
-
+    ApiConfig().init();
     return data;
   }
 
@@ -156,6 +157,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     UserDataService().setUserData(response);
     CommonCaching.address = (response as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
+    ApiConfig().init();
     return unit;
   }
 
@@ -188,6 +190,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     UserDataService().setUserData(response);
     CommonCaching.address = (response as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
+    ApiConfig().init();
     return response;
   }
 }

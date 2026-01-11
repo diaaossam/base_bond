@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/core/utils/api_config.dart';
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:bond/features/settings/presentation/widgets/dialogs/language_dialog.dart';
 import 'package:bond/features/settings/presentation/widgets/dialogs/logout_dialog.dart';
 import 'package:bond/features/settings/presentation/widgets/dialogs/theme_mode_dialog.dart';
 import 'package:bond/features/settings/presentation/widgets/settings_dialog_card.dart';
+import 'package:bond/features/settings/presentation/widgets/settings_helper.dart';
 import 'package:bond/features/settings/presentation/widgets/settings_item_design.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/extensions/color_extensions.dart';
 
 class SettingsListDesign extends StatelessWidget {
   const SettingsListDesign({super.key});
@@ -24,32 +24,50 @@ class SettingsListDesign extends StatelessWidget {
            children: [
              SettingsItemDesign(
                text: context.localizations.myOrders,
-               press: () => context.router.push(
+               press: () {
+                 if(ApiConfig.isGuest == true){
+                   SettingsHelper().showGuestDialog(context);
+                   return;
+                 }
+                 context.router.push(
                  OrdersRoute(
                    type: AppStrings.orders,
                    title: context.localizations.myOrders,
                  ),
-               ),
+               );
+               },
                image: Assets.images.order.path,
              ),
              SettingsItemDesign(
                text: context.localizations.prescriptionOrders,
-               press: () => context.router.push(
+               press: () {
+                 if (ApiConfig.isGuest == true) {
+                   SettingsHelper().showGuestDialog(context,);
+                   return;
+                 }
+                 context.router.push(
                  OrdersRoute(
                    type: AppStrings.prescription,
                    title: context.localizations.prescriptionOrders,
                  ),
-               ),
+               );
+               },
                image: Assets.images.medical.path,
              ),
              SettingsItemDesign(
                text: context.localizations.insuranceOrders,
-               press: () => context.router.push(
+               press: () {
+                 if (ApiConfig.isGuest == true) {
+                   SettingsHelper().showGuestDialog(context,);
+                   return;
+                 }
+                 context.router.push(
                  OrdersRoute(
                    type: AppStrings.insurance,
                    title: context.localizations.insuranceOrders,
                  ),
-               ),
+               );
+               },
                image: Assets.images.insurance.path,
              ),
            ],
@@ -59,12 +77,24 @@ class SettingsListDesign extends StatelessWidget {
            children: [
              SettingsItemDesign(
                text: context.localizations.address,
-               press: () => context.router.push(LocationsRoute()),
+               press: () {
+                 if (ApiConfig.isGuest == true) {
+                   SettingsHelper().showGuestDialog(context,);
+                   return;
+                 }
+                 context.router.push(LocationsRoute());
+               },
                image: Assets.images.map.path,
              ),
              SettingsItemDesign(
                text: context.localizations.insuranceProfile,
-               press: () => context.router.push(const InsuranceProfileRoute()),
+               press: () {
+                 if (ApiConfig.isGuest == true) {
+                   SettingsHelper().showGuestDialog(context,);
+                   return;
+                 }
+                 context.router.push(const InsuranceProfileRoute());
+               },
                image: Assets.icons.insuranceProfile,
              ),
 
@@ -89,7 +119,13 @@ class SettingsListDesign extends StatelessWidget {
              ),
              SettingsItemDesign(
                text: context.localizations.customerSupport,
-               press: () => context.router.push(const SupportChatRoute()),
+               press: () {
+                 if (ApiConfig.isGuest == true) {
+                   SettingsHelper().showGuestDialog(context,);
+                   return;
+                 }
+                 context.router.push(const SupportChatRoute());
+               },
                image: Assets.images.chatting01.path,
              ),
              SettingsItemDesign(
@@ -104,7 +140,13 @@ class SettingsListDesign extends StatelessWidget {
              ),
              SettingsItemDesign(
                text: context.localizations.logOut,
-               press: () => LogoutDialog.show(context),
+               press: () {
+                 if (ApiConfig.isGuest == true) {
+                   SettingsHelper().showGuestDialog(context,);
+                   return;
+                 }
+                 LogoutDialog.show(context);
+               },
                image: Assets.images.logout.path,
              ),
            ],

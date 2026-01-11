@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:61178869974:android:d7b0ba6a712c55de94b177",
+        "mobilesdk_app_id": "1:61178869974:android:e42d79f3ae081f6e94b177",
         "android_client_info": {
-          "package_name": "com.example.bond"
+          "package_name": "com.itimhassan.bond"
         }
       },
       "oauth_client": [],

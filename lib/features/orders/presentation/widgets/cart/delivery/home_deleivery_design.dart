@@ -68,7 +68,7 @@ class HomeDeleiveryDesign extends StatelessWidget {
               text: context.localizations.addAddressDeleivery,
               press: () async {
                 if (ApiConfig.isGuest == true) {
-                  SettingsHelper().showGuestDialog(context, isFromCart: true);
+                  SettingsHelper().showGuestDialog(context);
                   return;
                 }
                 context.router.push(PickLocationRoute());

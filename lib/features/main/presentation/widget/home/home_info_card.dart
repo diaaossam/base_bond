@@ -1,4 +1,5 @@
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/core/utils/api_config.dart';
 import 'package:bond/features/auth/data/models/response/user_model_helper.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
@@ -30,7 +31,12 @@ class HomeInfoCard extends StatelessWidget {
               5.verticalSpace,
               AppText.hint(text: context.localizations.welcome),
               5.verticalSpace,
-              AppText(text: UserDataService().getUserData()?.name ?? ""),
+              AppText(
+                fontWeight: FontWeight.w500,
+                text: ApiConfig.isGuest == true
+                    ? context.localizations.guest
+                    : UserDataService().getUserData()?.name ?? "",
+              ),
             ],
           ),
         ),

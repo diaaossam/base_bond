@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/main/data/models/banners_model.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
@@ -6,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../../core/utils/app_size.dart';
 import '../../../../../../config/dependencies/injectable_dependencies.dart';
+import '../../../../../../config/router/app_router.gr.dart';
+import '../../../../../../core/extensions/app_localizations_extension.dart';
+import '../../../../../product/data/models/request/product_params.dart';
 import '../../../cubit/banner/banners_cubit.dart';
 import 'banner_indicator_design.dart';
 import 'banner_shimmer.dart';
@@ -100,30 +104,44 @@ class _HomeBannersImageState extends State<HomeBannersImage>
 
   Widget _buildBannerItem(BannersModel banner, int index) {
     final isActive = index == _currentIndex;
-    return AnimatedBuilder(
-      animation: _animationController,
-      builder: (context, child) {
-        return AnimatedContainer(
-          duration: const Duration(milliseconds: 400),
-          curve: Curves.easeOutCubic,
-          margin: EdgeInsets.symmetric(
-            horizontal: 4,
-            vertical: isActive ? 0 : 12,
-          ),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Hero(
-              tag: 'banner_${banner.id}',
-              child: AppImage.network(
-                remoteImage: banner.image ?? "",
-                fit: BoxFit.cover,
-                width: SizeConfig.screenWidth,
+    return GestureDetector(
+      onTap: () {
+        if(banner.ids != null && banner.ids!.isNotEmpty){
+          context.router.push(
+            AllProductsRoute(
+              title: context.localizations.products,
+              initialParams: ProductParams(page: 1, ids: banner.ids),
+              fromHome: true,
+            ),
+          );
+        }
+
+      },
+      child: AnimatedBuilder(
+        animation: _animationController,
+        builder: (context, child) {
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeOutCubic,
+            margin: EdgeInsets.symmetric(
+              horizontal: 4,
+              vertical: isActive ? 0 : 12,
+            ),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Hero(
+                tag: 'banner_${banner.id}',
+                child: AppImage.network(
+                  remoteImage: banner.image ?? "",
+                  fit: BoxFit.cover,
+                  width: SizeConfig.screenWidth,
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

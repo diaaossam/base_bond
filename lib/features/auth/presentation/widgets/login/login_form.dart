@@ -121,7 +121,7 @@ class LoginForm extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: SizeConfig.bodyHeight * .02),
+              SizedBox(height: SizeConfig.bodyHeight * .01),
               CustomButton.text(
                 text: context.localizations.loginAsGuest,
                 press: () => context.router.pushAndPopUntil(
@@ -129,7 +129,7 @@ class LoginForm extends StatelessWidget {
                   predicate: (route) => false,
                 ),
               ),
-              SizedBox(height: SizeConfig.bodyHeight * .04),
+              SizedBox(height: SizeConfig.bodyHeight * .02),
               DontHaveAccountWidget(),
               SizedBox(height: SizeConfig.bodyHeight * .04),
               SocialButtonDesign(),

@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/features/orders/data/models/response/prescription_order_model.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../config/router/app_router.gr.dart';
 import '../orders/order_status_bagde.dart';
 
 class PrescriptionItemCard extends StatelessWidget {
@@ -104,7 +106,7 @@ class PrescriptionItemCard extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    //context.router.push(OrderDetailsRoute(order: order));
+                    context.router.push(PrescriptionOrderDetailsRoute(order: order));
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 7, horizontal: 10),

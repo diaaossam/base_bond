@@ -26,7 +26,7 @@ class _PaymentTypeDesignState extends State<PaymentTypeDesign>
 
   void _selectPayment(PaymentType payment) {
     if (ApiConfig.isGuest == true) {
-      SettingsHelper().showGuestDialog(context, isFromCart: true);
+      SettingsHelper().showGuestDialog(context,);
       return;
     }
     widget.payment(payment);

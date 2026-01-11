@@ -13,6 +13,7 @@ class ProductParams extends Equatable {
     this.isFeatured,
     this.isNewArrival,
     this.isBestSeller,
+    this.ids,
   });
 
   final int page;
@@ -25,6 +26,7 @@ class ProductParams extends Equatable {
 
   final int? priceFrom;
   final int? priceTo;
+  final List<num>? ids;
 
   final bool? isFeatured;
   final bool? isNewArrival;
@@ -42,6 +44,7 @@ class ProductParams extends Equatable {
     bool? isFeatured,
     bool? isNewArrival,
     bool? isBestSeller,
+    List<num>? ids,
   }) {
     return ProductParams(
       page: page ?? this.page,
@@ -55,6 +58,7 @@ class ProductParams extends Equatable {
       isFeatured: isFeatured ?? this.isFeatured,
       isNewArrival: isNewArrival ?? this.isNewArrival,
       isBestSeller: isBestSeller ?? this.isBestSeller,
+      ids: ids ?? this.ids,
     );
   }
 
@@ -71,6 +75,7 @@ class ProductParams extends Equatable {
       if (isFeatured != null) 'is_featured': isFeatured! ? 1 : 0,
       if (isNewArrival != null) 'is_new_arrival': isNewArrival! ? 1 : 0,
       if (isBestSeller != null) 'is_best_seller': isBestSeller! ? 1 : 0,
+      if (ids != null) 'ids[]': ids,
     };
   }
 
@@ -87,5 +92,6 @@ class ProductParams extends Equatable {
     isFeatured,
     isNewArrival,
     isBestSeller,
+    ids,
   ];
 }

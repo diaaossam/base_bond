@@ -17,9 +17,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../config/router/app_router.gr.dart';
+import '../../../../../core/utils/api_config.dart';
 import '../../../../insurance_profile/presentation/cubit/insurance_profile_cubit.dart';
 import '../../../../insurance_profile/presentation/cubit/insurance_profile_state_data.dart';
 import '../../../../insurance_profile/presentation/widgets/insurance_header_info.dart';
+import '../../../../settings/presentation/widgets/settings_helper.dart';
 import '../../../data/models/request/prescription_params.dart';
 import '../cart/delivery/cart_location_design.dart';
 import '../cart/payment/payment_type.dart';
@@ -279,6 +281,10 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                       text: context.localizations.submitPrescription,
                       isLoading: state.isLoading && state.identifier == 'submit',
                       press: () {
+                        if (ApiConfig.isGuest == true) {
+                          SettingsHelper().showGuestDialog(context,);
+                          return;
+                        }
                         if (data.prescriptionImage == null) {
                           AppConstant.showToast(
                             msg: context.localizations.prescriptionRequired,

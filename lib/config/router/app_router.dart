@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bond/features/main/data/models/category_model.dart';
 import 'app_router.gr.dart';
 
 @AutoRouterConfig()
@@ -41,5 +40,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ChatMessagesRoute.page),
     AutoRoute(page: InsuranceProfileRoute.page),
     AutoRoute(page: CreateInsuranceProfileRoute.page),
+    AutoRoute(page: PrescriptionOrderDetailsRoute.page),
   ];
 }
