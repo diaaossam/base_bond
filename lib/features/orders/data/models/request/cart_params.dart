@@ -1,3 +1,5 @@
+import '../../../../../core/enum/deleivery_method.dart';
+import '../../../../../core/enum/payment_type.dart';
 import '../../../../product/data/models/response/product_model.dart';
 
 class CartParams {
@@ -7,6 +9,9 @@ class CartParams {
     this.items,
     this.note,
     this.pointsId,
+    this.paymentType,
+    this.pharmacyBranchId,
+    this.deliveryMethod,
   });
 
   num? addressId;
@@ -14,6 +19,9 @@ class CartParams {
   String? discountCode;
   String? note;
   List<CartItem>? items;
+  DeliveryMethod? deliveryMethod;
+  PaymentType? paymentType;
+  num? pharmacyBranchId;
 
   CartParams copyWith({
     num? pointsId,
@@ -21,12 +29,18 @@ class CartParams {
     String? discountCode,
     List<CartItem>? items,
     String? note,
+    DeliveryMethod? deliveryMethod,
+    PaymentType? paymentType,
+    num? pharmacyBranchId,
   }) => CartParams(
     addressId: addressId ?? this.addressId,
     discountCode: discountCode ?? this.discountCode,
     items: items ?? this.items,
     pointsId: pointsId ?? this.pointsId,
     note: note ?? this.note,
+    pharmacyBranchId: pharmacyBranchId ?? this.pharmacyBranchId,
+    paymentType: paymentType ?? this.paymentType,
+    deliveryMethod: deliveryMethod ?? this.deliveryMethod,
   );
 
   Map<String, dynamic> toJson() {
@@ -34,6 +48,9 @@ class CartParams {
     map['address_id'] = addressId;
     map['coupon_code'] = discountCode;
     map['note'] = note;
+    map['delivery_way'] = deliveryMethod?.name;
+    map['payment_method'] = paymentType?.name;
+    map['pharmacy_branch_id'] = pharmacyBranchId;
     if (items != null) {
       map['items'] = items?.map((v) => v.toJson()).toList();
     }

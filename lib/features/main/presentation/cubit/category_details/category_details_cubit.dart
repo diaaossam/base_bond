@@ -15,7 +15,7 @@ class CategoryDetailsCubit extends Cubit<BaseState<CategoryDetailsData>>
   CategoryDetailsCubit(this.productRepositoryImpl)
     : super(BaseState(data: CategoryDetailsData()));
 
-  Future<void> getSubCategories(num categoryId) async {
+  Future<void> getSubCategories({required num categoryId}) async {
     await handleAsync(
       call: () => productRepositoryImpl.getSubcategory(id: categoryId),
       identifier: 'subcategories',
@@ -32,14 +32,17 @@ class CategoryDetailsCubit extends Cubit<BaseState<CategoryDetailsData>>
 
     final selectedSub = state.data?.selectedSubCategory;
     if (selectedSub?.id != null) {
-      getSubDivisions(selectedSub!.id!);
+      getSubDivisions(categoryId: categoryId, id: selectedSub!.id!);
     }
   }
 
   /// Fetch subdivisions for a given subcategory
-  Future<void> getSubDivisions(num subCategoryId) async {
+  Future<void> getSubDivisions({
+    required num id,
+    required num categoryId,
+  }) async {
     await handleAsync(
-      call: () => productRepositoryImpl.getSubDivision(id: subCategoryId),
+      call: () => productRepositoryImpl.getSubDivision(id: id, categoryId: categoryId),
       identifier: 'subdivisions',
       onSuccess: (data) {
         final currentData = state.data ?? CategoryDetailsData();
@@ -48,7 +51,10 @@ class CategoryDetailsCubit extends Cubit<BaseState<CategoryDetailsData>>
     );
   }
 
-  void selectSubCategory(GenericModel subCategory) {
+  void selectSubCategory({
+    required GenericModel subCategory,
+    required num categoryId,
+  }) {
     final currentData = state.data ?? CategoryDetailsData();
     emit(
       state.copyWith(
@@ -61,7 +67,7 @@ class CategoryDetailsCubit extends Cubit<BaseState<CategoryDetailsData>>
     );
 
     if (subCategory.id != null) {
-      getSubDivisions(subCategory.id!);
+      getSubDivisions(categoryId: categoryId, id: subCategory.id!);
     }
   }
 

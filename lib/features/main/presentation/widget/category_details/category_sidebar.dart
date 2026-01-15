@@ -9,6 +9,7 @@ import 'package:shimmer/shimmer.dart';
 
 class CategorySidebar extends StatelessWidget {
   final List<GenericModel> subcategories;
+  final num categoryId;
   final GenericModel? selectedSubCategory;
   final bool isLoading;
 
@@ -17,6 +18,7 @@ class CategorySidebar extends StatelessWidget {
     required this.subcategories,
     required this.selectedSubCategory,
     required this.isLoading,
+    required this.categoryId,
   });
 
   @override
@@ -68,6 +70,7 @@ class CategorySidebar extends StatelessWidget {
         final isSelected = selectedSubCategory?.id == subcategory.id;
 
         return _SubcategoryItem(
+          categoryId: categoryId,
           subcategory: subcategory,
           isSelected: isSelected,
           index: index,
@@ -81,11 +84,13 @@ class _SubcategoryItem extends StatelessWidget {
   final GenericModel subcategory;
   final bool isSelected;
   final int index;
+  final num categoryId;
 
   const _SubcategoryItem({
     required this.subcategory,
     required this.isSelected,
     required this.index,
+    required this.categoryId,
   });
 
   @override
@@ -96,15 +101,15 @@ class _SubcategoryItem extends StatelessWidget {
       builder: (context, value, child) {
         return Transform.translate(
           offset: Offset(50 * (1 - value), 0),
-          child: Opacity(
-            opacity: value,
-            child: child,
-          ),
+          child: Opacity(opacity: value, child: child),
         );
       },
       child: GestureDetector(
         onTap: () {
-          context.read<CategoryDetailsCubit>().selectSubCategory(subcategory);
+          context.read<CategoryDetailsCubit>().selectSubCategory(
+            subCategory: subcategory,
+            categoryId: categoryId,
+          );
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
@@ -145,12 +150,12 @@ class _SubcategoryItem extends StatelessWidget {
                 ),
               ),
               if (isSelected) SizedBox(width: 6.w),
-              
+
               // Title
               Expanded(
                 child: AppText(
                   text: subcategory.title ?? '',
-                  textSize: 10,
+                  textSize: 9,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                   color: isSelected
                       ? Colors.white
@@ -166,8 +171,3 @@ class _SubcategoryItem extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

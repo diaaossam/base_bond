@@ -5,6 +5,7 @@ import 'package:bond/features/orders/presentation/widgets/cart/parmacy_pickup/br
 import 'package:bond/features/orders/presentation/widgets/order_success_dialog.dart';
 import 'package:bond/features/orders/presentation/widgets/request_success_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/extensions/app_localizations_extension.dart';
 import '../insurance_profile/presentation/cubit/branches/branches_cubit.dart';
@@ -119,5 +120,20 @@ class OrderHelper {
     required BuildContext context,
   }) async {
     await PrescriptionSuccessDialog.show(context: context);
+  }
+
+
+
+  Future<void> openLocationInMaps({
+    required double lat,
+    required double lon,
+  }) async {
+    final Uri url = Uri.parse(
+      'https://www.google.com/maps/search/?api=1&query=$lat,$lon',
+    );
+
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'Could not open Google Maps';
+    }
   }
 }

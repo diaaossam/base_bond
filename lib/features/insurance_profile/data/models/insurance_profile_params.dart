@@ -8,6 +8,7 @@ class InsuranceProfileRequest {
   final File? idCardFront;
   final File? idCardBack;
   final String? insuranceNumber;
+  final String? companyName;
 
   InsuranceProfileRequest({
     required this.insuranceCompanyId,
@@ -15,6 +16,7 @@ class InsuranceProfileRequest {
     this.insuranceCardBack,
     this.idCardFront,
     this.idCardBack,
+    this.companyName,
     this.insuranceNumber,
   });
 
@@ -24,6 +26,11 @@ class InsuranceProfileRequest {
     formData.fields.add(
       MapEntry('insurance_company_id', insuranceCompanyId.toString()),
     );
+    if(companyName != null) {
+      formData.fields.add(
+      MapEntry('insurance_company_name', companyName.toString()),
+    );
+    }
 
     if (insuranceNumber != null) {
       formData.fields.add(MapEntry('insurance_number', insuranceNumber!));

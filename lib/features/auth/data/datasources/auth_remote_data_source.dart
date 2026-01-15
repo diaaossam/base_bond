@@ -17,6 +17,7 @@ import '../models/request/forgot_password_params.dart';
 import '../models/request/login_params.dart';
 import '../models/request/otp_params.dart';
 import '../models/request/register_params.dart';
+import '../models/request/social_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel> verifyOtp({required OtpParams otpParams});
@@ -69,11 +70,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final response = await dioConsumer
         .post(EndPoints.verifyUser, data: data)
         .factory((json) => UserModel.fromJson(json['data']['user']))
+        .cacheToken()
         .execute();
     UserDataService().setUserData(response);
     CommonCaching.address = (response as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
-    ApiConfig().init();
+    await ApiConfig().init();
     return response;
   }
 
@@ -108,7 +110,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     UserDataService().setUserData(data);
     CommonCaching.address = (data as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
-    ApiConfig().init();
+    await ApiConfig().init();
     return data;
   }
 
@@ -119,12 +121,25 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<bool> socialLogin({required SocialEnum socialEnum}) async {
+    SocialModel? socialModel;
     if (socialEnum == SocialEnum.google) {
-      await googleAccountLoginService.login();
+      socialModel = await googleAccountLoginService.login();
     }
     if (socialEnum == SocialEnum.apple) {
-      await appleAccountLoginService.login();
+      socialModel = await appleAccountLoginService.login();
     }
+    print(socialModel?.uid);
+    final response = await dioConsumer
+        .post(EndPoints.socialLogin)
+        .body({"uid": socialModel?.uid})
+        .factory((json) => UserModel.fromJson(json['data']['user']))
+        .cacheToken()
+        .execute();
+
+    UserDataService().setUserData(response);
+    CommonCaching.address = (response as UserModel).address;
+    sharedPreferences.setBool(AppStrings.isGuest, false);
+    await ApiConfig().init();
     return true;
   }
 
@@ -151,13 +166,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .post(EndPoints.register)
         .body(await params.toFormData())
         .factory((json) => UserModel.fromJson(json['data']['user']))
-        .cacheToken()
         .execute();
 
     UserDataService().setUserData(response);
     CommonCaching.address = (response as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
-    ApiConfig().init();
+    await ApiConfig().init();
     return unit;
   }
 
@@ -190,7 +204,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     UserDataService().setUserData(response);
     CommonCaching.address = (response as UserModel).address;
     sharedPreferences.setBool(AppStrings.isGuest, false);
-    ApiConfig().init();
+    await ApiConfig().init();
     return response;
   }
 }

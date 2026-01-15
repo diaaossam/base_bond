@@ -4,6 +4,8 @@ class EndPoints {
   static const String categories = "categories";
   static const String activeSubstances = "active-substances";
   static const String brands = "brands";
+  static const String subCategory = "sub-categories";
+  static const String subDivision = "division-categories";
   static const String insuranceCompany = "insurance-companies";
   static const String insuranceProfile = "insurance-profile";
 
@@ -52,7 +54,9 @@ class EndPoints {
   static const String validateCoupon = "coupons/validate";
   static const String orders = "orders";
   static const String favourites = "wishlist";
-  static const String rateOrder = "rate-order";
+  static const String reviews = "reviews";
   static const String checkOrderPoints = "check-order-points";
   static const String checkProduct = "check-products";
+  static String notifyWhenAvailable(num productId) =>
+      "products/$productId/notify-when-available";
 }

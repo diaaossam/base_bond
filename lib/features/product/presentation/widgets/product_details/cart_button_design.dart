@@ -1,6 +1,7 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/core/utils/app_constant.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/orders/data/models/request/cart_params.dart';
 import 'package:bond/features/orders/presentation/cubit/cart/cart_state_data.dart';
@@ -40,9 +41,11 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
         return BlocConsumer<CartCubit, BaseState<CartStateData>>(
           listener: (context, cartState) {
             if (cartState.isSuccess && cartState.identifier == "cart") {
-             final data = checkIfProductInCart(carts: cartState.data!.cartList);
-              if(data != null){
-               context.read<ProductDetailsCubit>().updateCartItem(item: data);
+              final data = checkIfProductInCart(
+                carts: cartState.data!.cartList,
+              );
+              if (data != null) {
+                context.read<ProductDetailsCubit>().updateCartItem(item: data);
               }
             }
           },
@@ -59,7 +62,9 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
                     context.read<CartCubit>().deleteItemFromCart(
                       id: widget.productModel.id.toString(),
                     );
-                    context.read<ProductDetailsCubit>().initCartData(productModel: widget.productModel);
+                    context.read<ProductDetailsCubit>().initCartData(
+                      productModel: widget.productModel,
+                    );
                     setState(() => isExists = false);
                     return;
                   }
@@ -69,9 +74,72 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
                   );
                 },
               );
-            }
-            else {
+            } else {
               final CartItem cartItem = state.data ?? CartItem();
+              final bool isOutOfStock = (cartItem.stock ?? 0) <= 0;
+
+              // Show "Notify me when available" button if out of stock
+              if (isOutOfStock) {
+                return BlocListener<ProductDetailsCubit, BaseState<CartItem>>(
+                  listenWhen: (previous, current) =>
+                      current.identifier == 'notify_when_available',
+                  listener: (context, state) {
+                    if (state.isSuccess) {
+                      AppConstant.showCustomSnakeBar(
+                        context,
+                        context.localizations.notifyWhenAvailableSuccess,
+                        true,
+                      );
+                    } else if (state.isFailure) {
+                      AppConstant.showCustomSnakeBar(
+                        context,
+                        state.error ?? context.localizations.somethingWentWrong,
+                        false,
+                      );
+                    }
+                  },
+                  child: InkWell(
+                    onTap: () {
+                      context.read<ProductDetailsCubit>().notifyWhenAvailable(
+                        productId: widget.productModel.id ?? 0,
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.screenWidth * 0.04,
+                        vertical: SizeConfig.bodyHeight * .01,
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.screenWidth * .04,
+                        vertical: SizeConfig.bodyHeight * .02,
+                      ),
+                      decoration: BoxDecoration(
+                        color: context.colorScheme.tertiary,
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.notifications_active_outlined,
+                            color: Colors.white,
+                            size: 20.sp,
+                          ),
+                          8.horizontalSpace,
+                          Flexible(
+                            child: AppText(
+                              text: context.localizations.notifyWhenAvailable,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+
               return InkWell(
                 onTap: () async {
                   setState(() => isExists = true);
@@ -106,7 +174,7 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
                       ),
                       AppText(
                         text:
-                        "${cartItem.price?.toStringAsFixed(2)} ${context.localizations.egp}",
+                            "${cartItem.price?.toStringAsFixed(2)} ${context.localizations.egp}",
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
@@ -115,19 +183,18 @@ class _CartButtonDesignState extends State<CartButtonDesign> {
                 ),
               );
             }
-
           },
         );
       },
     );
   }
 
-  CartItem ? checkIfProductInCart({required List<CartItem> carts}) {
+  CartItem? checkIfProductInCart({required List<CartItem> carts}) {
     var contain = carts.where((element) {
       return element.productId.toString() == widget.productModel.id.toString();
     }).toList();
     setState(() => isExists = contain.isNotEmpty);
-    if(isExists){
+    if (isExists) {
       return contain.first;
     }
     return null;

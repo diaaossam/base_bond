@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/core/utils/api_config.dart';
 import 'package:bond/features/main/data/models/nav_enum.dart';
 import 'package:bond/features/settings/presentation/widgets/settings_helper.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
@@ -27,7 +28,7 @@ class MainLayoutScreen extends StatelessWidget {
       bottomNavigationBuilder: (context, tabsRouter) {
         return BottomNavigationBar(
           onTap: (value) {
-            if(value==1 ||value==2){
+            if((value==1 ||value==2) && ApiConfig.isGuest == true){
               SettingsHelper().showGuestDialog(context);
               return;
             }

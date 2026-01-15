@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
+import 'package:bond/core/global_models/generic_model.dart';
 import 'package:bond/features/insurance_profile/data/models/insurance_profile_model.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/bloc/helper/base_state.dart';
 import '../../../../core/bloc/helper/either_extensions.dart';
+import '../../../../generated/l10n.dart';
 import '../../data/models/insurance_profile_params.dart';
 import '../../data/repositories/insurance_profile_repository.dart';
 import 'insurance_profile_state_data.dart';
@@ -22,10 +24,17 @@ class InsuranceProfileCubit extends Cubit<BaseState<InsuranceProfileStateData>>
     await handleAsync(
       identifier: 'companies',
       call: () => _repository.getInsuranceCompanies(),
-      onSuccess: (data) => _data.copyWith(insuranceCompanies: data),
+      onSuccess: (data) {
+        data.add(GenericModel(id: -1, title: S.current.otherCompany));
+        return _data.copyWith(insuranceCompanies: data);
+      },
     );
   }
 
+
+  void selectCompany({required GenericModel model}){
+    emit(state.copyWith(data: _data.copyWith(selectedCompany: model)));
+  }
   Future<void> loadInsuranceProfile({InsuranceProfileModel? model}) async {
     if (model != null) {
       emit(state.copyWith(status: BaseStatus.success,data: _data.copyWith(

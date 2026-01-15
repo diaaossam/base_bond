@@ -58,4 +58,12 @@ class ProductDetailsCubit extends Cubit<BaseState<CartItem>>
     );
     emit(state.success(data: cartItem, identifier: 'init_cart_data'));
   }
+
+  Future<void> notifyWhenAvailable({required num productId}) async {
+    await handleAsync(
+      identifier: 'notify_when_available',
+      call: () => productRepositoryImpl.notifyWhenAvailable(productId),
+      onSuccess: (data) => state.data ?? CartItem(),
+    );
+  }
 }

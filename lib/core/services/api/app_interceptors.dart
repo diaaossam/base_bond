@@ -1,5 +1,7 @@
+import 'package:bond/config/helper/context_helper.dart';
 import 'package:bond/config/helper/token_helper.dart';
 import 'package:bond/config/helper/token_repository.dart';
+import 'package:bond/features/settings/presentation/widgets/settings_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:bond/config/environment/environment_helper.dart' as env;
@@ -15,6 +17,11 @@ class AppInterceptors extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (response.statusCode == 401) {
+      final context = NavigationService.navigatorKey.currentContext;
+      if(context != null){
+        SettingsHelper().showGuestDialog(context);
+
+      }
       return;
     }
     handler.next(response);

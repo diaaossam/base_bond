@@ -1,5 +1,7 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:bond/core/enum/order_type.dart';
 import 'package:bond/features/orders/data/models/response/orders.dart';
+import 'package:bond/features/orders/presentation/widgets/order_details/product_rating_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,8 +12,15 @@ import '../../../../../widgets/main_widget/app_text.dart';
 
 class OrderProductList extends StatelessWidget {
   final List<Items> items;
+  final num orderId;
+  final OrderType? orderStatus;
 
-  const OrderProductList({super.key, required this.items});
+  const OrderProductList({
+    super.key,
+    required this.items,
+    required this.orderId,
+    this.orderStatus,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +111,16 @@ class OrderProductList extends StatelessWidget {
                             ),
                           ],
                         ),
+                        // Rating section - only for delivered orders
+                        if (orderStatus == OrderType.delivered &&
+                            item.product?.id != null) ...[
+                          12.verticalSpace,
+                          ProductRatingWidget(
+                            productId: item.product!.id!.toInt(),
+                            orderId: orderId.toInt(),
+                            productName: item.product?.title ?? '',
+                          ),
+                        ],
                       ],
                     ),
                   ),

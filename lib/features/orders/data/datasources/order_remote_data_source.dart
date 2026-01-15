@@ -113,7 +113,7 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
     required int rating,
     String? comment,
   }) async {
-    await dioConsumer.post(EndPoints.rateOrder).body({
+    await dioConsumer.post(EndPoints.reviews).body({
       'product_id': productId,
       'order_id': orderId,
       'rating': rating,

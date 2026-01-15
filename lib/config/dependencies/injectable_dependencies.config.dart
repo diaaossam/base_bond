@@ -167,6 +167,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i815.GlobalLocationService>(
       () => _i815.GlobalLocationService(),
     );
+    gh.lazySingleton<_i845.GoogleAccountLoginService>(
+      () => _i845.GoogleAccountLoginService(),
+    );
     gh.factory<_i1035.NetworkInfo>(() => _i1035.NetworkInfoImpl());
     gh.lazySingleton<_i1059.OnBoardingCubit>(
       () => _i1059.OnBoardingCubit(gh<_i460.SharedPreferences>()),
@@ -179,12 +182,6 @@ extension GetItInjectableX on _i174.GetIt {
           _i946.AppleAccountLoginService(firebaseAuth: gh<_i59.FirebaseAuth>()),
     );
     gh.factory<_i620.DeviceHelper>(() => _i620.DeviceHelperImpl());
-    gh.lazySingleton<_i845.GoogleAccountLoginService>(
-      () => _i845.GoogleAccountLoginService(
-        googleSignIn: gh<_i116.GoogleSignIn>(),
-        firebaseAuth: gh<_i59.FirebaseAuth>(),
-      ),
-    );
     gh.factory<_i734.TokenRepository>(
       () => _i734.TokenRepositoryImp(
         secureStorage: gh<_i558.FlutterSecureStorage>(),

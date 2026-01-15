@@ -248,8 +248,8 @@ class _SubdivisionCard extends StatelessWidget {
                     Expanded(
                       child: AppText(
                         text: subdivision.title ?? '',
-                        textSize: 12,
-                        fontWeight: FontWeight.w600,
+                        textSize: 10,
+                        fontWeight: FontWeight.w500,
                         maxLines: 2,
                       ),
                     ),
@@ -305,7 +305,7 @@ class _SubdivisionCard extends StatelessWidget {
                 AllProductsRoute(
                   title: subdivision.title ?? '',
                   initialParams: ProductParams(
-                    categoryId: subdivision.id,
+                    divisionId: subdivision.id,
                   ),
                 ),
               );

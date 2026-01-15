@@ -35,8 +35,7 @@ class InsuranceProfileScreen extends StatelessWidget {
             if (data.hasProfile) {
               return InsuranceProfileView(
                 profile: data.profile!,
-                onEdit: () =>
-                    _navigateToEdit(context: context, model: data.profile!),
+                onEdit: () => _navigateToEdit(context: context, model: data.profile!),
               );
             }
 

@@ -113,7 +113,7 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
                   ),
                   if (displayBranch != null)
                     InkWell(
-                      onTap: () => _openLocationInMaps(
+                      onTap: () => OrderHelper().openLocationInMaps(
                         lat: displayBranch.latitude ?? 0,
                         lon: displayBranch.longitude ?? 0,
                       ),
@@ -216,16 +216,4 @@ class _PharmacyPickupDesignState extends State<PharmacyPickupDesign> {
     );
   }
 
-  Future<void> _openLocationInMaps({
-    required double lat,
-    required double lon,
-  }) async {
-    final Uri url = Uri.parse(
-      'https://www.google.com/maps/search/?api=1&query=$lat,$lon',
-    );
-
-    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      throw 'Could not open Google Maps';
-    }
-  }
 }

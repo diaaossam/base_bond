@@ -72,6 +72,13 @@ class BranchCardDesign extends StatelessWidget {
                         maxLines: 2,
                       ),
                       SizedBox(height: 4.h),
+                      AppText(
+                        text: branch.address ?? '',
+                        fontWeight: FontWeight.w600,
+                        color: context.colorScheme.shadow,
+                        textSize: 9,
+                        maxLines: 2,
+                      ),
                     ],
                   ),
                 ),

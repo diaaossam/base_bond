@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +19,12 @@ class SocialButtonDesign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SocialLoginBloc, BaseState>(
+    return BlocConsumer<SocialLoginBloc, BaseState>(
+      listener: (context, state) {
+        if(state.isSuccess){
+          context.router.pushAndPopUntil(MainLayoutRoute(), predicate: (route) => false,);
+        }
+      },
       builder: (context, state) {
         final bloc = context.read<SocialLoginBloc>();
         return Column(
@@ -49,12 +58,15 @@ class SocialButtonDesign extends StatelessWidget {
                   bloc: bloc,
                   context: context,
                 ),
-                20.verticalSpace,
-                socialButton(
-                  socialEnum: SocialEnum.apple,
-                  bloc: bloc,
-                  context: context,
-                ),
+                if(Platform.isIOS)...[
+                  20.verticalSpace,
+                  socialButton(
+                    socialEnum: SocialEnum.apple,
+                    bloc: bloc,
+                    context: context,
+                  ),
+                ]
+
               ],
             ),
           ],

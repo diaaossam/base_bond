@@ -55,9 +55,13 @@ class ProductRepositoryImpl with ApiHandlerMixin {
 
   Future<Either<Failure, List<GenericModel>>> getSubDivision({
     required num id,
+    required num categoryId,
   }) async {
     final response = await handleApi(
-      () => productRemoteDataSource.getSubDivision(id: id),
+      () => productRemoteDataSource.getSubDivision(
+        id: id,
+        categoryId: categoryId,
+      ),
     );
     return response;
   }
@@ -77,6 +81,13 @@ class ProductRepositoryImpl with ApiHandlerMixin {
   Future<Either<Failure, List<ProductModel>>> getWishList() async {
     final response = await handleApi(
       () => productRemoteDataSource.getWishList(),
+    );
+    return response;
+  }
+
+  Future<Either<Failure, Unit>> notifyWhenAvailable(num productId) async {
+    final response = await handleApi(
+      () => productRemoteDataSource.notifyWhenAvailable(productId),
     );
     return response;
   }

@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "activeSubstance": MessageLookupByLibrary.simpleMessage("المادة الفعالة"),
+    "activeSubstance": MessageLookupByLibrary.simpleMessage(
+      "Active Substances",
+    ),
     "activeSubstances": MessageLookupByLibrary.simpleMessage(
       "Active Substances",
     ),
@@ -32,14 +34,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "addComment": MessageLookupByLibrary.simpleMessage(
       "Add a comment (optional)",
     ),
-    "addNewAddress": MessageLookupByLibrary.simpleMessage("إضافة عنوان جديد"),
+    "addNewAddress": MessageLookupByLibrary.simpleMessage("Add New Address"),
     "addNote": MessageLookupByLibrary.simpleMessage("Add Note"),
     "addNoteHint": MessageLookupByLibrary.simpleMessage(
       "Add a note to the order",
     ),
-    "addToCart": MessageLookupByLibrary.simpleMessage("إضافة إلي السلة"),
+    "addToCart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
     "additionalNotes": MessageLookupByLibrary.simpleMessage("Additional Notes"),
-    "address": MessageLookupByLibrary.simpleMessage("العنوان"),
+    "address": MessageLookupByLibrary.simpleMessage("Address"),
     "addressDeleted": MessageLookupByLibrary.simpleMessage(
       "Address deleted successfully",
     ),
@@ -55,18 +57,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "allActiveSubstances": MessageLookupByLibrary.simpleMessage(
       "All Active Substances",
     ),
-    "allCategories": MessageLookupByLibrary.simpleMessage("جميع الأقسام"),
-    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage("لديك حساب !"),
+    "allCategories": MessageLookupByLibrary.simpleMessage("All Categories"),
+    "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Already have an account?",
+    ),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "applyFilter": MessageLookupByLibrary.simpleMessage("Apply Filter"),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "available": MessageLookupByLibrary.simpleMessage("Available"),
     "availableQuantity": MessageLookupByLibrary.simpleMessage(
-      "الكمية المتاحة فقط ",
+      "Available quantity only",
     ),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
-    "backToLogin": MessageLookupByLibrary.simpleMessage("العودة لتسجيل الدخول"),
-    "bestSellers": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
+    "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
+    "bestSellers": MessageLookupByLibrary.simpleMessage("Best Sellers"),
     "boardingDescription1": MessageLookupByLibrary.simpleMessage(
       "Discover thousands of products and choose what suits you quickly and easily from anywhere.",
     ),
@@ -83,47 +87,53 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "brand": MessageLookupByLibrary.simpleMessage("Brand"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-    "cancelOrder": MessageLookupByLibrary.simpleMessage("إلغاء الطلب"),
+    "cancelOrder": MessageLookupByLibrary.simpleMessage("Cancel Order"),
     "cancelOrderConfirm": MessageLookupByLibrary.simpleMessage(
-      "هل أنت متأكد من إلغاء الطلب ؟",
+      "Are you sure you want to cancel the order?",
     ),
-    "canceled": MessageLookupByLibrary.simpleMessage("ملغي"),
-    "canceled_desc": MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب"),
-    "cart": MessageLookupByLibrary.simpleMessage("السلة"),
-    "cash": MessageLookupByLibrary.simpleMessage("نقدي"),
-    "categories": MessageLookupByLibrary.simpleMessage("التصنيفات"),
+    "canceled": MessageLookupByLibrary.simpleMessage("Canceled"),
+    "canceled_desc": MessageLookupByLibrary.simpleMessage(
+      "The order has been canceled",
+    ),
+    "cart": MessageLookupByLibrary.simpleMessage("Cart"),
+    "cash": MessageLookupByLibrary.simpleMessage("Cash"),
+    "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
     "changeProfilePicture": MessageLookupByLibrary.simpleMessage(
       "Change Profile Picture",
     ),
-    "chooseAnotherBranch": MessageLookupByLibrary.simpleMessage("اختر فرع آخر"),
+    "chooseAnotherBranch": MessageLookupByLibrary.simpleMessage(
+      "Choose Another Branch",
+    ),
     "chooseFromGallery": MessageLookupByLibrary.simpleMessage(
       "Choose From Gallery",
     ),
     "chooseFromGallery1": MessageLookupByLibrary.simpleMessage("Choose Image"),
     "chooseFromGallery2": MessageLookupByLibrary.simpleMessage("Choose video"),
     "choosePharmacyBranch": MessageLookupByLibrary.simpleMessage(
-      "اختر فرع الصيدلية",
+      "Choose Pharmacy Branch",
     ),
     "clickToReplacePoints": MessageLookupByLibrary.simpleMessage(
       "Click to replace points",
     ),
     "cm": MessageLookupByLibrary.simpleMessage("cm"),
-    "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
+    "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirmOrder": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to place this order?",
     ),
     "confirmOrderTitle": MessageLookupByLibrary.simpleMessage("Confirm Order"),
-    "confirmed": MessageLookupByLibrary.simpleMessage("تم التأكيد"),
+    "confirmed": MessageLookupByLibrary.simpleMessage("Confirmed"),
     "confirmed_desc": MessageLookupByLibrary.simpleMessage(
-      "تم تأكيد طلبك وجاري تجهيزه",
+      "Your order has been confirmed and is being prepared",
     ),
-    "copy": MessageLookupByLibrary.simpleMessage("نسخ"),
-    "createFile": MessageLookupByLibrary.simpleMessage("إنشاء ملف تأمينى"),
+    "copy": MessageLookupByLibrary.simpleMessage("Copy"),
+    "createFile": MessageLookupByLibrary.simpleMessage("Create Insurance File"),
     "createInsuranceProfile": MessageLookupByLibrary.simpleMessage(
       "Create Insurance Profile",
     ),
-    "createNewAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+    "createNewAccount": MessageLookupByLibrary.simpleMessage(
+      "Create New Account",
+    ),
     "createNewTicket": MessageLookupByLibrary.simpleMessage(
       "Create New Ticket",
     ),
@@ -132,58 +142,65 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tap + to create a new support ticket and contact our customer service team",
     ),
     "create_insurance_profile_button": MessageLookupByLibrary.simpleMessage(
-      "إنشاء ملف تأميني",
+      "Create Insurance Profile",
     ),
     "currentPrice": MessageLookupByLibrary.simpleMessage("Current Price"),
     "currentStatus": MessageLookupByLibrary.simpleMessage("Current"),
     "customCompanyName": MessageLookupByLibrary.simpleMessage("Company Name"),
-    "customerSupport": MessageLookupByLibrary.simpleMessage("الدعم الفني"),
-    "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
+    "customerSupport": MessageLookupByLibrary.simpleMessage("Customer Support"),
+    "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("Default Address"),
-    "deleiverd": MessageLookupByLibrary.simpleMessage("تم التوصيل"),
-    "deleiveryType": MessageLookupByLibrary.simpleMessage("طريقة التوصيل"),
+    "deleiverd": MessageLookupByLibrary.simpleMessage("Delivered"),
+    "deleiveryType": MessageLookupByLibrary.simpleMessage("Delivery Method"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteAddress": MessageLookupByLibrary.simpleMessage("Delete Address"),
     "deleteAddressConfirm": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this address?",
     ),
     "delivered_desc": MessageLookupByLibrary.simpleMessage(
-      "تم توصيل طلبك بنجاح",
+      "Your order has been delivered successfully",
     ),
     "deliveryMethod": MessageLookupByLibrary.simpleMessage("Delivery Method"),
-    "description": MessageLookupByLibrary.simpleMessage("الوصف"),
-    "details": MessageLookupByLibrary.simpleMessage("التفاصيل"),
+    "description": MessageLookupByLibrary.simpleMessage("Description"),
+    "details": MessageLookupByLibrary.simpleMessage("Details"),
     "dimensions": MessageLookupByLibrary.simpleMessage("Dimensions"),
-    "discount": MessageLookupByLibrary.simpleMessage("خصم"),
+    "discount": MessageLookupByLibrary.simpleMessage("Discount"),
     "discountApplied": MessageLookupByLibrary.simpleMessage(
       "Discount applied successfully",
     ),
+    "division": MessageLookupByLibrary.simpleMessage("Division"),
     "doYouHaveDiscount": MessageLookupByLibrary.simpleMessage(
       "Do you have a discount code?",
     ),
     "doYouHaveDiscountHint": MessageLookupByLibrary.simpleMessage(
       "Enter discount code",
     ),
-    "doneSelected": MessageLookupByLibrary.simpleMessage("تم الاختيار ✓"),
-    "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب !"),
-    "dontReceiveCode": MessageLookupByLibrary.simpleMessage("لم يصلك الرمز ؟"),
-    "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
+    "doneSelected": MessageLookupByLibrary.simpleMessage("Selected ✓"),
+    "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Don’t have an account?",
+    ),
+    "dontReceiveCode": MessageLookupByLibrary.simpleMessage(
+      "Didn’t receive the code?",
+    ),
+    "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "editAddress": MessageLookupByLibrary.simpleMessage("Edit Address"),
-    "editFile": MessageLookupByLibrary.simpleMessage("تعديل الملف التأميني"),
+    "editFile": MessageLookupByLibrary.simpleMessage("Edit Insurance File"),
     "editInsuranceProfile": MessageLookupByLibrary.simpleMessage(
       "Edit Insurance Profile",
     ),
-    "egp": MessageLookupByLibrary.simpleMessage("ج.م"),
-    "email": MessageLookupByLibrary.simpleMessage("البريد الإلكترونى"),
+    "egp": MessageLookupByLibrary.simpleMessage("EGP"),
+    "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailValidation": MessageLookupByLibrary.simpleMessage(
-      "البريد الإلكتروني غير صالح",
+      "Invalid email address",
     ),
-    "emptyBranches": MessageLookupByLibrary.simpleMessage("لا توجد فروع متاحة"),
+    "emptyBranches": MessageLookupByLibrary.simpleMessage(
+      "No Available Branches",
+    ),
     "emptyCartHint": MessageLookupByLibrary.simpleMessage(
-      "سلة المشتريات الخاصه بك فارغه قم بإضافة منتجات اولاً",
+      "Your shopping cart is empty. Please add products first.",
     ),
     "emptyWishHint": MessageLookupByLibrary.simpleMessage(
-      "قائمة المنتجات الفضلة الخاصه بك فارغه قم بإضافة منتجات اولاً",
+      "Your favorites list is empty. Please add products first.",
     ),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "enterAddressDetails": MessageLookupByLibrary.simpleMessage(
@@ -193,7 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Enter company name",
     ),
     "enterEmailToReset": MessageLookupByLibrary.simpleMessage(
-      "أدخل بريدك الإلكتروني المسجل وسنرسل لك رمز التحقق",
+      "Enter your registered email and we’ll send you a verification code",
     ),
     "enterInsuranceNumber": MessageLookupByLibrary.simpleMessage(
       "Enter insurance number",
@@ -201,7 +218,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterNotes": MessageLookupByLibrary.simpleMessage(
       "Enter additional notes (optional)",
     ),
-    "enterOtpCode": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق"),
+    "enterOtpCode": MessageLookupByLibrary.simpleMessage(
+      "Enter verification code",
+    ),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("Bad Request"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
       "Bad response from server",
@@ -220,42 +239,44 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_unauthorized": MessageLookupByLibrary.simpleMessage(
       "Unauthorized access",
     ),
-    "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
+    "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
     "featured": MessageLookupByLibrary.simpleMessage("Featured"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
-    "forgetPassword": MessageLookupByLibrary.simpleMessage(
-      "نسيت كلمة المرور ؟",
-    ),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "forgotPasswordBody": MessageLookupByLibrary.simpleMessage(
-      "أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور",
+      "Enter your email to reset your password",
     ),
     "freeDeleivery": MessageLookupByLibrary.simpleMessage("Free Delivery"),
     "from": MessageLookupByLibrary.simpleMessage("From"),
-    "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
-    "goToCart": MessageLookupByLibrary.simpleMessage("الذهاب إلي السلة"),
+    "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
+    "goToCart": MessageLookupByLibrary.simpleMessage("Go to Cart"),
     "goToHome": MessageLookupByLibrary.simpleMessage("Go to Home"),
-    "governorate": MessageLookupByLibrary.simpleMessage("المحافظة"),
+    "governorate": MessageLookupByLibrary.simpleMessage("Governorate"),
     "guest": MessageLookupByLibrary.simpleMessage("Guest"),
     "guestLogin": MessageLookupByLibrary.simpleMessage(
       "Sorry, this feature requires login. Please log in to continue enjoying all the app\'s features.",
     ),
     "hideRating": MessageLookupByLibrary.simpleMessage("Hide Rating"),
-    "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "home": MessageLookupByLibrary.simpleMessage("Home"),
     "homeDelivery": MessageLookupByLibrary.simpleMessage("Home Delivery"),
     "idCard": MessageLookupByLibrary.simpleMessage("ID Card"),
     "idCardBack": MessageLookupByLibrary.simpleMessage("ID Card Back"),
     "idCardFront": MessageLookupByLibrary.simpleMessage("ID Card Front"),
     "id_card_back_hint": MessageLookupByLibrary.simpleMessage(
-      "اضغط لتصوير ظهر البطاقة الشخصية",
+      "Tap to capture the back of your ID card",
     ),
-    "id_card_back_title": MessageLookupByLibrary.simpleMessage("ظهر البطاقة"),
+    "id_card_back_title": MessageLookupByLibrary.simpleMessage("ID Card Back"),
     "id_card_front_hint": MessageLookupByLibrary.simpleMessage(
-      "اضغط لتصوير وجه البطاقة الشخصية",
+      "Tap to capture the front of your ID card",
     ),
-    "id_card_front_title": MessageLookupByLibrary.simpleMessage("وجه البطاقة"),
+    "id_card_front_title": MessageLookupByLibrary.simpleMessage(
+      "ID Card Front",
+    ),
     "imageSelected": MessageLookupByLibrary.simpleMessage("Selected"),
-    "inProgress": MessageLookupByLibrary.simpleMessage("تحت المعالجة"),
-    "inProgress_desc": MessageLookupByLibrary.simpleMessage("جاري تجهيز طلبك"),
+    "inProgress": MessageLookupByLibrary.simpleMessage("In Progress"),
+    "inProgress_desc": MessageLookupByLibrary.simpleMessage(
+      "Your order is being prepared",
+    ),
     "insuranceCard": MessageLookupByLibrary.simpleMessage("Insurance Card"),
     "insuranceCardBack": MessageLookupByLibrary.simpleMessage(
       "Insurance Card Back",
@@ -267,7 +288,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Insurance Company",
     ),
     "insuranceNumber": MessageLookupByLibrary.simpleMessage("Insurance Number"),
-    "insuranceOrders": MessageLookupByLibrary.simpleMessage("طلبات التأمين"),
+    "insuranceOrders": MessageLookupByLibrary.simpleMessage("Insurance Orders"),
     "insuranceProfile": MessageLookupByLibrary.simpleMessage(
       "Insurance Profile",
     ),
@@ -278,120 +299,122 @@ class MessageLookup extends MessageLookupByLibrary {
       "Insurance profile updated successfully",
     ),
     "insuranceProfileValidation": MessageLookupByLibrary.simpleMessage(
-      "الملف التأمينى مطلوب",
+      "Insurance profile is required",
     ),
     "insurance_card_back_hint": MessageLookupByLibrary.simpleMessage(
-      "اضغط لتصوير ظهر بطاقة التأمين",
+      "Tap to capture the back of the insurance card",
     ),
     "insurance_card_back_title": MessageLookupByLibrary.simpleMessage(
-      "ظهر بطاقة التأمين",
+      "Insurance Card Back",
     ),
     "insurance_card_front_hint": MessageLookupByLibrary.simpleMessage(
-      "اضغط لتصوير وجه بطاقة التأمين",
+      "Tap to capture the front of the insurance card",
     ),
     "insurance_card_front_title": MessageLookupByLibrary.simpleMessage(
-      "وجه بطاقة التأمين",
+      "Insurance Card Front",
     ),
     "insurance_card_section_title": MessageLookupByLibrary.simpleMessage(
-      "بطاقة التأمين",
+      "Insurance Card",
     ),
     "insurance_feature_coverage": MessageLookupByLibrary.simpleMessage(
-      "تغطية تأمينية شاملة",
+      "Comprehensive Insurance Coverage",
     ),
     "insurance_feature_discount": MessageLookupByLibrary.simpleMessage(
-      "خصومات على الأدوية",
+      "Discounts on Medications",
     ),
     "insurance_feature_tracking": MessageLookupByLibrary.simpleMessage(
-      "متابعة طلباتك بسهولة",
+      "Easily Track Your Orders",
     ),
     "invoice": MessageLookupByLibrary.simpleMessage("Invoice"),
     "iqd": MessageLookupByLibrary.simpleMessage("IQD"),
     "kg": MessageLookupByLibrary.simpleMessage("kg"),
-    "km": MessageLookupByLibrary.simpleMessage("كم"),
-    "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+    "km": MessageLookupByLibrary.simpleMessage("km"),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
     "languageHint": MessageLookupByLibrary.simpleMessage(
-      "اختر لغة التطبيق المفضلة",
+      "Choose your preferred app language",
     ),
-    "lightMode": MessageLookupByLibrary.simpleMessage("الوضع النهارى"),
-    "loading": MessageLookupByLibrary.simpleMessage("جارى التحميل"),
-    "loadingText": MessageLookupByLibrary.simpleMessage("جاري التحميل..."),
-    "locationOnMap": MessageLookupByLibrary.simpleMessage(
-      "العنوان علي الخريطة",
-    ),
+    "lightMode": MessageLookupByLibrary.simpleMessage("Light Mode"),
+    "loading": MessageLookupByLibrary.simpleMessage("Loading"),
+    "loadingText": MessageLookupByLibrary.simpleMessage("Loading..."),
+    "locationOnMap": MessageLookupByLibrary.simpleMessage("Location on Map"),
     "locationPickedSuccessFully": MessageLookupByLibrary.simpleMessage(
-      "تم حفظ العنوان بنجاح",
+      "Address saved successfully",
     ),
     "locationValidation": MessageLookupByLibrary.simpleMessage(
       "Please add a delivery address",
     ),
-    "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
-    "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-    "loginAsGuest": MessageLookupByLibrary.simpleMessage("الدخول كزائر"),
+    "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginAsGuest": MessageLookupByLibrary.simpleMessage("Continue as Guest"),
     "loginBody": MessageLookupByLibrary.simpleMessage(
-      "أدخل رقم هاتفك لتسجيل الدخول",
+      "Enter your phone number to log in",
     ),
-    "loginTitle": MessageLookupByLibrary.simpleMessage(
-      "سعداء بعودتك من جديد !",
-    ),
-    "loginViaApple": MessageLookupByLibrary.simpleMessage(
-      "تسجيل الدخول عبر أبل",
-    ),
-    "loginViaGoogle": MessageLookupByLibrary.simpleMessage(
-      "تسجيل الدخول عبر جوجل",
-    ),
+    "loginTitle": MessageLookupByLibrary.simpleMessage("Welcome back!"),
+    "loginViaApple": MessageLookupByLibrary.simpleMessage("Login with Apple"),
+    "loginViaGoogle": MessageLookupByLibrary.simpleMessage("Login with Google"),
     "logoutBody": MessageLookupByLibrary.simpleMessage(
-      "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+      "Are you sure you want to log out?",
     ),
     "makeDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
     "maxPrice": MessageLookupByLibrary.simpleMessage("Max Price"),
     "minPrice": MessageLookupByLibrary.simpleMessage("Min Price"),
-    "mode": MessageLookupByLibrary.simpleMessage("الوضع"),
+    "mode": MessageLookupByLibrary.simpleMessage("Mode"),
     "myAddresses": MessageLookupByLibrary.simpleMessage("My Addresses"),
-    "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
-    "myPoints": MessageLookupByLibrary.simpleMessage("نقاطي"),
-    "nationalId": MessageLookupByLibrary.simpleMessage("البطاقة الشخصية"),
-    "nearest": MessageLookupByLibrary.simpleMessage("الأقرب"),
-    "newArrivals": MessageLookupByLibrary.simpleMessage("وصل حديثاً"),
-    "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+    "myOrders": MessageLookupByLibrary.simpleMessage("My Orders"),
+    "myPoints": MessageLookupByLibrary.simpleMessage("My Points"),
+    "nationalId": MessageLookupByLibrary.simpleMessage("National ID"),
+    "nearest": MessageLookupByLibrary.simpleMessage("Nearest"),
+    "newArrivals": MessageLookupByLibrary.simpleMessage("New Arrivals"),
+    "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
     "noCart": MessageLookupByLibrary.simpleMessage("Cart is empty"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "No Data Found , please try again later",
     ),
-    "noDescription": MessageLookupByLibrary.simpleMessage("لا يوجد وصف متاح"),
+    "noDescription": MessageLookupByLibrary.simpleMessage(
+      "No description available",
+    ),
     "noInsuranceProfile": MessageLookupByLibrary.simpleMessage(
       "No Insurance Profile",
     ),
     "noInsuranceProfileHint": MessageLookupByLibrary.simpleMessage(
       "Create your insurance profile now to benefit from health insurance services and get exclusive discounts",
     ),
-    "noLocation": MessageLookupByLibrary.simpleMessage("لا توجد عناوين محفوظة"),
+    "noLocation": MessageLookupByLibrary.simpleMessage("No saved addresses"),
     "noNotificationBody": MessageLookupByLibrary.simpleMessage(
-      "ستظهر إشعاراتك هنا عندما تصلك",
+      "Your notifications will appear here when you receive them",
     ),
     "noNotificationTitle": MessageLookupByLibrary.simpleMessage(
-      "لا توجد إشعارات",
+      "No Notifications",
     ),
-    "noOrdersFound": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
+    "noOrdersFound": MessageLookupByLibrary.simpleMessage("No orders found"),
     "noProductsBody": MessageLookupByLibrary.simpleMessage(
-      "لا يوجد منتجات مطابقة هنا",
+      "No matching products found",
     ),
-    "noProductsTitle": MessageLookupByLibrary.simpleMessage("لا توجد منتجات"),
+    "noProductsTitle": MessageLookupByLibrary.simpleMessage("No Products"),
     "noTicketsBody": MessageLookupByLibrary.simpleMessage(
       "You haven\'t created any support tickets yet. Tap the button below to contact our support team",
     ),
     "noTicketsTitle": MessageLookupByLibrary.simpleMessage(
       "No Support Tickets",
     ),
-    "noWithList": MessageLookupByLibrary.simpleMessage("قائمة المفضلة فارغة"),
+    "noWithList": MessageLookupByLibrary.simpleMessage(
+      "Favorites list is empty",
+    ),
     "no_insurance_profile_description": MessageLookupByLibrary.simpleMessage(
-      "أنشئ ملفك التأميني الآن للاستفادة من خدمات التأمين الصحي والحصول على خصومات حصرية",
+      "Create your insurance profile now to benefit from health insurance services and get exclusive discounts",
     ),
     "no_insurance_profile_title": MessageLookupByLibrary.simpleMessage(
-      "لا يوجد ملف تأميني",
+      "No Insurance Profile",
     ),
     "notAvailable": MessageLookupByLibrary.simpleMessage("Not Available"),
-    "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
-    "or": MessageLookupByLibrary.simpleMessage("أو"),
+    "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "notifyWhenAvailable": MessageLookupByLibrary.simpleMessage(
+      "Notify me when available",
+    ),
+    "notifyWhenAvailableSuccess": MessageLookupByLibrary.simpleMessage(
+      "We will notify you when the product is available",
+    ),
+    "or": MessageLookupByLibrary.simpleMessage("Or"),
     "orderCanceled": MessageLookupByLibrary.simpleMessage(
       "Order has been canceled",
     ),
@@ -415,31 +438,34 @@ class MessageLookup extends MessageLookupByLibrary {
       "Order has been returned",
     ),
     "orderWithYourInsurance": MessageLookupByLibrary.simpleMessage(
-      "اطلب بالتأمين الخاص بك",
+      "Request with your insurance",
     ),
     "otherCompany": MessageLookupByLibrary.simpleMessage("Other"),
     "otpBody": MessageLookupByLibrary.simpleMessage(
-      "قمنا بإرسال رمز مُكوّن من 6 أرقام إلى بريدك الإلكترونى",
+      "We’ve sent a 6-digit code to your email address",
     ),
-    "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
-    "ourServices": MessageLookupByLibrary.simpleMessage("خدماتنا"),
-    "outForDeleivery": MessageLookupByLibrary.simpleMessage("خرج للتوصيل"),
+    "otpTitle": MessageLookupByLibrary.simpleMessage(
+      "Enter Verification Code (OTP)",
+    ),
+    "ourBranches": MessageLookupByLibrary.simpleMessage("فروعنا"),
+    "ourServices": MessageLookupByLibrary.simpleMessage("Our Services"),
+    "outForDeleivery": MessageLookupByLibrary.simpleMessage("Out for Delivery"),
     "outForDelivery_desc": MessageLookupByLibrary.simpleMessage(
-      "طلبك في الطريق إليك",
+      "Your order is on the way",
     ),
     "outOfStock": MessageLookupByLibrary.simpleMessage("Out of Stock"),
     "outOfStock1": MessageLookupByLibrary.simpleMessage(
       "One of the products is out of stock",
     ),
-    "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordConfirmation": MessageLookupByLibrary.simpleMessage(
-      "تأكيد كلمة المرور",
+      "Confirm Password",
     ),
     "passwordLengthValidation": MessageLookupByLibrary.simpleMessage(
-      "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+      "Password must be at least 6 characters long",
     ),
     "passwordValidation": MessageLookupByLibrary.simpleMessage(
-      "كلمة المرور وتأكيد كلمة المرور غير متطابقتين",
+      "Password and confirmation do not match",
     ),
     "paymentType": MessageLookupByLibrary.simpleMessage("Payment Method"),
     "paymentValidation": MessageLookupByLibrary.simpleMessage(
@@ -454,12 +480,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
     "placeOrder": MessageLookupByLibrary.simpleMessage("Place Order"),
+    "pleaseSelectAddress": MessageLookupByLibrary.simpleMessage(
+      "Please select an address",
+    ),
     "pleaseSelectRating": MessageLookupByLibrary.simpleMessage(
       "Please select a rating",
     ),
-    "point": MessageLookupByLibrary.simpleMessage("نقطة"),
+    "point": MessageLookupByLibrary.simpleMessage("Point"),
     "pointHint": MessageLookupByLibrary.simpleMessage(
-      "استخدم هذا الكود لإستخدام نقاطك",
+      "Use this code to redeem your points",
     ),
     "preparingOrder": MessageLookupByLibrary.simpleMessage(
       "Preparing your order",
@@ -478,7 +507,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Prescription Order",
     ),
     "prescriptionOrders": MessageLookupByLibrary.simpleMessage(
-      "طلبات الروشتات",
+      "Prescription Orders",
     ),
     "prescriptionRequired": MessageLookupByLibrary.simpleMessage(
       "Please upload prescription image",
@@ -490,8 +519,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Order your medicines easily",
     ),
     "priceRange": MessageLookupByLibrary.simpleMessage("Price Range"),
-    "privacyPolicy": MessageLookupByLibrary.simpleMessage("شروط الخصوصية"),
-    "productDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
+    "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "productDetails": MessageLookupByLibrary.simpleMessage("Product Details"),
     "productInfo": MessageLookupByLibrary.simpleMessage("Product Information"),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
@@ -504,30 +533,32 @@ class MessageLookup extends MessageLookupByLibrary {
     "ratingError": MessageLookupByLibrary.simpleMessage(
       "Error submitting rating",
     ),
-    "recommendedProducts": MessageLookupByLibrary.simpleMessage("موصي بها"),
-    "region": MessageLookupByLibrary.simpleMessage("المنطقة"),
-    "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
+    "recommendedProducts": MessageLookupByLibrary.simpleMessage("Recommended"),
+    "region": MessageLookupByLibrary.simpleMessage("Region"),
+    "register": MessageLookupByLibrary.simpleMessage("Register"),
     "registerBody": MessageLookupByLibrary.simpleMessage(
-      "خطوات سريعة فقط… لتبدأ رحلتك معنا",
+      "Just a few quick steps to start your journey with us",
     ),
-    "registerTitle": MessageLookupByLibrary.simpleMessage("سعداء بانضمامك!"),
-    "resendCode": MessageLookupByLibrary.simpleMessage("إعاده الإرسال"),
+    "registerTitle": MessageLookupByLibrary.simpleMessage(
+      "We’re happy to have you with us!",
+    ),
+    "resendCode": MessageLookupByLibrary.simpleMessage("Resend"),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
-    "resetPassword": MessageLookupByLibrary.simpleMessage(
-      "إعادة تعيين كلمة المرور",
-    ),
+    "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "resetPasswordBody": MessageLookupByLibrary.simpleMessage(
-      "أدخل رمز التحقق وكلمة المرور الجديدة",
+      "Enter the verification code and your new password",
     ),
-    "returns": MessageLookupByLibrary.simpleMessage("مسترجع"),
-    "returns_desc": MessageLookupByLibrary.simpleMessage("تم إرجاع الطلب"),
+    "returns": MessageLookupByLibrary.simpleMessage("Returned"),
+    "returns_desc": MessageLookupByLibrary.simpleMessage(
+      "The order has been returned",
+    ),
     "reviewingOrder": MessageLookupByLibrary.simpleMessage(
       "Reviewing your order",
     ),
     "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
-    "saveLocation": MessageLookupByLibrary.simpleMessage("حفظ العنوان"),
+    "saveLocation": MessageLookupByLibrary.simpleMessage("Save Address"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search ... "),
-    "seeAll": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
+    "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
     "selectInsuranceCompany": MessageLookupByLibrary.simpleMessage(
       "Select Insurance Company",
     ),
@@ -536,13 +567,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectSortMethod": MessageLookupByLibrary.simpleMessage(
       "Select Sort Method",
     ),
-    "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
-    "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+    "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "shippingCost": MessageLookupByLibrary.simpleMessage("Shipping Cost"),
-    "showLess": MessageLookupByLibrary.simpleMessage("عرض أقل"),
-    "showMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
+    "showLess": MessageLookupByLibrary.simpleMessage("Show Less"),
+    "showMore": MessageLookupByLibrary.simpleMessage("Show More"),
     "sku": MessageLookupByLibrary.simpleMessage("SKU"),
-    "somethingWentWrong": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
+    "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong",
+    ),
     "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
     "sortNewest": MessageLookupByLibrary.simpleMessage("Newest"),
     "sortOldest": MessageLookupByLibrary.simpleMessage("Oldest"),
@@ -558,12 +591,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
     "stock": MessageLookupByLibrary.simpleMessage("Stock"),
+    "subCategory": MessageLookupByLibrary.simpleMessage("Sub Category"),
     "submitPrescription": MessageLookupByLibrary.simpleMessage("Submit Order"),
     "submitRating": MessageLookupByLibrary.simpleMessage("Submit Rating"),
-    "supportTeam": MessageLookupByLibrary.simpleMessage("فريق الدعم"),
+    "supportTeam": MessageLookupByLibrary.simpleMessage("Support Team"),
     "supportTickets": MessageLookupByLibrary.simpleMessage("Support Tickets"),
     "tapToCapture": MessageLookupByLibrary.simpleMessage("Tap to capture"),
-    "termsAndCon": MessageLookupByLibrary.simpleMessage("سياسة الإستخدام"),
+    "termsAndCon": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
     "thankYouForRating": MessageLookupByLibrary.simpleMessage(
       "Thank you for rating!",
     ),
@@ -583,12 +617,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "to": MessageLookupByLibrary.simpleMessage("To"),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "totalPrice": MessageLookupByLibrary.simpleMessage("Total Price"),
-    "trackOnMap": MessageLookupByLibrary.simpleMessage("تتبع علي الخريطة"),
+    "trackOnMap": MessageLookupByLibrary.simpleMessage("Track on Map"),
     "trackOrder": MessageLookupByLibrary.simpleMessage("Track Order"),
     "typeMessage": MessageLookupByLibrary.simpleMessage("Type your message..."),
-    "underReview": MessageLookupByLibrary.simpleMessage("تحت المراجعة"),
+    "underReview": MessageLookupByLibrary.simpleMessage("Under Review"),
     "underReview_desc": MessageLookupByLibrary.simpleMessage(
-      "جاري مراجعة طلبك",
+      "Your order is under review",
     ),
     "updateBody": MessageLookupByLibrary.simpleMessage(
       "A new version of the app has been released with important improvements and fixes.",
@@ -612,10 +646,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewConversation": MessageLookupByLibrary.simpleMessage(
       "View Conversation",
     ),
-    "visa": MessageLookupByLibrary.simpleMessage("بطاقة إلكترونية"),
+    "visa": MessageLookupByLibrary.simpleMessage("Card"),
     "weight": MessageLookupByLibrary.simpleMessage("Weight"),
-    "welcome": MessageLookupByLibrary.simpleMessage("مرحباً بك"),
-    "youHave": MessageLookupByLibrary.simpleMessage("لديك"),
+    "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
+    "youHave": MessageLookupByLibrary.simpleMessage("You have"),
     "youWillWin": MessageLookupByLibrary.simpleMessage("You will get"),
     "youWillWin2": MessageLookupByLibrary.simpleMessage("points"),
   };

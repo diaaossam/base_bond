@@ -29,6 +29,8 @@ class MyApp extends StatelessWidget {
                 minTextAdapt: true,
                 splitScreenMode: true,
                 child: MaterialApp.router(
+                  scaffoldMessengerKey: NavigationService.navigatorKey,
+
                   routerConfig: _appRouter.config(navigatorObservers: () => []),
                   title: AppStrings.appName,
                   builder: (context, child) {
@@ -52,7 +54,6 @@ class MyApp extends StatelessWidget {
                     GlobalCupertinoLocalizations.delegate,
                   ],
                   supportedLocales: S.delegate.supportedLocales,
-                  scaffoldMessengerKey: NavigationService.navigatorKey,
                 ),
               );
             },

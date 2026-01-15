@@ -51,12 +51,15 @@ class InfoCardDesign extends StatelessWidget {
                   color: context.colorScheme.primary,
                 ),
               ),
-              child: AppImage.asset(
-                Assets.icons.logo,
-                height: 50.h,
-                width: 50.h,
+              child:ApiConfig.isGuest == true
+                  ? AppImage.asset(Assets.images.logo.path, height: 50, width: 50)
+                  : AppImage.network(
+                height: 50,
+                width: 50,
+                remoteImage: UserDataService().getUserData()?.profileImage,
               ),
             ),
+            10.horizontalSpace,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

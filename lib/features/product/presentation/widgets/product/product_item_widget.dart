@@ -105,7 +105,12 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                             borderRadius: BorderRadius.vertical(
                               top: Radius.circular(16.r),
                             ),
-                            child: AppImage.network(
+                            child: widget.product.featureImage == null || widget.product.featureImage!.isEmpty ?AppImage.asset(
+                              Assets.images.logo.path,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: double.infinity,
+                            )  :AppImage.network(
                               remoteImage: widget.product.featureImage ?? '',
                               fit: BoxFit.cover,
                               width: double.infinity,
@@ -205,7 +210,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                         children: [
                           AppText(
                             text: widget.product.title ?? '',
-                            textSize: 11,
+                            textSize: 10,
                             fontWeight: FontWeight.w500,
                           ),
                           Row(

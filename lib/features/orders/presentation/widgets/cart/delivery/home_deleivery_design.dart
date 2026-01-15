@@ -75,7 +75,56 @@ class HomeDeleiveryDesign extends StatelessWidget {
               },
             )
           else if (defaultAddress == null)
-            SizedBox.shrink()
+            InkWell(
+              onTap: () async {
+                await context.router.push(LocationsRoute()).then((value) {
+                  if (onAddressChanged != null) {
+                    onAddressChanged!(
+                      CommonCaching.defaultAddress ?? defaultAddress!,
+                    );
+                  }
+                });
+              },
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 14.w,
+                  vertical: 8.h,
+                ),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      context.colorScheme.primary.withValues(alpha: 0.15),
+                      context.colorScheme.primary.withValues(alpha: 0.08),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: context.colorScheme.primary.withValues(
+                      alpha: 0.3,
+                    ),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.edit_rounded,
+                      size: 16,
+                      color: context.colorScheme.primary,
+                    ),
+                    6.horizontalSpace,
+                    AppText(
+                      text: context.localizations.edit,
+                      textSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: context.colorScheme.primary,
+                    ),
+                  ],
+                ),
+              ),
+            )
           else
             AnimatedContainer(
               duration: const Duration(milliseconds: 150),

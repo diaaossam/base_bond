@@ -96,7 +96,7 @@ class _ProductFilterBottomSheetState extends State<ProductFilterBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height ,
+      height: MediaQuery.of(context).size.height*0.7 ,
       decoration: BoxDecoration(
         color: context.colorScheme.surface,
         borderRadius: BorderRadius.only(
@@ -125,7 +125,7 @@ class _ProductFilterBottomSheetState extends State<ProductFilterBottomSheet> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CategoryFilterSection(
+                /*  CategoryFilterSection(
                     selectedCategoryId: _filterParams.categoryId,
                     onCategorySelected: (categoryId) {
                       setState(() {
@@ -157,7 +157,7 @@ class _ProductFilterBottomSheetState extends State<ProductFilterBottomSheet> {
                       });
                     },
                   ),
-                  24.verticalSpace,
+                  24.verticalSpace,*/
                   PriceRangeFilterSection(
                     priceFromController: _priceFromController,
                     priceToController: _priceToController,

@@ -9,6 +9,7 @@ import '../../../../../app/data/models/branches_model.dart';
 class BranchSelectionSheet extends StatefulWidget {
   final List<BranchesModel> branches;
   final BranchesModel? selectedBranch;
+  final bool isSheet;
   final Function(BranchesModel) onBranchSelected;
 
   const BranchSelectionSheet({
@@ -16,6 +17,7 @@ class BranchSelectionSheet extends StatefulWidget {
     required this.branches,
     this.selectedBranch,
     required this.onBranchSelected,
+    this.isSheet = true,
   });
 
   @override
@@ -49,27 +51,30 @@ class BranchSelectionSheetState extends State<BranchSelectionSheet> {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          SizedBox(height: 20.h),
-          // Title
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Row(
-              children: [
-                AppText(
-                  text: context.localizations.choosePharmacyBranch,
-                  fontWeight: FontWeight.w700,
-                  textSize: 13,
-                ),
-                Spacer(),
-                IconButton(
-                  icon: Icon(Icons.close_rounded),
-                  onPressed: () => Navigator.pop(context),
-                  color: context.colorScheme.shadow,
-                ),
-              ],
+          if(widget.isSheet)...[
+            SizedBox(height: 20.h),
+            // Title
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Row(
+                children: [
+                  AppText(
+                    text: context.localizations.choosePharmacyBranch,
+                    fontWeight: FontWeight.w700,
+                    textSize: 13,
+                  ),
+                  Spacer(),
+                  IconButton(
+                    icon: Icon(Icons.close_rounded),
+                    onPressed: () => Navigator.pop(context),
+                    color: context.colorScheme.shadow,
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 16.h),
+            SizedBox(height: 16.h),
+          ],
+
           // Branches list
           Flexible(
             child: ListView.builder(
@@ -165,6 +170,14 @@ class _BranchListItem extends StatelessWidget {
                     text: branch.title ?? '',
                     fontWeight: FontWeight.w600,
                     textSize: 11,
+                    maxLines: 2,
+                  ),
+                  SizedBox(height: 4.h),
+                  AppText(
+                    text: branch.address ?? '',
+                    color: context.colorScheme.shadow,
+                    fontWeight: FontWeight.w600,
+                    textSize: 9,
                     maxLines: 2,
                   ),
                   SizedBox(height: 4.h),

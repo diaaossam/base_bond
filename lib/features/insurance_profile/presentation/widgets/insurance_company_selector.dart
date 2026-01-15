@@ -12,6 +12,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 class InsuranceCompanySelector extends StatelessWidget {
   final List<GenericModel> companies;
   final GenericModel? selectedCompany;
+  final void Function(GenericModel?)? onChanged;
   final String? customCompanyName;
   final bool isLoading;
 
@@ -21,6 +22,7 @@ class InsuranceCompanySelector extends StatelessWidget {
     this.selectedCompany,
     this.customCompanyName,
     required this.isLoading,
+    this.onChanged,
   });
 
   @override
@@ -28,21 +30,28 @@ class InsuranceCompanySelector extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionTitleDesign(title: context.localizations.insuranceCompany,icon: Icons.business_outlined,),
+        SectionTitleDesign(
+          title: context.localizations.insuranceCompany,
+          icon: Icons.business_outlined,
+        ),
         12.verticalSpace,
         AppDropDown<GenericModel>(
           name: 'insurance_company',
           hint: context.localizations.selectInsuranceCompany,
           initialValue: selectedCompany,
-          validator:  FormBuilderValidators.required(
+          onChanged: onChanged,
+          validator: FormBuilderValidators.required(
             errorText: context.localizations.validation,
           ),
-          items: companies.map((company) => DropdownMenuItem(
-              value: company,
-              child: AppText(text: company.title ?? ''),
-            ),
-          ).toList(),
-         isLoading: isLoading,
+          items: companies
+              .map(
+                (company) => DropdownMenuItem(
+                  value: company,
+                  child: AppText(text: company.title ?? ''),
+                ),
+              )
+              .toList(),
+          isLoading: isLoading,
         ),
         if (_isOtherSelected) ...[
           12.verticalSpace,
@@ -83,5 +92,4 @@ class InsuranceCompanySelector extends StatelessWidget {
   }
 
   bool get _isOtherSelected => selectedCompany?.id == -1;
-
 }

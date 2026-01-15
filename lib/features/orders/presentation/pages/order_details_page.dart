@@ -160,7 +160,11 @@ class _OrderDetailsPageState extends State<OrderDetailsPage>
                     ),
                   ),
                 ),
-                OrderProductList(items: widget.order.items ?? []),
+                OrderProductList(
+                  items: widget.order.items ?? [],
+                  orderId: widget.order.id ?? 0,
+                  orderStatus: widget.order.status,
+                ),
                 SliverToBoxAdapter(child: _buildOrderSummary(context)),
                 SliverToBoxAdapter(child: SizedBox(height: 20.h)),
                 if (widget.order.status == OrderType.pending)
@@ -270,7 +274,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage>
             _buildSummaryRow(
               context,
               title: context.localizations.shippingCost,
-              value: context.localizations.freeDeleivery,
+              value: widget.order.shippingPrice != null && widget.order.shippingPrice != 0?
+                  '${widget.order.shippingPrice?.toStringAsFixed(0) ?? '0'} ${context.localizations.egp}'
+                  : context.localizations.freeDeleivery,
               valueColor: context.colorScheme.tertiary,
             ),
             16.verticalSpace,

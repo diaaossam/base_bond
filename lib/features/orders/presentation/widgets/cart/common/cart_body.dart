@@ -1,4 +1,5 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/core/enum/deleivery_method.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/services/caching/common_caching.dart';
 import 'package:bond/core/utils/app_constant.dart';
@@ -39,6 +40,7 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
 
   MyAddress? defaultAddress;
   BranchesModel? selectedBranch;
+  DeliveryMethod deliveryMethod = DeliveryMethod.home_delivery;
 
   @override
   void initState() {
@@ -99,10 +101,14 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
                 ),
                 const DiscountDesign(),
                 CartLocationDesign(
+                  onDeleiveryMethod: (data) =>
+                      setState(() => deliveryMethod = data),
                   defaultAddress: defaultAddress,
-                  onAddressChanged: (data) => setState(() => defaultAddress = data),
+                  onAddressChanged: (data) =>
+                      setState(() => defaultAddress = data),
                   selectedBranch: selectedBranch,
-                  onBranchChanged: (branch) => setState(() => selectedBranch = branch),
+                  onBranchChanged: (branch) =>
+                      setState(() => selectedBranch = branch),
                 ),
                 PaymentTypeDesign(
                   payment: (p0) => setState(() => paymentType = p0),
@@ -117,8 +123,16 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
                       text: context.localizations.placeOrder,
                       press: () {
                         if (ApiConfig.isGuest == true) {
-                          SettingsHelper().showGuestDialog(
+                          SettingsHelper().showGuestDialog(context);
+                          return;
+                        }
+
+                        if (defaultAddress == null &&
+                            deliveryMethod == DeliveryMethod.home_delivery) {
+                          AppConstant.showCustomSnakeBar(
                             context,
+                            context.localizations.pleaseSelectAddress,
+                            false,
                           );
                           return;
                         }
@@ -129,6 +143,12 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
                             note: note.text,
                             addressId: defaultAddress?.id,
                             items: bloc.cartList,
+                            deliveryMethod: deliveryMethod,
+                            paymentType: paymentType,
+                            pharmacyBranchId:
+                                deliveryMethod == DeliveryMethod.pharmacy_pickup
+                                ? selectedBranch?.id
+                                : null,
                           ),
                         );
                       },

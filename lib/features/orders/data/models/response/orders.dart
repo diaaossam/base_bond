@@ -17,6 +17,7 @@ class Orders {
     this.items,
     this.createdAt,
     this.updatedAt,
+    this.shippingPrice
   });
 
   Orders.fromJson(dynamic json) {
@@ -30,6 +31,7 @@ class Orders {
     couponCode = json['coupon_code'];
     subtotal = json['subtotal'];
     discountAmount = json['discount_amount'];
+    shippingPrice = json['shipping_price'];
     total = json['total'];
     notes = json['notes'];
     if (json['items'] != null) {
@@ -50,6 +52,7 @@ class Orders {
   String? couponCode;
   num? subtotal;
   num? discountAmount;
+  num? shippingPrice;
   num? total;
   String? notes;
   List<Items>? items;

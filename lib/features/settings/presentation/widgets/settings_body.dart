@@ -1,5 +1,4 @@
 import 'package:bond/core/utils/app_size.dart';
-import 'package:bond/features/settings/presentation/widgets/points_design.dart';
 import 'package:bond/features/settings/presentation/widgets/settings_list_design.dart';
 import 'package:flutter/material.dart';
 

@@ -10,6 +10,7 @@ class ProductModel {
     this.brand,
     this.discountPercentage,
     this.salePrice,
+    this.division,
     this.weightKg,
     this.dimensions,
     this.isFeatured,
@@ -37,6 +38,12 @@ class ProductModel {
     description = json['description'];
     category = json['category'] != null
         ? GenericModel.fromJson(json['category'])
+        : null;
+    division = json['division_category'] != null
+        ? GenericModel.fromJson(json['division_category'])
+        : null;
+    subCategory = json['sub_category'] != null
+        ? GenericModel.fromJson(json['sub_category'])
         : null;
     activeSubstance = json['active_substance'] != null
         ? GenericModel.fromJson(json['active_substance'])
@@ -77,6 +84,8 @@ class ProductModel {
   GenericModel? category;
   GenericModel? brand;
   GenericModel? activeSubstance;
+  GenericModel? subCategory;
+  GenericModel? division;
   num? discountPercentage;
   num? salePrice;
   num? oldPrice;
@@ -103,8 +112,14 @@ class ProductModel {
     if (category != null) {
       map['category'] = category?.toMap();
     }
+    if (division != null) {
+      map['division_category'] = division?.toMap();
+    }
     if (brand != null) {
       map['brand'] = brand?.toMap();
+    }
+    if (subCategory != null) {
+      map['sub_category'] = subCategory?.toMap();
     }
     if (activeSubstance != null) {
       map['active_substance'] = activeSubstance?.toMap();

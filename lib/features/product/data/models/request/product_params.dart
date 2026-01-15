@@ -14,6 +14,8 @@ class ProductParams extends Equatable {
     this.isNewArrival,
     this.isBestSeller,
     this.ids,
+    this.divisionId,
+    this.subCategoryId,
   });
 
   final int page;
@@ -21,6 +23,8 @@ class ProductParams extends Equatable {
   final String? sortBy;
 
   final int? categoryId;
+  final int? subCategoryId;
+  final int? divisionId;
   final int? brandId;
   final int? activeSubstanceId;
 
@@ -38,6 +42,8 @@ class ProductParams extends Equatable {
     String? sortBy,
     int? categoryId,
     int? brandId,
+    int? divisionId,
+    int? subCategoryId,
     int? activeSubstanceId,
     int? priceFrom,
     int? priceTo,
@@ -59,6 +65,8 @@ class ProductParams extends Equatable {
       isNewArrival: isNewArrival ?? this.isNewArrival,
       isBestSeller: isBestSeller ?? this.isBestSeller,
       ids: ids ?? this.ids,
+      divisionId: divisionId ?? this.divisionId,
+      subCategoryId: subCategoryId ?? this.subCategoryId,
     );
   }
 
@@ -68,7 +76,9 @@ class ProductParams extends Equatable {
       if (search != null && search!.isNotEmpty) 'search': search,
       if (sortBy != null) 'sort_by': sortBy,
       if (categoryId != null) 'category_id': categoryId,
+      if (subCategoryId != null) 'sub_category_id': subCategoryId,
       if (brandId != null) 'brand_id': brandId,
+      if (divisionId != null) 'division_category_id': divisionId,
       if (activeSubstanceId != null) 'active_substance_id': activeSubstanceId,
       if (priceFrom != null) 'price_from': priceFrom,
       if (priceTo != null) 'price_to': priceTo,
@@ -93,5 +103,8 @@ class ProductParams extends Equatable {
     isNewArrival,
     isBestSeller,
     ids,
+    subCategoryId,
+    divisionId
+
   ];
 }

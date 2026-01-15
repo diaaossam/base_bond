@@ -22,7 +22,7 @@ class CategoriesScreen extends StatelessWidget {
       child: Scaffold(
         appBar: CustomAppBar(
           title: context.localizations.allCategories,
-          showBackButton: false,
+          //showBackButton: false,
         ),
         body: BlocBuilder<CategoryCubit, BaseState<List<CategoryModel>>>(
           builder: (context, state) {

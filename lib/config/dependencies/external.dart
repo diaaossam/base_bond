@@ -18,7 +18,7 @@ abstract class RegisterModule {
 
   Connectivity get connectivity => Connectivity();
 
-  GoogleSignIn get googleSignIn => GoogleSignIn.instance;
+  GoogleSignIn get googleSignIn => GoogleSignIn();
 
   FlutterSecureStorage get storage => FlutterSecureStorage(
     aOptions: AndroidOptions.biometric(

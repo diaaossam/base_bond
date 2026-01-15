@@ -34,6 +34,8 @@ class InsuranceProfileForm extends StatefulWidget {
 class _InsuranceProfileFormState extends State<InsuranceProfileForm>
     with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormBuilderState>();
+  
+  GenericModel ? selectedInsuranceCompany;
   File? _idCardFrontFile,
       _idCardBackFile,
       _insuranceCardFrontFile,
@@ -90,9 +92,9 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
                   InsuranceCompanySelector(
                     companies: data.insuranceCompanies,
                     selectedCompany: data.selectedCompany,
+                    onChanged: (data) => context.read<InsuranceProfileCubit>().selectCompany(model: data!),
                     customCompanyName: data.customCompanyName,
-                    isLoading:
-                        state.isLoading && state.identifier == 'companies',
+                    isLoading: state.isLoading && state.identifier == 'companies',
                   ),
                   24.verticalSpace,
                   SectionTitleDesign(
@@ -164,8 +166,8 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
                                     as File?;
                             final idCardFront =
                                 _formKey.fieldValue('id_card_front') as File?;
-                            final idCardBack =
-                                _formKey.fieldValue('id_card_back') as File?;
+                            final idCardBack = _formKey.fieldValue('id_card_back') as File?;
+                            final String ? companyName = _formKey.fieldValue('custom_company_name') as String?;
 
                             InsuranceProfileRequest params =
                                 InsuranceProfileRequest(
@@ -174,6 +176,7 @@ class _InsuranceProfileFormState extends State<InsuranceProfileForm>
                                   insuranceCardFront: insuranceCardFront,
                                   insuranceCardBack: insuranceCardBack,
                                   idCardFront: idCardFront,
+                                  companyName: companyName,
                                   idCardBack: idCardBack,
                                 );
 

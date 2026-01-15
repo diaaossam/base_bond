@@ -245,9 +245,7 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
                               width: 20.w,
                             ),
                           ),
-                          validator: FormBuilderValidators.required(
-                            errorText: context.localizations.validation,
-                          ),
+
                           onTap: () async {
                             final result = await context.router.push(
                               PickLocationRoute(),
@@ -261,6 +259,15 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
                             }
                           },
                           readOnly: true,
+                          initialValue:
+                              UserDataService()
+                                  .getUserData()
+                                  ?.address
+                                  ?.streetAddress ??
+                              UserDataService()
+                                  .getUserData()
+                                  ?.address
+                                  ?.address,
                         ),
                       ),
                     ],

@@ -147,12 +147,12 @@ class PriceCartDesign extends StatelessWidget {
                         ],
 
                         if (bloc.isFreeDeleivery &&
-                            myAddress?.governorate?.shippingPrice != null) ...[
+                            myAddress?.city?.shippingPrice != null) ...[
                           SizedBox(height: 12.h),
                           _PriceRow(
                             label: context.localizations.freeDeleivery,
                             value:
-                                "- ${formatter.format(myAddress?.governorate?.shippingPrice ?? 0)} ${context.localizations.iqd}",
+                                "- ${formatter.format(myAddress?.city?.shippingPrice ?? 0)} ${context.localizations.iqd}",
                             isDiscount: true,
                             icon: Icons.celebration_outlined,
                           ),
@@ -188,8 +188,7 @@ class PriceCartDesign extends StatelessWidget {
                             isFreeDeleivery: bloc.isFreeDeleivery,
                             couponDiscount: bloc.couponDiscount,
                             pointDiscount: bloc.pointDiscount,
-                            deleivery:
-                                (myAddress?.governorate?.shippingPrice ?? 0),
+                            deleivery: (myAddress?.city?.shippingPrice ?? 0),
                           ),
                         ),
                       ],
@@ -213,10 +212,8 @@ class PriceCartDesign extends StatelessWidget {
     required bool isFreeDeleivery,
   }) {
     final formatter = NumberFormat.decimalPatternDigits();
-
     final total =
-        (amount +
-                deleivery -
+        (amount + deleivery -
                 couponDiscount -
                 pointDiscount -
                 (isFreeDeleivery ? deleivery : 0))

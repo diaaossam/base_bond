@@ -16,7 +16,10 @@ abstract class ProductRemoteDataSource {
 
   Future<List<GenericModel>> getSubCategories({required num id});
 
-  Future<List<GenericModel>> getSubDivision({required num id});
+  Future<List<GenericModel>> getSubDivision({
+    required num id,
+    required num categoryId,
+  });
 
   Future<List<GenericModel>> getBrands();
 
@@ -25,6 +28,8 @@ abstract class ProductRemoteDataSource {
   Future<Unit> toggleWishList(num productId);
 
   Future<List<ProductModel>> getWishList();
+
+  Future<Unit> notifyWhenAvailable(num productId);
 }
 
 @Injectable(as: ProductRemoteDataSource)
@@ -98,7 +103,8 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   @override
   Future<List<GenericModel>> getSubCategories({required num id}) async {
     final data = await dioConsumer
-        .get<List<GenericModel>>(EndPoints.activeSubstances)
+        .get<List<GenericModel>>(EndPoints.subCategory)
+        .params({"category_id": id})
         .factory(GenericModel.fromJsonList)
         .execute();
 
@@ -106,12 +112,25 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   }
 
   @override
-  Future<List<GenericModel>> getSubDivision({required num id}) async {
+  Future<List<GenericModel>> getSubDivision({
+    required num id,
+    required num categoryId,
+  }) async {
     final data = await dioConsumer
-        .get<List<GenericModel>>(EndPoints.activeSubstances)
+        .get<List<GenericModel>>(EndPoints.subDivision)
+        .params({"category_id": categoryId, "sub_category_id": id})
         .factory(GenericModel.fromJsonList)
         .execute();
 
     return data;
+  }
+
+  @override
+  Future<Unit> notifyWhenAvailable(num productId) async {
+    await dioConsumer
+        .post(EndPoints.notifyWhenAvailable(productId))
+        .factory((json) => null)
+        .execute();
+    return unit;
   }
 }
