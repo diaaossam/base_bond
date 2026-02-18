@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,9 +20,10 @@ class GlobalCubit extends Cubit<BaseState<void>> {
       emit(
         state.copyWith(identifier: "AppSettings", status: BaseStatus.loading),
       );
+
       final cachedLangCode = sharedPreferences.getString(AppStrings.locale);
       final cachedTheme = sharedPreferences.getString(AppStrings.theme);
-      locale = Locale(cachedLangCode ?? AppStrings.arabicCode);
+      locale = Locale(cachedLangCode ??  Platform.localeName);
       language = handleLanguageByString(code: cachedLangCode ?? "ar");
       themeMode = cachedTheme != null
           ? cachedTheme == "light"

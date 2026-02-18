@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
                 splitScreenMode: true,
                 child: MaterialApp.router(
                   scaffoldMessengerKey: NavigationService.navigatorKey,
-
                   routerConfig: _appRouter.config(navigatorObservers: () => []),
                   title: AppStrings.appName,
                   builder: (context, child) {

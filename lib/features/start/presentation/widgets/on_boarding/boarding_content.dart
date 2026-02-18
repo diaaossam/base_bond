@@ -28,111 +28,39 @@ class BoardingContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        Image.asset(
-          image,
-          fit: BoxFit.cover,
-          height: MediaQuery.of(context).size.height,
-          width: double.infinity,
-        ),
-        GlassContainer(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth*.02),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: SizeConfig.bodyHeight * .01),
-                Center(
-                  child: AppText(
-                    text: title,
-                    fontWeight: FontWeight.w600,
-                    textSize: 20,
-                    maxLines: 2,
-                    align: TextAlign.center,
-                    textHeight: 1.8,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: SizeConfig.bodyHeight * .015),
-                Padding(
-                  padding: screenPadding(),
-                  child: AppText(
-                    text: text,
-                    fontWeight: FontWeight.w600,
-                    textSize: 13,
-                    maxLines: 6,
-                    textHeight: 1.8,
-                    color: Colors.white,
-                  ),
-                ),
-                Spacer(),
-                Container(
-                  margin: EdgeInsets.only(bottom: SizeConfig.bodyHeight * .02),
-                  padding: screenPadding(),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SmoothPageIndicator(
-                        controller: pageController,
-                        count: count,
-                        effect: ExpandingDotsEffect(
-                          dotColor: Colors.white,
-                          activeDotColor: context.colorScheme.primary,
-
-                          dotHeight: 8,
-                          dotWidth: 10,
-                          strokeWidth: 20,
-                          expansionFactor: 4,
-                          spacing: 5.0,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: press,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.black.withValues(alpha: 0.7),
-                          ),
-                          child: Row(
-                            children: [
-                              AppText(
-                                text: context.localizations.startNow,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                textSize: 12,
-                              ),
-                              10.horizontalSpace,
-                              AppImage.asset(Assets.icons.arrow3),
-                              10.horizontalSpace,
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: AppImage.asset(
-                                  Assets.icons.arrowForward,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+    return Padding(
+      padding: screenPadding(),
+      child: Column(
+        children: [
+          AppImage.asset(
+            image,
+            height: MediaQuery.of(context).size.height * .5,
+            width: double.infinity,
+          ),
+          SizedBox(height: SizeConfig.bodyHeight * .01),
+          Center(
+            child: AppText(
+              text: title,
+              fontWeight: FontWeight.w600,
+              textSize: 20,
+              maxLines: 2,
+              align: TextAlign.center,
+              textHeight: 1.8,
             ),
           ),
-        ),
-      ],
+          SizedBox(height: SizeConfig.bodyHeight * .015),
+          Padding(
+            padding: screenPadding(),
+            child: AppText(
+              text: text,
+              fontWeight: FontWeight.w600,
+              textSize: 13,
+              maxLines: 6,
+              textHeight: 1.8,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

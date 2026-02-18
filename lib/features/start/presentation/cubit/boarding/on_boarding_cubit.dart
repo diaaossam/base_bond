@@ -31,19 +31,19 @@ class OnBoardingCubit extends Cubit<BaseState<List<IntroModel>>> {
         id: 1,
         title: S.current.boardingTitle1,
         description: S.current.boardingDescription1,
-        image: Assets.images.boarding1.path,
+        image: Assets.icons.onBoarding1,
       ),
       IntroModel(
         id: 1,
         title: S.current.boardingTitle2,
         description: S.current.boardingDescription2,
-        image: Assets.images.boarding2.path,
+        image: Assets.icons.onBoarding1,
       ),
       IntroModel(
         id: 1,
         title: S.current.boardingTitle3,
         description: S.current.boardingDescription3,
-        image: Assets.images.boarding3.path,
+        image: Assets.icons.onBoarding1,
       ),
     ];
     emit(state.success(data: introList));

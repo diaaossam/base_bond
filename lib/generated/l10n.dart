@@ -2929,9 +2929,24 @@ class S {
     );
   }
 
-  /// `فروعنا`
+  /// `Our Branches`
   String get ourBranches {
-    return Intl.message('فروعنا', name: 'ourBranches', desc: '', args: []);
+    return Intl.message(
+      'Our Branches',
+      name: 'ourBranches',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skip {
+    return Intl.message('Skip', name: 'skip', desc: '', args: []);
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message('Next', name: 'next', desc: '', args: []);
   }
 }
 

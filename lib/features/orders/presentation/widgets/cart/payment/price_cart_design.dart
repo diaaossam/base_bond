@@ -10,15 +10,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../core/enum/deleivery_method.dart';
+
 class PriceCartDesign extends StatelessWidget {
   final MyAddress? myAddress;
+  final DeliveryMethod deliveryMethod;
 
-  const PriceCartDesign({super.key, this.myAddress});
+  const PriceCartDesign({super.key, this.myAddress, required this.deliveryMethod});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, BaseState<CartStateData>>(
       builder: (context, state) {
+
         final bloc = context.read<CartCubit>();
         final formatter = NumberFormat.decimalPatternDigits();
         final colorScheme = context.colorScheme;
@@ -114,7 +118,7 @@ class PriceCartDesign extends StatelessWidget {
                               "${formatter.format(bloc.amount.toInt())} ${context.localizations.iqd}",
                         ),
 
-                        if (myAddress != null) ...[
+                        if (myAddress != null && deliveryMethod != DeliveryMethod.pharmacy_pickup ) ...[
                           SizedBox(height: 12.h),
                           _PriceRow(
                             label: context.localizations.shippingCost,
@@ -188,7 +192,7 @@ class PriceCartDesign extends StatelessWidget {
                             isFreeDeleivery: bloc.isFreeDeleivery,
                             couponDiscount: bloc.couponDiscount,
                             pointDiscount: bloc.pointDiscount,
-                            deleivery: (myAddress?.city?.shippingPrice ?? 0),
+                            deleivery:deliveryMethod != DeliveryMethod.pharmacy_pickup ? (myAddress?.city?.shippingPrice ?? 0) : 0,
                           ),
                         ),
                       ],

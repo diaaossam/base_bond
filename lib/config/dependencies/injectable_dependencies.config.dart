@@ -184,12 +184,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i620.DeviceHelper>(() => _i620.DeviceHelperImpl());
     gh.factory<_i734.TokenRepository>(
       () => _i734.TokenRepositoryImp(
-        secureStorage: gh<_i558.FlutterSecureStorage>(),
-      ),
-    );
-    gh.factory<_i96.OrderLocaleDataSource>(
-      () => _i96.OrderLocaleDataSourceImpl(
-        sharedPreferences: gh<_i460.SharedPreferences>(),
+        secureStorage: gh<_i460.SharedPreferences>(),
       ),
     );
     gh.factory<_i50.AppInterceptors>(
@@ -200,6 +195,11 @@ extension GetItInjectableX on _i174.GetIt {
         client: gh<_i361.Dio>(),
         apiErrorHandler: gh<_i665.ApiErrorHandler>(),
         appInterceptors: gh<_i50.AppInterceptors>(),
+      ),
+    );
+    gh.factory<_i96.OrderLocaleDataSource>(
+      () => _i96.OrderLocaleDataSourceImpl(
+        sharedPreferences: gh<_i460.SharedPreferences>(),
       ),
     );
     gh.lazySingleton<_i384.DioConsumer>(

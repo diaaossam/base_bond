@@ -3,11 +3,9 @@ import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/settings/data/models/app_settings.dart';
 import 'package:bond/features/settings/presentation/cubit/settings_cubit.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/services/deep_link/deep_link.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../cubit/start/start_cubit.dart';
 
@@ -32,20 +30,24 @@ class SplashBody extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 130),
                       child:
-                      CircleAvatar(
-                        backgroundImage: AssetImage(
-                          Assets.images.backgroundSplash.path,
-                        ),
-                      )
-                          .animate()
-                          .slideY(begin: -0.5, end: 0.2, duration: 0.1.seconds)
-                          .then(delay: 1.milliseconds)
-                          .slideY(end: -0.3, duration: 0.1.seconds)
-                          .then(delay: 1.milliseconds)
-                          .slideY(end: 0.1, duration: 0.1.seconds)
-                          .then(delay: 0.1.seconds)
-                          .scaleXY(end: 20, duration: 0.5.seconds)
-                          .then(delay: 2.seconds),
+                          CircleAvatar(
+                                backgroundImage: AssetImage(
+                                  Assets.images.backgroundSplash.path,
+                                ),
+                              )
+                              .animate()
+                              .slideY(
+                                begin: -0.5,
+                                end: 0.2,
+                                duration: 0.1.seconds,
+                              )
+                              .then(delay: 1.milliseconds)
+                              .slideY(end: -0.3, duration: 0.1.seconds)
+                              .then(delay: 1.milliseconds)
+                              .slideY(end: 0.1, duration: 0.1.seconds)
+                              .then(delay: 0.1.seconds)
+                              .scaleXY(end: 20, duration: 0.5.seconds)
+                              .then(delay: 2.seconds),
                     ),
                   ),
                   Align(
@@ -60,7 +62,9 @@ class SplashBody extends StatelessWidget {
                               .image()
                               .animate()
                               .fadeIn(
-                              delay: 1.seconds, duration: 900.milliseconds)
+                                delay: 1.seconds,
+                                duration: 900.milliseconds,
+                              )
                               .slideX(begin: 3, duration: 0.5.seconds),
                         ),
                         const SizedBox(height: 20),
@@ -80,23 +84,9 @@ class SplashBody extends StatelessWidget {
     required PageRouteInfo route,
     required BuildContext context,
   }) async {
-    final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
-    if (initialMessage != null) {
-      if (initialMessage.data.isNotEmpty) {}
-    }
-    else {
-      await DynamicLinkHandler.instance.initialize(
-        callback: (value) {
-          Future.delayed(
-            const Duration(milliseconds: 2000),
-                () =>
-                context.router.pushAndPopUntil(
-                  route,
-                  predicate: (route) => false,
-                ),
-          );
-        },
-      );
-    }
+    Future.delayed(
+      const Duration(milliseconds: 2000),
+      () => context.router.pushAndPopUntil(route, predicate: (route) => false),
+    );
   }
 }

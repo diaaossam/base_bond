@@ -5,6 +5,7 @@ import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/services/caching/common_caching.dart';
 import 'package:bond/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:bond/features/auth/data/models/response/user_model_helper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/services/api/dio_consumer.dart';
@@ -31,8 +32,8 @@ class RegisterRemoteDataSourceImpl implements InitRemoteDataSource {
   @override
   Future<PageRouteInfo> initUser() async {
     final userToken = await tokenRepository.getToken();
-    final bool onBoarding =
-        sharedPreferences.getBool(AppStrings.onBoarding) ?? false;
+
+    final bool onBoarding = sharedPreferences.getBool(AppStrings.onBoarding) ?? false;
     if (!onBoarding) {
       return OnBoardingRoute();
     } else {

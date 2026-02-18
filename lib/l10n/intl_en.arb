@@ -342,5 +342,7 @@
   "subCategory": "Sub Category",
   "division": "Division",
   "pleaseSelectAddress": "Please select an address",
-  "ourBranches": "فروعنا"
+  "ourBranches": "Our Branches",
+  "skip": "Skip",
+  "next": "Next"
 }

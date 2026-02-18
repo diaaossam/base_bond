@@ -33,6 +33,7 @@ class _AllProductBodyState extends State<AllProductBody> {
   late ProductCubit bloc;
   ProductParams _currentParams = const ProductParams();
   Timer? _debounce;
+  bool _isGridView = false; // false = list view (default), true = grid view
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +68,52 @@ class _AllProductBodyState extends State<AllProductBody> {
       ],
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: SizedBox(height: 20.h,),),
+          SliverToBoxAdapter(child: SizedBox(height: 10.h,),),
+          SliverToBoxAdapter(child:   Row(
+            children: [
+              Spacer(),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) {
+                  return ScaleTransition(
+                    scale: animation,
+                    child: RotationTransition(
+                      turns: animation,
+                      child: child,
+                    ),
+                  );
+                },
+                child: InkWell(
+                  key: ValueKey(_isGridView),
+                  onTap: () {
+                    setState(() {
+                      _isGridView = !_isGridView;
+                    });
+                  },
+                  borderRadius: BorderRadius.circular(20.r),
+                  child: Container(
+                    padding: EdgeInsets.all(8.w),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: context.colorScheme.surfaceContainer,
+                    ),
+                    child: Icon(
+                      _isGridView ? Icons.view_list_rounded : Icons.grid_view_rounded,
+                      color: context.colorScheme.shadow,
+                      size: 20.sp,
+                    ),
+                  ),
+                ),
+              ),
+              30.horizontalSpace,
+            ],
+          ), ),
+          SliverToBoxAdapter(child: SizedBox(height: 10.h,),),
           BlocBuilder<WishlistCubit, BaseState>(
             builder: (context, state) {
               return ProductsPaginationGridList(
                 pagingController: _pagingController,
+                isGridView: _isGridView,
                 onFavTapped: (data, item) {
                   item.isAddedToFavourite = data;
                   context.read<WishlistCubit>().toggleWishList(

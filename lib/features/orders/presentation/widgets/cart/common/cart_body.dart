@@ -101,8 +101,11 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
                 ),
                 const DiscountDesign(),
                 CartLocationDesign(
-                  onDeleiveryMethod: (data) =>
-                      setState(() => deliveryMethod = data),
+                  onDeleiveryMethod: (data) {
+                    setState(() {
+                      deliveryMethod = data;
+                    });
+                  },
                   defaultAddress: defaultAddress,
                   onAddressChanged: (data) =>
                       setState(() => defaultAddress = data),
@@ -115,7 +118,7 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
                 ),
                 CartNoteDesign(note: note),
                 SliverToBoxAdapter(child: SizedBox(height: 12.h)),
-                PriceCartDesign(myAddress: defaultAddress),
+                PriceCartDesign(myAddress: defaultAddress,deliveryMethod: deliveryMethod,),
                 SliverPadding(
                   padding: screenPadding(),
                   sliver: SliverToBoxAdapter(

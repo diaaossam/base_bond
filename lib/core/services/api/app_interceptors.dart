@@ -18,9 +18,8 @@ class AppInterceptors extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (response.statusCode == 401) {
       final context = NavigationService.navigatorKey.currentContext;
-      if(context != null){
+      if (context != null) {
         SettingsHelper().showGuestDialog(context);
-
       }
       return;
     }
@@ -46,6 +45,7 @@ class AppInterceptors extends Interceptor {
     options.headers[AppStrings.accept] = AppStrings.applicationJson;
     options.headers[AppStrings.xApiKey] = env.Environment.xApiKey;
     options.headers[AppStrings.version] = AppStrings.versionValue;
+
     return handler.next(options);
   }
 }

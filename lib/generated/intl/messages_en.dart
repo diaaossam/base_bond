@@ -366,6 +366,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "nearest": MessageLookupByLibrary.simpleMessage("Nearest"),
     "newArrivals": MessageLookupByLibrary.simpleMessage("New Arrivals"),
     "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+    "next": MessageLookupByLibrary.simpleMessage("Next"),
     "noCart": MessageLookupByLibrary.simpleMessage("Cart is empty"),
     "noData": MessageLookupByLibrary.simpleMessage(
       "No Data Found , please try again later",
@@ -447,7 +448,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "otpTitle": MessageLookupByLibrary.simpleMessage(
       "Enter Verification Code (OTP)",
     ),
-    "ourBranches": MessageLookupByLibrary.simpleMessage("فروعنا"),
+    "ourBranches": MessageLookupByLibrary.simpleMessage("Our Branches"),
     "ourServices": MessageLookupByLibrary.simpleMessage("Our Services"),
     "outForDeleivery": MessageLookupByLibrary.simpleMessage("Out for Delivery"),
     "outForDelivery_desc": MessageLookupByLibrary.simpleMessage(
@@ -572,6 +573,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "shippingCost": MessageLookupByLibrary.simpleMessage("Shipping Cost"),
     "showLess": MessageLookupByLibrary.simpleMessage("Show Less"),
     "showMore": MessageLookupByLibrary.simpleMessage("Show More"),
+    "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "sku": MessageLookupByLibrary.simpleMessage("SKU"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",

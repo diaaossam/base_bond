@@ -174,11 +174,13 @@ class _PrescriptionBodyState extends State<PrescriptionBody>
                   );
                 },
                 onDeleiveryMethod: (method) {
+                  print(method);
                   bloc.updatePrescriptionParams(
                     params: data.copyWith(deliveryMethod: method),
                   );
                 },
                 onBranchChanged: (branch) {
+                  print(branch);
                   bloc.updatePrescriptionParams(
                     params: data.copyWith(pharmacyBranchId: branch.id),
                   );

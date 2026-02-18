@@ -51,6 +51,14 @@ class OrderDetailsInfo extends StatelessWidget {
             title: context.localizations.paymentType,
             value: context.localizations.cash,
           ),
+          Divider(color: context.colorScheme.outline.withValues(alpha: 0.3)),
+          InfoRowDesign(
+            icon: Icons.car_crash_outlined,
+            title: context.localizations.deliveryMethod,
+            value: orders.addressData == null
+                ? context.localizations.pharmacyPickup
+                : context.localizations.homeDelivery,
+          ),
         ],
       ),
     );

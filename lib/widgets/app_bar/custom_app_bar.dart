@@ -15,20 +15,23 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showBackButton;
   final double? elevation;
   final double? height;
+  final Color? colors;
 
-  const CustomAppBar(
-      {super.key,
-      this.pressIcon,
-      this.title,
-      this.leadingWidth,
-      this.elevation,
-      this.preferredSizeWidget,
-      this.leadingWidget,
-      this.actions,
-      this.height,
-      this.showBackButton = true,
-      this.titleWidget,
-      this.isCenterTitle = true});
+  const CustomAppBar({
+    super.key,
+    this.pressIcon,
+    this.title,
+    this.leadingWidth,
+    this.elevation,
+    this.preferredSizeWidget,
+    this.leadingWidget,
+    this.actions,
+    this.height,
+    this.showBackButton = true,
+    this.titleWidget,
+    this.isCenterTitle = true,
+    this.colors,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +39,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       leadingWidth: leadingWidth ?? SizeConfig.screenWidth * .13,
       elevation: 0,
+      backgroundColor: colors,
       centerTitle: isCenterTitle,
-      title: titleWidget ??
+      title:
+          titleWidget ??
           AppText(
             text: title != null ? title.toString() : "",
             fontWeight: FontWeight.w600,
             textSize: 14,
           ),
-      leading: leadingWidget ??
+      leading:
+          leadingWidget ??
           Visibility(
             visible: showBackButton,
             child: BackArrowWidget(
@@ -57,5 +63,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + (height??0));
+  Size get preferredSize => Size.fromHeight(kToolbarHeight + (height ?? 0));
 }

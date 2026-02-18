@@ -107,6 +107,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/notification.svg
   String get notification => 'assets/icons/notification.svg';
 
+  /// File path: assets/icons/onBoarding1.svg
+  String get onBoarding1 => 'assets/icons/onBoarding1.svg';
+
   /// File path: assets/icons/orders.svg
   String get orders => 'assets/icons/orders.svg';
 
@@ -176,6 +179,7 @@ class $AssetsIconsGen {
     minus,
     myOrders,
     notification,
+    onBoarding1,
     orders,
     password,
     phone,
@@ -201,18 +205,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/background_splash.png
   AssetGenImage get backgroundSplash =>
       const AssetGenImage('assets/images/background_splash.png');
-
-  /// File path: assets/images/boarding1.png
-  AssetGenImage get boarding1 =>
-      const AssetGenImage('assets/images/boarding1.png');
-
-  /// File path: assets/images/boarding2.png
-  AssetGenImage get boarding2 =>
-      const AssetGenImage('assets/images/boarding2.png');
-
-  /// File path: assets/images/boarding3.png
-  AssetGenImage get boarding3 =>
-      const AssetGenImage('assets/images/boarding3.png');
 
   /// File path: assets/images/chatting-01.png
   AssetGenImage get chatting01 =>
@@ -274,9 +266,6 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     alertSquare,
     backgroundSplash,
-    boarding1,
-    boarding2,
-    boarding3,
     chatting01,
     coins01,
     insurance,
