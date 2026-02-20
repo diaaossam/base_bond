@@ -1,25 +1,25 @@
 class LoginParams {
-  LoginParams({this.email, this.password, this.deviceToken, this.deviceType});
+  LoginParams({this.phone, this.password, this.deviceToken, this.deviceType});
 
   LoginParams.fromJson(dynamic json) {
-    email = json['email'];
+    phone = json['phone'];
     password = json['password'];
     deviceToken = json['device_token'];
     deviceType = json['device_type'];
   }
 
-  String? email;
+  String? phone;
   String? password;
   String? deviceToken;
   String? deviceType;
 
   LoginParams copyWith({
-    String? email,
+    String? phone,
     String? password,
     String? deviceToken,
     String? deviceType,
   }) => LoginParams(
-    email: email ?? this.email,
+    phone: phone ?? this.phone,
     password: password ?? this.password,
     deviceToken: deviceToken ?? this.deviceToken,
     deviceType: deviceType ?? this.deviceType,
@@ -27,7 +27,7 @@ class LoginParams {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['email'] = email;
+    map['phone'] = phone;
     map['password'] = password;
     map['device_token'] = deviceToken;
     map['device_type'] = deviceType;

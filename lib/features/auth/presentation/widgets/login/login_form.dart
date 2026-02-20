@@ -49,7 +49,7 @@ class LoginForm extends StatelessWidget {
               SizedBox(height: SizeConfig.bodyHeight*.02,),
               AppText(text: context.localizations.loginBody,textSize: 12,fontWeight: FontWeight.w500  ,),
               SizedBox(height: SizeConfig.bodyHeight * .04),
-              CustomTextFormField(
+              /* CustomTextFormField(
                 name: "email",
                 hintText: context.localizations.email,
                 keyboardType: TextInputType.emailAddress,
@@ -57,7 +57,8 @@ class LoginForm extends StatelessWidget {
                 validator: FormBuilderValidators.required(
                   errorText: context.localizations.validation,
                 ),
-              ),
+              ),*/
+              MobileNumberField(),
               SizedBox(height: SizeConfig.bodyHeight * .02),
               ValueListenableBuilder(
                 valueListenable: isPasswordVisible,
@@ -110,7 +111,7 @@ class LoginForm extends StatelessWidget {
                       }
                       context.read<LoginCubit>().sendOtp(
                         loginParams: LoginParams(
-                          email: _formKey.fieldValue("email"),
+                          phone: _formKey.fieldValue("phone"),
                           password: _formKey.fieldValue("password"),
                         ),
                       );
