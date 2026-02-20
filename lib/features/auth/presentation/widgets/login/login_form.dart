@@ -44,13 +44,10 @@ class LoginForm extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(
-                child: AppImage.asset(
-                  fit: BoxFit.cover,
-                  Assets.images.logo.path,
-                  height: SizeConfig.bodyHeight * .15,
-                ),
-              ),
+               SizedBox(height: SizeConfig.bodyHeight*.04,),
+              AppText(text: context.localizations.loginTitle,fontWeight: FontWeight.w700,textSize: 20,),
+              SizedBox(height: SizeConfig.bodyHeight*.02,),
+              AppText(text: context.localizations.loginBody,textSize: 12,fontWeight: FontWeight.w500  ,),
               SizedBox(height: SizeConfig.bodyHeight * .04),
               CustomTextFormField(
                 name: "email",
@@ -121,8 +118,8 @@ class LoginForm extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: SizeConfig.bodyHeight * .01),
-              CustomButton.text(
+              SizedBox(height: SizeConfig.bodyHeight * .02),
+              CustomButton.outline(
                 text: context.localizations.loginAsGuest,
                 press: () => context.router.pushAndPopUntil(
                   MainLayoutRoute(),

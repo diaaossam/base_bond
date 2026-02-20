@@ -11,7 +11,7 @@ class ProductHorizontalList extends StatefulWidget {
   final List<ProductModel> products;
   final int maxItems;
 
-  const ProductHorizontalList({
+  const   ProductHorizontalList({
     super.key,
     required this.products,
     this.maxItems = 6,
@@ -79,7 +79,7 @@ class _ProductHorizontalListState extends State<ProductHorizontalList>
     return BlocBuilder<WishlistCubit, BaseState>(
       builder: (context, state) {
         return SizedBox(
-          height: 220.h,
+          height: 240.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 16.w),

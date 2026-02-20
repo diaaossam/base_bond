@@ -341,7 +341,8 @@
   "notifyWhenAvailableSuccess": "سنعلمك عند توفر المنتج",
   "subCategory": "الفئة الفرعية",
   "division": "القسم",
-  "pleaseSelectAddress": "من فضلك قم بإختيار عنوان التوصيل اولا"
+  "pleaseSelectAddress": "من فضلك قم بإختيار عنوان التوصيل اولا",
+  "ourBranches": "فروعنا"
 
 
 }

@@ -110,6 +110,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/onBoarding1.svg
   String get onBoarding1 => 'assets/icons/onBoarding1.svg';
 
+  /// File path: assets/icons/onBoarding2.svg
+  String get onBoarding2 => 'assets/icons/onBoarding2.svg';
+
+  /// File path: assets/icons/onBoarding3.svg
+  String get onBoarding3 => 'assets/icons/onBoarding3.svg';
+
   /// File path: assets/icons/orders.svg
   String get orders => 'assets/icons/orders.svg';
 
@@ -180,6 +186,8 @@ class $AssetsIconsGen {
     myOrders,
     notification,
     onBoarding1,
+    onBoarding2,
+    onBoarding3,
     orders,
     password,
     phone,

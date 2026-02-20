@@ -26,7 +26,6 @@ class HomeBody extends StatelessWidget {
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         CustomSliverAppBar(
-          leadingWidth: SizeConfig.screenWidth * 0.6,
           leading: HomeInfoCard(),
           actions: [
             GestureDetector(

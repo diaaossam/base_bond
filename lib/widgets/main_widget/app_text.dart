@@ -96,6 +96,7 @@ class AppText extends StatelessWidget {
       maxLines: maxLines,
       textAlign: align,
       overflow: TextOverflow.ellipsis,
+      textScaler: TextScaler.linear(1.1),
       style: baseStyle.copyWith(
         fontFamily: fontFamily ?? AppStrings.arabicFont,
         height: textHeight,

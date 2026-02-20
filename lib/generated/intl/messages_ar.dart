@@ -409,6 +409,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لقد أرسلنا رمزاً مكوناً من 6 أرقام إلى بريدك الإلكتروني",
     ),
     "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
+    "ourBranches": MessageLookupByLibrary.simpleMessage("فروعنا"),
     "ourServices": MessageLookupByLibrary.simpleMessage("خدماتنا"),
     "outForDeleivery": MessageLookupByLibrary.simpleMessage("خرج للتوصيل"),
     "outForDelivery_desc": MessageLookupByLibrary.simpleMessage(

@@ -24,11 +24,13 @@ class LoginBodyWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: SizeConfig.bodyHeight*.1,),
-              AppText(text: context.localizations.loginTitle,fontWeight: FontWeight.w700,color: Colors.white,textSize: 20,),
-              SizedBox(height: SizeConfig.bodyHeight*.02,),
-              AppText(text: context.localizations.loginBody,color: Colors.white,textSize: 13,fontWeight: FontWeight.w600,)
-            ],
+              Center(
+                child: AppImage.asset(
+                  fit: BoxFit.cover,
+                  Assets.images.logo.path,
+                  height: SizeConfig.bodyHeight * .25,
+                ),
+              ),],
           ),
         ),
       ],

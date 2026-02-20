@@ -359,14 +359,9 @@ class S {
     );
   }
 
-  /// `Welcome back!`
+  /// `Welcome !`
   String get loginTitle {
-    return Intl.message(
-      'Welcome back!',
-      name: 'loginTitle',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Welcome !', name: 'loginTitle', desc: '', args: []);
   }
 
   /// `Enter your phone number to log in`

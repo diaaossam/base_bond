@@ -146,8 +146,7 @@ class CategoryItemDesignState extends State<CategoryItemDesign>
                       alignment: Alignment.center,
                       child: AppText(
                         text: widget.category.title ?? '',
-                        textSize: 10,
-                        fontWeight: FontWeight.w500,
+                        textSize: 9,
                       ),
                     ),
                   ),

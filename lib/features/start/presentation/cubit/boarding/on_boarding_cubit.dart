@@ -13,12 +13,7 @@ class OnBoardingCubit extends Cubit<BaseState<List<IntroModel>>> {
 
   OnBoardingCubit(this.sharedPreferences) : super(BaseState.initial());
 
-  bool isLast = false;
 
-  void changePageViewState(bool from) {
-    isLast = from;
-    emit(state.success());
-  }
 
   Future<void> submit() async {
     sharedPreferences.setBool(AppStrings.onBoarding, true);
@@ -34,13 +29,13 @@ class OnBoardingCubit extends Cubit<BaseState<List<IntroModel>>> {
         image: Assets.icons.onBoarding1,
       ),
       IntroModel(
-        id: 1,
+        id: 2,
         title: S.current.boardingTitle2,
         description: S.current.boardingDescription2,
         image: Assets.icons.onBoarding1,
       ),
       IntroModel(
-        id: 1,
+        id: 3,
         title: S.current.boardingTitle3,
         description: S.current.boardingDescription3,
         image: Assets.icons.onBoarding1,

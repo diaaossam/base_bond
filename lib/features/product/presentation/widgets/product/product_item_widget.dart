@@ -210,8 +210,8 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                         children: [
                           AppText(
                             text: widget.product.title ?? '',
-                            textSize: 10,
-                            fontWeight: FontWeight.w500,
+                            textSize: 9,
+                            maxLines: 2,
                           ),
                           Row(
                             children: [

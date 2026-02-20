@@ -3,7 +3,7 @@ import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/start/data/models/intro_model.dart';
 import 'package:bond/features/start/presentation/cubit/boarding/on_boarding_cubit.dart';
-import 'package:bond/widgets/main_widget/custom_button.dart';
+import 'package:bond/widgets/rotate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +27,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   late final OnBoardingCubit cubit;
   final PageController boardController = PageController();
+  bool isLast = false;
 
   @override
   void initState() {
@@ -50,10 +51,9 @@ class _BodyState extends State<Body> {
             Expanded(
               child: PageView.builder(
                 onPageChanged: (index) {
-                  if (index == data.length - 1) {
-                    cubit.changePageViewState(true);
-                  } else {
-                    cubit.changePageViewState(false);
+                  if(data.isNotEmpty){
+                    isLast = index == data.length - 1;
+                    setState(() {});
                   }
                 },
                 itemCount: state.data?.length,
@@ -68,7 +68,7 @@ class _BodyState extends State<Body> {
                     image: item.image,
                     text: item.description,
                     press: () {
-                      if (cubit.isLast) {
+                      if (isLast) {
                         cubit.submit();
                       } else {
                         boardController.toNextPage();
@@ -85,7 +85,7 @@ class _BodyState extends State<Body> {
                 children: <Widget>[
                   GestureDetector(
                     onTap: (){
-                      if (cubit.isLast) {
+                      if (isLast) {
                         cubit.submit();
                       } else {
                         boardController.toNextPage();
@@ -100,13 +100,13 @@ class _BodyState extends State<Body> {
                       child: Row(
                         children: [
                           AppText(
-                            text:cubit.isLast ?  context.localizations.startNow:context.localizations.next,
+                            text:isLast ?  context.localizations.startNow:context.localizations.next,
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                             textSize: 12,
                           ),
                           10.horizontalSpace,
-                          AppImage.asset(Assets.icons.arrow3),
+                          Rotate(child: AppImage.asset(Assets.icons.arrow3)),
                           10.horizontalSpace,
                           Container(
                             padding: EdgeInsets.all(10),
@@ -114,7 +114,7 @@ class _BodyState extends State<Body> {
                               color: Colors.white,
                               shape: BoxShape.circle,
                             ),
-                            child: AppImage.asset(Assets.icons.arrowForward),
+                            child: Rotate(child: AppImage.asset(Assets.icons.arrowForward)),
                           ),
                         ],
                       ),

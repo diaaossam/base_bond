@@ -349,7 +349,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginBody": MessageLookupByLibrary.simpleMessage(
       "Enter your phone number to log in",
     ),
-    "loginTitle": MessageLookupByLibrary.simpleMessage("Welcome back!"),
+    "loginTitle": MessageLookupByLibrary.simpleMessage("Welcome !"),
     "loginViaApple": MessageLookupByLibrary.simpleMessage("Login with Apple"),
     "loginViaGoogle": MessageLookupByLibrary.simpleMessage("Login with Google"),
     "logoutBody": MessageLookupByLibrary.simpleMessage(
