@@ -17,6 +17,7 @@ class CustomSliverAppBar extends StatelessWidget {
   final Widget? leading;
   final double? expandedHeight;
   final double? leadingWidth;
+  final double? toolbarHeight;
   final bool showLeading;
 
   const CustomSliverAppBar({
@@ -32,12 +33,14 @@ class CustomSliverAppBar extends StatelessWidget {
     this.pinned = true,
     this.leading,
     this.leadingWidth,
+    this.toolbarHeight,
     this.showLeading = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      toolbarHeight: toolbarHeight ?? kToolbarHeight,
       pinned: pinned ?? true,
       automaticallyImplyLeading: false,
       backgroundColor: context.colorScheme.surface,

@@ -26,7 +26,26 @@ class HomeBody extends StatelessWidget {
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         CustomSliverAppBar(
-          leading: HomeInfoCard(),
+          expandedHeight: 100.h,
+          toolbarHeight: kToolbarHeight,
+          showLeading: false,
+          title: innerBoxIsScrolled ? 'AlQahira' : '',
+          titleWidget: innerBoxIsScrolled
+              ? Text(
+                  'AlQahira',
+                  style: TextStyle(
+                    color: context.colorScheme.onSurface,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 13.sp,
+                  ),
+                )
+              : const SizedBox.shrink(),
+          flexibleSpace: FlexibleSpaceBar(
+            collapseMode: CollapseMode.parallax,
+            background: Center(
+              child: HomeInfoCard(),
+            ),
+          ),
           actions: [
             GestureDetector(
               onTap: () {
