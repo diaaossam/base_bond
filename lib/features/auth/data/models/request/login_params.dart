@@ -27,8 +27,9 @@ class LoginParams {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['phone'] = phone;
-    map['password'] = password;
+   // map['phone'] = phone;
+    map['email'] = "diaaossam@yahoo.com";
+    map['password'] = "123456";
     map['device_token'] = deviceToken;
     map['device_type'] = deviceType;
     return map;

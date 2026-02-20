@@ -477,6 +477,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "priceRange": MessageLookupByLibrary.simpleMessage("نطاق السعر"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+    "productAddedToCartSuccess": MessageLookupByLibrary.simpleMessage(
+      "تمت إضافة المنتج إلى السلة بنجاح",
+    ),
     "productDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
     "productInfo": MessageLookupByLibrary.simpleMessage("معلومات المنتج"),
     "products": MessageLookupByLibrary.simpleMessage("المنتجات"),

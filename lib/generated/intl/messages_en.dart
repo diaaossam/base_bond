@@ -522,6 +522,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "priceRange": MessageLookupByLibrary.simpleMessage("Price Range"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "productAddedToCartSuccess": MessageLookupByLibrary.simpleMessage(
+      "Product added to cart successfully",
+    ),
     "productDetails": MessageLookupByLibrary.simpleMessage("Product Details"),
     "productInfo": MessageLookupByLibrary.simpleMessage("Product Information"),
     "products": MessageLookupByLibrary.simpleMessage("Products"),

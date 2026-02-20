@@ -2,11 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/features/orders/presentation/cubit/cart/cart_cubit.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/api_config.dart';
 import '../../../../product/presentation/widgets/active_substance/home_active_substances_section.dart';
@@ -18,8 +20,23 @@ import '../../../../product/presentation/widgets/product/product_section.dart';
 import 'home_info_card.dart';
 import 'our_services.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
+
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        BlocProvider.of<CartCubit>(context).getCartData();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

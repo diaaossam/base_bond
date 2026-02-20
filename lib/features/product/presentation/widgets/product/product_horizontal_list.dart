@@ -12,11 +12,12 @@ import 'product_item_widget.dart';
 class ProductHorizontalList extends StatefulWidget {
   final List<ProductModel> products;
   final int maxItems;
+  final double ? height;
 
   const   ProductHorizontalList({
     super.key,
     required this.products,
-    this.maxItems = 6,
+    this.maxItems = 6, this.height,
   });
 
   @override
@@ -81,14 +82,13 @@ class _ProductHorizontalListState extends State<ProductHorizontalList>
     return BlocBuilder<WishlistCubit, BaseState>(
       builder: (context, state) {
         return SizedBox(
-          height: 240.h,
+          height:widget.height?? 280.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             itemCount: displayProducts.length,
             itemBuilder: (context, index) {
               final item = displayProducts[index];
-
               return AnimatedBuilder(
                 animation: _controller,
                 builder: (context, child) {
@@ -97,7 +97,7 @@ class _ProductHorizontalListState extends State<ProductHorizontalList>
                     child: Transform.translate(
                       offset: Offset(0, _slideAnimations[index].value),
                       child: ProductItemWidget(
-                        key: ValueKey(item.id),
+                        key: ValueKey("Product-${item.id}"),
                         isLiked: item.isAddedToFavourite ?? false,
                         onFavTapped: (data) {
                           if (ApiConfig.isGuest == true) {

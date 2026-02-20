@@ -124,6 +124,7 @@
   "canceled": "Canceled",
   "addToCart": "Add to Cart",
   "addedToCart": "Added to cart",
+  "productAddedToCartSuccess": "Product added to cart successfully",
   "goToCart": "Go to Cart",
   "address": "Address",
   "locationOnMap": "Location on Map",

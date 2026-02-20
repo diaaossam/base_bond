@@ -974,6 +974,16 @@ class S {
     );
   }
 
+  /// `Product added to cart successfully`
+  String get productAddedToCartSuccess {
+    return Intl.message(
+      'Product added to cart successfully',
+      name: 'productAddedToCartSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Go to Cart`
   String get goToCart {
     return Intl.message('Go to Cart', name: 'goToCart', desc: '', args: []);

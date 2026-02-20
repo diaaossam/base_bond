@@ -64,7 +64,6 @@ class ProductSection extends StatelessWidget {
                 ),
                 SizedBox(height: 6.h),
                 ProductHorizontalList(products: products, maxItems: maxItems),
-                SizedBox(height: 12.h),
               ],
             ),
           );

@@ -25,7 +25,7 @@ abstract class ProductRemoteDataSource {
 
   Future<List<GenericModel>> getActiveSubstances();
 
-  Future<Unit> toggleWishList(num productId);
+  Future<String> toggleWishList(num productId);
 
   Future<List<ProductModel>> getWishList();
 
@@ -73,10 +73,10 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   }
 
   @override
-  Future<Unit> toggleWishList(num productId) async {
+  Future<String> toggleWishList(num productId) async {
     return await dioConsumer
         .post("${EndPoints.favourites}/$productId/toggle")
-        .factory((json) => null)
+        .factory((json) => json['message'])
         .execute();
   }
 

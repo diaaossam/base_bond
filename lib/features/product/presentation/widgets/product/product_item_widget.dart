@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/utils/api_config.dart';
 import 'package:bond/core/utils/app_constant.dart';
 import 'package:bond/features/orders/data/models/request/cart_params.dart';
 import 'package:bond/features/orders/presentation/cubit/cart/cart_cubit.dart';
+import 'package:bond/features/orders/presentation/cubit/cart/cart_state_data.dart';
 import 'package:bond/features/settings/presentation/widgets/settings_helper.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +86,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
     context.read<CartCubit>().addToCart(cartItem);
     AppConstant.showCustomSnakeBar(
       context,
-      context.localizations.addedToCart,
+      context.localizations.productAddedToCartSuccess,
       true,
     );
   }
@@ -97,13 +99,14 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
         return Transform.scale(
           scale: _scaleAnimation.value,
           child: GestureDetector(
-            onTap: () {
-              context.router.push(ProductDetailsRoute(product: widget.product));
-            },
+            onTap: () => context.router.push(
+              ProductDetailsRoute(product: widget.product),
+            ),
             child: Container(
-              width: widget.width ?? 160.w,
+              width: widget.width ?? 170.w,
               margin: EdgeInsets.only(right: 12.w),
               decoration: BoxDecoration(
+                border: Border.all(width: 2,color: context.colorScheme.outline),
                 color: context.colorScheme.surface,
                 borderRadius: BorderRadius.circular(16.r),
                 boxShadow: [
@@ -119,140 +122,58 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 7,
-                    child: Container(
+                    flex: 5,
+                    child: SizedBox(
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(16.r),
-                        ),
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            context.colorScheme.primary.withValues(alpha: 0.05),
-                            context.colorScheme.primary.withValues(alpha: 0.02),
-                          ],
-                        ),
-                      ),
                       child: Stack(
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.vertical(
                               top: Radius.circular(16.r),
                             ),
-                            child: widget.product.featureImage == null || widget.product.featureImage!.isEmpty ?AppImage.asset(
-                              Assets.images.logo.path,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: double.infinity,
-                            )  :AppImage.network(
-                              remoteImage: widget.product.featureImage ?? '',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: double.infinity,
-                            ),
+                            child:
+                                widget.product.featureImage == null ||
+                                    widget.product.featureImage!.isEmpty
+                                ? AppImage.asset(
+                                    Assets.images.logo.path,
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                  )
+                                : AppImage.network(
+                                    remoteImage:
+                                        widget.product.featureImage ?? '',
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                  ),
                           ),
-                          if (widget.product.averageRating != null)
-                            Positioned(
-                              bottom: 10,
-                              child: Container(
-                                margin: EdgeInsetsDirectional.only(start: 10),
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 15,
-                                  vertical: 5,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: context.colorScheme.surfaceContainer,
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    AppImage.asset(
-                                      Assets.icons.starFilled,
-                                      size: 12.sp,
-                                      color: Colors.amber,
-                                    ),
-                                    SizedBox(width: 2.w),
-                                    AppText(
-                                      text: widget.product.averageRating!
-                                          .toStringAsFixed(1),
-                                      textSize: 10,
-                                      fontWeight: FontWeight.w500,
-                                      color: context.colorScheme.shadow,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
                           if (widget.product.discountPercentage != null &&
                               widget.product.discountPercentage != 0)
-                            Positioned.directional(
-                              textDirection: TextDirection.rtl,
-                              end: 0,
-                              top: 15,
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 10.h,
-                                  vertical: 5.h,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: context.colorScheme.error,
-                                  borderRadius:
-                                      BorderRadiusDirectional.horizontal(
-                                        start: Radius.circular(20),
-                                      ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "- ${widget.product.discountPercentage.toString()} %",
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600,
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10.h,
+                                vertical: 5.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: context.colorScheme.error,
+                                borderRadius:
+                                    BorderRadiusDirectional.horizontal(
+                                      start: Radius.circular(20),
                                     ),
-                                    textAlign: TextAlign.center,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "- ${widget.product.discountPercentage.toString()} %",
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600,
                                   ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
                             ),
-
-                          Positioned(
-                            top: 8,
-                            left: 8,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                GestureDetector(
-                                  onTap: () => _onQuickAddToCart(context),
-                                  behavior: HitTestBehavior.opaque,
-                                  child: Container(
-                                    padding: EdgeInsets.all(4.w),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white,
-                                    ),
-                                    child: AppImage.asset(
-                                      Assets.icons.shoppingCart,
-                                      size: 20.sp,
-                                      color: context.colorScheme.primary,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 6.w),
-                                LikeButtonDesign(
-                                  onTapped: widget.onFavTapped,
-                                  isLiked: widget.isLiked,
-                                  size: 28,
-                                  padding: 4,
-                                ),
-                              ],
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -260,17 +181,19 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                   Expanded(
                     flex: 3,
                     child: Padding(
-                      padding: EdgeInsets.all(10.w),
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           AppText(
                             text: widget.product.title ?? '',
                             textSize: 9,
                             maxLines: 2,
                           ),
+                          5.verticalSpace,
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Row(
                                 children: [
@@ -279,7 +202,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                                         widget.product.salePrice
                                             ?.toStringAsFixed(0) ??
                                         '0',
-                                    textSize: 12,
+                                    textSize: 10,
                                     fontWeight: FontWeight.w700,
                                     color: context.colorScheme.primary,
                                   ),
@@ -292,7 +215,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                                   ),
                                 ],
                               ),
-                              20.horizontalSpace,
+                              10.horizontalSpace,
                               Row(
                                 children: [
                                   AppText(
@@ -315,8 +238,69 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                                   ),
                                 ],
                               ),
+                              10.horizontalSpace,
+                              if (widget.product.averageRating != null)
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    AppImage.asset(
+                                      Assets.icons.starFilled,
+                                      size: 12.sp,
+                                      color: Colors.amber,
+                                    ),
+                                    SizedBox(width: 2.w),
+                                    AppText(
+                                      text: widget.product.averageRating!
+                                          .toStringAsFixed(1),
+                                      textSize: 10,
+                                      fontWeight: FontWeight.w500,
+                                      color: context.colorScheme.shadow,
+                                    ),
+                                  ],
+                                ),
                             ],
                           ),
+                          5.verticalSpace,
+                          Spacer(),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              BlocBuilder<CartCubit, BaseState<CartStateData>>(
+                                builder: (context, cartState) {
+                                  final cartList = cartState.data?.cartList ?? [];
+                                  final isInCart = cartList.any(
+                                    (item) =>
+                                        item.productId.toString() ==
+                                        widget.product.id.toString(),
+                                  );
+                                  return Expanded(
+                                    child: GestureDetector(
+                                      onTap: () => _onQuickAddToCart(context),
+                                      behavior: HitTestBehavior.opaque,
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(vertical: 5.h),
+                                        decoration: BoxDecoration(
+                                          color: context.colorScheme.primary,
+                                          borderRadius: BorderRadius.circular(8)
+                                        ),
+                                        child: Center(child: AppText(text: context.localizations.addToCart,color: Colors.white,textSize: 9,)),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              SizedBox(width: 6.w),
+                              LikeButtonDesign(
+                                onTapped: widget.onFavTapped,
+                                isLiked: widget.isLiked,
+                                size: 28,
+                                padding: 4,
+                              ),
+                            ],
+                          ),
+                          10.verticalSpace,
                         ],
                       ),
                     ),

@@ -124,6 +124,7 @@
   "canceled": "ملغي",
   "addToCart": "أضف إلى السلة",
   "addedToCart": "تمت الإضافة للسلة",
+  "productAddedToCartSuccess": "تمت إضافة المنتج إلى السلة بنجاح",
   "goToCart": "الذهاب إلى السلة",
   "address": "العنوان",
   "locationOnMap": "الموقع على الخريطة",

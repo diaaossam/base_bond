@@ -71,7 +71,7 @@ class ProductRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, Unit>> toggleWishList(num productId) async {
+  Future<Either<Failure, String>> toggleWishList(num productId) async {
     final response = await handleApi(
       () => productRemoteDataSource.toggleWishList(productId),
     );
