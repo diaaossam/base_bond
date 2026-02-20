@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/core/utils/api_config.dart';
 import 'package:bond/features/product/presentation/cubit/product_cubit.dart';
+import 'package:bond/features/settings/presentation/widgets/settings_helper.dart';
 import 'package:bond/features/product/presentation/cubit/wishlist/wishlist_cubit.dart';
 import 'package:bond/features/product/presentation/widgets/product/filter/product_filter_bottom_sheet.dart';
 import 'package:bond/features/product/presentation/widgets/product/products_pagination_grid_list.dart';
@@ -115,6 +117,10 @@ class _AllProductBodyState extends State<AllProductBody> {
                 pagingController: _pagingController,
                 isGridView: _isGridView,
                 onFavTapped: (data, item) {
+                  if (ApiConfig.isGuest == true) {
+                    SettingsHelper().showGuestDialog(context);
+                    return;
+                  }
                   item.isAddedToFavourite = data;
                   context.read<WishlistCubit>().toggleWishList(
                     productId: item.id ?? 0,

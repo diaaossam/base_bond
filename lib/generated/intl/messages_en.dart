@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Add a note to the order",
     ),
     "addToCart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
+    "addedToCart": MessageLookupByLibrary.simpleMessage("Added to cart"),
     "additionalNotes": MessageLookupByLibrary.simpleMessage("Additional Notes"),
     "address": MessageLookupByLibrary.simpleMessage("Address"),
     "addressDeleted": MessageLookupByLibrary.simpleMessage(

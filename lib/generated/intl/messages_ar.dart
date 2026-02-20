@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addNote": MessageLookupByLibrary.simpleMessage("إضافة ملاحظة"),
     "addNoteHint": MessageLookupByLibrary.simpleMessage("أضف ملاحظة للطلب"),
     "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
+    "addedToCart": MessageLookupByLibrary.simpleMessage("تمت الإضافة للسلة"),
     "additionalNotes": MessageLookupByLibrary.simpleMessage("ملاحظات إضافية"),
     "address": MessageLookupByLibrary.simpleMessage("العنوان"),
     "addressDeleted": MessageLookupByLibrary.simpleMessage(

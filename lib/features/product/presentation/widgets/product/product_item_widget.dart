@@ -1,7 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/core/utils/api_config.dart';
+import 'package:bond/core/utils/app_constant.dart';
+import 'package:bond/features/orders/data/models/request/cart_params.dart';
+import 'package:bond/features/orders/presentation/cubit/cart/cart_cubit.dart';
+import 'package:bond/features/settings/presentation/widgets/settings_helper.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../config/router/app_router.gr.dart';
 import '../../../../../core/extensions/color_extensions.dart';
@@ -51,6 +57,36 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
   void dispose() {
     _hoverController.dispose();
     super.dispose();
+  }
+
+  void _onQuickAddToCart(BuildContext context) {
+    if (ApiConfig.isGuest == true) {
+      SettingsHelper().showGuestDialog(context);
+      return;
+    }
+    final stock = num.tryParse(widget.product.currentStock ?? '0') ?? 0;
+    if (stock <= 0) {
+      AppConstant.showCustomSnakeBar(
+        context,
+        context.localizations.notifyWhenAvailable,
+        false,
+      );
+      return;
+    }
+    final cartItem = CartItem(
+      productId: widget.product.id,
+      qty: 1,
+      price: widget.product.salePrice ?? 0,
+      stock: stock,
+      currentItemPrice: widget.product.salePrice ?? 0,
+      productModel: widget.product,
+    );
+    context.read<CartCubit>().addToCart(cartItem);
+    AppConstant.showCustomSnakeBar(
+      context,
+      context.localizations.addedToCart,
+      true,
+    );
   }
 
   @override
@@ -185,17 +221,38 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                               ),
                             ),
 
-                          if (widget.product.discountPercentage != null &&
-                              widget.product.discountPercentage != 0)
-                            Positioned.directional(
-                              textDirection: TextDirection.rtl,
-                              start: 10,
-                              top: 10,
-                              child: LikeButtonDesign(
-                                onTapped: widget.onFavTapped,
-                                isLiked: widget.isLiked,
-                              ),
+                          Positioned(
+                            top: 8,
+                            left: 8,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                GestureDetector(
+                                  onTap: () => _onQuickAddToCart(context),
+                                  behavior: HitTestBehavior.opaque,
+                                  child: Container(
+                                    padding: EdgeInsets.all(4.w),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: AppImage.asset(
+                                      Assets.icons.shoppingCart,
+                                      size: 20.sp,
+                                      color: context.colorScheme.primary,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 6.w),
+                                LikeButtonDesign(
+                                  onTapped: widget.onFavTapped,
+                                  isLiked: widget.isLiked,
+                                  size: 28,
+                                  padding: 4,
+                                ),
+                              ],
                             ),
+                          ),
                         ],
                       ),
                     ),

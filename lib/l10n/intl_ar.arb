@@ -123,6 +123,7 @@
   "deleiverd": "تم التوصيل",
   "canceled": "ملغي",
   "addToCart": "أضف إلى السلة",
+  "addedToCart": "تمت الإضافة للسلة",
   "goToCart": "الذهاب إلى السلة",
   "address": "العنوان",
   "locationOnMap": "الموقع على الخريطة",

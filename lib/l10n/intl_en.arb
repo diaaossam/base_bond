@@ -123,6 +123,7 @@
   "deleiverd": "Delivered",
   "canceled": "Canceled",
   "addToCart": "Add to Cart",
+  "addedToCart": "Added to cart",
   "goToCart": "Go to Cart",
   "address": "Address",
   "locationOnMap": "Location on Map",

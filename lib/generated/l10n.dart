@@ -964,6 +964,16 @@ class S {
     return Intl.message('Add to Cart', name: 'addToCart', desc: '', args: []);
   }
 
+  /// `Added to cart`
+  String get addedToCart {
+    return Intl.message(
+      'Added to cart',
+      name: 'addedToCart',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Go to Cart`
   String get goToCart {
     return Intl.message('Go to Cart', name: 'goToCart', desc: '', args: []);

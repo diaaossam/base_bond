@@ -1,5 +1,7 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/core/utils/api_config.dart';
 import 'package:bond/features/product/presentation/cubit/wishlist/wishlist_cubit.dart';
+import 'package:bond/features/settings/presentation/widgets/settings_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -98,6 +100,10 @@ class _ProductHorizontalListState extends State<ProductHorizontalList>
                         key: ValueKey(item.id),
                         isLiked: item.isAddedToFavourite ?? false,
                         onFavTapped: (data) {
+                          if (ApiConfig.isGuest == true) {
+                            SettingsHelper().showGuestDialog(context);
+                            return;
+                          }
                           item.isAddedToFavourite = data;
                           context.read<WishlistCubit>().toggleWishList(
                             productId: item.id ?? 0,
