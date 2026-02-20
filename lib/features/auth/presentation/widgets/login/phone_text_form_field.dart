@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+import '../../../../../config/helper/egypt_formater.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 
 class MobileNumberField extends StatelessWidget {
@@ -30,7 +31,7 @@ class MobileNumberField extends StatelessWidget {
       child: CustomTextFormField(
         initialValue: data,
         inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+          EgyptianPhoneFormatter(),
         ],
         textDirection: TextDirection.ltr,
         validator: isRequired
@@ -57,7 +58,6 @@ class MobileNumberField extends StatelessWidget {
             10.horizontalSpace,
           ],
         ),
-
         suffixIcon: AppImage.asset(Assets.icons.phone,size: 20,),
       ),
     );

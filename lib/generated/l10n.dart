@@ -464,6 +464,26 @@ class S {
     );
   }
 
+  /// `We've sent a 6-digit code to {target}`
+  String otpSentTo(Object target) {
+    return Intl.message(
+      'We\'ve sent a 6-digit code to $target',
+      name: 'otpSentTo',
+      desc: '',
+      args: [target],
+    );
+  }
+
+  /// `Code sent to {phone}. Edit below to resend to a new number.`
+  String otpBodyPhone(Object phone) {
+    return Intl.message(
+      'Code sent to $phone. Edit below to resend to a new number.',
+      name: 'otpBodyPhone',
+      desc: '',
+      args: [phone],
+    );
+  }
+
   /// `Confirm`
   String get confirm {
     return Intl.message('Confirm', name: 'confirm', desc: '', args: []);

@@ -25,6 +25,12 @@ class AuthRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
+  Future<Either<Failure, Unit>> resendOtp({required String phone}) async {
+    return await handleApi(
+      () => authRemoteDataSource.resendOtp(phone: phone),
+    );
+  }
+
   Future<Either<Failure, UserModel>> getUserData() async {
     final response = await handleApi(() => authRemoteDataSource.getUserData());
     return response;

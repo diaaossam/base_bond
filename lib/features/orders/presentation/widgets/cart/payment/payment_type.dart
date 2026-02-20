@@ -85,13 +85,13 @@ class _PaymentTypeDesignState extends State<PaymentTypeDesign>
               image: Assets.images.coins01.path,
               onTap: () => _selectPayment(PaymentType.cash),
             ),
-            SizedBox(height: 5.h),
+          /*  SizedBox(height: 5.h),
             _PaymentOption(
               isSelected: _selectedPayment == PaymentType.visa,
               payment: PaymentType.visa,
               image: Assets.images.visamaster.path,
               onTap: () => _selectPayment(PaymentType.visa),
-            ),
+            ),*/
           ],
         ),
       ),

@@ -20,6 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
+  static String m0(phone) =>
+      "تم إرسال الرمز إلى ${phone}. عدّل الرقم أدناه لإعادة الإرسال إلى رقم جديد.";
+
+  static String m1(target) =>
+      "لقد أرسلنا رمزاً مكوناً من 6 أرقام إلى ${target}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "activeSubstance": MessageLookupByLibrary.simpleMessage("المواد الفعالة"),
@@ -409,6 +415,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "otpBody": MessageLookupByLibrary.simpleMessage(
       "لقد أرسلنا رمزاً مكوناً من 6 أرقام إلى بريدك الإلكتروني",
     ),
+    "otpBodyPhone": m0,
+    "otpSentTo": m1,
     "otpTitle": MessageLookupByLibrary.simpleMessage("أدخل رمز التحقق (OTP)"),
     "ourBranches": MessageLookupByLibrary.simpleMessage("فروعنا"),
     "ourServices": MessageLookupByLibrary.simpleMessage("خدماتنا"),

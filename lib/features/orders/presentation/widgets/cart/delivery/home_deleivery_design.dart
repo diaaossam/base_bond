@@ -77,6 +77,10 @@ class HomeDeleiveryDesign extends StatelessWidget {
           else if (defaultAddress == null)
             InkWell(
               onTap: () async {
+                if(ApiConfig.isGuest == true){
+                  SettingsHelper().showGuestDialog(context);
+                  return;
+                }
                 await context.router.push(LocationsRoute()).then((value) {
                   if (onAddressChanged != null) {
                     onAddressChanged!(

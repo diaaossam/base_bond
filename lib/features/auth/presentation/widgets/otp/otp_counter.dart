@@ -5,15 +5,22 @@ import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 
 class OtpTimerDesign extends StatefulWidget {
-  final Function() onFinish;
+  final VoidCallback? onFinish;
+  final VoidCallback? onResendTap;
+  final bool canResend;
 
-  const OtpTimerDesign({super.key, required this.onFinish});
+  const OtpTimerDesign({
+    super.key,
+    this.onFinish,
+    this.onResendTap,
+    this.canResend = false,
+  });
 
   @override
-  State<OtpTimerDesign> createState() => _OtpTimerDesignState();
+  State<OtpTimerDesign> createState() => OtpTimerDesignState();
 }
 
-class _OtpTimerDesignState extends State<OtpTimerDesign> {
+class OtpTimerDesignState extends State<OtpTimerDesign> {
   Timer? _timer;
   late int _countdown;
 
@@ -26,35 +33,14 @@ class _OtpTimerDesignState extends State<OtpTimerDesign> {
 
   @override
   void dispose() {
-    _timer!.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AppText(
-          text: context.localizations.dontReceiveCode,
-          color: context.colorScheme.shadow,
-          fontWeight: FontWeight.w500,
-        ),
-        const SizedBox(width: 5),
-        AppText(
-          text: context.localizations.resendCode,
-          color: context.colorScheme.tertiary,
-          fontWeight: FontWeight.w600,
-        ),
-        const SizedBox(width: 5),
-        AppText(
-          text: "($_countdown)",
-          color: context.colorScheme.shadow,
-          fontWeight: FontWeight.w600,
-        ),
-      ],
-    );
+  void resetTimer() {
+    _timer?.cancel();
+    _countdown = 60;
+    startTimer();
   }
 
   void startTimer() {
@@ -63,7 +49,7 @@ class _OtpTimerDesignState extends State<OtpTimerDesign> {
       oneSecond,
       (Timer timer) => setState(() {
         if (_countdown < 1) {
-          widget.onFinish();
+          widget.onFinish?.call();
           timer.cancel();
         } else {
           _countdown--;
@@ -72,9 +58,39 @@ class _OtpTimerDesignState extends State<OtpTimerDesign> {
     );
   }
 
-  void resetTimer() {
-    _timer!.cancel();
-    _countdown = 60;
-    startTimer();
+  @override
+  Widget build(BuildContext context) {
+    final canTap = widget.canResend || _countdown < 1;
+    return GestureDetector(
+      onTap: canTap ? widget.onResendTap : null,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AppText(
+            text: context.localizations.dontReceiveCode,
+            color: context.colorScheme.shadow,
+            fontWeight: FontWeight.w500,
+          ),
+          const SizedBox(width: 5),
+          AppText(
+            text: context.localizations.resendCode,
+            color: canTap
+                ? context.colorScheme.tertiary
+                : context.colorScheme.shadow,
+            fontWeight: FontWeight.w600,
+          ),
+          if (_countdown > 0) ...[
+            const SizedBox(width: 5),
+            AppText(
+              text: "($_countdown)",
+              color: context.colorScheme.shadow,
+              fontWeight: FontWeight.w600,
+            ),
+          ],
+        ],
+      ),
+    );
   }
 }

@@ -47,6 +47,8 @@
   "resendCode": "Resend",
   "otpTitle": "Enter Verification Code (OTP)",
   "otpBody": "We’ve sent a 6-digit code to your email address",
+  "otpSentTo": "We've sent a 6-digit code to {target}",
+  "otpBodyPhone": "Code sent to {phone}. Edit below to resend to a new number.",
   "confirm": "Confirm",
   "fullName": "Full Name",
   "governorate": "Governorate",

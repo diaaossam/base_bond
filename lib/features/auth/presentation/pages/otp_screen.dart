@@ -9,14 +9,15 @@ import '../widgets/otp/otp_body.dart';
 @RoutePage()
 class OtpScreen extends StatelessWidget {
   final String email;
+  final String? phone;
 
-  const OtpScreen({super.key, required this.email});
+  const OtpScreen({super.key, required this.email, this.phone});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<OtpCubit>(),
-      child: Scaffold(body: OtpBodyWidget(email: email)),
+      child: Scaffold(body: OtpBodyWidget(email: email, phone: phone)),
     );
   }
 }

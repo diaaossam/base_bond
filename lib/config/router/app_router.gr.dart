@@ -697,10 +697,11 @@ class OtpRoute extends _i33.PageRouteInfo<OtpRouteArgs> {
   OtpRoute({
     _i34.Key? key,
     required String email,
+    String? phone,
     List<_i33.PageRouteInfo>? children,
   }) : super(
          OtpRoute.name,
-         args: OtpRouteArgs(key: key, email: email),
+         args: OtpRouteArgs(key: key, email: email, phone: phone),
          initialChildren: children,
        );
 
@@ -710,32 +711,38 @@ class OtpRoute extends _i33.PageRouteInfo<OtpRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<OtpRouteArgs>();
-      return _i20.OtpScreen(key: args.key, email: args.email);
+      return _i20.OtpScreen(
+        key: args.key,
+        email: args.email,
+        phone: args.phone,
+      );
     },
   );
 }
 
 class OtpRouteArgs {
-  const OtpRouteArgs({this.key, required this.email});
+  const OtpRouteArgs({this.key, required this.email, this.phone});
 
   final _i34.Key? key;
 
   final String email;
 
+  final String? phone;
+
   @override
   String toString() {
-    return 'OtpRouteArgs{key: $key, email: $email}';
+    return 'OtpRouteArgs{key: $key, email: $email, phone: $phone}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! OtpRouteArgs) return false;
-    return key == other.key && email == other.email;
+    return key == other.key && email == other.email && phone == other.phone;
   }
 
   @override
-  int get hashCode => key.hashCode ^ email.hashCode;
+  int get hashCode => key.hashCode ^ email.hashCode ^ phone.hashCode;
 }
 
 /// generated route for

@@ -22,6 +22,8 @@ import '../models/request/social_model.dart';
 abstract class AuthRemoteDataSource {
   Future<UserModel> verifyOtp({required OtpParams otpParams});
 
+  Future<Unit> resendOtp({required String phone});
+
   Future<bool> deleteUser();
 
   Future<bool> logOut();
@@ -77,6 +79,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     sharedPreferences.setBool(AppStrings.isGuest, false);
     await ApiConfig().init();
     return response;
+  }
+
+  @override
+  Future<Unit> resendOtp({required String phone}) async {
+    await dioConsumer
+        .post(EndPoints.resendOtp)
+        .body({'phone': '+20$phone'})
+        .factory((json) => true)
+        .execute();
+    return unit;
   }
 
   @override

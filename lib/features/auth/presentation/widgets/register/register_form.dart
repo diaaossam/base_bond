@@ -77,14 +77,20 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
               ),
               SizedBox(height: SizeConfig.bodyHeight * .02),
+              MobileNumberField(),
+              SizedBox(height: SizeConfig.bodyHeight * .02),
               CustomTextFormField(
                 name: "email",
                 hintText: context.localizations.email,
                 keyboardType: TextInputType.emailAddress,
                 prefixIcon: AppImage.asset(Assets.icons.email),
-                validator: FormBuilderValidators.required(
-                  errorText: context.localizations.validation,
-                ),
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.email(
+                  ),
+                  FormBuilderValidators.required(
+                    errorText: context.localizations.validation,
+                  )
+                ]),
               ),
               SizedBox(height: SizeConfig.bodyHeight * .02),
               ValueListenableBuilder(
@@ -132,8 +138,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   );
                 },
               ),
-              SizedBox(height: SizeConfig.bodyHeight * .02),
-              MobileNumberField(),
+
               SizedBox(height: SizeConfig.bodyHeight * .02),
               BlocBuilder<AppCubit, BaseState<AppStateData>>(
                 builder: (context, state) {
@@ -229,7 +234,10 @@ class _RegisterFormState extends State<RegisterForm> {
                 listener: (context, state) {
                   if (state.isSuccess) {
                     context.router.push(
-                      OtpRoute(email: _formKey.fieldValue("email")),
+                      OtpRoute(
+                      email: _formKey.fieldValue("email"),
+                      phone: _formKey.fieldValue("phone"),
+                    ),
                     );
                   }
                 },

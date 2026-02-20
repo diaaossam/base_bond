@@ -22,4 +22,12 @@ class OtpCubit extends Cubit<BaseState<void>> with AsyncHandler<void> {
       onSuccess: (data) => data,
     );
   }
+
+  Future<void> resendOtp({required String phone}) async {
+    await handleAsync(
+      call: () => authRepositoryImpl.resendOtp(phone: phone),
+      identifier: 'resendOtp',
+      onSuccess: (_) {},
+    );
+  }
 }

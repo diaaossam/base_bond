@@ -99,7 +99,10 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
+                SliverToBoxAdapter(child: SizedBox(height: 12.h)),
+                PriceCartDesign(myAddress: defaultAddress,deliveryMethod: deliveryMethod,),
                 const DiscountDesign(),
+                CartNoteDesign(note: note),
                 CartLocationDesign(
                   onDeleiveryMethod: (data) {
                     setState(() {
@@ -116,9 +119,6 @@ class _CartBodyState extends State<CartBody> with TickerProviderStateMixin {
                 PaymentTypeDesign(
                   payment: (p0) => setState(() => paymentType = p0),
                 ),
-                CartNoteDesign(note: note),
-                SliverToBoxAdapter(child: SizedBox(height: 12.h)),
-                PriceCartDesign(myAddress: defaultAddress,deliveryMethod: deliveryMethod,),
                 SliverPadding(
                   padding: screenPadding(),
                   sliver: SliverToBoxAdapter(
