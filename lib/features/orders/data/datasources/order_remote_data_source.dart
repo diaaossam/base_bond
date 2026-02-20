@@ -37,7 +37,7 @@ abstract class OrderRemoteDataSource {
 
   Future<PointsModel> getOrderPoints({required num orderPoints});
 
-  Future<Unit> rateOrderItem({
+  Future<String> rateOrderItem({
     required int productId,
     required int orderId,
     required int rating,
@@ -107,19 +107,22 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
   }
 
   @override
-  Future<Unit> rateOrderItem({
+  Future<String> rateOrderItem({
     required int productId,
     required int orderId,
     required int rating,
     String? comment,
   }) async {
-    await dioConsumer.post(EndPoints.reviews).body({
-      'product_id': productId,
-      'order_id': orderId,
-      'rating': rating,
-      if (comment != null) 'comment': comment,
-    }).execute();
-    return unit;
+    return await dioConsumer
+        .post(EndPoints.reviews)
+        .body({
+          'product_id': productId,
+          'order_id': orderId,
+          'rating': rating,
+          if (comment != null) 'comment': comment,
+        })
+        .factory((json) => json['message'])
+        .execute();
   }
 
   @override

@@ -139,7 +139,7 @@ class OrderRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, Unit>> rateOrderItem({
+  Future<Either<Failure, String>> rateOrderItem({
     required int productId,
     required int orderId,
     required int rating,
