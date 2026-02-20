@@ -29,26 +29,25 @@ class ProductsGridList extends StatelessWidget {
         sliver: SliverToBoxAdapter(child: EmptyWishDesign()),
       );
     } else {
-      return SliverPadding(
-        padding: screenPadding(),
-        sliver: SliverGrid.builder(
-          itemCount: productList.length,
-          itemBuilder: (context, index) {
-            final item = productList[index];
-            return ProductItemWidget(
-              onFavTapped: (data) => onFavTapped(data, item),
-              key: ValueKey(item.id.toString()),
-              product: item,
-              index: index,
-              isLiked: item.isAddedToFavourite ?? false,
-            );
-          },
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: .98,
-            mainAxisSpacing: 10.h,
-            crossAxisSpacing: 10.h,
-          ),
+      return SliverGrid.builder(
+        itemCount: productList.length,
+        itemBuilder: (context, index) {
+          final item = productList[index];
+          return ProductItemWidget(
+            onFavTapped: (data) => onFavTapped(data, item),
+            key: ValueKey(item.id.toString()),
+            product: item,
+            index: index,
+            isLiked: item.isAddedToFavourite ?? false,
+            width: double.infinity,
+            margin: EdgeInsets.zero,
+          );
+        },
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: .7,
+          crossAxisSpacing: 5.w,
+          mainAxisSpacing: 5.h,
         ),
       );
     }

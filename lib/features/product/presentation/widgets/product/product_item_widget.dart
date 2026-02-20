@@ -16,6 +16,7 @@ import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../widgets/image_picker/app_image.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../data/models/response/product_model.dart';
+import '../product_details/quantity_design.dart';
 import 'like_button.dart';
 
 class ProductItemWidget extends StatefulWidget {
@@ -24,6 +25,7 @@ class ProductItemWidget extends StatefulWidget {
   final double? width;
   final bool isLiked;
   final Function(bool) onFavTapped;
+  final EdgeInsetsGeometry ? margin;
 
   const ProductItemWidget({
     super.key,
@@ -31,7 +33,7 @@ class ProductItemWidget extends StatefulWidget {
     required this.index,
     this.width,
     required this.isLiked,
-    required this.onFavTapped,
+    required this.onFavTapped, this.margin,
   });
 
   @override
@@ -104,7 +106,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
             ),
             child: Container(
               width: widget.width ?? 170.w,
-              margin: EdgeInsets.only(right: 12.w),
+              margin: widget.margin ??EdgeInsets.only(right: 12.w),
               decoration: BoxDecoration(
                 border: Border.all(width: 2,color: context.colorScheme.outline),
                 color: context.colorScheme.surface,
@@ -184,6 +186,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                       padding: EdgeInsets.symmetric(horizontal: 10.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           AppText(
                             text: widget.product.title ?? '',
@@ -192,8 +195,8 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                           ),
                           5.verticalSpace,
                           Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Row(
                                 children: [
@@ -270,23 +273,72 @@ class _ProductItemWidgetState extends State<ProductItemWidget>
                               BlocBuilder<CartCubit, BaseState<CartStateData>>(
                                 builder: (context, cartState) {
                                   final cartList = cartState.data?.cartList ?? [];
-                                  final isInCart = cartList.any(
-                                    (item) =>
-                                        item.productId.toString() ==
-                                        widget.product.id.toString(),
-                                  );
+                                  final matches = cartList.where((item) =>
+                                      item.productId.toString() ==
+                                      widget.product.id.toString());
+                                  final cartItem =
+                                      matches.isEmpty ? null : matches.first;
+                                  final isInCart = cartItem != null;
+
                                   return Expanded(
-                                    child: GestureDetector(
-                                      onTap: () => _onQuickAddToCart(context),
-                                      behavior: HitTestBehavior.opaque,
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 5.h),
-                                        decoration: BoxDecoration(
-                                          color: context.colorScheme.primary,
-                                          borderRadius: BorderRadius.circular(8)
-                                        ),
-                                        child: Center(child: AppText(text: context.localizations.addToCart,color: Colors.white,textSize: 9,)),
+                                    child: AnimatedSwitcher(
+                                      duration: const Duration(milliseconds: 300),
+                                      switchInCurve: Curves.easeOutCubic,
+                                      switchOutCurve: Curves.easeInCubic,
+                                      transitionBuilder: (child, animation) => FadeTransition(
+                                        opacity: animation,
+                                        child: child,
                                       ),
+                                      child: isInCart
+                                          ? QuantityDesign(
+                                              key: ValueKey('qty_${widget.product.id}'),
+                                              isCart: true,
+                                              isActive: (cartItem.qty ?? 0) > 0,
+                                              count: cartItem.qty?.toInt() ?? 1,
+                                              stock: cartItem.stock,
+                                              callback: (info) {
+                                                if (info['isIncrease'] == false &&
+                                                    info['count'] == 0) {
+                                                  context
+                                                      .read<CartCubit>()
+                                                      .deleteItemFromCart(
+                                                        id: widget.product.id
+                                                            .toString(),
+                                                      );
+                                                  return;
+                                                }
+                                                context.read<CartCubit>().setQuantity(
+                                                  productId:
+                                                      widget.product.id.toString(),
+                                                  isIncrease:
+                                                      info['isIncrease'] as bool,
+                                                );
+                                              },
+                                            )
+                                          : GestureDetector(
+                                              key: const ValueKey('add_to_cart'),
+                                              onTap: () =>
+                                                  _onQuickAddToCart(context),
+                                              behavior: HitTestBehavior.opaque,
+                                              child: Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 5.h),
+                                                decoration: BoxDecoration(
+                                                  color: context
+                                                      .colorScheme.primary,
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Center(
+                                                  child: AppText(
+                                                    text: context
+                                                        .localizations.addToCart,
+                                                    color: Colors.white,
+                                                    textSize: 9,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
                                     ),
                                   );
                                 },

@@ -2,6 +2,7 @@ import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
+import 'package:bond/widgets/rotate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -38,7 +39,7 @@ class SettingsItemDesign extends StatelessWidget {
             Expanded(
               child: AppText(text: text, fontWeight: FontWeight.w500),
             ),
-            AppImage.asset(Assets.icons.arrowForward),
+            Rotate(child: AppImage.asset(Assets.icons.arrowForward)),
             10.horizontalSpace,
           ],
         ),

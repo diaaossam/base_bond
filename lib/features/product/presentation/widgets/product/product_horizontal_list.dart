@@ -82,7 +82,7 @@ class _ProductHorizontalListState extends State<ProductHorizontalList>
     return BlocBuilder<WishlistCubit, BaseState>(
       builder: (context, state) {
         return SizedBox(
-          height:widget.height?? 280.h,
+          height:widget.height?? 290.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 16.w),

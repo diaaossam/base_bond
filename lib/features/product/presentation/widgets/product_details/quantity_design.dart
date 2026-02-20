@@ -32,8 +32,16 @@ class _QuantityDesignState extends State<QuantityDesign> {
 
   @override
   void initState() {
-    _setUpCount();
     super.initState();
+    count = widget.count;
+  }
+
+  @override
+  void didUpdateWidget(covariant QuantityDesign oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.count != widget.count) {
+      setState(() => count = widget.count);
+    }
   }
 
   @override
@@ -179,9 +187,5 @@ class _QuantityDesignState extends State<QuantityDesign> {
         ),
       );
     }
-  }
-
-  void _setUpCount() {
-    setState(() => count = widget.count);
   }
 }
