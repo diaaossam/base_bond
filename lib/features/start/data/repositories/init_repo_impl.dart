@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/services/network/error/failures.dart';
+import 'package:bond/features/start/data/models/intro_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
@@ -14,6 +15,10 @@ class InitRepo with ApiHandlerMixin {
 
   Future<Either<Failure, PageRouteInfo>> initApp() async {
     final response = await handleApi(() => initRemoteDataSource.initUser());
+    return response;
+  }
+  Future<Either<Failure, List<IntroModel>>> getIntroImages() async {
+    final response = await handleApi(() => initRemoteDataSource.getIntro());
     return response;
   }
 }

@@ -8,6 +8,7 @@ class EndPoints {
   static const String subDivision = "division-categories";
   static const String insuranceCompany = "insurance-companies";
   static const String insuranceProfile = "insurance-profile";
+  static const String intro = "image-intros";
 
   /////////////////////// Location //////////////////
 

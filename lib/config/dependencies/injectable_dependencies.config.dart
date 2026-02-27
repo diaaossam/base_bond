@@ -171,9 +171,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i845.GoogleAccountLoginService(),
     );
     gh.factory<_i1035.NetworkInfo>(() => _i1035.NetworkInfoImpl());
-    gh.lazySingleton<_i1059.OnBoardingCubit>(
-      () => _i1059.OnBoardingCubit(gh<_i460.SharedPreferences>()),
-    );
     gh.factory<_i913.GlobalCubit>(
       () => _i913.GlobalCubit(gh<_i460.SharedPreferences>()),
     );
@@ -417,6 +414,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i792.SettingsCubit(gh<_i91.SettingsRepositoryImpl>()),
     );
     gh.factory<_i33.StartCubit>(() => _i33.StartCubit(gh<_i941.InitRepo>()));
+    gh.lazySingleton<_i1059.OnBoardingCubit>(
+      () => _i1059.OnBoardingCubit(
+        gh<_i460.SharedPreferences>(),
+        gh<_i941.InitRepo>(),
+      ),
+    );
     return this;
   }
 }

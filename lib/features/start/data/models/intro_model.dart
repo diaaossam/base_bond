@@ -10,7 +10,7 @@ class IntroModel {
 
   factory IntroModel.fromJson(Map<String, dynamic> map) => IntroModel(
       id: map['id'],
-      title: map['title'],
-      description: map['description'],
-      image: map['image']);
+      title: map['title']??"",
+      description: map['description']??"",
+      image: map['image']??"");
 }

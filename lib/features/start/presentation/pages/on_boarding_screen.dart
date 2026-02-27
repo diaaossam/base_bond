@@ -18,7 +18,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<OnBoardingCubit>(),
+      create: (context) => sl<OnBoardingCubit>()..getIntroData(),
       child: Scaffold(
         backgroundColor: context.colorScheme.background,
         appBar: CustomAppBar(
